@@ -17,7 +17,9 @@ namespace InfoBox.Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InformationBox.Show("Néness\nGeorges", "Un caption sympa comme le fromage", InformationBoxButtons.YesNoCancel);
+            InformationBoxResult result = InformationBox.Show("Néness\nGeorges", "Un caption sympa comme le fromage", InformationBoxButtons.YesNoCancel);
+            InformationBox.Show(String.Format("Hey, you clicked {0}", result));
+            MessageBox.Show(String.Format("Hey, you clicked {0}", result));
         }
     }
 }

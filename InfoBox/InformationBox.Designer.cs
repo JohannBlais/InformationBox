@@ -52,7 +52,7 @@ namespace InfoBox
             // 
             // pcbIcon
             // 
-            this.pcbIcon.Location = new System.Drawing.Point(14, 20);
+            this.pcbIcon.Location = new System.Drawing.Point(14, 17);
             this.pcbIcon.Name = "pcbIcon";
             this.pcbIcon.Size = new System.Drawing.Size(48, 48);
             this.pcbIcon.TabIndex = 1;
@@ -111,7 +111,6 @@ namespace InfoBox
             this.MinimizeBox = false;
             this.Name = "InformationBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Information";
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.pnlMain.ResumeLayout(false);
             this.pnlIcon.ResumeLayout(false);

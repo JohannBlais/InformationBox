@@ -352,7 +352,25 @@ namespace InfoBox
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void _button_Click(object sender, EventArgs e)
         {
-            
+            if (sender is Button)
+            {
+                Button senderButton = (Button)sender;
+                switch (senderButton.Name)
+                {
+                    case "Abort": _result = InformationBoxResult.Abort; break;
+                    case "OK": _result = InformationBoxResult.OK; break;
+                    case "Yes": _result = InformationBoxResult.Yes; break;
+                    case "Retry": _result = InformationBoxResult.Retry; break;
+                    case "No": _result = InformationBoxResult.No; break;
+                    case "Cancel": _result = InformationBoxResult.Cancel; break;
+                    case "Ignore": _result = InformationBoxResult.Ignore; break;
+                    case "User1": _result = InformationBoxResult.User1; break;
+                    case "User2": _result = InformationBoxResult.User2; break;
+                    default: _result = InformationBoxResult.None; break;
+                }
+
+                DialogResult = DialogResult.OK;
+            }
         }
 
         #endregion Event handling
