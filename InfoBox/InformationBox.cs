@@ -27,6 +27,7 @@ namespace InfoBox
         private InformationBoxIcon _icon = InformationBoxIcon.None;
         private InformationBoxResult _result = InformationBoxResult.None;
         private InformationBoxButtons _buttons = InformationBoxButtons.OK;
+        private InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
 
         private Button _buttonAbort = null;
         private Button _buttonOk = null;
@@ -91,6 +92,20 @@ namespace InfoBox
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultbutton">The default button.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
+            : this(text, caption, buttons, icon)
+        {
+            _defaultButton = defaultButton;
+        }
+
+        /// <summary>
         /// Displays a message box with specified text.
         /// </summary>
         /// <param name="text">The text.</param>
@@ -140,6 +155,21 @@ namespace InfoBox
         }
 
         /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, icon, defaultButton);
+            return Show(box);
+        }
+
+        /// <summary>
         /// Gets the result.
         /// </summary>
         /// <param name="box">The box.</param>
@@ -150,9 +180,31 @@ namespace InfoBox
             box.SetText();
             box.SetIcon();
             box.SetLayout();
+            box.SetFocus();
             box.ShowDialog();
 
             return box._result;
+        }
+
+        /// <summary>
+        /// Sets the focus.
+        /// </summary>
+        private void SetFocus()
+        {
+            if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
+            {
+                pnlButtons.Controls[0].Select();
+            }
+
+            if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
+            {
+                pnlButtons.Controls[1].Select();
+            }
+
+            if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
+            {
+                pnlButtons.Controls[2].Select();
+            }
         }
 
         /// <summary>

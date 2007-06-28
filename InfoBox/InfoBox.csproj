@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\InformationBoxButtons.cs" />
+    <Compile Include="Enums\InformationBoxDefaultButton.cs" />
     <Compile Include="Enums\InformationBoxIcon.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
     <Compile Include="InformationBox.cs">
