@@ -14,6 +14,9 @@ namespace InfoBox.Test
         {
             InformationBoxResult result = InformationBox.Show("A multiline message\nis displayed over several lines", "The caption can be long as well", InformationBoxButtons.YesNoCancel, InformationBoxIcon.Question, InformationBoxDefaultButton.Button2);
             InformationBox.Show(String.Format("Hey, you clicked {0}", result), "If the caption is very long, the window is expanded as needed", InformationBoxButtons.OK, InformationBoxIcon.Error);
+
+            InformationBox.Show("Information box with custom buttons", "Custom Buttons",
+                                InformationBoxButtons.User1User2, "Tea", "Coffee");
         }
 
         private void button2_Click(object sender, EventArgs e)

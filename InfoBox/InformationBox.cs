@@ -25,6 +25,9 @@ namespace InfoBox
         private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
         private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
 
+        private readonly string _buttonUser1Text = "User1";
+        private readonly string _buttonUser2Text = "User2";
+
         private readonly Button _buttonAbort = null;
         private readonly Button _buttonOk = null;
         private readonly Button _buttonYes = null;
@@ -36,6 +39,8 @@ namespace InfoBox
         private readonly Button _buttonUser2 = null;
 
         #endregion Attributes
+
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBox"/> class.
@@ -80,9 +85,69 @@ namespace InfoBox
         /// <param name="text">The text.</param>
         /// <param name="caption">The caption.</param>
         /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, string button1Text)
+            : this(text, caption)
+        {
+            _buttons = buttons;
+            _buttonUser1Text = button1Text;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text)
+            : this(text, caption)
+        {
+            _buttons = buttons;
+            _buttonUser1Text = button1Text;
+            _buttonUser2Text = button2Text;
+        }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
         /// <param name="icon">The icon.</param>
         private InformationBox(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon)
             : this(text, caption, buttons)
+        {
+            _icon = icon;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="icon">The icon.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, string button1Text, InformationBoxIcon icon)
+            : this(text, caption, buttons, button1Text)
+        {
+            _icon = icon;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <param name="icon">The icon.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon)
+            : this(text, caption, buttons, button1Text, button2Text)
         {
             _icon = icon;
         }
@@ -100,6 +165,41 @@ namespace InfoBox
         {
             _defaultButton = defaultButton;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, string button1Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
+            : this(text, caption, buttons, button1Text, icon)
+        {
+            _defaultButton = defaultButton;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
+            : this(text, caption, buttons, button1Text, button2Text, icon)
+        {
+            _defaultButton = defaultButton;
+        }
+
+        #endregion Constructors
+
+        #region Show
 
         /// <summary>
         /// Displays a message box with specified text.
@@ -143,11 +243,71 @@ namespace InfoBox
         /// <param name="text">The text.</param>
         /// <param name="caption">The caption.</param>
         /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, string button1Text)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, button1Text);
+            return Show(box);
+        }
+
+        /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, button1Text, button2Text);
+            return Show(box);
+        }
+
+        /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
         /// <param name="icon">The icon.</param>
         /// <returns></returns>
         public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon)
         {
             InformationBox box = new InformationBox(text, caption, buttons, icon);
+            return Show(box);
+        }
+
+        /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, string button1Text, InformationBoxIcon icon)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, button1Text, icon);
+            return Show(box);
+        }
+
+        /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, button1Text, button2Text, icon);
             return Show(box);
         }
 
@@ -165,6 +325,41 @@ namespace InfoBox
             InformationBox box = new InformationBox(text, caption, buttons, icon, defaultButton);
             return Show(box);
         }
+
+        /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, string button1Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, button1Text, icon, defaultButton);
+            return Show(box);
+        }
+
+        /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, button1Text, button2Text, icon, defaultButton);
+            return Show(box);
+        }
+
+        #endregion Show
 
         /// <summary>
         /// Gets the result.
@@ -382,13 +577,13 @@ namespace InfoBox
                 _buttons == InformationBoxButtons.User1User2 ||
                 _buttons == InformationBoxButtons.YesNoUser1)
             {
-                AddButton(_buttonUser1, "User1");
+                AddButton(_buttonUser1, "User1", _buttonUser1Text);
             }
 
             // User2
             if (_buttons == InformationBoxButtons.User1User2)
             {
-                AddButton(_buttonUser2, "User2");
+                AddButton(_buttonUser2, "User2", _buttonUser2Text);
             }
 
             SetButtonsSize();
@@ -429,6 +624,24 @@ namespace InfoBox
             button.Font = SystemFonts.MessageBoxFont;
             button.Name = name;
             button.Text = name;
+            button.Click += _button_Click;
+            pnlButtons.Controls.Add(button);
+        }
+
+        /// <summary>
+        /// Adds the button.
+        /// </summary>
+        /// <param name="button">The button.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="text">The text.</param>
+        private void AddButton(Button button, string name, string text)
+        {
+            button = new Button();
+            button.FlatStyle = FlatStyle.System;
+            button.UseVisualStyleBackColor = true;
+            button.Font = SystemFonts.MessageBoxFont;
+            button.Name = name;
+            button.Text = text;
             button.Click += _button_Click;
             pnlButtons.Controls.Add(button);
         }
