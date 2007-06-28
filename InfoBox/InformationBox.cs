@@ -361,6 +361,8 @@ namespace InfoBox
 
         #endregion Show
 
+        #region Box initialization
+
         /// <summary>
         /// Gets the result.
         /// </summary>
@@ -377,6 +379,8 @@ namespace InfoBox
 
             return box._result;
         }
+
+        #region Focus
 
         /// <summary>
         /// Sets the focus.
@@ -398,6 +402,10 @@ namespace InfoBox
                 pnlButtons.Controls[2].Select();
             }
         }
+
+        #endregion Focus
+
+        #region Layout
 
         /// <summary>
         /// Sets the layout.
@@ -475,6 +483,7 @@ namespace InfoBox
             #endregion Position
         }
 
+        #endregion Layout
 
         #region Icon
 
@@ -647,6 +656,8 @@ namespace InfoBox
         }
 
         #endregion Buttons
+
+        #endregion Box initialization
 
         #region Event handling
 
