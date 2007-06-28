@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
 namespace InfoBox
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
@@ -24,20 +20,20 @@ namespace InfoBox
 
         #region Attributes
 
-        private InformationBoxIcon _icon = InformationBoxIcon.None;
+        private readonly InformationBoxIcon _icon = InformationBoxIcon.None;
         private InformationBoxResult _result = InformationBoxResult.None;
-        private InformationBoxButtons _buttons = InformationBoxButtons.OK;
-        private InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
+        private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
+        private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
 
-        private Button _buttonAbort = null;
-        private Button _buttonOk = null;
-        private Button _buttonYes = null;
-        private Button _buttonRetry = null;
-        private Button _buttonNo = null;
-        private Button _buttonCancel = null;
-        private Button _buttonIgnore = null;
-        private Button _buttonUser1 = null;
-        private Button _buttonUser2 = null;
+        private readonly Button _buttonAbort = null;
+        private readonly Button _buttonOk = null;
+        private readonly Button _buttonYes = null;
+        private readonly Button _buttonRetry = null;
+        private readonly Button _buttonNo = null;
+        private readonly Button _buttonCancel = null;
+        private readonly Button _buttonIgnore = null;
+        private readonly Button _buttonUser1 = null;
+        private readonly Button _buttonUser2 = null;
 
         #endregion Attributes
 
@@ -98,7 +94,7 @@ namespace InfoBox
         /// <param name="caption">The caption.</param>
         /// <param name="buttons">The buttons.</param>
         /// <param name="icon">The icon.</param>
-        /// <param name="defaultbutton">The default button.</param>
+        /// <param name="defaultButton">The default button.</param>
         private InformationBox(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
             : this(text, caption, buttons, icon)
         {
@@ -133,6 +129,7 @@ namespace InfoBox
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
         /// <returns></returns>
         public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons)
         {
@@ -432,7 +429,7 @@ namespace InfoBox
             button.Font = SystemFonts.MessageBoxFont;
             button.Name = name;
             button.Text = name;
-            button.Click += new EventHandler(_button_Click);
+            button.Click += _button_Click;
             pnlButtons.Controls.Add(button);
         }
 
