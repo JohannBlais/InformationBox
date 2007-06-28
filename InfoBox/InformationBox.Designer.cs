@@ -44,7 +44,7 @@ namespace InfoBox
             // 
             this.lblText.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(81, 36);
+            this.lblText.Location = new System.Drawing.Point(81, 28);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(28, 13);
             this.lblText.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace InfoBox
             // 
             // pcbIcon
             // 
-            this.pcbIcon.Location = new System.Drawing.Point(14, 17);
+            this.pcbIcon.Location = new System.Drawing.Point(10, 10);
             this.pcbIcon.Name = "pcbIcon";
             this.pcbIcon.Size = new System.Drawing.Size(48, 48);
             this.pcbIcon.TabIndex = 1;
@@ -62,9 +62,9 @@ namespace InfoBox
             // 
             this.pnlButtons.BackColor = System.Drawing.Color.Transparent;
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 83);
+            this.pnlButtons.Location = new System.Drawing.Point(0, 68);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(292, 33);
+            this.pnlButtons.Size = new System.Drawing.Size(278, 33);
             this.pnlButtons.TabIndex = 2;
             // 
             // pnlMain
@@ -75,7 +75,7 @@ namespace InfoBox
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(292, 83);
+            this.pnlMain.Size = new System.Drawing.Size(278, 68);
             this.pnlMain.TabIndex = 3;
             // 
             // pnlIcon
@@ -83,10 +83,10 @@ namespace InfoBox
             this.pnlIcon.Controls.Add(this.pcbIcon);
             this.pnlIcon.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlIcon.Location = new System.Drawing.Point(0, 0);
-            this.pnlIcon.MaximumSize = new System.Drawing.Size(76, 0);
-            this.pnlIcon.MinimumSize = new System.Drawing.Size(76, 0);
+            this.pnlIcon.MaximumSize = new System.Drawing.Size(68, 0);
+            this.pnlIcon.MinimumSize = new System.Drawing.Size(68, 0);
             this.pnlIcon.Name = "pnlIcon";
-            this.pnlIcon.Size = new System.Drawing.Size(76, 83);
+            this.pnlIcon.Size = new System.Drawing.Size(68, 68);
             this.pnlIcon.TabIndex = 3;
             // 
             // pnlText
@@ -95,14 +95,14 @@ namespace InfoBox
             this.pnlText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlText.Location = new System.Drawing.Point(0, 0);
             this.pnlText.Name = "pnlText";
-            this.pnlText.Size = new System.Drawing.Size(292, 83);
+            this.pnlText.Size = new System.Drawing.Size(278, 68);
             this.pnlText.TabIndex = 2;
             // 
             // InformationBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 116);
+            this.ClientSize = new System.Drawing.Size(278, 101);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlButtons);
             this.DoubleBuffered = true;
@@ -111,6 +111,7 @@ namespace InfoBox
             this.MinimizeBox = false;
             this.Name = "InformationBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InformationBox_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.pnlMain.ResumeLayout(false);
             this.pnlIcon.ResumeLayout(false);

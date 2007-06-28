@@ -15,7 +15,7 @@ namespace InfoBox
     {
         #region Consts
 
-        private const int ICON_PANEL_WIDTH = 76;
+        private const int ICON_PANEL_WIDTH = 68;
         private const int BUTTONS_MIN_SPACE = 10;
         private const int BORDER_PADDING = 10;
         private const int WINDOW_DECORATION_HEIGHT = 30;
@@ -48,6 +48,10 @@ namespace InfoBox
         {
             InitializeComponent();
 
+            // Apply default font for message boxes
+            Font = SystemFonts.MessageBoxFont;
+            lblText.Font = SystemFonts.MessageBoxFont;
+
             lblText.Text = text;
         }
 
@@ -71,7 +75,19 @@ namespace InfoBox
             : this(text, caption)
         {
             _buttons = buttons;
-            Text = caption;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="icon">The icon.</param>
+        private InformationBox(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon)
+            : this(text, caption, buttons)
+        {
+            _icon = icon;
         }
 
         /// <summary>
@@ -110,6 +126,20 @@ namespace InfoBox
         }
 
         /// <summary>
+        /// Displays a message box with specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="icon">The icon.</param>
+        /// <returns></returns>
+        public static InformationBoxResult Show(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon)
+        {
+            InformationBox box = new InformationBox(text, caption, buttons, icon);
+            return Show(box);
+        }
+
+        /// <summary>
         /// Gets the result.
         /// </summary>
         /// <param name="box">The box.</param>
@@ -136,7 +166,7 @@ namespace InfoBox
             #region Width
 
             // Caption width including button
-            int captionWidth = Convert.ToInt32(CreateGraphics().MeasureString(Text, Font).Width) + 40;
+            int captionWidth = Convert.ToInt32(CreateGraphics().MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
 
             int iconAndTextWidth = 0;
             
@@ -177,13 +207,15 @@ namespace InfoBox
             Width = totalWidth;
             Height = totalHeight;
 
+            #region Position
+
             // Set new position for all components
             // Icon
-            pcbIcon.Left = Convert.ToInt32((pnlIcon.Width - pcbIcon.Width) / 2);
-            pcbIcon.Top = Convert.ToInt32((pnlIcon.Height - pcbIcon.Height) / 2);
-            
+            pcbIcon.Left = BORDER_PADDING;
+            pcbIcon.Top = BORDER_PADDING;
+
             // Text
-            lblText.Left = 9;
+            lblText.Left = (_icon != InformationBoxIcon.None) ? ICON_PANEL_WIDTH : BORDER_PADDING;
             lblText.Top = Convert.ToInt32((pnlText.Height - lblText.Height) / 2);
 
             // Buttons
@@ -195,6 +227,8 @@ namespace InfoBox
                 ctrl.Left = spaceBetween * (index + 1) + ctrl.Width * index;
                 ++index;
             }
+
+            #endregion Position
         }
 
 
@@ -206,7 +240,15 @@ namespace InfoBox
         private void SetIcon()
         {
             if (_icon == InformationBoxIcon.None)
+            {
                 pnlIcon.Visible = false;
+                pcbIcon.Image = null;
+            }
+            else
+            {
+                pnlIcon.Visible = true;
+                pcbIcon.Image = IconHelper.FromEnum(_icon).ToBitmap();
+            }
 
             pnlIcon.Width = ICON_PANEL_WIDTH;
         }
@@ -335,6 +377,7 @@ namespace InfoBox
             button = new Button();
             button.FlatStyle = FlatStyle.System;
             button.UseVisualStyleBackColor = true;
+            button.Font = SystemFonts.MessageBoxFont;
             button.Name = name;
             button.Text = name;
             button.Click += new EventHandler(_button_Click);
@@ -371,6 +414,12 @@ namespace InfoBox
 
                 DialogResult = DialogResult.OK;
             }
+        }
+
+        private void InformationBox_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (_result == InformationBoxResult.None)
+                _result = InformationBoxResult.Cancel;
         }
 
         #endregion Event handling
