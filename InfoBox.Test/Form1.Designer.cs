@@ -64,11 +64,17 @@ namespace InfoBox.Test
             this.rdbButton3 = new System.Windows.Forms.RadioButton();
             this.txbCode = new System.Windows.Forms.TextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txbIcon = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnIcon = new System.Windows.Forms.Button();
+            this.ofdIcon = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -86,20 +92,18 @@ namespace InfoBox.Test
             // 
             // txbText
             // 
-            this.txbText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbText.Location = new System.Drawing.Point(51, 44);
             this.txbText.Multiline = true;
             this.txbText.Name = "txbText";
             this.txbText.Size = new System.Drawing.Size(196, 92);
-            this.txbText.TabIndex = 3;
+            this.txbText.TabIndex = 2;
             // 
             // txbTitle
             // 
-            this.txbTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbTitle.Location = new System.Drawing.Point(51, 18);
             this.txbTitle.Name = "txbTitle";
             this.txbTitle.Size = new System.Drawing.Size(196, 20);
-            this.txbTitle.TabIndex = 2;
+            this.txbTitle.TabIndex = 1;
             // 
             // label2
             // 
@@ -363,28 +367,26 @@ namespace InfoBox.Test
             // 
             // txbUser1
             // 
-            this.txbUser1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbUser1.Location = new System.Drawing.Point(17, 23);
             this.txbUser1.Name = "txbUser1";
-            this.txbUser1.Size = new System.Drawing.Size(100, 20);
+            this.txbUser1.Size = new System.Drawing.Size(110, 20);
             this.txbUser1.TabIndex = 0;
             this.txbUser1.Text = "User1";
             // 
             // txbUser2
             // 
-            this.txbUser2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbUser2.Location = new System.Drawing.Point(147, 23);
+            this.txbUser2.Location = new System.Drawing.Point(137, 23);
             this.txbUser2.Name = "txbUser2";
-            this.txbUser2.Size = new System.Drawing.Size(100, 20);
+            this.txbUser2.Size = new System.Drawing.Size(110, 20);
             this.txbUser2.TabIndex = 1;
             this.txbUser2.Text = "User2";
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(428, 285);
+            this.btnShow.Location = new System.Drawing.Point(329, 336);
             this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(130, 27);
-            this.btnShow.TabIndex = 4;
+            this.btnShow.Size = new System.Drawing.Size(183, 27);
+            this.btnShow.TabIndex = 7;
             this.btnShow.Text = "Show";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
@@ -438,28 +440,72 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 330);
+            this.txbCode.Location = new System.Drawing.Point(12, 383);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
             this.txbCode.Size = new System.Drawing.Size(546, 67);
-            this.txbCode.TabIndex = 6;
+            this.txbCode.TabIndex = 8;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(294, 285);
+            this.btnGenerate.Location = new System.Drawing.Point(329, 303);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(130, 27);
-            this.btnGenerate.TabIndex = 7;
+            this.btnGenerate.Size = new System.Drawing.Size(183, 27);
+            this.btnGenerate.TabIndex = 6;
             this.btnGenerate.Text = "Generate code";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnIcon);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.txbIcon);
+            this.groupBox6.Location = new System.Drawing.Point(12, 318);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(264, 50);
+            this.groupBox6.TabIndex = 9;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Custom icon";
+            // 
+            // txbIcon
+            // 
+            this.txbIcon.Location = new System.Drawing.Point(51, 19);
+            this.txbIcon.Name = "txbIcon";
+            this.txbIcon.Size = new System.Drawing.Size(157, 20);
+            this.txbIcon.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Icon file";
+            // 
+            // btnIcon
+            // 
+            this.btnIcon.Location = new System.Drawing.Point(214, 18);
+            this.btnIcon.Name = "btnIcon";
+            this.btnIcon.Size = new System.Drawing.Size(33, 22);
+            this.btnIcon.TabIndex = 2;
+            this.btnIcon.Text = "...";
+            this.btnIcon.UseVisualStyleBackColor = true;
+            this.btnIcon.Click += new System.EventHandler(this.btnIcon_Click);
+            // 
+            // ofdIcon
+            // 
+            this.ofdIcon.Filter = "Icon file|*.ico";
+            this.ofdIcon.Title = "Choose an icon file";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 408);
+            this.ClientSize = new System.Drawing.Size(568, 462);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.txbCode);
             this.Controls.Add(this.groupBox5);
@@ -480,6 +526,8 @@ namespace InfoBox.Test
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,6 +571,11 @@ namespace InfoBox.Test
         private System.Windows.Forms.RadioButton rdbButton1;
         private System.Windows.Forms.TextBox txbCode;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnIcon;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txbIcon;
+        private System.Windows.Forms.OpenFileDialog ofdIcon;
 
     }
 }

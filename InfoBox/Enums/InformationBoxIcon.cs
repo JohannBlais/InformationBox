@@ -1,7 +1,7 @@
 namespace InfoBox
 {
     /// <summary>
-    /// Contains all possible values for the InformationBox icon.
+    /// Contains all possible values for the InformationBoxForm icon.
     /// </summary>
     public enum InformationBoxIcon
     {

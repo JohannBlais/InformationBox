@@ -1,6 +1,6 @@
 namespace InfoBox
 {
-    partial class InformationBox
+    internal partial class InformationBoxForm
     {
         /// <summary>
         /// Required designer variable.
@@ -55,6 +55,7 @@ namespace InfoBox
             this.pcbIcon.Location = new System.Drawing.Point(10, 10);
             this.pcbIcon.Name = "pcbIcon";
             this.pcbIcon.Size = new System.Drawing.Size(48, 48);
+            this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
             // 
@@ -98,7 +99,7 @@ namespace InfoBox
             this.pnlText.Size = new System.Drawing.Size(278, 68);
             this.pnlText.TabIndex = 2;
             // 
-            // InformationBox
+            // InformationBoxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,7 +110,7 @@ namespace InfoBox
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "InformationBox";
+            this.Name = "InformationBoxForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InformationBox_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();

@@ -1,7 +1,7 @@
 namespace InfoBox
 {
     /// <summary>
-    /// Specifies constants defining which buttons to display on a <see cref="InformationBox" />.
+    /// Specifies constants defining which buttons to display on a <see cref="InformationBoxForm" />.
     /// </summary>
     public enum InformationBoxButtons
     {

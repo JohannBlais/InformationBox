@@ -40,16 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\IconType.cs" />
     <Compile Include="Enums\InformationBoxButtons.cs" />
     <Compile Include="Enums\InformationBoxDefaultButton.cs" />
     <Compile Include="Enums\InformationBoxIcon.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
-    <Compile Include="InformationBox.cs">
+    <Compile Include="Form\InformationBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformationBox.Designer.cs">
-      <DependentUpon>InformationBox.cs</DependentUpon>
+    <Compile Include="Form\InformationBoxForm.Designer.cs">
+      <DependentUpon>InformationBoxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InformationBox.cs" />
     <Compile Include="Internals\IconHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -60,9 +62,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InformationBox.resx">
+    <EmbeddedResource Include="Form\InformationBoxForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>InformationBox.cs</DependentUpon>
+      <DependentUpon>InformationBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>

@@ -1,6 +1,7 @@
 namespace InfoBox.Test
 {
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
     public partial class Form1 : Form
@@ -59,27 +60,72 @@ namespace InfoBox.Test
             return InformationBoxDefaultButton.Button1;
         }
 
+        /// <summary>
+        /// Generates the code.
+        /// </summary>
         private void GenerateCode()
         {
             InformationBoxButtons buttons = GetButtons();
             InformationBoxIcon icon = GetIcon();
+            String iconFileName = txbIcon.Text;
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
 
-            txbCode.Text = String.Format("InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, \"{3}\", \"{4}\", InformationBoxIcon.{5}, InformationBoxDefaultButton.{6});", txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton).Replace("\"\"", "String.Empty");
+            if (String.Empty.Equals(iconFileName))
+            {
+                txbCode.Text = String.Format(
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, \"{3}\", \"{4}\", InformationBoxIcon.{5}, InformationBoxDefaultButton.{6});",
+                        txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
+                        txbUser2.Text, icon, defaultButton).Replace("\"\"", "String.Empty");
+            }
+            else
+            {
+                txbCode.Text = String.Format(
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, \"{3}\", \"{4}\", new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6});",
+                        txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
+                        txbUser2.Text, iconFileName, defaultButton).Replace("\"\"", "String.Empty");
+            }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnShow_Click(object sender, EventArgs e)
         {
             InformationBoxButtons buttons = GetButtons();
             InformationBoxIcon icon = GetIcon();
+            String iconFileName = txbIcon.Text;
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
-            
-            InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton);
+
+            if (String.Empty.Equals(iconFileName))
+            {
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton);
+            }
+            else
+            {
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, new Icon(iconFileName), defaultButton);
+            }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnGenerate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             GenerateCode();
+        }
+
+        private void btnIcon_Click(object sender, EventArgs e)
+        {
+            if (ofdIcon.ShowDialog() != DialogResult.OK)
+            {
+                txbIcon.Text = String.Empty;
+            }
+
+            txbIcon.Text = ofdIcon.FileName;
         }
 
     }
