@@ -381,7 +381,6 @@ namespace InfoBox.Test
             // 
             // btnShow
             // 
-            this.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShow.Location = new System.Drawing.Point(428, 285);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(130, 27);
@@ -448,7 +447,6 @@ namespace InfoBox.Test
             // 
             // btnGenerate
             // 
-            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate.Location = new System.Drawing.Point(294, 285);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(130, 27);
@@ -461,7 +459,7 @@ namespace InfoBox.Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 410);
+            this.ClientSize = new System.Drawing.Size(568, 408);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.txbCode);
             this.Controls.Add(this.groupBox5);

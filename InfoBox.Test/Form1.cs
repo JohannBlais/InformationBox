@@ -65,7 +65,7 @@ namespace InfoBox.Test
             InformationBoxIcon icon = GetIcon();
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
 
-            txbCode.Text = String.Format("InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, {3}, {4}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6});", txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton).Replace("\"\"", "String.Empty");
+            txbCode.Text = String.Format("InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, \"{3}\", \"{4}\", InformationBoxIcon.{5}, InformationBoxDefaultButton.{6});", txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton).Replace("\"\"", "String.Empty");
         }
 
         private void btnShow_Click(object sender, EventArgs e)
