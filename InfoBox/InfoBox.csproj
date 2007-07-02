@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\IconType.cs" />
+    <Compile Include="Enums\InformationBoxAutoSizeMode.cs" />
     <Compile Include="Enums\InformationBoxButtons.cs" />
     <Compile Include="Enums\InformationBoxButtonsLayout.cs" />
     <Compile Include="Enums\InformationBoxDefaultButton.cs" />

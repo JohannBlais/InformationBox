@@ -70,13 +70,18 @@ namespace InfoBox.Test
             this.txbIcon = new System.Windows.Forms.TextBox();
             this.ofdIcon = new System.Windows.Forms.OpenFileDialog();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.rdbLayoutGroupLeft = new System.Windows.Forms.RadioButton();
-            this.rdbLayoutGroupRight = new System.Windows.Forms.RadioButton();
-            this.rdbLayoutGroupMiddle = new System.Windows.Forms.RadioButton();
             this.rdbLayoutSeparate = new System.Windows.Forms.RadioButton();
+            this.rdbLayoutGroupMiddle = new System.Windows.Forms.RadioButton();
+            this.rdbLayoutGroupRight = new System.Windows.Forms.RadioButton();
+            this.rdbLayoutGroupLeft = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.ddlLanguage = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.rdbAutoSizeScreenRation = new System.Windows.Forms.RadioButton();
+            this.rdbAutoSizeNone = new System.Windows.Forms.RadioButton();
+            this.rdbAutoSizeMinimumHeight = new System.Windows.Forms.RadioButton();
+            this.rdbAutoSizeMinimumWidth = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,6 +90,7 @@ namespace InfoBox.Test
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -394,7 +400,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(326, 383);
+            this.btnShow.Location = new System.Drawing.Point(326, 412);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -453,7 +459,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 425);
+            this.txbCode.Location = new System.Drawing.Point(12, 449);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -463,7 +469,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(60, 383);
+            this.btnGenerate.Location = new System.Drawing.Point(326, 379);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -527,25 +533,15 @@ namespace InfoBox.Test
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Buttons layout";
             // 
-            // rdbLayoutGroupLeft
+            // rdbLayoutSeparate
             // 
-            this.rdbLayoutGroupLeft.AutoSize = true;
-            this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(17, 17);
-            this.rdbLayoutGroupLeft.Name = "rdbLayoutGroupLeft";
-            this.rdbLayoutGroupLeft.Size = new System.Drawing.Size(72, 17);
-            this.rdbLayoutGroupLeft.TabIndex = 0;
-            this.rdbLayoutGroupLeft.Text = "GroupLeft";
-            this.rdbLayoutGroupLeft.UseVisualStyleBackColor = true;
-            // 
-            // rdbLayoutGroupRight
-            // 
-            this.rdbLayoutGroupRight.AutoSize = true;
-            this.rdbLayoutGroupRight.Location = new System.Drawing.Point(17, 37);
-            this.rdbLayoutGroupRight.Name = "rdbLayoutGroupRight";
-            this.rdbLayoutGroupRight.Size = new System.Drawing.Size(79, 17);
-            this.rdbLayoutGroupRight.TabIndex = 1;
-            this.rdbLayoutGroupRight.Text = "GroupRight";
-            this.rdbLayoutGroupRight.UseVisualStyleBackColor = true;
+            this.rdbLayoutSeparate.AutoSize = true;
+            this.rdbLayoutSeparate.Location = new System.Drawing.Point(147, 37);
+            this.rdbLayoutSeparate.Name = "rdbLayoutSeparate";
+            this.rdbLayoutSeparate.Size = new System.Drawing.Size(68, 17);
+            this.rdbLayoutSeparate.TabIndex = 3;
+            this.rdbLayoutSeparate.Text = "Separate";
+            this.rdbLayoutSeparate.UseVisualStyleBackColor = true;
             // 
             // rdbLayoutGroupMiddle
             // 
@@ -559,15 +555,25 @@ namespace InfoBox.Test
             this.rdbLayoutGroupMiddle.Text = "GroupMiddle";
             this.rdbLayoutGroupMiddle.UseVisualStyleBackColor = true;
             // 
-            // rdbLayoutSeparate
+            // rdbLayoutGroupRight
             // 
-            this.rdbLayoutSeparate.AutoSize = true;
-            this.rdbLayoutSeparate.Location = new System.Drawing.Point(147, 37);
-            this.rdbLayoutSeparate.Name = "rdbLayoutSeparate";
-            this.rdbLayoutSeparate.Size = new System.Drawing.Size(68, 17);
-            this.rdbLayoutSeparate.TabIndex = 3;
-            this.rdbLayoutSeparate.Text = "Separate";
-            this.rdbLayoutSeparate.UseVisualStyleBackColor = true;
+            this.rdbLayoutGroupRight.AutoSize = true;
+            this.rdbLayoutGroupRight.Location = new System.Drawing.Point(17, 37);
+            this.rdbLayoutGroupRight.Name = "rdbLayoutGroupRight";
+            this.rdbLayoutGroupRight.Size = new System.Drawing.Size(79, 17);
+            this.rdbLayoutGroupRight.TabIndex = 1;
+            this.rdbLayoutGroupRight.Text = "GroupRight";
+            this.rdbLayoutGroupRight.UseVisualStyleBackColor = true;
+            // 
+            // rdbLayoutGroupLeft
+            // 
+            this.rdbLayoutGroupLeft.AutoSize = true;
+            this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(17, 17);
+            this.rdbLayoutGroupLeft.Name = "rdbLayoutGroupLeft";
+            this.rdbLayoutGroupLeft.Size = new System.Drawing.Size(72, 17);
+            this.rdbLayoutGroupLeft.TabIndex = 0;
+            this.rdbLayoutGroupLeft.Text = "GroupLeft";
+            this.rdbLayoutGroupLeft.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -580,15 +586,6 @@ namespace InfoBox.Test
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Language";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Language";
-            // 
             // ddlLanguage
             // 
             this.ddlLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -600,11 +597,77 @@ namespace InfoBox.Test
             this.ddlLanguage.Size = new System.Drawing.Size(165, 21);
             this.ddlLanguage.TabIndex = 2;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Language";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.rdbAutoSizeScreenRation);
+            this.groupBox9.Controls.Add(this.rdbAutoSizeNone);
+            this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumHeight);
+            this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumWidth);
+            this.groupBox9.Location = new System.Drawing.Point(12, 374);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(264, 64);
+            this.groupBox9.TabIndex = 12;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "AutoSize";
+            // 
+            // rdbAutoSizeScreenRation
+            // 
+            this.rdbAutoSizeScreenRation.AutoSize = true;
+            this.rdbAutoSizeScreenRation.Location = new System.Drawing.Point(147, 40);
+            this.rdbAutoSizeScreenRation.Name = "rdbAutoSizeScreenRation";
+            this.rdbAutoSizeScreenRation.Size = new System.Drawing.Size(90, 17);
+            this.rdbAutoSizeScreenRation.TabIndex = 3;
+            this.rdbAutoSizeScreenRation.Text = "ScreenRation";
+            this.rdbAutoSizeScreenRation.UseVisualStyleBackColor = true;
+            // 
+            // rdbAutoSizeNone
+            // 
+            this.rdbAutoSizeNone.AutoSize = true;
+            this.rdbAutoSizeNone.Checked = true;
+            this.rdbAutoSizeNone.Location = new System.Drawing.Point(147, 20);
+            this.rdbAutoSizeNone.Name = "rdbAutoSizeNone";
+            this.rdbAutoSizeNone.Size = new System.Drawing.Size(51, 17);
+            this.rdbAutoSizeNone.TabIndex = 2;
+            this.rdbAutoSizeNone.TabStop = true;
+            this.rdbAutoSizeNone.Text = "None";
+            this.rdbAutoSizeNone.UseVisualStyleBackColor = true;
+            // 
+            // rdbAutoSizeMinimumHeight
+            // 
+            this.rdbAutoSizeMinimumHeight.AutoSize = true;
+            this.rdbAutoSizeMinimumHeight.Location = new System.Drawing.Point(17, 40);
+            this.rdbAutoSizeMinimumHeight.Name = "rdbAutoSizeMinimumHeight";
+            this.rdbAutoSizeMinimumHeight.Size = new System.Drawing.Size(97, 17);
+            this.rdbAutoSizeMinimumHeight.TabIndex = 1;
+            this.rdbAutoSizeMinimumHeight.Text = "MinimumHeight";
+            this.rdbAutoSizeMinimumHeight.UseVisualStyleBackColor = true;
+            // 
+            // rdbAutoSizeMinimumWidth
+            // 
+            this.rdbAutoSizeMinimumWidth.AutoSize = true;
+            this.rdbAutoSizeMinimumWidth.Location = new System.Drawing.Point(17, 20);
+            this.rdbAutoSizeMinimumWidth.Name = "rdbAutoSizeMinimumWidth";
+            this.rdbAutoSizeMinimumWidth.Size = new System.Drawing.Size(94, 17);
+            this.rdbAutoSizeMinimumWidth.TabIndex = 0;
+            this.rdbAutoSizeMinimumWidth.TabStop = true;
+            this.rdbAutoSizeMinimumWidth.Text = "MinimumWidth";
+            this.rdbAutoSizeMinimumWidth.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 504);
+            this.ClientSize = new System.Drawing.Size(568, 528);
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -634,6 +697,8 @@ namespace InfoBox.Test
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -690,6 +755,11 @@ namespace InfoBox.Test
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.ComboBox ddlLanguage;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton rdbAutoSizeScreenRation;
+        private System.Windows.Forms.RadioButton rdbAutoSizeNone;
+        private System.Windows.Forms.RadioButton rdbAutoSizeMinimumHeight;
+        private System.Windows.Forms.RadioButton rdbAutoSizeMinimumWidth;
 
     }
 }

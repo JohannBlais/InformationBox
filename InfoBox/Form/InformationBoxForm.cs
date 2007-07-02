@@ -2,6 +2,7 @@ namespace InfoBox
 {
     using System;
     using System.Drawing;
+    using System.Text;
     using System.Windows.Forms;
     using InfoBox.Properties;
 
@@ -24,6 +25,7 @@ namespace InfoBox
         private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
         private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
         private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
+        private readonly InformationBoxAutoSizeMode _autoSizeMode = InformationBoxAutoSizeMode.None;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -39,6 +41,9 @@ namespace InfoBox
         private readonly Button _buttonUser2 = null;
 
         private readonly IconType _iconType = IconType.Internal;
+
+        private readonly Graphics _measureGraphics = null;
+        private StringBuilder internalText = null;
         
         #endregion Attributes
 
@@ -51,6 +56,7 @@ namespace InfoBox
         internal InformationBoxForm(string text)
         {
             InitializeComponent();
+            _measureGraphics = CreateGraphics();
 
             // Apply default font for message boxes
             Font = SystemFonts.MessageBoxFont;
@@ -63,261 +69,55 @@ namespace InfoBox
         /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        internal InformationBoxForm(string text, string caption) : this(text)
+        /// <param name="parameters">The parameters.</param>
+        internal InformationBoxForm(string text, params object[] parameters) : this(text)
         {
-            Text = caption;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons)
-            : this(text, caption)
-        {
-            _buttons = buttons;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text)
-            : this(text, caption, buttons)
-        {
-            _buttonUser1Text = button1Text;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text)
-            : this(text, caption, buttons, button1Text)
-        {
-            _buttonUser2Text = button2Text;
-        }
-
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="icon">The icon.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon)
-            : this(text, caption, buttons)
-        {
-            _icon = icon;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="icon">The icon.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, InformationBoxIcon icon)
-            : this(text, caption, buttons, button1Text)
-        {
-            _icon = icon;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        /// <param name="icon">The icon.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon)
-            : this(text, caption, buttons, button1Text, button2Text)
-        {
-            _icon = icon;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
-            : this(text, caption, buttons, icon)
-        {
-            _defaultButton = defaultButton;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
-            : this(text, caption, buttons, button1Text, icon)
-        {
-            _defaultButton = defaultButton;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton)
-            : this(text, caption, buttons, button1Text, button2Text, icon)
-        {
-            _defaultButton = defaultButton;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        /// <param name="buttonsLayout">The buttons layout.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton, InformationBoxButtonsLayout buttonsLayout)
-            : this(text, caption, buttons, button1Text, button2Text, icon, defaultButton)
-        {
-            _buttonsLayout = buttonsLayout;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="icon">The icon.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, Icon icon)
-            : this(text, caption, buttons)
-        {
-            pcbIcon.Image = new Icon(icon, 48, 48).ToBitmap();
-            _iconType = IconType.UserDefined;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="icon">The icon.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, Icon icon)
-            : this(text, caption, buttons, button1Text)
-        {
-            pcbIcon.Image = new Icon(icon, 48, 48).ToBitmap();
-            _iconType = IconType.UserDefined;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        /// <param name="icon">The icon.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, Icon icon)
-            : this(text, caption, buttons, button1Text, button2Text)
-        {
-            pcbIcon.Image = new Icon(icon, 48, 48).ToBitmap();
-            _iconType = IconType.UserDefined;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, Icon icon, InformationBoxDefaultButton defaultButton)
-            : this(text, caption, buttons, icon)
-        {
-            _defaultButton = defaultButton;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, Icon icon, InformationBoxDefaultButton defaultButton)
-            : this(text, caption, buttons, button1Text, icon)
-        {
-            _defaultButton = defaultButton;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, Icon icon, InformationBoxDefaultButton defaultButton)
-            : this(text, caption, buttons, button1Text, button2Text, icon)
-        {
-            _defaultButton = defaultButton;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="caption">The caption.</param>
-        /// <param name="buttons">The buttons.</param>
-        /// <param name="button1Text">The button1 text.</param>
-        /// <param name="button2Text">The button2 text.</param>
-        /// <param name="icon">The icon.</param>
-        /// <param name="defaultButton">The default button.</param>
-        /// <param name="buttonsLayout">The buttons layout.</param>
-        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, Icon icon, InformationBoxDefaultButton defaultButton, InformationBoxButtonsLayout buttonsLayout)
-            : this(text, caption, buttons, button1Text, button2Text, icon, defaultButton)
-        {
-            _buttonsLayout = buttonsLayout;
+            foreach (object parameter in parameters)
+            {
+                // Simple string -> caption
+                if (parameter is string)
+                {
+                    Text = (string)parameter;
+                }
+                // Buttons
+                else if (parameter is InformationBoxButtons)
+                {
+                    _buttons = (InformationBoxButtons)parameter;
+                }
+                // Internal icon
+                else if (parameter is InformationBoxIcon)
+                {
+                    _icon = (InformationBoxIcon)parameter;
+                }
+                // User defined icon
+                else if (parameter is Icon)
+                {
+                    _iconType = IconType.UserDefined;
+                    pcbIcon.Image = new Icon((Icon)parameter, 48, 48).ToBitmap();
+                }
+                // Default button
+                else if (parameter is InformationBoxDefaultButton)
+                {
+                    _defaultButton = (InformationBoxDefaultButton)parameter;
+                }
+                // Custom buttons
+                else if (parameter is string[])
+                {
+                    string[] labels = (string[])parameter;
+                    if (labels.Length > 0) _buttonUser1Text = labels[0];
+                    if (labels.Length > 1) _buttonUser2Text = labels[1];
+                }
+                // Buttons layout
+                else if (parameter is InformationBoxButtonsLayout)
+                {
+                    _buttonsLayout = (InformationBoxButtonsLayout)parameter;
+                }
+                // Autosize mode
+                else if (parameter is InformationBoxAutoSizeMode)
+                {
+                    _autoSizeMode = (InformationBoxAutoSizeMode)parameter;
+                }
+            }
         }
 
         #endregion Constructors
@@ -378,7 +178,7 @@ namespace InfoBox
             #region Width
 
             // Caption width including button
-            int captionWidth = Convert.ToInt32(CreateGraphics().MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
+            int captionWidth = Convert.ToInt32(_measureGraphics.MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
 
             int iconAndTextWidth = 0;
             
@@ -514,9 +314,52 @@ namespace InfoBox
         /// </summary>
         private void SetText()
         {
-            Graphics grph = CreateGraphics();
-            SizeF textSize = grph.MeasureString(lblText.Text, lblText.Font);
-            lblText.Size = textSize.ToSize();
+            if (_autoSizeMode != InformationBoxAutoSizeMode.None)
+            {
+                internalText = new StringBuilder(lblText.Text);
+                
+                Screen currentScreen = Screen.FromControl(this);
+                int screenWidth = currentScreen.WorkingArea.Width;
+                int screenHeight = currentScreen.WorkingArea.Height;
+
+                if (_autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
+                {
+                    // Remove line breaks.
+                    internalText = internalText.Replace(Environment.NewLine, " ");
+                    
+                    int textWidth = Convert.ToInt32(_measureGraphics.MeasureString(internalText.ToString(), lblText.Font).Width);
+                    while (textWidth > screenWidth)
+                    {
+                        int index = internalText.ToString().LastIndexOf(". ");
+                        if (index > 0)
+                        {
+                            // Replace the space by a new line
+                            internalText.Remove(index + 1, 1);
+                            internalText.Insert(index + 1, Environment.NewLine);
+                        }
+
+                        textWidth = Convert.ToInt32(_measureGraphics.MeasureString(internalText.ToString(), lblText.Font).Width);
+                    }
+                }
+                else if (_autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
+                {
+                    internalText.Replace(". ", "." + Environment.NewLine);
+                    internalText.Replace("? ", "?" + Environment.NewLine);
+                    internalText.Replace("! ", "!" + Environment.NewLine);
+                    internalText.Replace(": ", ":" + Environment.NewLine);
+                }
+                //else if (_autoSizeMode == InformationBoxAutoSizeMode.ScreenRatio)
+                //{
+                //    Size textSize = _measureGraphics.MeasureString(internalText.ToString(), lblText.Font);
+
+                //    float screenRation = (2 * screenWidth) / screenHeight;
+                //    float currentRatio = (2 * textSize.Width) / textSize.Height;
+                //}
+
+                lblText.Text = internalText.ToString();
+            }
+
+            lblText.Size = _measureGraphics.MeasureString(lblText.Text, lblText.Font).ToSize();
         }
 
         #endregion Text
@@ -606,10 +449,9 @@ namespace InfoBox
             int maxSize = 0;
 
             // Measures the width of each button
-            Graphics grph = CreateGraphics();
             foreach (Control ctrl in pnlButtons.Controls)
             {
-                maxSize = Math.Max(Convert.ToInt32(grph.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
+                maxSize = Math.Max(Convert.ToInt32(_measureGraphics.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
             }
 
             foreach (Control ctrl in pnlButtons.Controls)
@@ -617,23 +459,6 @@ namespace InfoBox
                 ctrl.Size = new Size(maxSize, 23);
                 ctrl.Top = 5;
             }
-        }
-
-        /// <summary>
-        /// Adds the button.
-        /// </summary>
-        /// <param name="button">The button.</param>
-        /// <param name="name">The name.</param>
-        private void AddButton(Button button, string name)
-        {
-            button = new Button();
-            button.FlatStyle = FlatStyle.System;
-            button.UseVisualStyleBackColor = true;
-            button.Font = SystemFonts.MessageBoxFont;
-            button.Name = name;
-            button.Text = name;
-            button.Click += _button_Click;
-            pnlButtons.Controls.Add(button);
         }
 
         /// <summary>
@@ -688,6 +513,11 @@ namespace InfoBox
             }
         }
 
+        /// <summary>
+        /// Handles the FormClosed event of the InformationBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.FormClosedEventArgs"/> instance containing the event data.</param>
         private void InformationBox_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (_result == InformationBoxResult.None)
