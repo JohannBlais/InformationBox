@@ -3,6 +3,7 @@ namespace InfoBox.Test
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using System.Threading;
 
     public partial class Form1 : Form
     {
@@ -61,6 +62,19 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the buttons layout.
+        /// </summary>
+        /// <returns></returns>
+        private InformationBoxButtonsLayout GetButtonsLayout()
+        {
+            if (rdbLayoutGroupLeft.Checked) return InformationBoxButtonsLayout.GroupLeft;
+            if (rdbLayoutGroupRight.Checked) return InformationBoxButtonsLayout.GroupRight;
+            if (rdbLayoutGroupMiddle.Checked) return InformationBoxButtonsLayout.GroupMiddle;
+            if (rdbLayoutSeparate.Checked) return InformationBoxButtonsLayout.Separate;
+            return InformationBoxButtonsLayout.GroupMiddle;
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -69,13 +83,14 @@ namespace InfoBox.Test
             InformationBoxIcon icon = GetIcon();
             String iconFileName = txbIcon.Text;
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
+            InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
 
             if (String.Empty.Equals(iconFileName))
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, \"{3}\", \"{4}\", InformationBoxIcon.{5}, InformationBoxDefaultButton.{6});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, \"{3}\", \"{4}\", InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7});",
                         txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, icon, defaultButton).Replace("\"\"", "String.Empty");
+                        txbUser2.Text, icon, defaultButton, buttonsLayout).Replace("\"\"", "String.Empty");
             }
             else
             {
@@ -93,18 +108,24 @@ namespace InfoBox.Test
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnShow_Click(object sender, EventArgs e)
         {
+            if (null != ddlLanguage.SelectedItem)
+            {
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+            }
+
             InformationBoxButtons buttons = GetButtons();
             InformationBoxIcon icon = GetIcon();
             String iconFileName = txbIcon.Text;
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
+            InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, icon, defaultButton, buttonsLayout);
             }
             else
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, new Icon(iconFileName), defaultButton);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, txbUser1.Text, txbUser2.Text, new Icon(iconFileName), defaultButton, buttonsLayout);
             }
         }
 

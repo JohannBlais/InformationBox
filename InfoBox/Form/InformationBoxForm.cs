@@ -3,6 +3,7 @@ namespace InfoBox
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using InfoBox.Properties;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
@@ -12,10 +13,8 @@ namespace InfoBox
         #region Consts
 
         private const int ICON_PANEL_WIDTH = 68;
-        private const int BUTTONS_MIN_SPACE = 10;
         private const int BORDER_PADDING = 10;
-        private const int WINDOW_DECORATION_HEIGHT = 30;
-
+        
         #endregion Consts
 
         #region Attributes
@@ -24,6 +23,7 @@ namespace InfoBox
         private InformationBoxResult _result = InformationBoxResult.None;
         private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
         private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
+        private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -39,7 +39,7 @@ namespace InfoBox
         private readonly Button _buttonUser2 = null;
 
         private readonly IconType _iconType = IconType.Internal;
-
+        
         #endregion Attributes
 
         #region Constructors
@@ -202,6 +202,23 @@ namespace InfoBox
         /// <param name="text">The text.</param>
         /// <param name="caption">The caption.</param>
         /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        /// <param name="buttonsLayout">The buttons layout.</param>
+        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, InformationBoxIcon icon, InformationBoxDefaultButton defaultButton, InformationBoxButtonsLayout buttonsLayout)
+            : this(text, caption, buttons, button1Text, button2Text, icon, defaultButton)
+        {
+            _buttonsLayout = buttonsLayout;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
         /// <param name="icon">The icon.</param>
         internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, Icon icon)
             : this(text, caption, buttons)
@@ -286,6 +303,23 @@ namespace InfoBox
             _defaultButton = defaultButton;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="button1Text">The button1 text.</param>
+        /// <param name="button2Text">The button2 text.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        /// <param name="buttonsLayout">The buttons layout.</param>
+        internal InformationBoxForm(string text, string caption, InformationBoxButtons buttons, string button1Text, string button2Text, Icon icon, InformationBoxDefaultButton defaultButton, InformationBoxButtonsLayout buttonsLayout)
+            : this(text, caption, buttons, button1Text, button2Text, icon, defaultButton)
+        {
+            _buttonsLayout = buttonsLayout;
+        }
+
         #endregion Constructors
 
         #region Box initialization
@@ -349,7 +383,7 @@ namespace InfoBox
             int iconAndTextWidth = 0;
             
             // Minimum width to display all needed buttons.
-            int buttonsMinWidth = pnlButtons.Controls.Count * BUTTONS_MIN_SPACE;
+            int buttonsMinWidth = (pnlButtons.Controls.Count + 5) * BORDER_PADDING;
             foreach (Control ctrl in pnlButtons.Controls)
             {
                 buttonsMinWidth += ctrl.Width;
@@ -377,13 +411,12 @@ namespace InfoBox
 
             int textHeight = lblText.Height;
 
-            totalHeight = Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2 + pnlButtons.Height + WINDOW_DECORATION_HEIGHT;
+            totalHeight = Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2 + pnlButtons.Height;
 
             #endregion Height
 
             // Sets the size;
-            Width = totalWidth;
-            Height = totalHeight;
+            ClientSize = new Size(totalWidth, totalHeight);
 
             #region Position
 
@@ -397,16 +430,49 @@ namespace InfoBox
             lblText.Top = Convert.ToInt32((pnlText.Height - lblText.Height) / 2);
 
             // Buttons
-            int buttonsCount = pnlButtons.Controls.Count;
-            int index = 0;
-            int spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
-            foreach (Control ctrl in pnlButtons.Controls)
-            {
-                ctrl.Left = spaceBetween * (index + 1) + ctrl.Width * index;
-                ++index;
-            }
+            SetButtonsLayout();
 
             #endregion Position
+        }
+
+        private void SetButtonsLayout()
+        {
+            int buttonsCount = pnlButtons.Controls.Count;
+            int index = 0;
+            int initialPosition = 0;
+            int spaceBetween = 0;
+            switch (_buttonsLayout)
+            {
+                case InformationBoxButtonsLayout.GroupLeft:
+                    initialPosition = BORDER_PADDING;
+                    spaceBetween = BORDER_PADDING;
+                    break;
+                case InformationBoxButtonsLayout.GroupMiddle:
+                    spaceBetween = BORDER_PADDING;
+                    
+                    // If there is only one button then we must center it
+                    if (buttonsCount == 1)
+                        initialPosition += Convert.ToInt32((Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    else
+                        initialPosition = Convert.ToInt32((Width - (buttonsCount * (pnlButtons.Controls[0].Width + BORDER_PADDING))) / 2);
+                    break;
+                case InformationBoxButtonsLayout.GroupRight:
+                    spaceBetween = BORDER_PADDING;
+                    initialPosition = ClientSize.Width - (buttonsCount * (pnlButtons.Controls[0].Width + BORDER_PADDING));
+                    break;
+                case InformationBoxButtonsLayout.Separate:
+                    spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    initialPosition = spaceBetween;
+                    break;
+                default:
+                    break;
+            }
+            
+            foreach (Control ctrl in pnlButtons.Controls)
+            {
+                ctrl.Left = initialPosition + spaceBetween * (index) + ctrl.Width * index;
+                ++index;
+            }
         }
 
         #endregion Layout
@@ -465,7 +531,7 @@ namespace InfoBox
             // Abort button
             if (_buttons == InformationBoxButtons.AbortRetryIgnore)
             {
-                AddButton(_buttonAbort, "Abort");
+                AddButton(_buttonAbort, "Abort", Resources.LabelAbort);
             }
 
             // Ok
@@ -473,7 +539,7 @@ namespace InfoBox
                 _buttons == InformationBoxButtons.OKCancel ||
                 _buttons == InformationBoxButtons.OKCancelUser1)
             {
-                AddButton(_buttonOk, "OK");
+                AddButton(_buttonOk, "OK", Resources.LabelOK);
             }
 
             // Yes
@@ -481,14 +547,14 @@ namespace InfoBox
                 _buttons == InformationBoxButtons.YesNoCancel ||
                 _buttons == InformationBoxButtons.YesNoUser1)
             {
-                AddButton(_buttonYes, "Yes");
+                AddButton(_buttonYes, "Yes", Resources.LabelYes);
             }
 
             // Retry
             if (_buttons == InformationBoxButtons.AbortRetryIgnore ||
                 _buttons == InformationBoxButtons.RetryCancel)
             {
-                AddButton(_buttonRetry, "Retry");
+                AddButton(_buttonRetry, "Retry", Resources.LabelRetry);
             }
 
             // No
@@ -496,7 +562,7 @@ namespace InfoBox
                 _buttons == InformationBoxButtons.YesNoCancel ||
                 _buttons == InformationBoxButtons.YesNoUser1)
             {
-                AddButton(_buttonNo, "No");
+                AddButton(_buttonNo, "No", Resources.LabelNo);
             }
 
             // Cancel
@@ -505,13 +571,13 @@ namespace InfoBox
                 _buttons == InformationBoxButtons.RetryCancel ||
                 _buttons == InformationBoxButtons.YesNoCancel)
             {
-                AddButton(_buttonCancel, "Cancel");
+                AddButton(_buttonCancel, "Cancel", Resources.LabelCancel);
             }
 
             // Ignore
             if (_buttons == InformationBoxButtons.AbortRetryIgnore)
             {
-                AddButton(_buttonIgnore, "Ignore");
+                AddButton(_buttonIgnore, "Ignore", Resources.LabelIgnore);
             }
             
             // User1

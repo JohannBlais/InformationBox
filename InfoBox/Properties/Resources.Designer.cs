@@ -94,5 +94,68 @@ namespace InfoBox.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abort.
+        /// </summary>
+        internal static string LabelAbort {
+            get {
+                return ResourceManager.GetString("LabelAbort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LabelCancel {
+            get {
+                return ResourceManager.GetString("LabelCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        internal static string LabelIgnore {
+            get {
+                return ResourceManager.GetString("LabelIgnore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string LabelNo {
+            get {
+                return ResourceManager.GetString("LabelNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string LabelOK {
+            get {
+                return ResourceManager.GetString("LabelOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retry.
+        /// </summary>
+        internal static string LabelRetry {
+            get {
+                return ResourceManager.GetString("LabelRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string LabelYes {
+            get {
+                return ResourceManager.GetString("LabelYes", resourceCulture);
+            }
+        }
     }
 }

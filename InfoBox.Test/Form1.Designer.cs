@@ -44,37 +44,47 @@ namespace InfoBox.Test
             this.rdbOK = new System.Windows.Forms.RadioButton();
             this.rdbAbortRetryIgnore = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rdbAsterisk = new System.Windows.Forms.RadioButton();
-            this.rdbError = new System.Windows.Forms.RadioButton();
-            this.rdbExclamation = new System.Windows.Forms.RadioButton();
-            this.rdbHand = new System.Windows.Forms.RadioButton();
-            this.rdbInformation = new System.Windows.Forms.RadioButton();
-            this.rdbNone = new System.Windows.Forms.RadioButton();
-            this.rdbQuestion = new System.Windows.Forms.RadioButton();
-            this.rdbStop = new System.Windows.Forms.RadioButton();
-            this.rdbWarning = new System.Windows.Forms.RadioButton();
             this.rdbSuccess = new System.Windows.Forms.RadioButton();
+            this.rdbWarning = new System.Windows.Forms.RadioButton();
+            this.rdbStop = new System.Windows.Forms.RadioButton();
+            this.rdbQuestion = new System.Windows.Forms.RadioButton();
+            this.rdbNone = new System.Windows.Forms.RadioButton();
+            this.rdbInformation = new System.Windows.Forms.RadioButton();
+            this.rdbHand = new System.Windows.Forms.RadioButton();
+            this.rdbExclamation = new System.Windows.Forms.RadioButton();
+            this.rdbError = new System.Windows.Forms.RadioButton();
+            this.rdbAsterisk = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txbUser1 = new System.Windows.Forms.TextBox();
             this.txbUser2 = new System.Windows.Forms.TextBox();
+            this.txbUser1 = new System.Windows.Forms.TextBox();
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.rdbButton1 = new System.Windows.Forms.RadioButton();
-            this.rdbButton2 = new System.Windows.Forms.RadioButton();
             this.rdbButton3 = new System.Windows.Forms.RadioButton();
+            this.rdbButton2 = new System.Windows.Forms.RadioButton();
+            this.rdbButton1 = new System.Windows.Forms.RadioButton();
             this.txbCode = new System.Windows.Forms.TextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txbIcon = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnIcon = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txbIcon = new System.Windows.Forms.TextBox();
             this.ofdIcon = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.rdbLayoutGroupLeft = new System.Windows.Forms.RadioButton();
+            this.rdbLayoutGroupRight = new System.Windows.Forms.RadioButton();
+            this.rdbLayoutGroupMiddle = new System.Windows.Forms.RadioButton();
+            this.rdbLayoutSeparate = new System.Windows.Forms.RadioButton();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ddlLanguage = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -136,7 +146,7 @@ namespace InfoBox.Test
             this.groupBox2.Controls.Add(this.rdbAbortRetryIgnore);
             this.groupBox2.Location = new System.Drawing.Point(294, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(264, 148);
+            this.groupBox2.Size = new System.Drawing.Size(264, 122);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buttons";
@@ -144,7 +154,7 @@ namespace InfoBox.Test
             // rdbUser1User2
             // 
             this.rdbUser1User2.AutoSize = true;
-            this.rdbUser1User2.Location = new System.Drawing.Point(147, 94);
+            this.rdbUser1User2.Location = new System.Drawing.Point(147, 79);
             this.rdbUser1User2.Name = "rdbUser1User2";
             this.rdbUser1User2.Size = new System.Drawing.Size(81, 17);
             this.rdbUser1User2.TabIndex = 8;
@@ -154,7 +164,7 @@ namespace InfoBox.Test
             // rdbOKCancelUser1
             // 
             this.rdbOKCancelUser1.AutoSize = true;
-            this.rdbOKCancelUser1.Location = new System.Drawing.Point(147, 69);
+            this.rdbOKCancelUser1.Location = new System.Drawing.Point(147, 59);
             this.rdbOKCancelUser1.Name = "rdbOKCancelUser1";
             this.rdbOKCancelUser1.Size = new System.Drawing.Size(101, 17);
             this.rdbOKCancelUser1.TabIndex = 7;
@@ -164,7 +174,7 @@ namespace InfoBox.Test
             // rdbYesNoUser1
             // 
             this.rdbYesNoUser1.AutoSize = true;
-            this.rdbYesNoUser1.Location = new System.Drawing.Point(147, 44);
+            this.rdbYesNoUser1.Location = new System.Drawing.Point(147, 39);
             this.rdbYesNoUser1.Name = "rdbYesNoUser1";
             this.rdbYesNoUser1.Size = new System.Drawing.Size(85, 17);
             this.rdbYesNoUser1.TabIndex = 6;
@@ -184,7 +194,7 @@ namespace InfoBox.Test
             // rdbYesNo
             // 
             this.rdbYesNo.AutoSize = true;
-            this.rdbYesNo.Location = new System.Drawing.Point(17, 119);
+            this.rdbYesNo.Location = new System.Drawing.Point(17, 99);
             this.rdbYesNo.Name = "rdbYesNo";
             this.rdbYesNo.Size = new System.Drawing.Size(57, 17);
             this.rdbYesNo.TabIndex = 4;
@@ -194,7 +204,7 @@ namespace InfoBox.Test
             // rdbRetryCancel
             // 
             this.rdbRetryCancel.AutoSize = true;
-            this.rdbRetryCancel.Location = new System.Drawing.Point(17, 94);
+            this.rdbRetryCancel.Location = new System.Drawing.Point(17, 79);
             this.rdbRetryCancel.Name = "rdbRetryCancel";
             this.rdbRetryCancel.Size = new System.Drawing.Size(83, 17);
             this.rdbRetryCancel.TabIndex = 3;
@@ -204,7 +214,7 @@ namespace InfoBox.Test
             // rdbOKCancel
             // 
             this.rdbOKCancel.AutoSize = true;
-            this.rdbOKCancel.Location = new System.Drawing.Point(17, 69);
+            this.rdbOKCancel.Location = new System.Drawing.Point(17, 59);
             this.rdbOKCancel.Name = "rdbOKCancel";
             this.rdbOKCancel.Size = new System.Drawing.Size(73, 17);
             this.rdbOKCancel.TabIndex = 2;
@@ -215,7 +225,7 @@ namespace InfoBox.Test
             // 
             this.rdbOK.AutoSize = true;
             this.rdbOK.Checked = true;
-            this.rdbOK.Location = new System.Drawing.Point(17, 44);
+            this.rdbOK.Location = new System.Drawing.Point(17, 39);
             this.rdbOK.Name = "rdbOK";
             this.rdbOK.Size = new System.Drawing.Size(40, 17);
             this.rdbOK.TabIndex = 1;
@@ -252,55 +262,45 @@ namespace InfoBox.Test
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Icon";
             // 
-            // rdbAsterisk
+            // rdbSuccess
             // 
-            this.rdbAsterisk.AutoSize = true;
-            this.rdbAsterisk.Location = new System.Drawing.Point(17, 19);
-            this.rdbAsterisk.Name = "rdbAsterisk";
-            this.rdbAsterisk.Size = new System.Drawing.Size(62, 17);
-            this.rdbAsterisk.TabIndex = 0;
-            this.rdbAsterisk.Text = "Asterisk";
-            this.rdbAsterisk.UseVisualStyleBackColor = true;
+            this.rdbSuccess.AutoSize = true;
+            this.rdbSuccess.Location = new System.Drawing.Point(147, 119);
+            this.rdbSuccess.Name = "rdbSuccess";
+            this.rdbSuccess.Size = new System.Drawing.Size(66, 17);
+            this.rdbSuccess.TabIndex = 9;
+            this.rdbSuccess.Text = "Success";
+            this.rdbSuccess.UseVisualStyleBackColor = true;
             // 
-            // rdbError
+            // rdbWarning
             // 
-            this.rdbError.AutoSize = true;
-            this.rdbError.Location = new System.Drawing.Point(17, 44);
-            this.rdbError.Name = "rdbError";
-            this.rdbError.Size = new System.Drawing.Size(47, 17);
-            this.rdbError.TabIndex = 1;
-            this.rdbError.Text = "Error";
-            this.rdbError.UseVisualStyleBackColor = true;
+            this.rdbWarning.AutoSize = true;
+            this.rdbWarning.Location = new System.Drawing.Point(147, 94);
+            this.rdbWarning.Name = "rdbWarning";
+            this.rdbWarning.Size = new System.Drawing.Size(65, 17);
+            this.rdbWarning.TabIndex = 8;
+            this.rdbWarning.Text = "Warning";
+            this.rdbWarning.UseVisualStyleBackColor = true;
             // 
-            // rdbExclamation
+            // rdbStop
             // 
-            this.rdbExclamation.AutoSize = true;
-            this.rdbExclamation.Location = new System.Drawing.Point(17, 69);
-            this.rdbExclamation.Name = "rdbExclamation";
-            this.rdbExclamation.Size = new System.Drawing.Size(82, 17);
-            this.rdbExclamation.TabIndex = 2;
-            this.rdbExclamation.Text = "Exclamation";
-            this.rdbExclamation.UseVisualStyleBackColor = true;
+            this.rdbStop.AutoSize = true;
+            this.rdbStop.Location = new System.Drawing.Point(147, 69);
+            this.rdbStop.Name = "rdbStop";
+            this.rdbStop.Size = new System.Drawing.Size(47, 17);
+            this.rdbStop.TabIndex = 7;
+            this.rdbStop.Text = "Stop";
+            this.rdbStop.UseVisualStyleBackColor = true;
             // 
-            // rdbHand
+            // rdbQuestion
             // 
-            this.rdbHand.AutoSize = true;
-            this.rdbHand.Location = new System.Drawing.Point(17, 94);
-            this.rdbHand.Name = "rdbHand";
-            this.rdbHand.Size = new System.Drawing.Size(51, 17);
-            this.rdbHand.TabIndex = 3;
-            this.rdbHand.Text = "Hand";
-            this.rdbHand.UseVisualStyleBackColor = true;
-            // 
-            // rdbInformation
-            // 
-            this.rdbInformation.AutoSize = true;
-            this.rdbInformation.Location = new System.Drawing.Point(17, 119);
-            this.rdbInformation.Name = "rdbInformation";
-            this.rdbInformation.Size = new System.Drawing.Size(77, 17);
-            this.rdbInformation.TabIndex = 4;
-            this.rdbInformation.Text = "Information";
-            this.rdbInformation.UseVisualStyleBackColor = true;
+            this.rdbQuestion.AutoSize = true;
+            this.rdbQuestion.Location = new System.Drawing.Point(147, 44);
+            this.rdbQuestion.Name = "rdbQuestion";
+            this.rdbQuestion.Size = new System.Drawing.Size(67, 17);
+            this.rdbQuestion.TabIndex = 6;
+            this.rdbQuestion.Text = "Question";
+            this.rdbQuestion.UseVisualStyleBackColor = true;
             // 
             // rdbNone
             // 
@@ -314,64 +314,66 @@ namespace InfoBox.Test
             this.rdbNone.Text = "None";
             this.rdbNone.UseVisualStyleBackColor = true;
             // 
-            // rdbQuestion
+            // rdbInformation
             // 
-            this.rdbQuestion.AutoSize = true;
-            this.rdbQuestion.Location = new System.Drawing.Point(147, 44);
-            this.rdbQuestion.Name = "rdbQuestion";
-            this.rdbQuestion.Size = new System.Drawing.Size(67, 17);
-            this.rdbQuestion.TabIndex = 6;
-            this.rdbQuestion.Text = "Question";
-            this.rdbQuestion.UseVisualStyleBackColor = true;
+            this.rdbInformation.AutoSize = true;
+            this.rdbInformation.Location = new System.Drawing.Point(17, 119);
+            this.rdbInformation.Name = "rdbInformation";
+            this.rdbInformation.Size = new System.Drawing.Size(77, 17);
+            this.rdbInformation.TabIndex = 4;
+            this.rdbInformation.Text = "Information";
+            this.rdbInformation.UseVisualStyleBackColor = true;
             // 
-            // rdbStop
+            // rdbHand
             // 
-            this.rdbStop.AutoSize = true;
-            this.rdbStop.Location = new System.Drawing.Point(147, 69);
-            this.rdbStop.Name = "rdbStop";
-            this.rdbStop.Size = new System.Drawing.Size(47, 17);
-            this.rdbStop.TabIndex = 7;
-            this.rdbStop.Text = "Stop";
-            this.rdbStop.UseVisualStyleBackColor = true;
+            this.rdbHand.AutoSize = true;
+            this.rdbHand.Location = new System.Drawing.Point(17, 94);
+            this.rdbHand.Name = "rdbHand";
+            this.rdbHand.Size = new System.Drawing.Size(51, 17);
+            this.rdbHand.TabIndex = 3;
+            this.rdbHand.Text = "Hand";
+            this.rdbHand.UseVisualStyleBackColor = true;
             // 
-            // rdbWarning
+            // rdbExclamation
             // 
-            this.rdbWarning.AutoSize = true;
-            this.rdbWarning.Location = new System.Drawing.Point(147, 94);
-            this.rdbWarning.Name = "rdbWarning";
-            this.rdbWarning.Size = new System.Drawing.Size(65, 17);
-            this.rdbWarning.TabIndex = 8;
-            this.rdbWarning.Text = "Warning";
-            this.rdbWarning.UseVisualStyleBackColor = true;
+            this.rdbExclamation.AutoSize = true;
+            this.rdbExclamation.Location = new System.Drawing.Point(17, 69);
+            this.rdbExclamation.Name = "rdbExclamation";
+            this.rdbExclamation.Size = new System.Drawing.Size(82, 17);
+            this.rdbExclamation.TabIndex = 2;
+            this.rdbExclamation.Text = "Exclamation";
+            this.rdbExclamation.UseVisualStyleBackColor = true;
             // 
-            // rdbSuccess
+            // rdbError
             // 
-            this.rdbSuccess.AutoSize = true;
-            this.rdbSuccess.Location = new System.Drawing.Point(147, 119);
-            this.rdbSuccess.Name = "rdbSuccess";
-            this.rdbSuccess.Size = new System.Drawing.Size(66, 17);
-            this.rdbSuccess.TabIndex = 9;
-            this.rdbSuccess.Text = "Success";
-            this.rdbSuccess.UseVisualStyleBackColor = true;
+            this.rdbError.AutoSize = true;
+            this.rdbError.Location = new System.Drawing.Point(17, 44);
+            this.rdbError.Name = "rdbError";
+            this.rdbError.Size = new System.Drawing.Size(47, 17);
+            this.rdbError.TabIndex = 1;
+            this.rdbError.Text = "Error";
+            this.rdbError.UseVisualStyleBackColor = true;
+            // 
+            // rdbAsterisk
+            // 
+            this.rdbAsterisk.AutoSize = true;
+            this.rdbAsterisk.Location = new System.Drawing.Point(17, 19);
+            this.rdbAsterisk.Name = "rdbAsterisk";
+            this.rdbAsterisk.Size = new System.Drawing.Size(62, 17);
+            this.rdbAsterisk.TabIndex = 0;
+            this.rdbAsterisk.Text = "Asterisk";
+            this.rdbAsterisk.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txbUser2);
             this.groupBox4.Controls.Add(this.txbUser1);
-            this.groupBox4.Location = new System.Drawing.Point(294, 166);
+            this.groupBox4.Location = new System.Drawing.Point(294, 140);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(264, 55);
+            this.groupBox4.Size = new System.Drawing.Size(264, 50);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Custom buttons";
-            // 
-            // txbUser1
-            // 
-            this.txbUser1.Location = new System.Drawing.Point(17, 23);
-            this.txbUser1.Name = "txbUser1";
-            this.txbUser1.Size = new System.Drawing.Size(110, 20);
-            this.txbUser1.TabIndex = 0;
-            this.txbUser1.Text = "User1";
             // 
             // txbUser2
             // 
@@ -381,9 +383,18 @@ namespace InfoBox.Test
             this.txbUser2.TabIndex = 1;
             this.txbUser2.Text = "User2";
             // 
+            // txbUser1
+            // 
+            this.txbUser1.Location = new System.Drawing.Point(17, 23);
+            this.txbUser1.Name = "txbUser1";
+            this.txbUser1.Size = new System.Drawing.Size(110, 20);
+            this.txbUser1.TabIndex = 0;
+            this.txbUser1.Text = "User1";
+            // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(329, 336);
+            this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShow.Location = new System.Drawing.Point(326, 383);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -396,12 +407,32 @@ namespace InfoBox.Test
             this.groupBox5.Controls.Add(this.rdbButton3);
             this.groupBox5.Controls.Add(this.rdbButton2);
             this.groupBox5.Controls.Add(this.rdbButton1);
-            this.groupBox5.Location = new System.Drawing.Point(294, 227);
+            this.groupBox5.Location = new System.Drawing.Point(294, 196);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(264, 50);
+            this.groupBox5.Size = new System.Drawing.Size(264, 45);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Default button";
+            // 
+            // rdbButton3
+            // 
+            this.rdbButton3.AutoSize = true;
+            this.rdbButton3.Location = new System.Drawing.Point(167, 19);
+            this.rdbButton3.Name = "rdbButton3";
+            this.rdbButton3.Size = new System.Drawing.Size(62, 17);
+            this.rdbButton3.TabIndex = 2;
+            this.rdbButton3.Text = "Button3";
+            this.rdbButton3.UseVisualStyleBackColor = true;
+            // 
+            // rdbButton2
+            // 
+            this.rdbButton2.AutoSize = true;
+            this.rdbButton2.Location = new System.Drawing.Point(103, 19);
+            this.rdbButton2.Name = "rdbButton2";
+            this.rdbButton2.Size = new System.Drawing.Size(62, 17);
+            this.rdbButton2.TabIndex = 1;
+            this.rdbButton2.Text = "Button2";
+            this.rdbButton2.UseVisualStyleBackColor = true;
             // 
             // rdbButton1
             // 
@@ -415,32 +446,14 @@ namespace InfoBox.Test
             this.rdbButton1.Text = "Button1";
             this.rdbButton1.UseVisualStyleBackColor = true;
             // 
-            // rdbButton2
-            // 
-            this.rdbButton2.AutoSize = true;
-            this.rdbButton2.Location = new System.Drawing.Point(103, 19);
-            this.rdbButton2.Name = "rdbButton2";
-            this.rdbButton2.Size = new System.Drawing.Size(62, 17);
-            this.rdbButton2.TabIndex = 1;
-            this.rdbButton2.Text = "Button2";
-            this.rdbButton2.UseVisualStyleBackColor = true;
-            // 
-            // rdbButton3
-            // 
-            this.rdbButton3.AutoSize = true;
-            this.rdbButton3.Location = new System.Drawing.Point(167, 19);
-            this.rdbButton3.Name = "rdbButton3";
-            this.rdbButton3.Size = new System.Drawing.Size(62, 17);
-            this.rdbButton3.TabIndex = 2;
-            this.rdbButton3.Text = "Button3";
-            this.rdbButton3.UseVisualStyleBackColor = true;
-            // 
             // txbCode
             // 
+            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 383);
+            this.txbCode.Location = new System.Drawing.Point(12, 425);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -449,7 +462,8 @@ namespace InfoBox.Test
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(329, 303);
+            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGenerate.Location = new System.Drawing.Point(60, 383);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -469,22 +483,6 @@ namespace InfoBox.Test
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Custom icon";
             // 
-            // txbIcon
-            // 
-            this.txbIcon.Location = new System.Drawing.Point(51, 19);
-            this.txbIcon.Name = "txbIcon";
-            this.txbIcon.Size = new System.Drawing.Size(157, 20);
-            this.txbIcon.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Icon file";
-            // 
             // btnIcon
             // 
             this.btnIcon.Location = new System.Drawing.Point(214, 18);
@@ -495,16 +493,120 @@ namespace InfoBox.Test
             this.btnIcon.UseVisualStyleBackColor = true;
             this.btnIcon.Click += new System.EventHandler(this.btnIcon_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Icon file";
+            // 
+            // txbIcon
+            // 
+            this.txbIcon.Location = new System.Drawing.Point(51, 19);
+            this.txbIcon.Name = "txbIcon";
+            this.txbIcon.Size = new System.Drawing.Size(157, 20);
+            this.txbIcon.TabIndex = 0;
+            // 
             // ofdIcon
             // 
             this.ofdIcon.Filter = "Icon file|*.ico";
             this.ofdIcon.Title = "Choose an icon file";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.rdbLayoutSeparate);
+            this.groupBox7.Controls.Add(this.rdbLayoutGroupMiddle);
+            this.groupBox7.Controls.Add(this.rdbLayoutGroupRight);
+            this.groupBox7.Controls.Add(this.rdbLayoutGroupLeft);
+            this.groupBox7.Location = new System.Drawing.Point(294, 247);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(264, 65);
+            this.groupBox7.TabIndex = 10;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Buttons layout";
+            // 
+            // rdbLayoutGroupLeft
+            // 
+            this.rdbLayoutGroupLeft.AutoSize = true;
+            this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(17, 17);
+            this.rdbLayoutGroupLeft.Name = "rdbLayoutGroupLeft";
+            this.rdbLayoutGroupLeft.Size = new System.Drawing.Size(72, 17);
+            this.rdbLayoutGroupLeft.TabIndex = 0;
+            this.rdbLayoutGroupLeft.Text = "GroupLeft";
+            this.rdbLayoutGroupLeft.UseVisualStyleBackColor = true;
+            // 
+            // rdbLayoutGroupRight
+            // 
+            this.rdbLayoutGroupRight.AutoSize = true;
+            this.rdbLayoutGroupRight.Location = new System.Drawing.Point(17, 37);
+            this.rdbLayoutGroupRight.Name = "rdbLayoutGroupRight";
+            this.rdbLayoutGroupRight.Size = new System.Drawing.Size(79, 17);
+            this.rdbLayoutGroupRight.TabIndex = 1;
+            this.rdbLayoutGroupRight.Text = "GroupRight";
+            this.rdbLayoutGroupRight.UseVisualStyleBackColor = true;
+            // 
+            // rdbLayoutGroupMiddle
+            // 
+            this.rdbLayoutGroupMiddle.AutoSize = true;
+            this.rdbLayoutGroupMiddle.Checked = true;
+            this.rdbLayoutGroupMiddle.Location = new System.Drawing.Point(147, 17);
+            this.rdbLayoutGroupMiddle.Name = "rdbLayoutGroupMiddle";
+            this.rdbLayoutGroupMiddle.Size = new System.Drawing.Size(85, 17);
+            this.rdbLayoutGroupMiddle.TabIndex = 2;
+            this.rdbLayoutGroupMiddle.TabStop = true;
+            this.rdbLayoutGroupMiddle.Text = "GroupMiddle";
+            this.rdbLayoutGroupMiddle.UseVisualStyleBackColor = true;
+            // 
+            // rdbLayoutSeparate
+            // 
+            this.rdbLayoutSeparate.AutoSize = true;
+            this.rdbLayoutSeparate.Location = new System.Drawing.Point(147, 37);
+            this.rdbLayoutSeparate.Name = "rdbLayoutSeparate";
+            this.rdbLayoutSeparate.Size = new System.Drawing.Size(68, 17);
+            this.rdbLayoutSeparate.TabIndex = 3;
+            this.rdbLayoutSeparate.Text = "Separate";
+            this.rdbLayoutSeparate.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.ddlLanguage);
+            this.groupBox8.Controls.Add(this.label4);
+            this.groupBox8.Location = new System.Drawing.Point(294, 318);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(264, 50);
+            this.groupBox8.TabIndex = 11;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Language";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Language";
+            // 
+            // ddlLanguage
+            // 
+            this.ddlLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlLanguage.Items.AddRange(new object[] {
+            "en - English",
+            "fr - Français"});
+            this.ddlLanguage.Location = new System.Drawing.Point(72, 19);
+            this.ddlLanguage.Name = "ddlLanguage";
+            this.ddlLanguage.Size = new System.Drawing.Size(165, 21);
+            this.ddlLanguage.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 462);
+            this.ClientSize = new System.Drawing.Size(568, 504);
+            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.txbCode);
@@ -528,6 +630,10 @@ namespace InfoBox.Test
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,6 +682,14 @@ namespace InfoBox.Test
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txbIcon;
         private System.Windows.Forms.OpenFileDialog ofdIcon;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.RadioButton rdbLayoutSeparate;
+        private System.Windows.Forms.RadioButton rdbLayoutGroupMiddle;
+        private System.Windows.Forms.RadioButton rdbLayoutGroupRight;
+        private System.Windows.Forms.RadioButton rdbLayoutGroupLeft;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.ComboBox ddlLanguage;
+        private System.Windows.Forms.Label label4;
 
     }
 }

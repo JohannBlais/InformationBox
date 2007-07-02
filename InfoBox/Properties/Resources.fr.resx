@@ -117,41 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="IconError" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\error.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconGood" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\good.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\info.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconQuestion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\question.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\warning.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="LabelAbort" xml:space="preserve">
-    <value>Abort</value>
+    <value>Abandonner</value>
   </data>
   <data name="LabelCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="LabelIgnore" xml:space="preserve">
-    <value>Ignore</value>
+    <value>Ignorer</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
-    <value>No</value>
+    <value>Non</value>
   </data>
   <data name="LabelOK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="LabelRetry" xml:space="preserve">
-    <value>Retry</value>
+    <value>Réssayer</value>
   </data>
   <data name="LabelYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Oui</value>
   </data>
 </root>

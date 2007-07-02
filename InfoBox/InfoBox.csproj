@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Enums\IconType.cs" />
     <Compile Include="Enums\InformationBoxButtons.cs" />
+    <Compile Include="Enums\InformationBoxButtonsLayout.cs" />
     <Compile Include="Enums\InformationBoxDefaultButton.cs" />
     <Compile Include="Enums\InformationBoxIcon.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
@@ -70,6 +71,9 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr.resx">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
