@@ -10,10 +10,6 @@ namespace InfoBox
     public enum InformationBoxAutoSizeMode
     {
         /// <summary>
-        /// Width and height will be set to have a ratio near the screen ratio (4/3, 16/9, etc). Existing line breaks are ignored.
-        /// </summary>
-        ScreenRatio,
-        /// <summary>
         /// Adjust the height and text to have the highest <see cref="InformationBox"/> possible. Existing line breaks are ignored.
         /// </summary>
         MinimumWidth,

@@ -78,7 +78,6 @@ namespace InfoBox.Test
             this.ddlLanguage = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.rdbAutoSizeScreenRation = new System.Windows.Forms.RadioButton();
             this.rdbAutoSizeNone = new System.Windows.Forms.RadioButton();
             this.rdbAutoSizeMinimumHeight = new System.Windows.Forms.RadioButton();
             this.rdbAutoSizeMinimumWidth = new System.Windows.Forms.RadioButton();
@@ -463,6 +462,7 @@ namespace InfoBox.Test
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
+            this.txbCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txbCode.Size = new System.Drawing.Size(546, 67);
             this.txbCode.TabIndex = 8;
             // 
@@ -608,7 +608,6 @@ namespace InfoBox.Test
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.rdbAutoSizeScreenRation);
             this.groupBox9.Controls.Add(this.rdbAutoSizeNone);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumHeight);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumWidth);
@@ -618,16 +617,6 @@ namespace InfoBox.Test
             this.groupBox9.TabIndex = 12;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "AutoSize";
-            // 
-            // rdbAutoSizeScreenRation
-            // 
-            this.rdbAutoSizeScreenRation.AutoSize = true;
-            this.rdbAutoSizeScreenRation.Location = new System.Drawing.Point(147, 40);
-            this.rdbAutoSizeScreenRation.Name = "rdbAutoSizeScreenRation";
-            this.rdbAutoSizeScreenRation.Size = new System.Drawing.Size(90, 17);
-            this.rdbAutoSizeScreenRation.TabIndex = 3;
-            this.rdbAutoSizeScreenRation.Text = "ScreenRation";
-            this.rdbAutoSizeScreenRation.UseVisualStyleBackColor = true;
             // 
             // rdbAutoSizeNone
             // 
@@ -756,7 +745,6 @@ namespace InfoBox.Test
         private System.Windows.Forms.ComboBox ddlLanguage;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.RadioButton rdbAutoSizeScreenRation;
         private System.Windows.Forms.RadioButton rdbAutoSizeNone;
         private System.Windows.Forms.RadioButton rdbAutoSizeMinimumHeight;
         private System.Windows.Forms.RadioButton rdbAutoSizeMinimumWidth;

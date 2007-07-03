@@ -348,13 +348,6 @@ namespace InfoBox
                     internalText.Replace("! ", "!" + Environment.NewLine);
                     internalText.Replace(": ", ":" + Environment.NewLine);
                 }
-                //else if (_autoSizeMode == InformationBoxAutoSizeMode.ScreenRatio)
-                //{
-                //    Size textSize = _measureGraphics.MeasureString(internalText.ToString(), lblText.Font);
-
-                //    float screenRation = (2 * screenWidth) / screenHeight;
-                //    float currentRatio = (2 * textSize.Width) / textSize.Height;
-                //}
 
                 lblText.Text = internalText.ToString();
             }

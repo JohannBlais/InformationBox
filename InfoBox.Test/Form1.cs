@@ -82,8 +82,6 @@ namespace InfoBox.Test
         {
             if (rdbAutoSizeMinimumHeight.Checked) return InformationBoxAutoSizeMode.MinimumHeight;
             if (rdbAutoSizeMinimumWidth.Checked) return InformationBoxAutoSizeMode.MinimumWidth;
-            if (rdbAutoSizeNone.Checked) return InformationBoxAutoSizeMode.None;
-            if (rdbAutoSizeScreenRation.Checked) return InformationBoxAutoSizeMode.ScreenRatio;
             return InformationBoxAutoSizeMode.None;
         }
 
@@ -102,14 +100,15 @@ namespace InfoBox.Test
             if (String.Empty.Equals(iconFileName))
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] { \"{3}\", \"{4}\" }, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8});",
-                        txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8});",
+                        txbText.Text.Replace(Environment.NewLine, "\\n"),
+                        txbTitle.Text, buttons, txbUser1.Text,
                         txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize).Replace("\"\"", "String.Empty");
             }
             else
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] { \"{3}\", \"{4}\" }, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8});",
                         txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
                         txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize).Replace("\"\"", "String.Empty");
             }
