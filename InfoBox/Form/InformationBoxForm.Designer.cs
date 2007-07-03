@@ -111,7 +111,7 @@ namespace InfoBox
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InformationBoxForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InformationBox_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.pnlMain.ResumeLayout(false);

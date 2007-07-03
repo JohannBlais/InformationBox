@@ -46,6 +46,7 @@
     <Compile Include="Enums\InformationBoxButtonsLayout.cs" />
     <Compile Include="Enums\InformationBoxDefaultButton.cs" />
     <Compile Include="Enums\InformationBoxIcon.cs" />
+    <Compile Include="Enums\InformationBoxPosition.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
     <Compile Include="Form\InformationBoxForm.cs">
       <SubType>Form</SubType>

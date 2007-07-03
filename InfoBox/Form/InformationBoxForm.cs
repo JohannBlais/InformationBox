@@ -26,6 +26,7 @@ namespace InfoBox
         private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
         private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
         private readonly InformationBoxAutoSizeMode _autoSizeMode = InformationBoxAutoSizeMode.None;
+        private readonly InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -44,7 +45,7 @@ namespace InfoBox
 
         private readonly Graphics _measureGraphics = null;
         private StringBuilder internalText = null;
-        
+
         #endregion Attributes
 
         #region Constructors
@@ -77,17 +78,17 @@ namespace InfoBox
                 // Simple string -> caption
                 if (parameter is string)
                 {
-                    Text = (string)parameter;
+                    Text = (string) parameter;
                 }
                 // Buttons
                 else if (parameter is InformationBoxButtons)
                 {
-                    _buttons = (InformationBoxButtons)parameter;
+                    _buttons = (InformationBoxButtons) parameter;
                 }
                 // Internal icon
                 else if (parameter is InformationBoxIcon)
                 {
-                    _icon = (InformationBoxIcon)parameter;
+                    _icon = (InformationBoxIcon) parameter;
                 }
                 // User defined icon
                 else if (parameter is Icon)
@@ -98,24 +99,29 @@ namespace InfoBox
                 // Default button
                 else if (parameter is InformationBoxDefaultButton)
                 {
-                    _defaultButton = (InformationBoxDefaultButton)parameter;
+                    _defaultButton = (InformationBoxDefaultButton) parameter;
                 }
                 // Custom buttons
                 else if (parameter is string[])
                 {
-                    string[] labels = (string[])parameter;
+                    string[] labels = (string[]) parameter;
                     if (labels.Length > 0) _buttonUser1Text = labels[0];
                     if (labels.Length > 1) _buttonUser2Text = labels[1];
                 }
                 // Buttons layout
                 else if (parameter is InformationBoxButtonsLayout)
                 {
-                    _buttonsLayout = (InformationBoxButtonsLayout)parameter;
+                    _buttonsLayout = (InformationBoxButtonsLayout) parameter;
                 }
                 // Autosize mode
                 else if (parameter is InformationBoxAutoSizeMode)
                 {
-                    _autoSizeMode = (InformationBoxAutoSizeMode)parameter;
+                    _autoSizeMode = (InformationBoxAutoSizeMode) parameter;
+                }
+                // Position
+                else if (parameter is InformationBoxPosition)
+                {
+                    _position = (InformationBoxPosition) parameter;
                 }
             }
         }
@@ -135,10 +141,26 @@ namespace InfoBox
             SetIcon();
             SetLayout();
             SetFocus();
+            SetPosition();
             ShowDialog();
 
             return _result;
         }
+
+        #region Position
+
+        /// <summary>
+        /// Sets the position.
+        /// </summary>
+        private void SetPosition()
+        {
+            if (_position == InformationBoxPosition.CenterOnScreen)
+                StartPosition = FormStartPosition.CenterScreen;
+            else
+                StartPosition = FormStartPosition.CenterParent;
+        }
+
+        #endregion Position
 
         #region Focus
 
@@ -320,7 +342,6 @@ namespace InfoBox
                 
                 Screen currentScreen = Screen.FromControl(this);
                 int screenWidth = currentScreen.WorkingArea.Width;
-                int screenHeight = currentScreen.WorkingArea.Height;
 
                 if (_autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
                 {

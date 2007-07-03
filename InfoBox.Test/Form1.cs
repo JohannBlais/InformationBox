@@ -86,6 +86,17 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the position.
+        /// </summary>
+        /// <returns></returns>
+        private InformationBoxPosition GetPosition()
+        {
+            if (rdbPositionCenterOnParent.Checked) return InformationBoxPosition.CenterOnParent;
+            if (rdbPositionCenterOnScreen.Checked) return InformationBoxPosition.CenterOnScreen;
+            return InformationBoxPosition.CenterOnParent;
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -96,21 +107,22 @@ namespace InfoBox.Test
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
             InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
             InformationBoxAutoSizeMode autoSize = GetAutoSize();
+            InformationBoxPosition position = GetPosition();
 
             if (String.Empty.Equals(iconFileName))
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9});",
                         txbText.Text.Replace(Environment.NewLine, "\\n"),
                         txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize).Replace("\"\"", "String.Empty");
+                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize, position).Replace("\"\"", "String.Empty");
             }
             else
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9});",
                         txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize).Replace("\"\"", "String.Empty");
+                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize, position).Replace("\"\"", "String.Empty");
             }
         }
 
@@ -132,14 +144,15 @@ namespace InfoBox.Test
             InformationBoxDefaultButton defaultButton = GetDefaultButton();
             InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
             InformationBoxAutoSizeMode autoSize = GetAutoSize();
+            InformationBoxPosition position = GetPosition();
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position);
             }
             else
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position);
             }
         }
 

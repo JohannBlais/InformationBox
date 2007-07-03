@@ -81,6 +81,9 @@ namespace InfoBox.Test
             this.rdbAutoSizeNone = new System.Windows.Forms.RadioButton();
             this.rdbAutoSizeMinimumHeight = new System.Windows.Forms.RadioButton();
             this.rdbAutoSizeMinimumWidth = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.rdbPositionCenterOnScreen = new System.Windows.Forms.RadioButton();
+            this.rdbPositionCenterOnParent = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -90,6 +93,7 @@ namespace InfoBox.Test
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -262,7 +266,7 @@ namespace InfoBox.Test
             this.groupBox3.Controls.Add(this.rdbAsterisk);
             this.groupBox3.Location = new System.Drawing.Point(12, 166);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(264, 146);
+            this.groupBox3.Size = new System.Drawing.Size(264, 125);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Icon";
@@ -270,7 +274,7 @@ namespace InfoBox.Test
             // rdbSuccess
             // 
             this.rdbSuccess.AutoSize = true;
-            this.rdbSuccess.Location = new System.Drawing.Point(147, 119);
+            this.rdbSuccess.Location = new System.Drawing.Point(147, 99);
             this.rdbSuccess.Name = "rdbSuccess";
             this.rdbSuccess.Size = new System.Drawing.Size(66, 17);
             this.rdbSuccess.TabIndex = 9;
@@ -280,7 +284,7 @@ namespace InfoBox.Test
             // rdbWarning
             // 
             this.rdbWarning.AutoSize = true;
-            this.rdbWarning.Location = new System.Drawing.Point(147, 94);
+            this.rdbWarning.Location = new System.Drawing.Point(147, 79);
             this.rdbWarning.Name = "rdbWarning";
             this.rdbWarning.Size = new System.Drawing.Size(65, 17);
             this.rdbWarning.TabIndex = 8;
@@ -290,7 +294,7 @@ namespace InfoBox.Test
             // rdbStop
             // 
             this.rdbStop.AutoSize = true;
-            this.rdbStop.Location = new System.Drawing.Point(147, 69);
+            this.rdbStop.Location = new System.Drawing.Point(147, 59);
             this.rdbStop.Name = "rdbStop";
             this.rdbStop.Size = new System.Drawing.Size(47, 17);
             this.rdbStop.TabIndex = 7;
@@ -300,7 +304,7 @@ namespace InfoBox.Test
             // rdbQuestion
             // 
             this.rdbQuestion.AutoSize = true;
-            this.rdbQuestion.Location = new System.Drawing.Point(147, 44);
+            this.rdbQuestion.Location = new System.Drawing.Point(147, 39);
             this.rdbQuestion.Name = "rdbQuestion";
             this.rdbQuestion.Size = new System.Drawing.Size(67, 17);
             this.rdbQuestion.TabIndex = 6;
@@ -322,7 +326,7 @@ namespace InfoBox.Test
             // rdbInformation
             // 
             this.rdbInformation.AutoSize = true;
-            this.rdbInformation.Location = new System.Drawing.Point(17, 119);
+            this.rdbInformation.Location = new System.Drawing.Point(17, 99);
             this.rdbInformation.Name = "rdbInformation";
             this.rdbInformation.Size = new System.Drawing.Size(77, 17);
             this.rdbInformation.TabIndex = 4;
@@ -332,7 +336,7 @@ namespace InfoBox.Test
             // rdbHand
             // 
             this.rdbHand.AutoSize = true;
-            this.rdbHand.Location = new System.Drawing.Point(17, 94);
+            this.rdbHand.Location = new System.Drawing.Point(17, 79);
             this.rdbHand.Name = "rdbHand";
             this.rdbHand.Size = new System.Drawing.Size(51, 17);
             this.rdbHand.TabIndex = 3;
@@ -342,7 +346,7 @@ namespace InfoBox.Test
             // rdbExclamation
             // 
             this.rdbExclamation.AutoSize = true;
-            this.rdbExclamation.Location = new System.Drawing.Point(17, 69);
+            this.rdbExclamation.Location = new System.Drawing.Point(17, 59);
             this.rdbExclamation.Name = "rdbExclamation";
             this.rdbExclamation.Size = new System.Drawing.Size(82, 17);
             this.rdbExclamation.TabIndex = 2;
@@ -352,7 +356,7 @@ namespace InfoBox.Test
             // rdbError
             // 
             this.rdbError.AutoSize = true;
-            this.rdbError.Location = new System.Drawing.Point(17, 44);
+            this.rdbError.Location = new System.Drawing.Point(17, 39);
             this.rdbError.Name = "rdbError";
             this.rdbError.Size = new System.Drawing.Size(47, 17);
             this.rdbError.TabIndex = 1;
@@ -399,7 +403,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(326, 412);
+            this.btnShow.Location = new System.Drawing.Point(324, 425);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -458,7 +462,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 449);
+            this.txbCode.Location = new System.Drawing.Point(12, 462);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -469,7 +473,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(326, 379);
+            this.btnGenerate.Location = new System.Drawing.Point(61, 425);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -482,7 +486,7 @@ namespace InfoBox.Test
             this.groupBox6.Controls.Add(this.btnIcon);
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.txbIcon);
-            this.groupBox6.Location = new System.Drawing.Point(12, 318);
+            this.groupBox6.Location = new System.Drawing.Point(12, 297);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(264, 50);
             this.groupBox6.TabIndex = 9;
@@ -611,7 +615,7 @@ namespace InfoBox.Test
             this.groupBox9.Controls.Add(this.rdbAutoSizeNone);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumHeight);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumWidth);
-            this.groupBox9.Location = new System.Drawing.Point(12, 374);
+            this.groupBox9.Location = new System.Drawing.Point(12, 353);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(264, 64);
             this.groupBox9.TabIndex = 12;
@@ -651,11 +655,45 @@ namespace InfoBox.Test
             this.rdbAutoSizeMinimumWidth.Text = "MinimumWidth";
             this.rdbAutoSizeMinimumWidth.UseVisualStyleBackColor = true;
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.rdbPositionCenterOnScreen);
+            this.groupBox10.Controls.Add(this.rdbPositionCenterOnParent);
+            this.groupBox10.Location = new System.Drawing.Point(294, 374);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(264, 43);
+            this.groupBox10.TabIndex = 13;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Position";
+            // 
+            // rdbPositionCenterOnScreen
+            // 
+            this.rdbPositionCenterOnScreen.AutoSize = true;
+            this.rdbPositionCenterOnScreen.Location = new System.Drawing.Point(9, 19);
+            this.rdbPositionCenterOnScreen.Name = "rdbPositionCenterOnScreen";
+            this.rdbPositionCenterOnScreen.Size = new System.Drawing.Size(104, 17);
+            this.rdbPositionCenterOnScreen.TabIndex = 6;
+            this.rdbPositionCenterOnScreen.Text = "CenterOnScreen";
+            this.rdbPositionCenterOnScreen.UseVisualStyleBackColor = true;
+            // 
+            // rdbPositionCenterOnParent
+            // 
+            this.rdbPositionCenterOnParent.AutoSize = true;
+            this.rdbPositionCenterOnParent.Checked = true;
+            this.rdbPositionCenterOnParent.Location = new System.Drawing.Point(149, 19);
+            this.rdbPositionCenterOnParent.Name = "rdbPositionCenterOnParent";
+            this.rdbPositionCenterOnParent.Size = new System.Drawing.Size(101, 17);
+            this.rdbPositionCenterOnParent.TabIndex = 4;
+            this.rdbPositionCenterOnParent.TabStop = true;
+            this.rdbPositionCenterOnParent.Text = "CenterOnParent";
+            this.rdbPositionCenterOnParent.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 528);
+            this.ClientSize = new System.Drawing.Size(568, 541);
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
@@ -688,6 +726,8 @@ namespace InfoBox.Test
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -748,6 +788,9 @@ namespace InfoBox.Test
         private System.Windows.Forms.RadioButton rdbAutoSizeNone;
         private System.Windows.Forms.RadioButton rdbAutoSizeMinimumHeight;
         private System.Windows.Forms.RadioButton rdbAutoSizeMinimumWidth;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.RadioButton rdbPositionCenterOnScreen;
+        private System.Windows.Forms.RadioButton rdbPositionCenterOnParent;
 
     }
 }
