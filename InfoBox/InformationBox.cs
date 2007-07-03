@@ -1,4 +1,3 @@
-using System.Drawing;
 namespace InfoBox
 {
     /// <summary>

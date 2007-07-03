@@ -3,10 +3,9 @@ namespace InfoBox
     using System;
     using System.Drawing;
     using System.Text;
-    using System.Windows.Forms;
-    using InfoBox.Properties;
-    using System.Collections.Specialized;
     using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using Properties;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
