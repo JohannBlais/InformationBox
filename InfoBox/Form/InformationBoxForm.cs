@@ -5,6 +5,8 @@ namespace InfoBox
     using System.Text;
     using System.Windows.Forms;
     using InfoBox.Properties;
+    using System.Collections.Specialized;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
@@ -347,20 +349,25 @@ namespace InfoBox
                 {
                     // Remove line breaks.
                     internalText = internalText.Replace(Environment.NewLine, " ");
-                    
-                    int textWidth = Convert.ToInt32(_measureGraphics.MeasureString(internalText.ToString(), lblText.Font).Width);
-                    while (textWidth > screenWidth)
+                    Regex splitter = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled);
+                    MatchCollection sentences = splitter.Matches(internalText.ToString());
+                    StringBuilder formattedText = new StringBuilder();
+                    int currentWidth = 0;
+
+                    foreach (Match sentence in sentences)
                     {
-                        int index = internalText.ToString().LastIndexOf(". ");
-                        if (index > 0)
+                        int sentenceLength = (int) _measureGraphics.MeasureString(sentence.Value, lblText.Font).Width;
+                        if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                         {
-                            // Replace the space by a new line
-                            internalText.Remove(index + 1, 1);
-                            internalText.Insert(index + 1, Environment.NewLine);
+                            formattedText.Append(Environment.NewLine);
+                            currentWidth = 0;
                         }
 
-                        textWidth = Convert.ToInt32(_measureGraphics.MeasureString(internalText.ToString(), lblText.Font).Width);
+                        currentWidth += sentenceLength;
+                        formattedText.Append(sentence.Value);
                     }
+
+                    internalText = formattedText;
                 }
                 else if (_autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
                 {
