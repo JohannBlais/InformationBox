@@ -46,6 +46,10 @@ namespace InfoBox
         ///     <term><see cref="InformationBoxAutoSizeMode"/></term>
         ///     <description>how the <see cref="InformationBox"/> will resize itself according to the text.</description>
         /// </item>
+        /// <item>
+        ///     <term><see cref="InformationBoxPosition"/></term>
+        ///     <description>where the <see cref="InformationBox"/> will appear on the screen.</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>
@@ -53,8 +57,7 @@ namespace InfoBox
         /// <returns>One of the <see cref="InformationBoxResult"/> values.</returns>
         public static InformationBoxResult Show(string text, params object[] parameters)
         {
-            InformationBoxForm boxForm = new InformationBoxForm(text, parameters);
-            return boxForm.Show();
+            return new InformationBoxForm(text, parameters).Show();
         }
 
         #endregion Show
