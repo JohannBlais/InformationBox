@@ -1,8 +1,7 @@
 namespace InfoBox
 {
     using System.Drawing;
-    using Properties;
-
+    
     internal class IconHelper
     {
         /// <summary>
@@ -15,16 +14,20 @@ namespace InfoBox
             switch (iconType)
             {
                 case InformationBoxIcon.Asterisk:
+					return Resources.IconInfo;
                 case InformationBoxIcon.Information:
                     return Resources.IconInfo;
                 
                 case InformationBoxIcon.Error:
-                case InformationBoxIcon.Hand:
-                case InformationBoxIcon.Stop:
+					return Resources.IconError;
+				case InformationBoxIcon.Hand:
+					return Resources.IconError;
+				case InformationBoxIcon.Stop:
                     return Resources.IconError;
                 
                 case InformationBoxIcon.Exclamation:
-                case InformationBoxIcon.Warning:
+					return Resources.IconWarning;
+				case InformationBoxIcon.Warning:
                     return Resources.IconWarning;
                 
                 case InformationBoxIcon.Question:

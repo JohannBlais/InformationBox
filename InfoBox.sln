@@ -1,37 +1,29 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox", "InfoBox\InfoBox.csproj", "{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}"
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox", "InfoBox\InfoBox.csproj", "{76C2491C-694D-454E-AB06-6C31C49C69D4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Test", "InfoBox.Test\InfoBox.Test.csproj", "{2EFBB177-E826-47B4-8028-D124ECFAAE05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Test", "InfoBox.Test\InfoBox.Test.csproj", "{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs03.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = InfoBox\\InfoBox.csproj
-		SccProjectName1 = InfoBox
-		SccLocalPath1 = InfoBox
-		SccProjectUniqueName2 = InfoBox.Test\\InfoBox.Test.csproj
-		SccProjectName2 = InfoBox.Test
-		SccLocalPath2 = InfoBox.Test
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
 	EndGlobalSection
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+	GlobalSection(ProjectConfiguration) = postSolution
+		{76C2491C-694D-454E-AB06-6C31C49C69D4}.Debug.ActiveCfg = Debug|.NET
+		{76C2491C-694D-454E-AB06-6C31C49C69D4}.Debug.Build.0 = Debug|.NET
+		{76C2491C-694D-454E-AB06-6C31C49C69D4}.Release.ActiveCfg = Release|.NET
+		{76C2491C-694D-454E-AB06-6C31C49C69D4}.Release.Build.0 = Release|.NET
+		{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}.Debug.ActiveCfg = Debug|.NET
+		{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}.Debug.Build.0 = Debug|.NET
+		{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}.Release.ActiveCfg = Release|.NET
+		{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}.Release.Build.0 = Release|.NET
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EFBB177-E826-47B4-8028-D124ECFAAE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EFBB177-E826-47B4-8028-D124ECFAAE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EFBB177-E826-47B4-8028-D124ECFAAE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EFBB177-E826-47B4-8028-D124ECFAAE05}.Release|Any CPU.Build.0 = Release|Any CPU
+	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+	GlobalSection(ExtensibilityAddIns) = postSolution
 	EndGlobalSection
 EndGlobal
