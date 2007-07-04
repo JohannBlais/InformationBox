@@ -159,6 +159,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Properties\AssemblyInfo.cs"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Properties\Resources.fr.resx"
                     BuildAction = "EmbeddedResource"
                 />
