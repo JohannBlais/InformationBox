@@ -49,6 +49,10 @@ namespace InfoBox
         ///     <term><see cref="InformationBoxPosition"/></term>
         ///     <description>where the <see cref="InformationBox"/> will appear on the screen.</description>
         /// </item>
+        /// <item>
+        ///     <term><see cref="Boolean"/></term>
+        ///     <description>whether the help button is displayed or not.</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>

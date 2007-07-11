@@ -169,5 +169,16 @@ namespace InfoBox
 				return ResourceManager.GetString("LabelYes", resourceCulture);
 			}
 		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Help.
+		/// </summary>
+		internal static string LabelHelp 
+		{
+			get 
+			{
+				return ResourceManager.GetString("LabelHelp", resourceCulture);
+			}
+		}
 	}
 }
