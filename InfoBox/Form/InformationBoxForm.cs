@@ -2,6 +2,7 @@ namespace InfoBox
 {
     using System;
     using System.Drawing;
+	using System.Reflection;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
@@ -166,13 +167,17 @@ namespace InfoBox
         private readonly Button _buttonIgnore = null;
         private readonly Button _buttonUser1 = null;
         private readonly Button _buttonUser2 = null;
+		private readonly Button _buttonHelp = null;
 
         private readonly IconType _iconType = IconType.Internal;
 
         private readonly Graphics _measureGraphics = null;
         private StringBuilder internalText = null;
 
-        #endregion Attributes
+		private readonly bool _showHelpButton = false;
+		private readonly Form _activeForm = null;
+
+		#endregion Attributes
 
         #region Constructors
 
@@ -195,7 +200,9 @@ namespace InfoBox
         /// <param name="parameters">The parameters.</param>
         internal InformationBoxForm(string text, params object[] parameters) : this(text)
         {
-            foreach (object parameter in parameters)
+			_activeForm = Form.ActiveForm;
+
+			foreach (object parameter in parameters)
             {
                 // Simple string -> caption
                 if (parameter is string)
@@ -245,6 +252,11 @@ namespace InfoBox
                 {
                     _position = (InformationBoxPosition) parameter;
                 }
+				// Help button
+				else if (parameter is bool)
+				{
+					_showHelpButton = (bool) parameter;
+				}
             }
         }
 
@@ -579,6 +591,12 @@ namespace InfoBox
                 AddButton(_buttonUser2, "User2", _buttonUser2Text);
             }
 
+			// Help button
+			if (_showHelpButton)
+			{
+				AddButton(_buttonHelp, "Help", Resources.LabelHelp);
+			}
+
             SetButtonsSize();
         }
 
@@ -649,7 +667,22 @@ namespace InfoBox
                     default: _result = InformationBoxResult.None; break;
                 }
 
-                DialogResult = DialogResult.OK;
+				if (senderButton.Name.Equals("Help"))
+				{
+					if (null != _activeForm)
+					{
+						MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+						if (null != met)
+						{
+							// Call for help only on the first opened form.
+							met.Invoke(_activeForm, new object[] { new HelpEventArgs(MousePosition) });
+						}
+					}
+				}
+				else
+				{
+					DialogResult = DialogResult.OK;
+				}
             }
         }
 
