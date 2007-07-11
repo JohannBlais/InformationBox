@@ -1,6 +1,6 @@
 namespace InfoBox.Test
 {
-    partial class Form1
+    partial class InformationBoxDesigner
     {
         /// <summary>
         /// Required designer variable.
@@ -85,7 +85,18 @@ namespace InfoBox.Test
             this.rdbPositionCenterOnScreen = new System.Windows.Forms.RadioButton();
             this.rdbPositionCenterOnParent = new System.Windows.Forms.RadioButton();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.btnHelpFile = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txbHelpFile = new System.Windows.Forms.TextBox();
             this.chbHelpButton = new System.Windows.Forms.CheckBox();
+            this.ofdHelpFile = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.rdbHelpTopic = new System.Windows.Forms.RadioButton();
+            this.rdbHelpTableOfContents = new System.Windows.Forms.RadioButton();
+            this.rdbHelpIndex = new System.Windows.Forms.RadioButton();
+            this.rdbHelpFind = new System.Windows.Forms.RadioButton();
+            this.txbHelpTopic = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -97,6 +108,8 @@ namespace InfoBox.Test
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -406,7 +419,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(324, 493);
+            this.btnShow.Location = new System.Drawing.Point(326, 528);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -465,7 +478,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 530);
+            this.txbCode.Location = new System.Drawing.Point(12, 570);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -476,7 +489,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(61, 493);
+            this.btnGenerate.Location = new System.Drawing.Point(63, 528);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -498,9 +511,9 @@ namespace InfoBox.Test
             // 
             // btnIcon
             // 
-            this.btnIcon.Location = new System.Drawing.Point(214, 18);
+            this.btnIcon.Location = new System.Drawing.Point(214, 17);
             this.btnIcon.Name = "btnIcon";
-            this.btnIcon.Size = new System.Drawing.Size(33, 22);
+            this.btnIcon.Size = new System.Drawing.Size(25, 22);
             this.btnIcon.TabIndex = 2;
             this.btnIcon.Text = "...";
             this.btnIcon.UseVisualStyleBackColor = true;
@@ -672,7 +685,7 @@ namespace InfoBox.Test
             // rdbPositionCenterOnScreen
             // 
             this.rdbPositionCenterOnScreen.AutoSize = true;
-            this.rdbPositionCenterOnScreen.Location = new System.Drawing.Point(9, 19);
+            this.rdbPositionCenterOnScreen.Location = new System.Drawing.Point(17, 19);
             this.rdbPositionCenterOnScreen.Name = "rdbPositionCenterOnScreen";
             this.rdbPositionCenterOnScreen.Size = new System.Drawing.Size(104, 17);
             this.rdbPositionCenterOnScreen.TabIndex = 6;
@@ -683,7 +696,7 @@ namespace InfoBox.Test
             // 
             this.rdbPositionCenterOnParent.AutoSize = true;
             this.rdbPositionCenterOnParent.Checked = true;
-            this.rdbPositionCenterOnParent.Location = new System.Drawing.Point(149, 19);
+            this.rdbPositionCenterOnParent.Location = new System.Drawing.Point(147, 19);
             this.rdbPositionCenterOnParent.Name = "rdbPositionCenterOnParent";
             this.rdbPositionCenterOnParent.Size = new System.Drawing.Size(101, 17);
             this.rdbPositionCenterOnParent.TabIndex = 4;
@@ -693,29 +706,139 @@ namespace InfoBox.Test
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.chbHelpButton);
-            this.groupBox11.Location = new System.Drawing.Point(12, 426);
+            this.groupBox11.Controls.Add(this.btnHelpFile);
+            this.groupBox11.Controls.Add(this.label5);
+            this.groupBox11.Controls.Add(this.txbHelpFile);
+            this.groupBox11.Location = new System.Drawing.Point(12, 469);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(264, 43);
+            this.groupBox11.Size = new System.Drawing.Size(264, 44);
             this.groupBox11.TabIndex = 14;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Help";
             // 
+            // btnHelpFile
+            // 
+            this.btnHelpFile.Location = new System.Drawing.Point(226, 17);
+            this.btnHelpFile.Name = "btnHelpFile";
+            this.btnHelpFile.Size = new System.Drawing.Size(25, 22);
+            this.btnHelpFile.TabIndex = 5;
+            this.btnHelpFile.Text = "...";
+            this.btnHelpFile.UseVisualStyleBackColor = true;
+            this.btnHelpFile.Click += new System.EventHandler(this.btnHelpFile_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Help file";
+            // 
+            // txbHelpFile
+            // 
+            this.txbHelpFile.Location = new System.Drawing.Point(63, 19);
+            this.txbHelpFile.Name = "txbHelpFile";
+            this.txbHelpFile.Size = new System.Drawing.Size(157, 20);
+            this.txbHelpFile.TabIndex = 3;
+            // 
             // chbHelpButton
             // 
             this.chbHelpButton.AutoSize = true;
-            this.chbHelpButton.Location = new System.Drawing.Point(15, 19);
+            this.chbHelpButton.Location = new System.Drawing.Point(15, 20);
             this.chbHelpButton.Name = "chbHelpButton";
             this.chbHelpButton.Size = new System.Drawing.Size(111, 17);
             this.chbHelpButton.TabIndex = 0;
             this.chbHelpButton.Text = "Show Help button";
             this.chbHelpButton.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // ofdHelpFile
+            // 
+            this.ofdHelpFile.Filter = "Help file|*.chm";
+            this.ofdHelpFile.Title = "Choose an icon file";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.chbHelpButton);
+            this.groupBox12.Location = new System.Drawing.Point(12, 423);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(264, 40);
+            this.groupBox12.TabIndex = 15;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Help button";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.txbHelpTopic);
+            this.groupBox13.Controls.Add(this.rdbHelpTopic);
+            this.groupBox13.Controls.Add(this.rdbHelpTableOfContents);
+            this.groupBox13.Controls.Add(this.rdbHelpIndex);
+            this.groupBox13.Controls.Add(this.rdbHelpFind);
+            this.groupBox13.Location = new System.Drawing.Point(292, 423);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(264, 90);
+            this.groupBox13.TabIndex = 16;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Help navigator";
+            // 
+            // rdbHelpTopic
+            // 
+            this.rdbHelpTopic.AutoSize = true;
+            this.rdbHelpTopic.Location = new System.Drawing.Point(149, 39);
+            this.rdbHelpTopic.Name = "rdbHelpTopic";
+            this.rdbHelpTopic.Size = new System.Drawing.Size(52, 17);
+            this.rdbHelpTopic.TabIndex = 7;
+            this.rdbHelpTopic.TabStop = true;
+            this.rdbHelpTopic.Text = "Topic";
+            this.rdbHelpTopic.UseVisualStyleBackColor = true;
+            // 
+            // rdbHelpTableOfContents
+            // 
+            this.rdbHelpTableOfContents.AutoSize = true;
+            this.rdbHelpTableOfContents.Location = new System.Drawing.Point(149, 18);
+            this.rdbHelpTableOfContents.Name = "rdbHelpTableOfContents";
+            this.rdbHelpTableOfContents.Size = new System.Drawing.Size(105, 17);
+            this.rdbHelpTableOfContents.TabIndex = 3;
+            this.rdbHelpTableOfContents.TabStop = true;
+            this.rdbHelpTableOfContents.Text = "TableOfContents";
+            this.rdbHelpTableOfContents.UseVisualStyleBackColor = true;
+            // 
+            // rdbHelpIndex
+            // 
+            this.rdbHelpIndex.AutoSize = true;
+            this.rdbHelpIndex.Location = new System.Drawing.Point(19, 38);
+            this.rdbHelpIndex.Name = "rdbHelpIndex";
+            this.rdbHelpIndex.Size = new System.Drawing.Size(51, 17);
+            this.rdbHelpIndex.TabIndex = 2;
+            this.rdbHelpIndex.TabStop = true;
+            this.rdbHelpIndex.Text = "Index";
+            this.rdbHelpIndex.UseVisualStyleBackColor = true;
+            // 
+            // rdbHelpFind
+            // 
+            this.rdbHelpFind.AutoSize = true;
+            this.rdbHelpFind.Location = new System.Drawing.Point(19, 18);
+            this.rdbHelpFind.Name = "rdbHelpFind";
+            this.rdbHelpFind.Size = new System.Drawing.Size(45, 17);
+            this.rdbHelpFind.TabIndex = 1;
+            this.rdbHelpFind.TabStop = true;
+            this.rdbHelpFind.Text = "Find";
+            this.rdbHelpFind.UseVisualStyleBackColor = true;
+            // 
+            // txbHelpTopic
+            // 
+            this.txbHelpTopic.Location = new System.Drawing.Point(19, 61);
+            this.txbHelpTopic.Name = "txbHelpTopic";
+            this.txbHelpTopic.Size = new System.Drawing.Size(230, 20);
+            this.txbHelpTopic.TabIndex = 10;
+            // 
+            // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 609);
+            this.ClientSize = new System.Drawing.Size(568, 649);
+            this.Controls.Add(this.groupBox13);
+            this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
@@ -730,7 +853,7 @@ namespace InfoBox.Test
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "InformationBoxDesigner";
             this.Text = "InformationBox Designer";
             this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Form1_HelpRequested);
             this.groupBox1.ResumeLayout(false);
@@ -755,6 +878,10 @@ namespace InfoBox.Test
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -820,6 +947,17 @@ namespace InfoBox.Test
         private System.Windows.Forms.RadioButton rdbPositionCenterOnParent;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.CheckBox chbHelpButton;
+        private System.Windows.Forms.Button btnHelpFile;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txbHelpFile;
+        private System.Windows.Forms.OpenFileDialog ofdHelpFile;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.RadioButton rdbHelpTopic;
+        private System.Windows.Forms.RadioButton rdbHelpTableOfContents;
+        private System.Windows.Forms.RadioButton rdbHelpIndex;
+        private System.Windows.Forms.RadioButton rdbHelpFind;
+        private System.Windows.Forms.TextBox txbHelpTopic;
 
     }
 }
