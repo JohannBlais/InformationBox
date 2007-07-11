@@ -123,6 +123,9 @@
   <data name="LabelCancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="LabelHelp" xml:space="preserve">
+    <value>Aide</value>
+  </data>
   <data name="LabelIgnore" xml:space="preserve">
     <value>Ignorer</value>
   </data>

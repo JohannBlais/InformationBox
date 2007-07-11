@@ -112,17 +112,16 @@ namespace InfoBox.Test
             if (String.Empty.Equals(iconFileName))
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9});",
-                        txbText.Text.Replace(Environment.NewLine, "\\n"),
-                        txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize, position).Replace("\"\"", "String.Empty");
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10});",
+                        txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
+                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked).Replace("\"\"", "String.Empty");
             }
             else
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10});",
                         txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize, position).Replace("\"\"", "String.Empty");
+                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked).Replace("\"\"", "String.Empty");
             }
         }
 
@@ -148,11 +147,11 @@ namespace InfoBox.Test
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked);
             }
             else
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked);
             }
         }
 
@@ -174,6 +173,11 @@ namespace InfoBox.Test
             }
 
             txbIcon.Text = ofdIcon.FileName;
+        }
+
+        private void Form1_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            InformationBox.Show("Help has been requested somewhere", "Help", InformationBoxButtons.OK, InformationBoxIcon.Question);
         }
 
     }

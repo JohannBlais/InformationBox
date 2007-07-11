@@ -114,6 +114,15 @@ namespace InfoBox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        internal static string LabelHelp {
+            get {
+                return ResourceManager.GetString("LabelHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignore.
         /// </summary>
         internal static string LabelIgnore {

@@ -84,6 +84,8 @@ namespace InfoBox.Test
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.rdbPositionCenterOnScreen = new System.Windows.Forms.RadioButton();
             this.rdbPositionCenterOnParent = new System.Windows.Forms.RadioButton();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.chbHelpButton = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -94,6 +96,7 @@ namespace InfoBox.Test
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -403,7 +406,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(324, 425);
+            this.btnShow.Location = new System.Drawing.Point(324, 493);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -462,7 +465,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 462);
+            this.txbCode.Location = new System.Drawing.Point(12, 530);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -473,7 +476,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(61, 425);
+            this.btnGenerate.Location = new System.Drawing.Point(61, 493);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -688,11 +691,32 @@ namespace InfoBox.Test
             this.rdbPositionCenterOnParent.Text = "CenterOnParent";
             this.rdbPositionCenterOnParent.UseVisualStyleBackColor = true;
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.chbHelpButton);
+            this.groupBox11.Location = new System.Drawing.Point(12, 426);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(264, 43);
+            this.groupBox11.TabIndex = 14;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Help";
+            // 
+            // chbHelpButton
+            // 
+            this.chbHelpButton.AutoSize = true;
+            this.chbHelpButton.Location = new System.Drawing.Point(15, 19);
+            this.chbHelpButton.Name = "chbHelpButton";
+            this.chbHelpButton.Size = new System.Drawing.Size(111, 17);
+            this.chbHelpButton.TabIndex = 0;
+            this.chbHelpButton.Text = "Show Help button";
+            this.chbHelpButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 541);
+            this.ClientSize = new System.Drawing.Size(568, 609);
+            this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -708,6 +732,7 @@ namespace InfoBox.Test
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "InformationBox Designer";
+            this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Form1_HelpRequested);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -728,6 +753,8 @@ namespace InfoBox.Test
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -791,6 +818,8 @@ namespace InfoBox.Test
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.RadioButton rdbPositionCenterOnScreen;
         private System.Windows.Forms.RadioButton rdbPositionCenterOnParent;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.CheckBox chbHelpButton;
 
     }
 }
