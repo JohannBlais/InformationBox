@@ -15,7 +15,7 @@ namespace InfoBox
         /// </listheader>
         /// <item>
         ///     <term><see cref="System.String"/></term>
-        ///     <description>the title of the <see cref="InformationBox"/>.</description>
+        ///     <description>the title of the <see cref="InformationBox"/> for the first string, the second string for the help file name, and the third one for the help topic id</description>
         /// </item>
         /// <item>
         ///     <term><see cref="InformationBoxButtons"/></term>
@@ -50,8 +50,12 @@ namespace InfoBox
         ///     <description>where the <see cref="InformationBox"/> will appear on the screen.</description>
         /// </item>
         /// <item>
-        ///     <term><see cref="Boolean"/></term>
+        ///     <term><see cref="System.Boolean"/></term>
         ///     <description>whether the help button is displayed or not.</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="System.Windows.Forms.HelpNavigator"/></term>
+        ///     <description>the Help content. You can use the following values for navigator: TableOfContents, Find, Index, or Topic.</description>
         /// </item>
         /// </list>
         /// </summary>

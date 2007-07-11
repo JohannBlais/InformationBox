@@ -7,7 +7,7 @@ namespace InfoBox
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using Properties;
-    
+
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
@@ -50,6 +50,10 @@ namespace InfoBox
         private StringBuilder internalText = null;
 
         private readonly bool _showHelpButton = false;
+        private readonly string _helpFile = String.Empty;
+        private readonly string _helpTopic = String.Empty;
+        private readonly HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
+
         private readonly Form _activeForm = null;
 
         #endregion Attributes
@@ -81,12 +85,19 @@ namespace InfoBox
         {
             _activeForm = Form.ActiveForm;
 
+            int stringCount = 0;
+
             foreach (object parameter in parameters)
             {
+                
                 // Simple string -> caption
+                // Or Help file if the string contains a file name
                 if (parameter is string)
                 {
-                    Text = (string) parameter;
+                    if      (stringCount == 0) Text = (string) parameter;
+                    else if (stringCount == 1) _helpFile = (string) parameter;
+                    else if (stringCount == 2) _helpTopic = (string) parameter;
+                    stringCount++;
                 }
                 // Buttons
                 else if (parameter is InformationBoxButtons)
@@ -135,6 +146,10 @@ namespace InfoBox
                 else if (parameter is bool)
                 {
                     _showHelpButton = (bool) parameter;
+                }
+                else if (parameter is HelpNavigator)
+                {
+                    _helpNavigator = (HelpNavigator) parameter;
                 }
             }
         }
@@ -469,8 +484,8 @@ namespace InfoBox
                 AddButton(_buttonUser2, "User2", _buttonUser2Text);
             }
 
-            // Help button
-            if (_showHelpButton)
+            // Help button is displayed when asked or when a help file name exists
+            if (_showHelpButton || !String.Empty.Equals(_helpFile))
             {
                 AddButton(_buttonHelp, "Help", Resources.LabelHelp);
             }
@@ -521,6 +536,34 @@ namespace InfoBox
 
         #endregion Box initialization
 
+        #region Help
+
+        private void OpenHelp()
+        {
+            // If there is an active form
+            if (null != _activeForm)
+            {
+                MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+                if (null != met)
+                {
+                    // Call for help only on the first opened form.
+                    met.Invoke(_activeForm, new object[] { new HelpEventArgs(MousePosition) });
+                }
+            }
+
+            // If a help file is specified
+            if (!String.Empty.Equals(_helpFile))
+            {
+                // If no topic is specified
+                if (String.Empty.Equals(_helpTopic))
+                    Help.ShowHelp(_activeForm, _helpFile, _helpNavigator);
+                else
+                    Help.ShowHelp(_activeForm, _helpFile, _helpTopic);
+            }
+        }
+
+        #endregion Help
+
         #region Event handling
 
         /// <summary>
@@ -549,15 +592,7 @@ namespace InfoBox
 
                 if (senderButton.Name.Equals("Help"))
                 {
-                    if (null != _activeForm)
-                    {
-                        MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
-                        if (null != met)
-                        {
-                            // Call for help only on the first opened form.
-                            met.Invoke(_activeForm, new object[] { new HelpEventArgs(MousePosition) });
-                        }
-                    }
+                    OpenHelp();
                 }
                 else
                 {

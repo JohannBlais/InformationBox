@@ -5,9 +5,9 @@ namespace InfoBox.Test
     using System.Windows.Forms;
     using System.Threading;
 
-    public partial class Form1 : Form
+    public partial class InformationBoxDesigner : Form
     {
-        public Form1()
+        public InformationBoxDesigner()
         {
             InitializeComponent();
         }
@@ -97,6 +97,18 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the help navigator.
+        /// </summary>
+        /// <returns></returns>
+        private HelpNavigator GetHelpNavigator()
+        {
+            if (rdbHelpFind.Checked) return HelpNavigator.Find;
+            if (rdbHelpIndex.Checked) return HelpNavigator.Index;
+            if (rdbHelpTopic.Checked) return HelpNavigator.Topic;
+            return HelpNavigator.TableOfContents;
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -108,20 +120,23 @@ namespace InfoBox.Test
             InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
             InformationBoxAutoSizeMode autoSize = GetAutoSize();
             InformationBoxPosition position = GetPosition();
+            HelpNavigator navigator = GetHelpNavigator();
 
             if (String.Empty.Equals(iconFileName))
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10}, \"{11}\", HelpNavigator.{12}, \"{13}\");",
                         txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked).Replace("\"\"", "String.Empty");
+                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked,
+                        txbHelpFile.Text, navigator, txbHelpTopic.Text).Replace("\"\"", "String.Empty");
             }
             else
             {
                 txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10});",
+                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10}, \"{11}\", HelpNavigator.{12}, \"{13}\");",
                         txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked).Replace("\"\"", "String.Empty");
+                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize, position,
+                        chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text).Replace("\"\"", "String.Empty");
             }
         }
 
@@ -144,14 +159,15 @@ namespace InfoBox.Test
             InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
             InformationBoxAutoSizeMode autoSize = GetAutoSize();
             InformationBoxPosition position = GetPosition();
+            HelpNavigator navigator = GetHelpNavigator();
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text);
             }
             else
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked);
+                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text);
             }
         }
 
@@ -165,6 +181,11 @@ namespace InfoBox.Test
             GenerateCode();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnIcon_Click(object sender, EventArgs e)
         {
             if (ofdIcon.ShowDialog() != DialogResult.OK)
@@ -175,10 +196,29 @@ namespace InfoBox.Test
             txbIcon.Text = ofdIcon.FileName;
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnHelpFile control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void btnHelpFile_Click(object sender, EventArgs e)
+        {
+            if (ofdHelpFile.ShowDialog() != DialogResult.OK)
+            {
+                txbHelpFile.Text = String.Empty;
+            }
+
+            txbHelpFile.Text = ofdHelpFile.FileName;
+        }
+
+        /// <summary>
+        /// Handles the HelpRequested event of the Form1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="hlpevent">The <see cref="System.Windows.Forms.HelpEventArgs"/> instance containing the event data.</param>
         private void Form1_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             InformationBox.Show("Help has been requested somewhere", "Help", InformationBoxButtons.OK, InformationBoxIcon.Question);
         }
-
     }
 }
