@@ -8,6 +8,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Test", "InfoBox.Tes
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		CanCheckoutShared = true
+		SolutionUniqueID = {B62160AA-7590-4306-86A1-E06605F6E7A7}
+		SccProjectUniqueName1 = InfoBox\\InfoBox.csproj
+		SccProjectName1 = $/InfoBox/1.1/InfoBox
+		SccLocalPath1 = InfoBox
+		CanCheckoutShared = true
+		SccProjectUniqueName2 = InfoBox.Test\\InfoBox.Test.csproj
+		SccProjectName2 = $/InfoBox/1.1/InfoBox.Test
+		SccLocalPath2 = InfoBox.Test
+		CanCheckoutShared = true
+	EndGlobalSection
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
