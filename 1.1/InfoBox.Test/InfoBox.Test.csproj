@@ -4,6 +4,10 @@
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}"
+        SccProjectName = "SAK"
+        SccLocalPath = "SAK"
+        SccAuxPath = "SAK"
+        SccProvider = "SAK"
     >
         <Build>
             <Settings
@@ -86,7 +90,7 @@
                 />
                 <Reference
                     Name = "System.XML"
-                    AssemblyName = "System.XML"
+                    AssemblyName = "System.Xml"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
