@@ -175,6 +175,10 @@ namespace InfoBox
         private StringBuilder internalText = null;
 
 		private readonly bool _showHelpButton = false;
+		private readonly string _helpFile = String.Empty;
+		private readonly string _helpTopic = String.Empty;
+		private readonly HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
+
 		private readonly Form _activeForm = null;
 
 		#endregion Attributes
@@ -202,62 +206,73 @@ namespace InfoBox
         {
 			_activeForm = Form.ActiveForm;
 
+			int stringCount = 0;
+
 			foreach (object parameter in parameters)
-            {
-                // Simple string -> caption
-                if (parameter is string)
-                {
-                    Text = (string) parameter;
-                }
-                // Buttons
-                else if (parameter is InformationBoxButtons)
-                {
-                    _buttons = (InformationBoxButtons) parameter;
-                }
-                // Internal icon
-                else if (parameter is InformationBoxIcon)
-                {
-                    _icon = (InformationBoxIcon) parameter;
-                }
-                // User defined icon
-                else if (parameter is Icon)
-                {
-                    _iconType = IconType.UserDefined;
-                    pcbIcon.Image = new Icon((Icon)parameter, 48, 48).ToBitmap();
-                }
-                // Default button
-                else if (parameter is InformationBoxDefaultButton)
-                {
-                    _defaultButton = (InformationBoxDefaultButton) parameter;
-                }
-                // Custom buttons
-                else if (parameter is string[])
-                {
-                    string[] labels = (string[]) parameter;
-                    if (labels.Length > 0) _buttonUser1Text = labels[0];
-                    if (labels.Length > 1) _buttonUser2Text = labels[1];
-                }
-                // Buttons layout
-                else if (parameter is InformationBoxButtonsLayout)
-                {
-                    _buttonsLayout = (InformationBoxButtonsLayout) parameter;
-                }
-                // Autosize mode
-                else if (parameter is InformationBoxAutoSizeMode)
-                {
-                    _autoSizeMode = (InformationBoxAutoSizeMode) parameter;
-                }
-                // Position
-                else if (parameter is InformationBoxPosition)
-                {
-                    _position = (InformationBoxPosition) parameter;
-                }
-				// Help button
+			{
+                
+				// Simple string -> caption
+				// Or Help file if the string contains a file name
+				if (parameter is string)
+				{
+					if      (stringCount == 0) Text = (string) parameter;
+					else if (stringCount == 1) _helpFile = (string) parameter;
+					else if (stringCount == 2) _helpTopic = (string) parameter;
+					stringCount++;
+				}
+					// Buttons
+				else if (parameter is InformationBoxButtons)
+				{
+					_buttons = (InformationBoxButtons) parameter;
+				}
+					// Internal icon
+				else if (parameter is InformationBoxIcon)
+				{
+					_icon = (InformationBoxIcon) parameter;
+				}
+					// User defined icon
+				else if (parameter is Icon)
+				{
+					_iconType = IconType.UserDefined;
+					pcbIcon.Image = new Icon((Icon)parameter, 48, 48).ToBitmap();
+				}
+					// Default button
+				else if (parameter is InformationBoxDefaultButton)
+				{
+					_defaultButton = (InformationBoxDefaultButton) parameter;
+				}
+					// Custom buttons
+				else if (parameter is string[])
+				{
+					string[] labels = (string[]) parameter;
+					if (labels.Length > 0) _buttonUser1Text = labels[0];
+					if (labels.Length > 1) _buttonUser2Text = labels[1];
+				}
+					// Buttons layout
+				else if (parameter is InformationBoxButtonsLayout)
+				{
+					_buttonsLayout = (InformationBoxButtonsLayout) parameter;
+				}
+					// Autosize mode
+				else if (parameter is InformationBoxAutoSizeMode)
+				{
+					_autoSizeMode = (InformationBoxAutoSizeMode) parameter;
+				}
+					// Position
+				else if (parameter is InformationBoxPosition)
+				{
+					_position = (InformationBoxPosition) parameter;
+				}
+					// Help button
 				else if (parameter is bool)
 				{
 					_showHelpButton = (bool) parameter;
 				}
-            }
+				else if (parameter is HelpNavigator)
+				{
+					_helpNavigator = (HelpNavigator) parameter;
+				}
+			}
         }
 
         #endregion Constructors
@@ -591,8 +606,8 @@ namespace InfoBox
                 AddButton(_buttonUser2, "User2", _buttonUser2Text);
             }
 
-			// Help button
-			if (_showHelpButton)
+			// Help button is displayed when asked or when a help file name exists
+			if (_showHelpButton || !String.Empty.Equals(_helpFile))
 			{
 				AddButton(_buttonHelp, "Help", Resources.LabelHelp);
 			}
@@ -641,62 +656,82 @@ namespace InfoBox
 
         #endregion Box initialization
 
-        #region Event handling
+		#region Help
 
-        /// <summary>
-        /// Handles the Click event of the buttons.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        void _button_Click(object sender, EventArgs e)
-        {
-            if (sender is Button)
-            {
-                Button senderButton = (Button)sender;
-                switch (senderButton.Name)
-                {
-                    case "Abort": _result = InformationBoxResult.Abort; break;
-                    case "OK": _result = InformationBoxResult.OK; break;
-                    case "Yes": _result = InformationBoxResult.Yes; break;
-                    case "Retry": _result = InformationBoxResult.Retry; break;
-                    case "No": _result = InformationBoxResult.No; break;
-                    case "Cancel": _result = InformationBoxResult.Cancel; break;
-                    case "Ignore": _result = InformationBoxResult.Ignore; break;
-                    case "User1": _result = InformationBoxResult.User1; break;
-                    case "User2": _result = InformationBoxResult.User2; break;
-                    default: _result = InformationBoxResult.None; break;
-                }
+		private void OpenHelp()
+		{
+			// If there is an active form
+			if (null != _activeForm)
+			{
+				MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+				if (null != met)
+				{
+					// Call for help only on the first opened form.
+					met.Invoke(_activeForm, new object[] { new HelpEventArgs(MousePosition) });
+				}
+			}
+
+			// If a help file is specified
+			if (!String.Empty.Equals(_helpFile))
+			{
+				// If no topic is specified
+				if (String.Empty.Equals(_helpTopic))
+					Help.ShowHelp(_activeForm, _helpFile, _helpNavigator);
+				else
+					Help.ShowHelp(_activeForm, _helpFile, _helpTopic);
+			}
+		}
+
+		#endregion Help
+
+		#region Event handling
+
+		/// <summary>
+		/// Handles the Click event of the buttons.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+		void _button_Click(object sender, EventArgs e)
+		{
+			if (sender is Button)
+			{
+				Button senderButton = (Button)sender;
+				switch (senderButton.Name)
+				{
+					case "Abort": _result = InformationBoxResult.Abort; break;
+					case "OK": _result = InformationBoxResult.OK; break;
+					case "Yes": _result = InformationBoxResult.Yes; break;
+					case "Retry": _result = InformationBoxResult.Retry; break;
+					case "No": _result = InformationBoxResult.No; break;
+					case "Cancel": _result = InformationBoxResult.Cancel; break;
+					case "Ignore": _result = InformationBoxResult.Ignore; break;
+					case "User1": _result = InformationBoxResult.User1; break;
+					case "User2": _result = InformationBoxResult.User2; break;
+					default: _result = InformationBoxResult.None; break;
+				}
 
 				if (senderButton.Name.Equals("Help"))
 				{
-					if (null != _activeForm)
-					{
-						MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
-						if (null != met)
-						{
-							// Call for help only on the first opened form.
-							met.Invoke(_activeForm, new object[] { new HelpEventArgs(MousePosition) });
-						}
-					}
+					OpenHelp();
 				}
 				else
 				{
 					DialogResult = DialogResult.OK;
 				}
-            }
-        }
+			}
+		}
 
-        /// <summary>
-        /// Handles the FormClosed event of the InformationBox control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Forms.FormClosedEventArgs"/> instance containing the event data.</param>
-        private void InformationBox_FormClosed(object sender, EventArgs e)
-        {
-            if (_result == InformationBoxResult.None)
-                _result = InformationBoxResult.Cancel;
-        }
+		/// <summary>
+		/// Handles the FormClosed event of the InformationBox control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+		private void InformationBox_FormClosed(object sender, EventArgs e)
+		{
+			if (_result == InformationBoxResult.None)
+				_result = InformationBoxResult.Cancel;
+		}
 
-        #endregion Event handling
+		#endregion Event handling
     }
 }
