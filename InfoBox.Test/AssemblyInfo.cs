@@ -6,14 +6,14 @@ using System.Runtime.CompilerServices;
 // l'ensemble d'attributs suivant. Pour modifier les informations
 // associées à un assembly, changez les valeurs de ces attributs.
 //
-[assembly: AssemblyTitle("")]
+[assembly: AssemblyTitle("InfoBox")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("SaumonAgile")]
+[assembly: AssemblyProduct("InfoBox")]
+[assembly: AssemblyCopyright("Copyright © SaumonAgile 2007")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 
 //
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
@@ -26,7 +26,8 @@ using System.Runtime.CompilerServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer des numéros de révision et de build par défaut 
 // en utilisant '*', comme ci-dessous :
 
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("0.4.2.*")]
+[assembly: AssemblyFileVersion("0.4.2.0")]
 
 //
 // Pour signer votre assembly, vous devez spécifier la clé à utiliser. Consultez 
