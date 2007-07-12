@@ -2,6 +2,7 @@ namespace InfoBox.Test
 {
     using System;
     using System.Drawing;
+    using System.Text;
     using System.Windows.Forms;
     using System.Threading;
 
@@ -49,7 +50,9 @@ namespace InfoBox.Test
         /// <returns></returns>
         private InformationBoxIcon GetIcon()
         {
-            return (InformationBoxIcon) ddlIcons.SelectedItem;
+            if (null != ddlIcons.SelectedItem)
+                return (InformationBoxIcon) ddlIcons.SelectedItem;
+            return InformationBoxIcon.None;
         }
 
         /// <summary>
@@ -108,7 +111,8 @@ namespace InfoBox.Test
             if (rdbHelpFind.Checked) return HelpNavigator.Find;
             if (rdbHelpIndex.Checked) return HelpNavigator.Index;
             if (rdbHelpTopic.Checked) return HelpNavigator.Topic;
-            return HelpNavigator.TableOfContents;
+            if (rdbHelpTableOfContents.Checked) return HelpNavigator.TableOfContents;
+            return 0;
         }
 
         /// <summary>
@@ -125,22 +129,55 @@ namespace InfoBox.Test
             InformationBoxPosition position = GetPosition();
             HelpNavigator navigator = GetHelpNavigator();
 
-            if (String.Empty.Equals(iconFileName))
-            {
-                txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, InformationBoxIcon.{5}, InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10}, \"{11}\", HelpNavigator.{12}, \"{13}\");",
-                        txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked,
-                        txbHelpFile.Text, navigator, txbHelpTopic.Text).Replace("\"\"", "String.Empty");
-            }
-            else
-            {
-                txbCode.Text = String.Format(
-                        "InformationBox.Show(\"{0}\", \"{1}\", InformationBoxButtons.{2}, new string[] {{ \"{3}\", \"{4}\" }}, new System.Drawing.Icon(@\"{5}\"), InformationBoxDefaultButton.{6}, InformationBoxButtonsLayout.{7}, InformationBoxAutoSizeMode.{8}, InformationBoxPosition.{9}, {10}, \"{11}\", HelpNavigator.{12}, \"{13}\");",
-                        txbText.Text.Replace(Environment.NewLine, "\\n"), txbTitle.Text, buttons, txbUser1.Text,
-                        txbUser2.Text, iconFileName, defaultButton, buttonsLayout, autoSize, position,
-                        chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text).Replace("\"\"", "String.Empty");
-            }
+            StringBuilder codeBuilder = new StringBuilder();
+            codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ",
+                                     txbText.Text.Replace(Environment.NewLine, "\\n"));
+
+            if (!String.Empty.Equals(txbHelpFile.Text) || !String.Empty.Equals(txbTitle.Text))
+                codeBuilder.AppendFormat("\"{0}\", ", txbText.Text.Replace(Environment.NewLine, "\\n"));
+
+            if (buttons != InformationBoxButtons.OK)
+                codeBuilder.AppendFormat("InformationBoxButtons.{0}, ", buttons);
+
+            if (buttons == InformationBoxButtons.OKCancelUser1 ||
+                buttons == InformationBoxButtons.User1User2 ||
+                buttons == InformationBoxButtons.YesNoUser1)
+                codeBuilder.AppendFormat("new string[] {{ \"{0}\", \"{1}\" }}, ", txbUser1.Text, txbUser2.Text);
+
+            if (icon != InformationBoxIcon.None)
+                codeBuilder.AppendFormat("InformationBoxIcon.{0}, ", icon);
+
+            if (!String.Empty.Equals(iconFileName))
+                codeBuilder.AppendFormat("new System.Drawing.Icon(@\"{0}\"), ", iconFileName);
+
+            if (defaultButton != InformationBoxDefaultButton.Button1)
+                codeBuilder.AppendFormat("InformationBoxDefaultButton.{0}, ", defaultButton);
+
+            if (buttonsLayout != InformationBoxButtonsLayout.GroupMiddle)
+                codeBuilder.AppendFormat("InformationBoxDefaultButton.{0}, ", buttonsLayout);
+
+            if (autoSize != InformationBoxAutoSizeMode.None)
+                codeBuilder.AppendFormat("InformationBoxAutoSizeMode.{0}, ", autoSize);
+
+            if (position != InformationBoxPosition.CenterOnParent)
+                codeBuilder.AppendFormat("InformationBoxPosition.{0}, ", position);
+
+            if (chbHelpButton.Checked)
+                codeBuilder.AppendFormat("{0}, ", true);
+
+            if (!String.Empty.Equals(txbHelpFile.Text))
+                codeBuilder.AppendFormat("\"{0}\", ", txbHelpFile.Text);
+
+            if (navigator != (HelpNavigator) 0)
+                codeBuilder.AppendFormat("HelpNavigator.{0}, ", navigator);
+
+            if (!String.Empty.Equals(txbHelpTopic.Text))
+                codeBuilder.AppendFormat("\"{0}\", ", txbHelpTopic.Text);
+
+            codeBuilder[codeBuilder.Length - 2] = ')';
+            codeBuilder[codeBuilder.Length - 1] = ';';
+
+            txbCode.Text = codeBuilder.ToString().Replace("\"\"", "String.Empty");
         }
 
         /// <summary>
