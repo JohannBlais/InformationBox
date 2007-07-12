@@ -44,6 +44,7 @@ namespace InfoBox.Test
             this.rdbOK = new System.Windows.Forms.RadioButton();
             this.rdbAbortRetryIgnore = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ddlIcons = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txbUser2 = new System.Windows.Forms.TextBox();
             this.txbUser1 = new System.Windows.Forms.TextBox();
@@ -87,7 +88,7 @@ namespace InfoBox.Test
             this.rdbHelpTableOfContents = new System.Windows.Forms.RadioButton();
             this.rdbHelpIndex = new System.Windows.Forms.RadioButton();
             this.rdbHelpFind = new System.Windows.Forms.RadioButton();
-            this.ddlIcons = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -269,8 +270,18 @@ namespace InfoBox.Test
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Icon";
             // 
+            // ddlIcons
+            // 
+            this.ddlIcons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlIcons.FormattingEnabled = true;
+            this.ddlIcons.Location = new System.Drawing.Point(17, 19);
+            this.ddlIcons.Name = "ddlIcons";
+            this.ddlIcons.Size = new System.Drawing.Size(230, 21);
+            this.ddlIcons.TabIndex = 0;
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.txbUser2);
             this.groupBox4.Controls.Add(this.txbUser1);
             this.groupBox4.Location = new System.Drawing.Point(294, 140);
@@ -282,19 +293,17 @@ namespace InfoBox.Test
             // 
             // txbUser2
             // 
-            this.txbUser2.Location = new System.Drawing.Point(137, 23);
+            this.txbUser2.Location = new System.Drawing.Point(142, 23);
             this.txbUser2.Name = "txbUser2";
-            this.txbUser2.Size = new System.Drawing.Size(110, 20);
+            this.txbUser2.Size = new System.Drawing.Size(100, 20);
             this.txbUser2.TabIndex = 1;
-            this.txbUser2.Text = "User2";
             // 
             // txbUser1
             // 
-            this.txbUser1.Location = new System.Drawing.Point(17, 23);
+            this.txbUser1.Location = new System.Drawing.Point(22, 24);
             this.txbUser1.Name = "txbUser1";
-            this.txbUser1.Size = new System.Drawing.Size(110, 20);
+            this.txbUser1.Size = new System.Drawing.Size(100, 20);
             this.txbUser1.TabIndex = 0;
-            this.txbUser1.Text = "User1";
             // 
             // btnShow
             // 
@@ -712,14 +721,14 @@ namespace InfoBox.Test
             this.rdbHelpFind.Text = "Find";
             this.rdbHelpFind.UseVisualStyleBackColor = true;
             // 
-            // ddlIcons
+            // label6
             // 
-            this.ddlIcons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlIcons.FormattingEnabled = true;
-            this.ddlIcons.Location = new System.Drawing.Point(17, 19);
-            this.ddlIcons.Name = "ddlIcons";
-            this.ddlIcons.Size = new System.Drawing.Size(230, 21);
-            this.ddlIcons.TabIndex = 0;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(127, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(10, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "-";
             // 
             // InformationBoxDesigner
             // 
@@ -837,6 +846,7 @@ namespace InfoBox.Test
         private System.Windows.Forms.RadioButton rdbHelpFind;
         private System.Windows.Forms.TextBox txbHelpTopic;
         private System.Windows.Forms.ComboBox ddlIcons;
+        private System.Windows.Forms.Label label6;
 
     }
 }
