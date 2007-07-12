@@ -179,6 +179,14 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "Resources\fax.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\gamepad.ico"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "Resources\good.ico"
                     BuildAction = "Content"
                 />
@@ -187,7 +195,35 @@
                     BuildAction = "Content"
                 />
                 <File
+                    RelPath = "Resources\joystick.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\keys.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\locker.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\phone.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\printer.ico"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "Resources\question.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\scanner.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Resources\speakers.ico"
                     BuildAction = "Content"
                 />
                 <File
