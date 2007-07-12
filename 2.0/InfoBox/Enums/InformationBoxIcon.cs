@@ -45,5 +45,41 @@ namespace InfoBox
         /// Success
         /// </summary>
         Success,
+        /// <summary>
+        /// Fax
+        /// </summary>
+        Fax,
+        /// <summary>
+        /// Gamepad
+        /// </summary>
+        Gamepad,
+        /// <summary>
+        /// Joystick
+        /// </summary>
+        Joystick,
+        /// <summary>
+        /// Keys
+        /// </summary>
+        Keys,
+        /// <summary>
+        /// Locker
+        /// </summary>
+        Locker,
+        /// <summary>
+        /// Phone
+        /// </summary>
+        Phone,
+        /// <summary>
+        /// Printer
+        /// </summary>
+        Printer,
+        /// <summary>
+        /// Scanner
+        /// </summary>
+        Scanner,
+        /// <summary>
+        /// Speakers
+        /// </summary>
+        Speakers,
     }
 }

@@ -67,6 +67,20 @@ namespace InfoBox.Properties {
             }
         }
         
+        internal static System.Drawing.Icon IconFax {
+            get {
+                object obj = ResourceManager.GetObject("IconFax", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconGamepad {
+            get {
+                object obj = ResourceManager.GetObject("IconGamepad", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon IconGood {
             get {
                 object obj = ResourceManager.GetObject("IconGood", resourceCulture);
@@ -81,9 +95,58 @@ namespace InfoBox.Properties {
             }
         }
         
+        internal static System.Drawing.Icon IconJoystick {
+            get {
+                object obj = ResourceManager.GetObject("IconJoystick", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconKeys {
+            get {
+                object obj = ResourceManager.GetObject("IconKeys", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconLocker {
+            get {
+                object obj = ResourceManager.GetObject("IconLocker", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconPhone {
+            get {
+                object obj = ResourceManager.GetObject("IconPhone", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconPrinter {
+            get {
+                object obj = ResourceManager.GetObject("IconPrinter", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon IconQuestion {
             get {
                 object obj = ResourceManager.GetObject("IconQuestion", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconScanner {
+            get {
+                object obj = ResourceManager.GetObject("IconScanner", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon IconSpeakers {
+            get {
+                object obj = ResourceManager.GetObject("IconSpeakers", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

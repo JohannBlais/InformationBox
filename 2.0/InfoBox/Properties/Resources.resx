@@ -121,14 +121,41 @@
   <data name="IconError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\error.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IconFax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fax.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconGamepad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gamepad.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="IconGood" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\good.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IconInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IconJoystick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\joystick.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconKeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\keys.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconLocker" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\locker.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconPhone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\phone.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconPrinter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printer.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="IconQuestion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconScanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scanner.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconSpeakers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\speakers.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IconWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\warning.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -17,22 +17,49 @@ namespace InfoBox
                 case InformationBoxIcon.Asterisk:
                 case InformationBoxIcon.Information:
                     return Resources.IconInfo;
-                
+
                 case InformationBoxIcon.Error:
                 case InformationBoxIcon.Hand:
                 case InformationBoxIcon.Stop:
                     return Resources.IconError;
-                
+
                 case InformationBoxIcon.Exclamation:
                 case InformationBoxIcon.Warning:
                     return Resources.IconWarning;
-                
+
                 case InformationBoxIcon.Question:
                     return Resources.IconQuestion;
-                
+
                 case InformationBoxIcon.Success:
                     return Resources.IconGood;
-                
+
+                case InformationBoxIcon.Fax:
+                    return Resources.IconFax;
+
+                case InformationBoxIcon.Gamepad:
+                    return Resources.IconGamepad;
+
+                case InformationBoxIcon.Joystick:
+                    return Resources.IconJoystick;
+
+                case InformationBoxIcon.Keys:
+                    return Resources.IconKeys;
+
+                case InformationBoxIcon.Locker:
+                    return Resources.IconLocker;
+
+                case InformationBoxIcon.Phone:
+                    return Resources.IconPhone;
+
+                case InformationBoxIcon.Printer:
+                    return Resources.IconPrinter;
+
+                case InformationBoxIcon.Scanner:
+                    return Resources.IconScanner;
+
+                case InformationBoxIcon.Speakers:
+                    return Resources.IconSpeakers;
+
                 case InformationBoxIcon.None:
                 default:
                     return null;
