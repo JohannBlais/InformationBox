@@ -10,6 +10,19 @@ namespace InfoBox.Test
         public InformationBoxDesigner()
         {
             InitializeComponent();
+
+            LoadIcons();
+        }
+
+        /// <summary>
+        /// Loads the icons.
+        /// </summary>
+        private void LoadIcons()
+        {
+            foreach (InformationBoxIcon icon in Enum.GetValues(typeof(InformationBoxIcon)))
+            {
+                ddlIcons.Items.Add(icon);
+            }
         }
 
         /// <summary>
@@ -36,17 +49,7 @@ namespace InfoBox.Test
         /// <returns></returns>
         private InformationBoxIcon GetIcon()
         {
-            if (rdbAsterisk.Checked) return InformationBoxIcon.Asterisk;
-            if (rdbError.Checked) return InformationBoxIcon.Error;
-            if (rdbExclamation.Checked) return InformationBoxIcon.Exclamation;
-            if (rdbHand.Checked) return InformationBoxIcon.Hand;
-            if (rdbInformation.Checked) return InformationBoxIcon.Information;
-            if (rdbNone.Checked) return InformationBoxIcon.None;
-            if (rdbQuestion.Checked) return InformationBoxIcon.Question;
-            if (rdbStop.Checked) return InformationBoxIcon.Stop;
-            if (rdbWarning.Checked) return InformationBoxIcon.Warning;
-            if (rdbSuccess.Checked) return InformationBoxIcon.Success;
-            return InformationBoxIcon.None;
+            return (InformationBoxIcon) ddlIcons.SelectedItem;
         }
 
         /// <summary>
