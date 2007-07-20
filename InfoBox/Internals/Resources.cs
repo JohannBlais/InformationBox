@@ -197,6 +197,28 @@ namespace InfoBox
 		}
         
 		/// <summary>
+		///   Looks up a localized string similar to Do not show this dialog again.
+		/// </summary>
+		internal static string LabelDoNotShow 
+		{
+			get 
+			{
+				return ResourceManager.GetString("LabelDoNotShow", resourceCulture);
+			}
+		}
+        
+		/// <summary>
+		///   Looks up a localized string similar to Help.
+		/// </summary>
+		internal static string LabelHelp 
+		{
+			get 
+			{
+				return ResourceManager.GetString("LabelHelp", resourceCulture);
+			}
+		}
+        
+		/// <summary>
 		///   Looks up a localized string similar to Ignore.
 		/// </summary>
 		internal static string LabelIgnore 
@@ -248,17 +270,6 @@ namespace InfoBox
 			get 
 			{
 				return ResourceManager.GetString("LabelYes", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Help.
-		/// </summary>
-		internal static string LabelHelp 
-		{
-			get 
-			{
-				return ResourceManager.GetString("LabelHelp", resourceCulture);
 			}
 		}
 	}

@@ -123,6 +123,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Enums\InformationBoxCheckBox.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Enums\InformationBoxDefaultButton.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

@@ -141,4 +141,7 @@
 	<data name="LabelHelp" d2p1:space="preserve" xmlns:d2p1="http://www.w3.org/XML/1998/namespace">
 		<value>Aide</value>
 	</data>
+	<data name="LabelDoNotShow" d2p1:space="preserve" xmlns:d2p1="http://www.w3.org/XML/1998/namespace">
+		<value>Ne plus afficher ce message</value>
+	</data>
 </root>
