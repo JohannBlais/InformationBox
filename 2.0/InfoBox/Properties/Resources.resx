@@ -166,6 +166,9 @@
   <data name="LabelCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="LabelDoNotShow" xml:space="preserve">
+    <value>Do not show this dialog again</value>
+  </data>
   <data name="LabelHelp" xml:space="preserve">
     <value>Help</value>
   </data>

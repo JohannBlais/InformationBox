@@ -31,10 +31,12 @@ namespace InfoBox
             this.lblText = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.chbDoNotShow = new System.Windows.Forms.CheckBox();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlIcon = new System.Windows.Forms.Panel();
             this.pnlText = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
+            this.pnlButtons.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlIcon.SuspendLayout();
             this.pnlText.SuspendLayout();
@@ -43,7 +45,6 @@ namespace InfoBox
             // lblText
             // 
             this.lblText.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblText.AutoSize = true;
             this.lblText.Location = new System.Drawing.Point(81, 28);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(28, 13);
@@ -62,11 +63,25 @@ namespace InfoBox
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.Color.Transparent;
+            this.pnlButtons.Controls.Add(this.chbDoNotShow);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlButtons.Location = new System.Drawing.Point(0, 68);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(278, 33);
+            this.pnlButtons.Size = new System.Drawing.Size(278, 53);
             this.pnlButtons.TabIndex = 2;
+            // 
+            // chbDoNotShow
+            // 
+            this.chbDoNotShow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbDoNotShow.Location = new System.Drawing.Point(0, 35);
+            this.chbDoNotShow.Name = "chbDoNotShow";
+            this.chbDoNotShow.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.chbDoNotShow.Size = new System.Drawing.Size(278, 18);
+            this.chbDoNotShow.TabIndex = 4;
+            this.chbDoNotShow.Text = "Do not show...";
+            this.chbDoNotShow.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.chbDoNotShow.UseVisualStyleBackColor = true;
             // 
             // pnlMain
             // 
@@ -103,7 +118,7 @@ namespace InfoBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 101);
+            this.ClientSize = new System.Drawing.Size(278, 121);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlButtons);
             this.DoubleBuffered = true;
@@ -114,10 +129,10 @@ namespace InfoBox
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InformationBox_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
+            this.pnlButtons.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
             this.pnlIcon.ResumeLayout(false);
             this.pnlText.ResumeLayout(false);
-            this.pnlText.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -130,5 +145,6 @@ namespace InfoBox
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Panel pnlIcon;
         private System.Windows.Forms.Panel pnlText;
+        private System.Windows.Forms.CheckBox chbDoNotShow;
     }
 }

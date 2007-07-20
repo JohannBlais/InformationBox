@@ -116,6 +116,19 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the state of the check box.
+        /// </summary>
+        /// <returns></returns>
+        private InformationBoxCheckBox GetCheckBoxState()
+        {
+            InformationBoxCheckBox check = 0;
+            if (clbCheckBox.GetItemCheckState(0) == CheckState.Checked) check |= InformationBoxCheckBox.Show;
+            if (clbCheckBox.GetItemCheckState(1) == CheckState.Checked) check |= InformationBoxCheckBox.Checked;
+            if (clbCheckBox.GetItemCheckState(2) == CheckState.Checked) check |= InformationBoxCheckBox.RightAligned;
+            return check;
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -128,10 +141,21 @@ namespace InfoBox.Test
             InformationBoxAutoSizeMode autoSize = GetAutoSize();
             InformationBoxPosition position = GetPosition();
             HelpNavigator navigator = GetHelpNavigator();
+            InformationBoxCheckBox checkState = GetCheckBoxState();
 
             StringBuilder codeBuilder = new StringBuilder();
-            codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ",
-                                     txbText.Text.Replace(Environment.NewLine, "\\n"));
+            if (checkState == 0)
+            {
+                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ",
+                                         txbText.Text.Replace(Environment.NewLine, "\\n"));
+            }
+            else
+            {
+                codeBuilder.Append("CheckState doNotShowState = CheckState.Indeterminate;");
+                codeBuilder.Append(Environment.NewLine);
+                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ref doNotShowState, ",
+                                         txbText.Text.Replace(Environment.NewLine, "\\n"));
+            }
 
             if (!String.Empty.Equals(txbHelpFile.Text) || !String.Empty.Equals(txbTitle.Text))
                 codeBuilder.AppendFormat("\"{0}\", ", txbText.Text.Replace(Environment.NewLine, "\\n"));
@@ -174,6 +198,16 @@ namespace InfoBox.Test
             if (!String.Empty.Equals(txbHelpTopic.Text))
                 codeBuilder.AppendFormat("\"{0}\", ", txbHelpTopic.Text);
 
+            if (checkState != 0)
+            {
+                codeBuilder.Append("InformationBoxCheckBox.Show");
+                if ((checkState & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked)
+                    codeBuilder.Append(" | InformationBoxCheckBox.Checked");
+                if ((checkState & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
+                    codeBuilder.Append(" | InformationBoxCheckBox.RightAligned");
+                codeBuilder.Append(", ");
+            }
+
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
 
@@ -192,6 +226,8 @@ namespace InfoBox.Test
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
             }
 
+            GenerateCode();
+
             InformationBoxButtons buttons = GetButtons();
             InformationBoxIcon icon = GetIcon();
             String iconFileName = txbIcon.Text;
@@ -200,14 +236,21 @@ namespace InfoBox.Test
             InformationBoxAutoSizeMode autoSize = GetAutoSize();
             InformationBoxPosition position = GetPosition();
             HelpNavigator navigator = GetHelpNavigator();
+            InformationBoxCheckBox checkState = GetCheckBoxState();
+            CheckState state = 0;
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState);
             }
             else
             {
-                InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState);
+            }
+
+            if (checkState != 0)
+            {
+                InformationBox.Show(String.Format("The state of the checkbox was {0}", state), InformationBoxIcon.Information);
             }
         }
 

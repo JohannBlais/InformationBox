@@ -29,6 +29,7 @@ namespace InfoBox
         private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
         private readonly InformationBoxAutoSizeMode _autoSizeMode = InformationBoxAutoSizeMode.None;
         private readonly InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
+        private readonly InformationBoxCheckBox _checkBox = 0;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -147,16 +148,22 @@ namespace InfoBox
                 {
                     _showHelpButton = (bool) parameter;
                 }
+                // Help navigator
                 else if (parameter is HelpNavigator)
                 {
                     _helpNavigator = (HelpNavigator) parameter;
+                }
+                // Do not show this dialog again ?
+                else if (parameter is InformationBoxCheckBox)
+                {
+                    _checkBox = (InformationBoxCheckBox) parameter;
                 }
             }
         }
 
         #endregion Constructors
 
-        #region Box initialization
+        #region Show
 
         /// <summary>
         /// Shows this InformationBox.
@@ -164,6 +171,7 @@ namespace InfoBox
         /// <returns></returns>
         internal new InformationBoxResult Show()
         {
+            SetCheckBox();
             SetButtons();
             SetText();
             SetIcon();
@@ -174,6 +182,45 @@ namespace InfoBox
 
             return _result;
         }
+
+        /// <summary>
+        /// Shows this InformationBox.
+        /// </summary>
+        /// <param name="state">The state of the checkbox.</param>
+        /// <returns></returns>
+        internal InformationBoxResult Show(ref CheckState state)
+        {
+            InformationBoxResult result = this.Show();
+            state = chbDoNotShow.CheckState;
+            return result;
+        }
+
+        #endregion Show
+
+        #region Box initialization
+
+        #region CheckBox
+
+        /// <summary>
+        /// Sets the check box.
+        /// </summary>
+        private void SetCheckBox()
+        {
+            chbDoNotShow.Text = Resources.LabelDoNotShow;
+
+            chbDoNotShow.Visible = ((_checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show);
+            chbDoNotShow.Checked = ((_checkBox & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked);
+            chbDoNotShow.TextAlign = ((_checkBox & InformationBoxCheckBox.RightAligned) ==
+                                      InformationBoxCheckBox.RightAligned)
+                                             ? ContentAlignment.BottomRight
+                                             : ContentAlignment.BottomLeft;
+            chbDoNotShow.CheckAlign = ((_checkBox & InformationBoxCheckBox.RightAligned) ==
+                                      InformationBoxCheckBox.RightAligned)
+                                             ? ContentAlignment.MiddleRight
+                                             : ContentAlignment.MiddleLeft;
+        }
+
+        #endregion CheckBox
 
         #region Position
 
@@ -230,13 +277,20 @@ namespace InfoBox
             // Caption width including button
             int captionWidth = Convert.ToInt32(_measureGraphics.MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
 
+            // "Do not show this dialog again" width
+            int checkBoxWidth = ((_checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
+                                        ? (int) _measureGraphics.MeasureString(chbDoNotShow.Text, chbDoNotShow.Font).Width + BORDER_PADDING * 4
+                                        : 0;
+
+            // Width of the text and icon.
             int iconAndTextWidth = 0;
-            
+
             // Minimum width to display all needed buttons.
-            int buttonsMinWidth = (pnlButtons.Controls.Count + 5) * BORDER_PADDING;
+            int buttonsMinWidth = (pnlButtons.Controls.Count + 4) * BORDER_PADDING;
             foreach (Control ctrl in pnlButtons.Controls)
             {
-                buttonsMinWidth += ctrl.Width;
+                if (ctrl is Button)
+                    buttonsMinWidth += ctrl.Width;
             }
 
             // Icon width
@@ -249,11 +303,17 @@ namespace InfoBox
             iconAndTextWidth += lblText.Width + BORDER_PADDING * 2;
 
             // Gets the maximum size
-            totalWidth = Math.Max(Math.Max(buttonsMinWidth, iconAndTextWidth), captionWidth);
+            totalWidth = Math.Max(Math.Max(Math.Max(buttonsMinWidth, iconAndTextWidth), captionWidth), checkBoxWidth);
 
             #endregion Width
 
             #region Height
+
+            if ((_checkBox & InformationBoxCheckBox.Show) != InformationBoxCheckBox.Show)
+            {
+                chbDoNotShow.Visible = false;
+                pnlButtons.Height -= chbDoNotShow.Height;
+            }
 
             int iconHeight = 0;
             if (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined)
@@ -287,7 +347,8 @@ namespace InfoBox
 
         private void SetButtonsLayout()
         {
-            int buttonsCount = pnlButtons.Controls.Count;
+            // Do not count the checkbox
+            int buttonsCount = pnlButtons.Controls.Count - 1;
             int index = 0;
             int initialPosition = 0;
             int spaceBetween = 0;
@@ -302,16 +363,16 @@ namespace InfoBox
                     
                     // If there is only one button then we must center it
                     if (buttonsCount == 1)
-                        initialPosition += Convert.ToInt32((Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                        initialPosition += Convert.ToInt32((Width - buttonsCount * pnlButtons.Controls[1].Width) / (buttonsCount + 1));
                     else
-                        initialPosition = Convert.ToInt32((Width - (buttonsCount * (pnlButtons.Controls[0].Width + BORDER_PADDING))) / 2);
+                        initialPosition = Convert.ToInt32((Width - (buttonsCount * (pnlButtons.Controls[1].Width + BORDER_PADDING))) / 2);
                     break;
                 case InformationBoxButtonsLayout.GroupRight:
                     spaceBetween = BORDER_PADDING;
-                    initialPosition = ClientSize.Width - (buttonsCount * (pnlButtons.Controls[0].Width + BORDER_PADDING));
+                    initialPosition = ClientSize.Width - (buttonsCount * (pnlButtons.Controls[1].Width + BORDER_PADDING));
                     break;
                 case InformationBoxButtonsLayout.Separate:
-                    spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * pnlButtons.Controls[1].Width) / (buttonsCount + 1));
                     initialPosition = spaceBetween;
                     break;
                 default:
@@ -320,8 +381,11 @@ namespace InfoBox
             
             foreach (Control ctrl in pnlButtons.Controls)
             {
-                ctrl.Left = initialPosition + spaceBetween * (index) + ctrl.Width * index;
-                ++index;
+                if (ctrl is Button)
+                {
+                    ctrl.Left = initialPosition + spaceBetween * (index) + ctrl.Width * index;
+                    ++index;
+                }
             }
         }
 
@@ -504,13 +568,17 @@ namespace InfoBox
             // Measures the width of each button
             foreach (Control ctrl in pnlButtons.Controls)
             {
-                maxSize = Math.Max(Convert.ToInt32(_measureGraphics.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
+                if (ctrl is Button)
+                    maxSize = Math.Max(Convert.ToInt32(_measureGraphics.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
             }
 
             foreach (Control ctrl in pnlButtons.Controls)
             {
-                ctrl.Size = new Size(maxSize, 23);
-                ctrl.Top = 5;
+                if (ctrl is Button)
+                {
+                    ctrl.Size = new Size(maxSize, 23);
+                    ctrl.Top = 5;
+                }
             }
         }
 
@@ -546,7 +614,7 @@ namespace InfoBox
                 MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
                 if (null != met)
                 {
-                    // Call for help only on the first opened form.
+                    // Call for help on the active form.
                     met.Invoke(_activeForm, new object[] { new HelpEventArgs(MousePosition) });
                 }
             }

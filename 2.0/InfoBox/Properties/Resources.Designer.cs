@@ -177,6 +177,15 @@ namespace InfoBox.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not show this dialog again.
+        /// </summary>
+        internal static string LabelDoNotShow {
+            get {
+                return ResourceManager.GetString("LabelDoNotShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         internal static string LabelHelp {
