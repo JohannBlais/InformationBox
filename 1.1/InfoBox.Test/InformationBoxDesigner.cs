@@ -700,15 +700,15 @@ namespace InfoBox.Test
 			this.clbCheckBox.BackColor = System.Drawing.SystemColors.Control;
 			this.clbCheckBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.clbCheckBox.CheckOnClick = true;
-			this.clbCheckBox.ColumnWidth = 78;
+			this.clbCheckBox.ColumnWidth = 85;
 			this.clbCheckBox.Items.AddRange(new object[] {
 															 "Show",
 															 "Checked",
 															 "RightAligned"});
-			this.clbCheckBox.Location = new System.Drawing.Point(11, 20);
+			this.clbCheckBox.Location = new System.Drawing.Point(8, 20);
 			this.clbCheckBox.MultiColumn = true;
 			this.clbCheckBox.Name = "clbCheckBox";
-			this.clbCheckBox.Size = new System.Drawing.Size(254, 15);
+			this.clbCheckBox.Size = new System.Drawing.Size(256, 15);
 			this.clbCheckBox.TabIndex = 0;
 			// 
 			// InformationBoxDesigner
