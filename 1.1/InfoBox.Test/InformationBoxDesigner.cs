@@ -54,6 +54,7 @@ namespace InfoBox.Test
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.ddlIcons = new System.Windows.Forms.ComboBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.label6 = new System.Windows.Forms.Label();
 			this.txbUser2 = new System.Windows.Forms.TextBox();
 			this.txbUser1 = new System.Windows.Forms.TextBox();
 			this.btnShow = new System.Windows.Forms.Button();
@@ -96,6 +97,8 @@ namespace InfoBox.Test
 			this.rdbHelpTableOfContents = new System.Windows.Forms.RadioButton();
 			this.rdbHelpIndex = new System.Windows.Forms.RadioButton();
 			this.rdbHelpFind = new System.Windows.Forms.RadioButton();
+			this.groupBox14 = new System.Windows.Forms.GroupBox();
+			this.clbCheckBox = new System.Windows.Forms.CheckedListBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -109,6 +112,7 @@ namespace InfoBox.Test
 			this.groupBox11.SuspendLayout();
 			this.groupBox12.SuspendLayout();
 			this.groupBox13.SuspendLayout();
+			this.groupBox14.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -119,14 +123,14 @@ namespace InfoBox.Test
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(264, 169);
+			this.groupBox1.Size = new System.Drawing.Size(264, 178);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Labels";
 			// 
 			// txbText
 			// 
-			this.txbText.Location = new System.Drawing.Point(51, 44);
+			this.txbText.Location = new System.Drawing.Point(51, 53);
 			this.txbText.Multiline = true;
 			this.txbText.Name = "txbText";
 			this.txbText.Size = new System.Drawing.Size(196, 119);
@@ -143,19 +147,17 @@ namespace InfoBox.Test
 			// 
 			// label2
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(18, 47);
+			this.label2.Location = new System.Drawing.Point(18, 56);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(26, 16);
+			this.label2.Size = new System.Drawing.Size(28, 13);
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Text";
 			// 
 			// label1
 			// 
-			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(18, 21);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(26, 16);
+			this.label1.Size = new System.Drawing.Size(27, 13);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Title";
 			// 
@@ -170,7 +172,7 @@ namespace InfoBox.Test
 			this.groupBox2.Controls.Add(this.rdbOKCancel);
 			this.groupBox2.Controls.Add(this.rdbOK);
 			this.groupBox2.Controls.Add(this.rdbAbortRetryIgnore);
-			this.groupBox2.Location = new System.Drawing.Point(294, 12);
+			this.groupBox2.Location = new System.Drawing.Point(282, 12);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(264, 122);
 			this.groupBox2.TabIndex = 1;
@@ -254,9 +256,9 @@ namespace InfoBox.Test
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.ddlIcons);
-			this.groupBox3.Location = new System.Drawing.Point(12, 187);
+			this.groupBox3.Location = new System.Drawing.Point(12, 267);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(264, 52);
+			this.groupBox3.Size = new System.Drawing.Size(264, 45);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Icon";
@@ -264,42 +266,50 @@ namespace InfoBox.Test
 			// ddlIcons
 			// 
 			this.ddlIcons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ddlIcons.Location = new System.Drawing.Point(17, 19);
+			this.ddlIcons.Location = new System.Drawing.Point(17, 18);
 			this.ddlIcons.Name = "ddlIcons";
 			this.ddlIcons.Size = new System.Drawing.Size(230, 21);
 			this.ddlIcons.TabIndex = 0;
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Controls.Add(this.label6);
 			this.groupBox4.Controls.Add(this.txbUser2);
 			this.groupBox4.Controls.Add(this.txbUser1);
-			this.groupBox4.Location = new System.Drawing.Point(294, 140);
+			this.groupBox4.Location = new System.Drawing.Point(282, 140);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(264, 50);
 			this.groupBox4.TabIndex = 3;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Custom buttons";
 			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(127, 26);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(10, 13);
+			this.label6.TabIndex = 2;
+			this.label6.Text = "-";
+			// 
 			// txbUser2
 			// 
-			this.txbUser2.Location = new System.Drawing.Point(137, 23);
+			this.txbUser2.Location = new System.Drawing.Point(142, 23);
 			this.txbUser2.Name = "txbUser2";
-			this.txbUser2.Size = new System.Drawing.Size(110, 20);
+			this.txbUser2.Size = new System.Drawing.Size(98, 20);
 			this.txbUser2.TabIndex = 1;
-			this.txbUser2.Text = "User2";
+			this.txbUser2.Text = "";
 			// 
 			// txbUser1
 			// 
-			this.txbUser1.Location = new System.Drawing.Point(17, 23);
+			this.txbUser1.Location = new System.Drawing.Point(22, 24);
 			this.txbUser1.Name = "txbUser1";
-			this.txbUser1.Size = new System.Drawing.Size(110, 20);
 			this.txbUser1.TabIndex = 0;
-			this.txbUser1.Text = "User1";
+			this.txbUser1.Text = "";
 			// 
 			// btnShow
 			// 
 			this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnShow.Location = new System.Drawing.Point(326, 498);
+			this.btnShow.Location = new System.Drawing.Point(453, 382);
 			this.btnShow.Name = "btnShow";
 			this.btnShow.Size = new System.Drawing.Size(183, 27);
 			this.btnShow.TabIndex = 7;
@@ -311,7 +321,7 @@ namespace InfoBox.Test
 			this.groupBox5.Controls.Add(this.rdbButton3);
 			this.groupBox5.Controls.Add(this.rdbButton2);
 			this.groupBox5.Controls.Add(this.rdbButton1);
-			this.groupBox5.Location = new System.Drawing.Point(294, 196);
+			this.groupBox5.Location = new System.Drawing.Point(282, 267);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(264, 45);
 			this.groupBox5.TabIndex = 5;
@@ -351,19 +361,19 @@ namespace InfoBox.Test
 			this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.txbCode.Location = new System.Drawing.Point(12, 540);
+			this.txbCode.Location = new System.Drawing.Point(12, 424);
 			this.txbCode.Multiline = true;
 			this.txbCode.Name = "txbCode";
 			this.txbCode.ReadOnly = true;
 			this.txbCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txbCode.Size = new System.Drawing.Size(546, 67);
+			this.txbCode.Size = new System.Drawing.Size(805, 67);
 			this.txbCode.TabIndex = 8;
 			this.txbCode.Text = "";
 			// 
 			// btnGenerate
 			// 
 			this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnGenerate.Location = new System.Drawing.Point(63, 498);
+			this.btnGenerate.Location = new System.Drawing.Point(190, 382);
 			this.btnGenerate.Name = "btnGenerate";
 			this.btnGenerate.Size = new System.Drawing.Size(183, 27);
 			this.btnGenerate.TabIndex = 6;
@@ -375,7 +385,7 @@ namespace InfoBox.Test
 			this.groupBox6.Controls.Add(this.btnIcon);
 			this.groupBox6.Controls.Add(this.label3);
 			this.groupBox6.Controls.Add(this.txbIcon);
-			this.groupBox6.Location = new System.Drawing.Point(12, 245);
+			this.groupBox6.Location = new System.Drawing.Point(12, 318);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(264, 50);
 			this.groupBox6.TabIndex = 9;
@@ -393,10 +403,9 @@ namespace InfoBox.Test
 			// 
 			// label3
 			// 
-			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 22);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(43, 16);
+			this.label3.Size = new System.Drawing.Size(44, 13);
 			this.label3.TabIndex = 1;
 			this.label3.Text = "Icon file";
 			// 
@@ -419,7 +428,7 @@ namespace InfoBox.Test
 			this.groupBox7.Controls.Add(this.rdbLayoutGroupMiddle);
 			this.groupBox7.Controls.Add(this.rdbLayoutGroupRight);
 			this.groupBox7.Controls.Add(this.rdbLayoutGroupLeft);
-			this.groupBox7.Location = new System.Drawing.Point(294, 247);
+			this.groupBox7.Location = new System.Drawing.Point(283, 196);
 			this.groupBox7.Name = "groupBox7";
 			this.groupBox7.Size = new System.Drawing.Size(264, 65);
 			this.groupBox7.TabIndex = 10;
@@ -428,35 +437,35 @@ namespace InfoBox.Test
 			// 
 			// rdbLayoutSeparate
 			// 
-			this.rdbLayoutSeparate.Location = new System.Drawing.Point(147, 37);
+			this.rdbLayoutSeparate.Location = new System.Drawing.Point(146, 40);
 			this.rdbLayoutSeparate.Name = "rdbLayoutSeparate";
-			this.rdbLayoutSeparate.Size = new System.Drawing.Size(93, 17);
+			this.rdbLayoutSeparate.Size = new System.Drawing.Size(78, 17);
 			this.rdbLayoutSeparate.TabIndex = 3;
 			this.rdbLayoutSeparate.Text = "Separate";
 			// 
 			// rdbLayoutGroupMiddle
 			// 
 			this.rdbLayoutGroupMiddle.Checked = true;
-			this.rdbLayoutGroupMiddle.Location = new System.Drawing.Point(147, 17);
+			this.rdbLayoutGroupMiddle.Location = new System.Drawing.Point(146, 20);
 			this.rdbLayoutGroupMiddle.Name = "rdbLayoutGroupMiddle";
-			this.rdbLayoutGroupMiddle.Size = new System.Drawing.Size(93, 17);
+			this.rdbLayoutGroupMiddle.Size = new System.Drawing.Size(102, 17);
 			this.rdbLayoutGroupMiddle.TabIndex = 2;
 			this.rdbLayoutGroupMiddle.TabStop = true;
 			this.rdbLayoutGroupMiddle.Text = "GroupMiddle";
 			// 
 			// rdbLayoutGroupRight
 			// 
-			this.rdbLayoutGroupRight.Location = new System.Drawing.Point(17, 37);
+			this.rdbLayoutGroupRight.Location = new System.Drawing.Point(16, 40);
 			this.rdbLayoutGroupRight.Name = "rdbLayoutGroupRight";
-			this.rdbLayoutGroupRight.Size = new System.Drawing.Size(95, 17);
+			this.rdbLayoutGroupRight.Size = new System.Drawing.Size(96, 17);
 			this.rdbLayoutGroupRight.TabIndex = 1;
 			this.rdbLayoutGroupRight.Text = "GroupRight";
 			// 
 			// rdbLayoutGroupLeft
 			// 
-			this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(17, 17);
+			this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(16, 20);
 			this.rdbLayoutGroupLeft.Name = "rdbLayoutGroupLeft";
-			this.rdbLayoutGroupLeft.Size = new System.Drawing.Size(95, 17);
+			this.rdbLayoutGroupLeft.Size = new System.Drawing.Size(88, 17);
 			this.rdbLayoutGroupLeft.TabIndex = 0;
 			this.rdbLayoutGroupLeft.Text = "GroupLeft";
 			// 
@@ -464,7 +473,7 @@ namespace InfoBox.Test
 			// 
 			this.groupBox8.Controls.Add(this.ddlLanguage);
 			this.groupBox8.Controls.Add(this.label4);
-			this.groupBox8.Location = new System.Drawing.Point(294, 318);
+			this.groupBox8.Location = new System.Drawing.Point(282, 318);
 			this.groupBox8.Name = "groupBox8";
 			this.groupBox8.Size = new System.Drawing.Size(264, 50);
 			this.groupBox8.TabIndex = 11;
@@ -484,10 +493,9 @@ namespace InfoBox.Test
 			// 
 			// label4
 			// 
-			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(6, 22);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(55, 16);
+			this.label4.Size = new System.Drawing.Size(55, 13);
 			this.label4.TabIndex = 1;
 			this.label4.Text = "Language";
 			// 
@@ -496,9 +504,9 @@ namespace InfoBox.Test
 			this.groupBox9.Controls.Add(this.rdbAutoSizeNone);
 			this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumHeight);
 			this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumWidth);
-			this.groupBox9.Location = new System.Drawing.Point(292, 423);
+			this.groupBox9.Location = new System.Drawing.Point(12, 196);
 			this.groupBox9.Name = "groupBox9";
-			this.groupBox9.Size = new System.Drawing.Size(264, 64);
+			this.groupBox9.Size = new System.Drawing.Size(264, 65);
 			this.groupBox9.TabIndex = 12;
 			this.groupBox9.TabStop = false;
 			this.groupBox9.Text = "AutoSize";
@@ -508,7 +516,7 @@ namespace InfoBox.Test
 			this.rdbAutoSizeNone.Checked = true;
 			this.rdbAutoSizeNone.Location = new System.Drawing.Point(147, 20);
 			this.rdbAutoSizeNone.Name = "rdbAutoSizeNone";
-			this.rdbAutoSizeNone.Size = new System.Drawing.Size(61, 17);
+			this.rdbAutoSizeNone.Size = new System.Drawing.Size(51, 17);
 			this.rdbAutoSizeNone.TabIndex = 2;
 			this.rdbAutoSizeNone.TabStop = true;
 			this.rdbAutoSizeNone.Text = "None";
@@ -525,7 +533,7 @@ namespace InfoBox.Test
 			// 
 			this.rdbAutoSizeMinimumWidth.Location = new System.Drawing.Point(17, 20);
 			this.rdbAutoSizeMinimumWidth.Name = "rdbAutoSizeMinimumWidth";
-			this.rdbAutoSizeMinimumWidth.Size = new System.Drawing.Size(103, 17);
+			this.rdbAutoSizeMinimumWidth.Size = new System.Drawing.Size(111, 17);
 			this.rdbAutoSizeMinimumWidth.TabIndex = 0;
 			this.rdbAutoSizeMinimumWidth.TabStop = true;
 			this.rdbAutoSizeMinimumWidth.Text = "MinimumWidth";
@@ -534,18 +542,18 @@ namespace InfoBox.Test
 			// 
 			this.groupBox10.Controls.Add(this.rdbPositionCenterOnScreen);
 			this.groupBox10.Controls.Add(this.rdbPositionCenterOnParent);
-			this.groupBox10.Location = new System.Drawing.Point(294, 374);
+			this.groupBox10.Location = new System.Drawing.Point(551, 249);
 			this.groupBox10.Name = "groupBox10";
-			this.groupBox10.Size = new System.Drawing.Size(264, 43);
+			this.groupBox10.Size = new System.Drawing.Size(265, 42);
 			this.groupBox10.TabIndex = 13;
 			this.groupBox10.TabStop = false;
 			this.groupBox10.Text = "Position";
 			// 
 			// rdbPositionCenterOnScreen
 			// 
-			this.rdbPositionCenterOnScreen.Location = new System.Drawing.Point(17, 19);
+			this.rdbPositionCenterOnScreen.Location = new System.Drawing.Point(18, 19);
 			this.rdbPositionCenterOnScreen.Name = "rdbPositionCenterOnScreen";
-			this.rdbPositionCenterOnScreen.Size = new System.Drawing.Size(111, 17);
+			this.rdbPositionCenterOnScreen.Size = new System.Drawing.Size(118, 17);
 			this.rdbPositionCenterOnScreen.TabIndex = 6;
 			this.rdbPositionCenterOnScreen.Text = "CenterOnScreen";
 			// 
@@ -564,9 +572,9 @@ namespace InfoBox.Test
 			this.groupBox11.Controls.Add(this.btnHelpFile);
 			this.groupBox11.Controls.Add(this.label5);
 			this.groupBox11.Controls.Add(this.txbHelpFile);
-			this.groupBox11.Location = new System.Drawing.Point(12, 347);
+			this.groupBox11.Location = new System.Drawing.Point(552, 58);
 			this.groupBox11.Name = "groupBox11";
-			this.groupBox11.Size = new System.Drawing.Size(264, 44);
+			this.groupBox11.Size = new System.Drawing.Size(265, 44);
 			this.groupBox11.TabIndex = 14;
 			this.groupBox11.TabStop = false;
 			this.groupBox11.Text = "Help";
@@ -582,10 +590,9 @@ namespace InfoBox.Test
 			// 
 			// label5
 			// 
-			this.label5.AutoSize = true;
 			this.label5.Location = new System.Drawing.Point(12, 22);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(45, 16);
+			this.label5.Size = new System.Drawing.Size(45, 13);
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Help file";
 			// 
@@ -599,9 +606,9 @@ namespace InfoBox.Test
 			// 
 			// chbHelpButton
 			// 
-			this.chbHelpButton.Location = new System.Drawing.Point(15, 20);
+			this.chbHelpButton.Location = new System.Drawing.Point(19, 19);
 			this.chbHelpButton.Name = "chbHelpButton";
-			this.chbHelpButton.Size = new System.Drawing.Size(161, 17);
+			this.chbHelpButton.Size = new System.Drawing.Size(125, 17);
 			this.chbHelpButton.TabIndex = 0;
 			this.chbHelpButton.Text = "Show Help button";
 			// 
@@ -613,9 +620,9 @@ namespace InfoBox.Test
 			// groupBox12
 			// 
 			this.groupBox12.Controls.Add(this.chbHelpButton);
-			this.groupBox12.Location = new System.Drawing.Point(12, 301);
+			this.groupBox12.Location = new System.Drawing.Point(552, 12);
 			this.groupBox12.Name = "groupBox12";
-			this.groupBox12.Size = new System.Drawing.Size(264, 40);
+			this.groupBox12.Size = new System.Drawing.Size(265, 40);
 			this.groupBox12.TabIndex = 15;
 			this.groupBox12.TabStop = false;
 			this.groupBox12.Text = "Help button";
@@ -627,9 +634,9 @@ namespace InfoBox.Test
 			this.groupBox13.Controls.Add(this.rdbHelpTableOfContents);
 			this.groupBox13.Controls.Add(this.rdbHelpIndex);
 			this.groupBox13.Controls.Add(this.rdbHelpFind);
-			this.groupBox13.Location = new System.Drawing.Point(12, 397);
+			this.groupBox13.Location = new System.Drawing.Point(552, 103);
 			this.groupBox13.Name = "groupBox13";
-			this.groupBox13.Size = new System.Drawing.Size(264, 90);
+			this.groupBox13.Size = new System.Drawing.Size(265, 87);
 			this.groupBox13.TabIndex = 16;
 			this.groupBox13.TabStop = false;
 			this.groupBox13.Text = "Help navigator";
@@ -678,10 +685,37 @@ namespace InfoBox.Test
 			this.rdbHelpFind.TabStop = true;
 			this.rdbHelpFind.Text = "Find";
 			// 
+			// groupBox14
+			// 
+			this.groupBox14.Controls.Add(this.clbCheckBox);
+			this.groupBox14.Location = new System.Drawing.Point(551, 196);
+			this.groupBox14.Name = "groupBox14";
+			this.groupBox14.Size = new System.Drawing.Size(266, 47);
+			this.groupBox14.TabIndex = 17;
+			this.groupBox14.TabStop = false;
+			this.groupBox14.Text = "Do not show again ?";
+			// 
+			// clbCheckBox
+			// 
+			this.clbCheckBox.BackColor = System.Drawing.SystemColors.Control;
+			this.clbCheckBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.clbCheckBox.CheckOnClick = true;
+			this.clbCheckBox.ColumnWidth = 78;
+			this.clbCheckBox.Items.AddRange(new object[] {
+															 "Show",
+															 "Checked",
+															 "RightAligned"});
+			this.clbCheckBox.Location = new System.Drawing.Point(11, 20);
+			this.clbCheckBox.MultiColumn = true;
+			this.clbCheckBox.Name = "clbCheckBox";
+			this.clbCheckBox.Size = new System.Drawing.Size(254, 15);
+			this.clbCheckBox.TabIndex = 0;
+			// 
 			// InformationBoxDesigner
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(568, 619);
+			this.ClientSize = new System.Drawing.Size(828, 503);
+			this.Controls.Add(this.groupBox14);
 			this.Controls.Add(this.groupBox13);
 			this.Controls.Add(this.groupBox12);
 			this.Controls.Add(this.groupBox11);
@@ -698,7 +732,9 @@ namespace InfoBox.Test
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
+			this.MaximizeBox = false;
 			this.Name = "InformationBoxDesigner";
+			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.Text = "InformationBox Designer";
 			this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Form1_HelpRequested);
 			this.groupBox1.ResumeLayout(false);
@@ -714,6 +750,7 @@ namespace InfoBox.Test
 			this.groupBox11.ResumeLayout(false);
 			this.groupBox12.ResumeLayout(false);
 			this.groupBox13.ResumeLayout(false);
+			this.groupBox14.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -780,6 +817,9 @@ namespace InfoBox.Test
 		private System.Windows.Forms.RadioButton rdbHelpFind;
 		private System.Windows.Forms.TextBox txbHelpTopic;
 		private System.Windows.Forms.ComboBox ddlIcons;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.GroupBox groupBox14;
+		private System.Windows.Forms.CheckedListBox clbCheckBox;
 
 		#endregion Autogenerated
 
@@ -891,6 +931,19 @@ namespace InfoBox.Test
 		}
 
 		/// <summary>
+		/// Gets the state of the check box.
+		/// </summary>
+		/// <returns></returns>
+		private InformationBoxCheckBox GetCheckBoxState()
+		{
+			InformationBoxCheckBox check = 0;
+			if (clbCheckBox.GetItemCheckState(0) == CheckState.Checked) check |= InformationBoxCheckBox.Show;
+			if (clbCheckBox.GetItemCheckState(1) == CheckState.Checked) check |= InformationBoxCheckBox.Checked;
+			if (clbCheckBox.GetItemCheckState(2) == CheckState.Checked) check |= InformationBoxCheckBox.RightAligned;
+			return check;
+		}
+
+		/// <summary>
 		/// Generates the code.
 		/// </summary>
 		private void GenerateCode()
@@ -903,10 +956,21 @@ namespace InfoBox.Test
 			InformationBoxAutoSizeMode autoSize = GetAutoSize();
 			InformationBoxPosition position = GetPosition();
 			HelpNavigator navigator = GetHelpNavigator();
+			InformationBoxCheckBox checkState = GetCheckBoxState();
 
 			StringBuilder codeBuilder = new StringBuilder();
-			codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ",
-				txbText.Text.Replace(Environment.NewLine, "\\n"));
+			if (checkState == 0)
+			{
+				codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ",
+					txbText.Text.Replace(Environment.NewLine, "\\n"));
+			}
+			else
+			{
+				codeBuilder.Append("CheckState doNotShowState = CheckState.Indeterminate;");
+				codeBuilder.Append(Environment.NewLine);
+				codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ref doNotShowState, ",
+					txbText.Text.Replace(Environment.NewLine, "\\n"));
+			}
 
 			if (!String.Empty.Equals(txbHelpFile.Text) || !String.Empty.Equals(txbTitle.Text))
 				codeBuilder.AppendFormat("\"{0}\", ", txbText.Text.Replace(Environment.NewLine, "\\n"));
@@ -949,6 +1013,16 @@ namespace InfoBox.Test
 			if (!String.Empty.Equals(txbHelpTopic.Text))
 				codeBuilder.AppendFormat("\"{0}\", ", txbHelpTopic.Text);
 
+			if (checkState != 0)
+			{
+				codeBuilder.Append("InformationBoxCheckBox.Show");
+				if ((checkState & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked)
+					codeBuilder.Append(" | InformationBoxCheckBox.Checked");
+				if ((checkState & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
+					codeBuilder.Append(" | InformationBoxCheckBox.RightAligned");
+				codeBuilder.Append(", ");
+			}
+
 			codeBuilder[codeBuilder.Length - 2] = ')';
 			codeBuilder[codeBuilder.Length - 1] = ';';
 
@@ -967,6 +1041,8 @@ namespace InfoBox.Test
 				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
 			}
 
+			GenerateCode();
+
 			InformationBoxButtons buttons = GetButtons();
 			InformationBoxIcon icon = GetIcon();
 			String iconFileName = txbIcon.Text;
@@ -975,14 +1051,21 @@ namespace InfoBox.Test
 			InformationBoxAutoSizeMode autoSize = GetAutoSize();
 			InformationBoxPosition position = GetPosition();
 			HelpNavigator navigator = GetHelpNavigator();
+			InformationBoxCheckBox checkState = GetCheckBoxState();
+			CheckState state = 0;
 
 			if (String.Empty.Equals(iconFileName))
 			{
-				InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text);
+				InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState);
 			}
 			else
 			{
-				InformationBox.Show(txbText.Text, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text);
+				InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState);
+			}
+
+			if (checkState != 0)
+			{
+				InformationBox.Show(String.Format("The state of the checkbox was {0}", state), InformationBoxIcon.Information);
 			}
 		}
 
