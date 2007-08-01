@@ -91,6 +91,9 @@ namespace InfoBox.Test
             this.rdbHelpFind = new System.Windows.Forms.RadioButton();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.clbCheckBox = new System.Windows.Forms.CheckedListBox();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.rdbStyleStandard = new System.Windows.Forms.RadioButton();
+            this.rdbStyleModern = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -105,6 +108,7 @@ namespace InfoBox.Test
             this.groupBox12.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -576,7 +580,7 @@ namespace InfoBox.Test
             // 
             this.groupBox10.Controls.Add(this.rdbPositionCenterOnScreen);
             this.groupBox10.Controls.Add(this.rdbPositionCenterOnParent);
-            this.groupBox10.Location = new System.Drawing.Point(551, 249);
+            this.groupBox10.Location = new System.Drawing.Point(552, 249);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(265, 42);
             this.groupBox10.TabIndex = 13;
@@ -736,9 +740,9 @@ namespace InfoBox.Test
             // groupBox14
             // 
             this.groupBox14.Controls.Add(this.clbCheckBox);
-            this.groupBox14.Location = new System.Drawing.Point(551, 196);
+            this.groupBox14.Location = new System.Drawing.Point(552, 196);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(266, 47);
+            this.groupBox14.Size = new System.Drawing.Size(265, 47);
             this.groupBox14.TabIndex = 17;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Do not show again ?";
@@ -760,11 +764,45 @@ namespace InfoBox.Test
             this.clbCheckBox.Size = new System.Drawing.Size(254, 15);
             this.clbCheckBox.TabIndex = 0;
             // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.rdbStyleModern);
+            this.groupBox15.Controls.Add(this.rdbStyleStandard);
+            this.groupBox15.Location = new System.Drawing.Point(552, 297);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(265, 44);
+            this.groupBox15.TabIndex = 18;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Style";
+            // 
+            // rdbStyleStandard
+            // 
+            this.rdbStyleStandard.AutoSize = true;
+            this.rdbStyleStandard.Checked = true;
+            this.rdbStyleStandard.Location = new System.Drawing.Point(18, 18);
+            this.rdbStyleStandard.Name = "rdbStyleStandard";
+            this.rdbStyleStandard.Size = new System.Drawing.Size(68, 17);
+            this.rdbStyleStandard.TabIndex = 0;
+            this.rdbStyleStandard.TabStop = true;
+            this.rdbStyleStandard.Text = "Standard";
+            this.rdbStyleStandard.UseVisualStyleBackColor = true;
+            // 
+            // rdbStyleModern
+            // 
+            this.rdbStyleModern.AutoSize = true;
+            this.rdbStyleModern.Location = new System.Drawing.Point(147, 18);
+            this.rdbStyleModern.Name = "rdbStyleModern";
+            this.rdbStyleModern.Size = new System.Drawing.Size(61, 17);
+            this.rdbStyleModern.TabIndex = 1;
+            this.rdbStyleModern.Text = "Modern";
+            this.rdbStyleModern.UseVisualStyleBackColor = true;
+            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 503);
+            this.Controls.Add(this.groupBox15);
             this.Controls.Add(this.groupBox14);
             this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.groupBox12);
@@ -813,6 +851,8 @@ namespace InfoBox.Test
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox14.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -883,6 +923,9 @@ namespace InfoBox.Test
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.CheckedListBox clbCheckBox;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.RadioButton rdbStyleModern;
+        private System.Windows.Forms.RadioButton rdbStyleStandard;
 
     }
 }

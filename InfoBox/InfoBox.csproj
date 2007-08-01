@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GlassComponents, Version=0.1.2769.33090, Culture=neutral, PublicKeyToken=4a86007e9a0ad891, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -49,6 +52,7 @@
     <Compile Include="Enums\InformationBoxIcon.cs" />
     <Compile Include="Enums\InformationBoxPosition.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
+    <Compile Include="Enums\InformationBoxStyle.cs" />
     <Compile Include="Form\InformationBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +124,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\scanner.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reference\GlassComponents.dll" />
+    <Content Include="Resources\blank.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

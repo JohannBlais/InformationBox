@@ -129,6 +129,16 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the style.
+        /// </summary>
+        /// <returns></returns>
+        private InformationBoxStyle GetStyle()
+        {
+            if (rdbStyleModern.Checked) return InformationBoxStyle.Modern;
+            return InformationBoxStyle.Standard;
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -142,6 +152,7 @@ namespace InfoBox.Test
             InformationBoxPosition position = GetPosition();
             HelpNavigator navigator = GetHelpNavigator();
             InformationBoxCheckBox checkState = GetCheckBoxState();
+            InformationBoxStyle style = GetStyle();
 
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -208,6 +219,9 @@ namespace InfoBox.Test
                 codeBuilder.Append(", ");
             }
 
+            if (style != InformationBoxStyle.Standard)
+                codeBuilder.AppendFormat("InformationBoxStyle.{0}", style);
+
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
 
@@ -238,14 +252,15 @@ namespace InfoBox.Test
             HelpNavigator navigator = GetHelpNavigator();
             InformationBoxCheckBox checkState = GetCheckBoxState();
             CheckState state = 0;
+            InformationBoxStyle style = GetStyle();
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style);
             }
             else
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style);
             }
 
             if (checkState != 0)
