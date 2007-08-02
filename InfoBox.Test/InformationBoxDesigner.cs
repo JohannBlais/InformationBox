@@ -41,6 +41,7 @@ namespace InfoBox.Test
             if (rdbYesNoUser1.Checked) return InformationBoxButtons.YesNoUser1;
             if (rdbOKCancelUser1.Checked) return InformationBoxButtons.OKCancelUser1;
             if (rdbUser1User2.Checked) return InformationBoxButtons.User1User2;
+            if (rdbUser1.Checked) return InformationBoxButtons.User1;
             return InformationBoxButtons.OK;
         }
 

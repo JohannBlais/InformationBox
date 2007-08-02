@@ -32,16 +32,19 @@ namespace InfoBox
             this.lblText = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.pnlBas = new System.Windows.Forms.Panel();
+            this.pnlButtons = new GlassComponents.Controls.Panel();
             this.chbDoNotShow = new System.Windows.Forms.CheckBox();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlIcon = new System.Windows.Forms.Panel();
             this.pnlText = new System.Windows.Forms.Panel();
-            this.pnlButtons = new GlassComponents.Controls.Panel();
+            this.pnlForm = new System.Windows.Forms.Panel();
+            this.lblTitle = new GlassComponents.Controls.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.pnlBas.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlIcon.SuspendLayout();
             this.pnlText.SuspendLayout();
+            this.pnlForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblText
@@ -68,10 +71,24 @@ namespace InfoBox
             this.pnlBas.Controls.Add(this.pnlButtons);
             this.pnlBas.Controls.Add(this.chbDoNotShow);
             this.pnlBas.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBas.Location = new System.Drawing.Point(0, 68);
+            this.pnlBas.Location = new System.Drawing.Point(0, 100);
             this.pnlBas.Name = "pnlBas";
-            this.pnlBas.Size = new System.Drawing.Size(278, 53);
+            this.pnlBas.Size = new System.Drawing.Size(257, 53);
             this.pnlBas.TabIndex = 2;
+            // 
+            // pnlButtons
+            // 
+            this.pnlButtons.BackColor = System.Drawing.Color.Black;
+            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlButtons.ForeColor = System.Drawing.Color.White;
+            this.pnlButtons.Location = new System.Drawing.Point(0, 18);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.SideBorder = GlassComponents.Controls.SideBorder.Both;
+            this.pnlButtons.SideBorderBottomColor = System.Drawing.Color.Transparent;
+            this.pnlButtons.SideBorderTopColor = System.Drawing.Color.Black;
+            this.pnlButtons.SideBorderWidth = 1;
+            this.pnlButtons.Size = new System.Drawing.Size(257, 35);
+            this.pnlButtons.TabIndex = 5;
             // 
             // chbDoNotShow
             // 
@@ -80,7 +97,7 @@ namespace InfoBox
             this.chbDoNotShow.Location = new System.Drawing.Point(0, 0);
             this.chbDoNotShow.Name = "chbDoNotShow";
             this.chbDoNotShow.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.chbDoNotShow.Size = new System.Drawing.Size(278, 18);
+            this.chbDoNotShow.Size = new System.Drawing.Size(257, 18);
             this.chbDoNotShow.TabIndex = 4;
             this.chbDoNotShow.Text = "Do not show...";
             this.chbDoNotShow.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -91,10 +108,10 @@ namespace InfoBox
             this.pnlMain.BackColor = System.Drawing.Color.Transparent;
             this.pnlMain.Controls.Add(this.pnlIcon);
             this.pnlMain.Controls.Add(this.pnlText);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Location = new System.Drawing.Point(0, 31);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(278, 68);
+            this.pnlMain.Size = new System.Drawing.Size(257, 68);
             this.pnlMain.TabIndex = 3;
             // 
             // pnlIcon
@@ -114,30 +131,49 @@ namespace InfoBox
             this.pnlText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlText.Location = new System.Drawing.Point(0, 0);
             this.pnlText.Name = "pnlText";
-            this.pnlText.Size = new System.Drawing.Size(278, 68);
+            this.pnlText.Size = new System.Drawing.Size(257, 68);
             this.pnlText.TabIndex = 2;
             // 
-            // pnlButtons
+            // pnlForm
             // 
-            this.pnlButtons.BackColor = System.Drawing.Color.Black;
-            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtons.ForeColor = System.Drawing.Color.White;
-            this.pnlButtons.Location = new System.Drawing.Point(0, 18);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.SideBorder = GlassComponents.Controls.SideBorder.None;
-            this.pnlButtons.SideBorderBottomColor = System.Drawing.Color.Transparent;
-            this.pnlButtons.SideBorderTopColor = System.Drawing.Color.Transparent;
-            this.pnlButtons.SideBorderWidth = 1;
-            this.pnlButtons.Size = new System.Drawing.Size(278, 35);
-            this.pnlButtons.TabIndex = 5;
+            this.pnlForm.Controls.Add(this.lblTitle);
+            this.pnlForm.Controls.Add(this.pnlMain);
+            this.pnlForm.Controls.Add(this.pnlBas);
+            this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlForm.Location = new System.Drawing.Point(0, 0);
+            this.pnlForm.Name = "pnlForm";
+            this.pnlForm.Size = new System.Drawing.Size(257, 153);
+            this.pnlForm.TabIndex = 4;
+            this.pnlForm.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlForm_Paint);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.BackColor = System.Drawing.Color.Black;
+            this.lblTitle.DisabledForeColor = System.Drawing.Color.Gray;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.lblTitle.MinimumSize = new System.Drawing.Size(16, 16);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.SideBorder = GlassComponents.Controls.SideBorder.Both;
+            this.lblTitle.SideBorderBottomColor = System.Drawing.Color.Black;
+            this.lblTitle.SideBorderTopColor = System.Drawing.Color.Transparent;
+            this.lblTitle.SideBorderWidth = 1;
+            this.lblTitle.Size = new System.Drawing.Size(257, 31);
+            this.lblTitle.TabIndex = 4;
+            this.lblTitle.Text = "Title";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseMove);
+            this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
+            this.lblTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseUp);
             // 
             // InformationBoxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 121);
-            this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.pnlBas);
+            this.ClientSize = new System.Drawing.Size(257, 153);
+            this.Controls.Add(this.pnlForm);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -151,6 +187,7 @@ namespace InfoBox
             this.pnlMain.ResumeLayout(false);
             this.pnlIcon.ResumeLayout(false);
             this.pnlText.ResumeLayout(false);
+            this.pnlForm.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -165,5 +202,7 @@ namespace InfoBox
         private System.Windows.Forms.Panel pnlText;
         private System.Windows.Forms.CheckBox chbDoNotShow;
         private GlassComponents.Controls.Panel pnlButtons;
+        private System.Windows.Forms.Panel pnlForm;
+        private GlassComponents.Controls.Label lblTitle;
     }
 }
