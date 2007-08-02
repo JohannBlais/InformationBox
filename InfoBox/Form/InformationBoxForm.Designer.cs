@@ -136,6 +136,7 @@ namespace InfoBox
             // 
             // pnlForm
             // 
+            this.pnlForm.BackColor = System.Drawing.SystemColors.Control;
             this.pnlForm.Controls.Add(this.lblTitle);
             this.pnlForm.Controls.Add(this.pnlMain);
             this.pnlForm.Controls.Add(this.pnlBas);

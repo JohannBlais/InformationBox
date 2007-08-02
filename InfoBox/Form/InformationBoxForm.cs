@@ -235,7 +235,7 @@ namespace InfoBox
             }
             else if (_style == InformationBoxStyle.Standard)
             {
-                pnlButtons.BackColor = Color.Silver;
+                pnlButtons.BackColor = SystemColors.Control;
                 FormBorderStyle = FormBorderStyle.FixedDialog;
                 lblTitle.Visible = false;
                 pnlMain.Top -= lblTitle.Height;
