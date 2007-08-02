@@ -41,5 +41,9 @@ namespace InfoBox
         /// The message box contains two user defined buttons.
         /// </summary>
         User1User2,
+        /// <summary>
+        /// The message box contains one user defined button.
+        /// </summary>
+        User1,
     }
 }

@@ -57,6 +57,9 @@ namespace InfoBox
         private readonly HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
 
         private readonly Form _activeForm = null;
+        private bool _mouseDown = false;
+
+        private Point _lastPointerPosition;
 
         #endregion Attributes
 
@@ -74,6 +77,7 @@ namespace InfoBox
             // Apply default font for message boxes
             Font = SystemFonts.MessageBoxFont;
             lblText.Font = SystemFonts.MessageBoxFont;
+            lblTitle.Font = SystemFonts.CaptionFont;
 
             lblText.Text = text;
         }
@@ -96,9 +100,19 @@ namespace InfoBox
                 // Or Help file if the string contains a file name
                 if (parameter is string)
                 {
-                    if      (stringCount == 0) Text = (string) parameter;
-                    else if (stringCount == 1) _helpFile = (string) parameter;
-                    else if (stringCount == 2) _helpTopic = (string) parameter;
+                    if (stringCount == 0)
+                    {
+                        Text = (string) parameter;
+                        lblTitle.Text = (string) parameter;
+                    }
+                    else if (stringCount == 1)
+                    {
+                        _helpFile = (string) parameter;
+                    }
+                    else if (stringCount == 2)
+                    {
+                        _helpTopic = (string) parameter;
+                    }
                     stringCount++;
                 }
                 // Buttons
@@ -215,11 +229,17 @@ namespace InfoBox
         {
             if (_style == InformationBoxStyle.Modern)
             {
-                BackColor = Color.Silver;
+                pnlForm.BackColor = Color.Silver;
+                FormBorderStyle = FormBorderStyle.None;
+                lblTitle.Visible = true;
             }
             else if (_style == InformationBoxStyle.Standard)
             {
                 pnlButtons.BackColor = Color.Silver;
+                FormBorderStyle = FormBorderStyle.FixedDialog;
+                lblTitle.Visible = false;
+                pnlMain.Top -= lblTitle.Height;
+                pnlButtons.SideBorder = GlassComponents.Controls.SideBorder.None;
             }
         }
 
@@ -347,6 +367,10 @@ namespace InfoBox
             int textHeight = lblText.Height;
 
             totalHeight = Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2 + pnlBas.Height;
+            pnlMain.Size = new Size(totalWidth, Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2);
+
+            if (_style == InformationBoxStyle.Modern)
+                totalHeight += lblTitle.Height;
 
             #endregion Height
 
@@ -561,7 +585,8 @@ namespace InfoBox
             // User1
             if (_buttons == InformationBoxButtons.OKCancelUser1 ||
                 _buttons == InformationBoxButtons.User1User2 ||
-                _buttons == InformationBoxButtons.YesNoUser1)
+                _buttons == InformationBoxButtons.YesNoUser1 ||
+                _buttons == InformationBoxButtons.User1)
             {
                 AddButton(_buttonUser1, "User1", _buttonUser1Text);
             }
@@ -717,6 +742,62 @@ namespace InfoBox
         {
             if (_result == InformationBoxResult.None)
                 _result = InformationBoxResult.Cancel;
+        }
+
+        /// <summary>
+        /// Handles the Paint event of the pnlForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
+        private void pnlForm_Paint(object sender, PaintEventArgs e)
+        {
+            if (_style == InformationBoxStyle.Modern)
+                ControlPaint.DrawBorder(e.Graphics, pnlForm.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the lblTitle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        private void lblTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _lastPointerPosition = e.Location;
+                _mouseDown = true;
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the lblTitle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        private void lblTitle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!_mouseDown)
+                return;
+
+            Point location = DesktopLocation;
+
+            location.Offset(new Point(e.Location.X - _lastPointerPosition.X,
+                                      e.Location.Y - _lastPointerPosition.Y));
+
+            DesktopLocation = location;
+        }
+
+        /// <summary>
+        /// Handles the MouseUp event of the lblTitle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        private void lblTitle_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _mouseDown = false;
+            }
         }
 
         #endregion Event handling

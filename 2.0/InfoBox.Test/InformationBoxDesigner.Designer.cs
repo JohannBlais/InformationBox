@@ -92,8 +92,9 @@ namespace InfoBox.Test
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.clbCheckBox = new System.Windows.Forms.CheckedListBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.rdbStyleStandard = new System.Windows.Forms.RadioButton();
             this.rdbStyleModern = new System.Windows.Forms.RadioButton();
+            this.rdbStyleStandard = new System.Windows.Forms.RadioButton();
+            this.rdbUser1 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -159,6 +160,7 @@ namespace InfoBox.Test
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rdbUser1);
             this.groupBox2.Controls.Add(this.rdbUser1User2);
             this.groupBox2.Controls.Add(this.rdbOKCancelUser1);
             this.groupBox2.Controls.Add(this.rdbYesNoUser1);
@@ -775,6 +777,16 @@ namespace InfoBox.Test
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Style";
             // 
+            // rdbStyleModern
+            // 
+            this.rdbStyleModern.AutoSize = true;
+            this.rdbStyleModern.Location = new System.Drawing.Point(147, 18);
+            this.rdbStyleModern.Name = "rdbStyleModern";
+            this.rdbStyleModern.Size = new System.Drawing.Size(61, 17);
+            this.rdbStyleModern.TabIndex = 1;
+            this.rdbStyleModern.Text = "Modern";
+            this.rdbStyleModern.UseVisualStyleBackColor = true;
+            // 
             // rdbStyleStandard
             // 
             this.rdbStyleStandard.AutoSize = true;
@@ -787,15 +799,15 @@ namespace InfoBox.Test
             this.rdbStyleStandard.Text = "Standard";
             this.rdbStyleStandard.UseVisualStyleBackColor = true;
             // 
-            // rdbStyleModern
+            // rdbUser1
             // 
-            this.rdbStyleModern.AutoSize = true;
-            this.rdbStyleModern.Location = new System.Drawing.Point(147, 18);
-            this.rdbStyleModern.Name = "rdbStyleModern";
-            this.rdbStyleModern.Size = new System.Drawing.Size(61, 17);
-            this.rdbStyleModern.TabIndex = 1;
-            this.rdbStyleModern.Text = "Modern";
-            this.rdbStyleModern.UseVisualStyleBackColor = true;
+            this.rdbUser1.AutoSize = true;
+            this.rdbUser1.Location = new System.Drawing.Point(147, 99);
+            this.rdbUser1.Name = "rdbUser1";
+            this.rdbUser1.Size = new System.Drawing.Size(53, 17);
+            this.rdbUser1.TabIndex = 9;
+            this.rdbUser1.Text = "User1";
+            this.rdbUser1.UseVisualStyleBackColor = true;
             // 
             // InformationBoxDesigner
             // 
@@ -926,6 +938,7 @@ namespace InfoBox.Test
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.RadioButton rdbStyleModern;
         private System.Windows.Forms.RadioButton rdbStyleStandard;
+        private System.Windows.Forms.RadioButton rdbUser1;
 
     }
 }
