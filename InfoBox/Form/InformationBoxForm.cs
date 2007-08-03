@@ -608,6 +608,7 @@ namespace InfoBox
 			}
 
 			lblText.Size = _measureGraphics.MeasureString(lblText.Text, lblText.Font).ToSize();
+			lblText.Width += BORDER_PADDING;
 		}
 
 		#endregion Text
@@ -674,7 +675,8 @@ namespace InfoBox
 			// User1
 			if (_buttons == InformationBoxButtons.OKCancelUser1 ||
 				_buttons == InformationBoxButtons.User1User2 ||
-				_buttons == InformationBoxButtons.YesNoUser1)
+				_buttons == InformationBoxButtons.YesNoUser1 ||
+				_buttons == InformationBoxButtons.User1)
 			{
 				AddButton(_buttonUser1, "User1", _buttonUser1Text);
 			}
