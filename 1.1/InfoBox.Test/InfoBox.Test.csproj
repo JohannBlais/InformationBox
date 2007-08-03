@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{4DAE5B95-3C38-4EF6-9716-3CB6AD3677C9}"
         SccProjectName = "SAK"
@@ -120,6 +120,10 @@
                     RelPath = "InformationBoxDesigner.resx"
                     DependentUpon = "InformationBoxDesigner.cs"
                     BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "key.snk"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Program.cs"
