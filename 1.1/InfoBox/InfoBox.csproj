@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.3077"
+        ProductVersion = "7.10.6030"
         SchemaVersion = "2.0"
         ProjectGuid = "{76C2491C-694D-454E-AB06-6C31C49C69D4}"
         SccProjectName = "SAK"
@@ -170,6 +170,10 @@
                 <File
                     RelPath = "Properties\AssemblyInfo.cs"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Properties\key.snk"
+                    BuildAction = "None"
                 />
                 <File
                     RelPath = "Properties\Resources.fr.resx"
