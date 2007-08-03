@@ -13,6 +13,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Properties\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,6 +125,7 @@
     <None Include="Resources\printer.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\key.snk" />
     <None Include="Resources\scanner.ico" />
   </ItemGroup>
   <ItemGroup>
