@@ -59,9 +59,13 @@ namespace InfoBox
         ///     <term><see cref="System.Windows.Forms.HelpNavigator"/></term>
         ///     <description>the Help content. You can use the following values for navigator: TableOfContents, Find, Index, or Topic.</description>
         /// </item>
-        /// /// <item>
+        /// <item>
         ///     <term><see cref="InformationBoxCheckBox"/></term>
         ///     <description>whether the "Do not show this dialog again" checkbox is displayed or not.</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="AutoCloseParameters"/></term>
+        ///     <description>The parameters for the auto-close feature.</description>
         /// </item>
         /// </list>
         /// </summary>
@@ -127,6 +131,10 @@ namespace InfoBox
         /// 			<term><see cref="InformationBoxCheckBox"/></term>
         /// 			<description>whether the "Do not show this dialog again" checkbox is displayed or not.</description>
         /// 		</item>
+        ///         <item>
+        ///             <term><see cref="AutoCloseParameters"/></term>
+        ///             <description>The parameters for the auto-close feature.</description>
+        ///         </item>
         /// 	</list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>

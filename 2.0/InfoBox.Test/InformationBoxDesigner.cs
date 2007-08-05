@@ -8,11 +8,18 @@ namespace InfoBox.Test
 
     public partial class InformationBoxDesigner : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxDesigner"/> class.
+        /// </summary>
         public InformationBoxDesigner()
         {
             InitializeComponent();
 
             LoadIcons();
+            LoadButtons();
+            LoadResults();
+
+            LoadBindings();
         }
 
         /// <summary>
@@ -24,6 +31,45 @@ namespace InfoBox.Test
             {
                 ddlIcons.Items.Add(icon);
             }
+        }
+
+        /// <summary>
+        /// Loads the buttons.
+        /// </summary>
+        private void LoadButtons()
+        {
+            foreach (InformationBoxDefaultButton icon in Enum.GetValues(typeof(InformationBoxDefaultButton)))
+            {
+                ddlAutoCloseButton.Items.Add(icon);
+            }
+        }
+
+        /// <summary>
+        /// Loads the results.
+        /// </summary>
+        private void LoadResults()
+        {
+            foreach (InformationBoxResult icon in Enum.GetValues(typeof(InformationBoxResult)))
+            {
+                ddlAutoCloseResult.Items.Add(icon);
+            }
+        }
+
+        /// <summary>
+        /// Loads the bindings.
+        /// </summary>
+        private void LoadBindings()
+        {
+            rdbAutoCloseButton.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
+            rdbAutoCloseResult.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
+            nudAutoCloseSeconds.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
+            lblAutoCloseSeconds.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
+
+            lblAutoCloseButton.DataBindings.Add("Enabled", rdbAutoCloseButton, "Checked");
+            ddlAutoCloseButton.DataBindings.Add("Enabled", rdbAutoCloseButton, "Checked");
+
+            lblAutoCloseResult.DataBindings.Add("Enabled", rdbAutoCloseResult, "Checked");
+            ddlAutoCloseResult.DataBindings.Add("Enabled", rdbAutoCloseResult, "Checked");
         }
 
         /// <summary>
@@ -130,6 +176,38 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the auto close.
+        /// </summary>
+        /// <returns></returns>
+        private AutoCloseParameters GetAutoClose()
+        {
+            if (!chbActivateAutoClose.Checked)
+                return null;
+
+            if (nudAutoCloseSeconds.Value == 30 && (!rdbAutoCloseButton.Checked || ddlAutoCloseButton.SelectedIndex == -1)
+                                                && (!rdbAutoCloseResult.Checked || ddlAutoCloseResult.SelectedIndex == -1))
+            {
+                return AutoCloseParameters.Default;
+            }
+
+            if (rdbAutoCloseButton.Checked && ddlAutoCloseButton.SelectedIndex != -1)
+            {
+                return new AutoCloseParameters(Convert.ToInt32(nudAutoCloseSeconds.Value),
+                                               (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton),
+                                                                                        ddlAutoCloseButton.SelectedItem.ToString()));
+            }
+
+            if (rdbAutoCloseResult.Checked && ddlAutoCloseResult.SelectedIndex != -1)
+            {
+                return new AutoCloseParameters(Convert.ToInt32(nudAutoCloseSeconds.Value),
+                                               (InformationBoxResult) Enum.Parse(typeof(InformationBoxResult),
+                                                                                 ddlAutoCloseResult.SelectedItem.ToString()));
+            }
+
+            return new AutoCloseParameters(Convert.ToInt32(nudAutoCloseSeconds.Value));
+        }
+
+        /// <summary>
         /// Gets the style.
         /// </summary>
         /// <returns></returns>
@@ -154,6 +232,7 @@ namespace InfoBox.Test
             HelpNavigator navigator = GetHelpNavigator();
             InformationBoxCheckBox checkState = GetCheckBoxState();
             InformationBoxStyle style = GetStyle();
+            AutoCloseParameters autoClose = GetAutoClose();
 
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -221,7 +300,31 @@ namespace InfoBox.Test
             }
 
             if (style != InformationBoxStyle.Standard)
-                codeBuilder.AppendFormat("InformationBoxStyle.{0}", style);
+                codeBuilder.AppendFormat("InformationBoxStyle.{0}, ", style);
+
+            if (chbActivateAutoClose.Checked)
+            {
+                if (autoClose.Seconds == AutoCloseParameters.Default.Seconds && autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && autoClose.Result == InformationBoxResult.None)
+                {
+                    codeBuilder.Append("AutoCloseParameters.Default, ");
+                }
+                else
+                {
+                    if (rdbAutoCloseButton.Checked && ddlAutoCloseButton.SelectedIndex != -1)
+                    {
+                        codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", Convert.ToInt32(nudAutoCloseSeconds.Value), (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), ddlAutoCloseButton.SelectedItem.ToString()));
+                    }
+
+                    else if (rdbAutoCloseResult.Checked && ddlAutoCloseResult.SelectedIndex != -1)
+                    {
+                        codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxResult.{1}), ", Convert.ToInt32(nudAutoCloseSeconds.Value), (InformationBoxResult)Enum.Parse(typeof(InformationBoxResult), ddlAutoCloseResult.SelectedItem.ToString()));
+                    }
+                    else
+                    {
+                        codeBuilder.AppendFormat("new AutoCloseParameters({0}), ", Convert.ToInt32(nudAutoCloseSeconds.Value));
+                    }
+                }
+            }
 
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
@@ -254,14 +357,15 @@ namespace InfoBox.Test
             InformationBoxCheckBox checkState = GetCheckBoxState();
             CheckState state = 0;
             InformationBoxStyle style = GetStyle();
+            AutoCloseParameters autoClose = GetAutoClose();
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose);
             }
             else
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose);
             }
 
             if (checkState != 0)

@@ -28,6 +28,7 @@ namespace InfoBox
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxForm));
             this.lblText = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
@@ -39,6 +40,7 @@ namespace InfoBox
             this.pnlText = new System.Windows.Forms.Panel();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.lblTitle = new GlassComponents.Controls.Label();
+            this.tmrAutoClose = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.pnlBas.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -207,5 +209,6 @@ namespace InfoBox
         private GlassComponents.Controls.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlForm;
         private GlassComponents.Controls.Label lblTitle;
+        private System.Windows.Forms.Timer tmrAutoClose;
     }
 }
