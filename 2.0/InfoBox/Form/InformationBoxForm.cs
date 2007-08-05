@@ -668,6 +668,41 @@ namespace InfoBox
 
         #endregion Box initialization
 
+        #region Button click
+
+        /// <summary>
+        /// Handles the buttons.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        private void HandleButton(Control sender)
+        {
+            Control senderControl = (Control)sender;
+            switch (senderControl.Name)
+            {
+                case "Abort": _result = InformationBoxResult.Abort; break;
+                case "OK": _result = InformationBoxResult.OK; break;
+                case "Yes": _result = InformationBoxResult.Yes; break;
+                case "Retry": _result = InformationBoxResult.Retry; break;
+                case "No": _result = InformationBoxResult.No; break;
+                case "Cancel": _result = InformationBoxResult.Cancel; break;
+                case "Ignore": _result = InformationBoxResult.Ignore; break;
+                case "User1": _result = InformationBoxResult.User1; break;
+                case "User2": _result = InformationBoxResult.User2; break;
+                default: _result = InformationBoxResult.None; break;
+            }
+
+            if (senderControl.Name.Equals("Help"))
+            {
+                OpenHelp();
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
+        }
+
+        #endregion Button click
+
         #region Help
 
         private void OpenHelp()
@@ -707,29 +742,7 @@ namespace InfoBox
         {
             if (sender is Control)
             {
-                Control senderControl = (Control)sender;
-                switch (senderControl.Name)
-                {
-                    case "Abort": _result = InformationBoxResult.Abort; break;
-                    case "OK": _result = InformationBoxResult.OK; break;
-                    case "Yes": _result = InformationBoxResult.Yes; break;
-                    case "Retry": _result = InformationBoxResult.Retry; break;
-                    case "No": _result = InformationBoxResult.No; break;
-                    case "Cancel": _result = InformationBoxResult.Cancel; break;
-                    case "Ignore": _result = InformationBoxResult.Ignore; break;
-                    case "User1": _result = InformationBoxResult.User1; break;
-                    case "User2": _result = InformationBoxResult.User2; break;
-                    default: _result = InformationBoxResult.None; break;
-                }
-
-                if (senderControl.Name.Equals("Help"))
-                {
-                    OpenHelp();
-                }
-                else
-                {
-                    DialogResult = DialogResult.OK;
-                }
+                HandleButton((Control) sender);
             }
         }
 
@@ -800,6 +813,38 @@ namespace InfoBox
             }
         }
 
-        #endregion Event handling
+        /// <summary>
+        /// Handles the KeyDown event of the InformationBoxForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
+        private void InformationBoxForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+
+            if (_style == InformationBoxStyle.Modern)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
+                    {
+                        HandleButton(pnlButtons.Controls[0]);
+                    }
+                    else if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
+                    {
+                        HandleButton(pnlButtons.Controls[1]);
+                    }
+                    else if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
+                    {
+                        HandleButton(pnlButtons.Controls[2]);
+                    }
+                }
+            }
+        }
+
+        #endregion Event handling        
     }
 }

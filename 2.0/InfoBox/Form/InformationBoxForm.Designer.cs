@@ -165,8 +165,8 @@ namespace InfoBox
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Title";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseMove);
             this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
+            this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseMove);
             this.lblTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseUp);
             // 
             // InformationBoxForm
@@ -178,11 +178,13 @@ namespace InfoBox
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InformationBoxForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InformationBox_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InformationBoxForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.pnlBas.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
