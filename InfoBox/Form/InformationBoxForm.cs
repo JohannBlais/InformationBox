@@ -31,6 +31,7 @@ namespace InfoBox
         private readonly InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
         private readonly InformationBoxCheckBox _checkBox = 0;
         private readonly InformationBoxStyle _style = InformationBoxStyle.Standard;
+        private readonly AutoCloseParameters _autoClose = null;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -60,6 +61,8 @@ namespace InfoBox
         private bool _mouseDown = false;
 
         private Point _lastPointerPosition;
+
+        private int _elapsedTime = 0;
 
         #endregion Attributes
 
@@ -95,7 +98,9 @@ namespace InfoBox
 
             foreach (object parameter in parameters)
             {
-                
+                if (null == parameter)
+                    continue;
+
                 // Simple string -> caption
                 // Or Help file if the string contains a file name
                 if (parameter is string)
@@ -178,6 +183,11 @@ namespace InfoBox
                 {
                     _style = (InformationBoxStyle) parameter;
                 }
+                // Auto-close parameters
+                else if (parameter is AutoCloseParameters)
+                {
+                    _autoClose = (AutoCloseParameters) parameter;
+                }
             }
         }
 
@@ -199,6 +209,7 @@ namespace InfoBox
             SetFocus();
             SetPosition();
             SetWindowStyle();
+            SetAutoClose();
             ShowDialog();
 
             return _result;
@@ -219,6 +230,23 @@ namespace InfoBox
         #endregion Show
 
         #region Box initialization
+
+        #region Auto close
+
+        /// <summary>
+        /// Sets the auto close parameters.
+        /// </summary>
+        private void SetAutoClose()
+        {
+            if (null == _autoClose)
+                return;
+
+            tmrAutoClose.Interval = 1000;
+            tmrAutoClose.Tick += tmrAutoClose_Tick;
+            tmrAutoClose.Start();
+        }
+
+        #endregion Auto close
 
         #region Style
 
@@ -843,6 +871,92 @@ namespace InfoBox
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Handles the Tick event of the tmrAutoClose control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        void tmrAutoClose_Tick(object sender, EventArgs e)
+        {
+            if (_elapsedTime == _autoClose.Seconds)
+            {
+                tmrAutoClose.Stop();
+
+                switch (_autoClose.Mode)
+                {
+                    case AutoCloseDefinedParameters.Button:
+                        if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
+                            HandleButton(pnlButtons.Controls[0]);
+                        else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
+                            HandleButton(pnlButtons.Controls[1]);
+                        else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
+                            HandleButton(pnlButtons.Controls[2]);
+                        return;
+                    case AutoCloseDefinedParameters.TimeOnly:
+                        if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
+                            HandleButton(pnlButtons.Controls[0]);
+                        else if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
+                            HandleButton(pnlButtons.Controls[1]);
+                        else if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
+                            HandleButton(pnlButtons.Controls[2]);
+                        return;
+                    case AutoCloseDefinedParameters.Result:
+                        _result = _autoClose.Result;
+                        DialogResult = DialogResult.OK;
+                        return;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                Control buttonToUpdate = null;
+                if (_autoClose.Mode == AutoCloseDefinedParameters.Button)
+                {
+                    if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
+                        buttonToUpdate = pnlButtons.Controls[0];
+                    else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
+                        buttonToUpdate = pnlButtons.Controls[1];
+                    else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
+                        buttonToUpdate = pnlButtons.Controls[2];
+                }
+                else
+                {
+                    if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
+                        buttonToUpdate = pnlButtons.Controls[0];
+                    else if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
+                        buttonToUpdate = pnlButtons.Controls[1];
+                    else if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
+                        buttonToUpdate = pnlButtons.Controls[2];
+                }
+
+                if (null != buttonToUpdate)
+                {
+                    Regex extractLabel = new Regex(@".*?\(\d+\)");
+
+                    if (buttonToUpdate is Button)
+                    {
+                        Button button = (Button) buttonToUpdate;
+                        if (extractLabel.IsMatch(button.Text))
+                            button.Text = String.Format("{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
+                        else
+                            button.Text = String.Format("{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
+                    }
+                    else if (buttonToUpdate is GlassComponents.Controls.Button)
+                    {
+                        GlassComponents.Controls.Button button = (GlassComponents.Controls.Button) buttonToUpdate;
+                        if (extractLabel.IsMatch(button.Text))
+                            button.Text = String.Format("{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
+                        else
+                            button.Text = String.Format("{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
+                    }
+                }
+            }
+
+
+            _elapsedTime++;
         }
 
         #endregion Event handling        

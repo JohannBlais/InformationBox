@@ -34,6 +34,7 @@ namespace InfoBox.Test
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdbUser1 = new System.Windows.Forms.RadioButton();
             this.rdbUser1User2 = new System.Windows.Forms.RadioButton();
             this.rdbOKCancelUser1 = new System.Windows.Forms.RadioButton();
             this.rdbYesNoUser1 = new System.Windows.Forms.RadioButton();
@@ -94,7 +95,16 @@ namespace InfoBox.Test
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.rdbStyleModern = new System.Windows.Forms.RadioButton();
             this.rdbStyleStandard = new System.Windows.Forms.RadioButton();
-            this.rdbUser1 = new System.Windows.Forms.RadioButton();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.chbActivateAutoClose = new System.Windows.Forms.CheckBox();
+            this.lblAutoCloseSeconds = new System.Windows.Forms.Label();
+            this.ddlAutoCloseResult = new System.Windows.Forms.ComboBox();
+            this.lblAutoCloseResult = new System.Windows.Forms.Label();
+            this.ddlAutoCloseButton = new System.Windows.Forms.ComboBox();
+            this.lblAutoCloseButton = new System.Windows.Forms.Label();
+            this.rdbAutoCloseButton = new System.Windows.Forms.RadioButton();
+            this.rdbAutoCloseResult = new System.Windows.Forms.RadioButton();
+            this.nudAutoCloseSeconds = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -110,6 +120,8 @@ namespace InfoBox.Test
             this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -176,6 +188,16 @@ namespace InfoBox.Test
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buttons";
+            // 
+            // rdbUser1
+            // 
+            this.rdbUser1.AutoSize = true;
+            this.rdbUser1.Location = new System.Drawing.Point(147, 99);
+            this.rdbUser1.Name = "rdbUser1";
+            this.rdbUser1.Size = new System.Drawing.Size(53, 17);
+            this.rdbUser1.TabIndex = 9;
+            this.rdbUser1.Text = "User1";
+            this.rdbUser1.UseVisualStyleBackColor = true;
             // 
             // rdbUser1User2
             // 
@@ -326,7 +348,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(453, 382);
+            this.btnShow.Location = new System.Drawing.Point(317, 420);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -385,7 +407,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 424);
+            this.txbCode.Location = new System.Drawing.Point(12, 462);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -396,7 +418,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(190, 382);
+            this.btnGenerate.Location = new System.Drawing.Point(63, 420);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -652,7 +674,7 @@ namespace InfoBox.Test
             // chbHelpButton
             // 
             this.chbHelpButton.AutoSize = true;
-            this.chbHelpButton.Location = new System.Drawing.Point(19, 19);
+            this.chbHelpButton.Location = new System.Drawing.Point(11, 19);
             this.chbHelpButton.Name = "chbHelpButton";
             this.chbHelpButton.Size = new System.Drawing.Size(111, 17);
             this.chbHelpButton.TabIndex = 0;
@@ -799,21 +821,117 @@ namespace InfoBox.Test
             this.rdbStyleStandard.Text = "Standard";
             this.rdbStyleStandard.UseVisualStyleBackColor = true;
             // 
-            // rdbUser1
+            // groupBox16
             // 
-            this.rdbUser1.AutoSize = true;
-            this.rdbUser1.Location = new System.Drawing.Point(147, 99);
-            this.rdbUser1.Name = "rdbUser1";
-            this.rdbUser1.Size = new System.Drawing.Size(53, 17);
-            this.rdbUser1.TabIndex = 9;
-            this.rdbUser1.Text = "User1";
-            this.rdbUser1.UseVisualStyleBackColor = true;
+            this.groupBox16.Controls.Add(this.nudAutoCloseSeconds);
+            this.groupBox16.Controls.Add(this.rdbAutoCloseResult);
+            this.groupBox16.Controls.Add(this.rdbAutoCloseButton);
+            this.groupBox16.Controls.Add(this.lblAutoCloseButton);
+            this.groupBox16.Controls.Add(this.ddlAutoCloseButton);
+            this.groupBox16.Controls.Add(this.lblAutoCloseResult);
+            this.groupBox16.Controls.Add(this.ddlAutoCloseResult);
+            this.groupBox16.Controls.Add(this.lblAutoCloseSeconds);
+            this.groupBox16.Controls.Add(this.chbActivateAutoClose);
+            this.groupBox16.Location = new System.Drawing.Point(552, 347);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(264, 100);
+            this.groupBox16.TabIndex = 19;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "AutoClose";
+            // 
+            // chbActivateAutoClose
+            // 
+            this.chbActivateAutoClose.AutoSize = true;
+            this.chbActivateAutoClose.Location = new System.Drawing.Point(11, 19);
+            this.chbActivateAutoClose.Name = "chbActivateAutoClose";
+            this.chbActivateAutoClose.Size = new System.Drawing.Size(65, 17);
+            this.chbActivateAutoClose.TabIndex = 0;
+            this.chbActivateAutoClose.Text = "Activate";
+            this.chbActivateAutoClose.UseVisualStyleBackColor = true;
+            // 
+            // lblAutoCloseSeconds
+            // 
+            this.lblAutoCloseSeconds.AutoSize = true;
+            this.lblAutoCloseSeconds.Location = new System.Drawing.Point(150, 20);
+            this.lblAutoCloseSeconds.Name = "lblAutoCloseSeconds";
+            this.lblAutoCloseSeconds.Size = new System.Drawing.Size(49, 13);
+            this.lblAutoCloseSeconds.TabIndex = 2;
+            this.lblAutoCloseSeconds.Text = "Seconds";
+            // 
+            // ddlAutoCloseResult
+            // 
+            this.ddlAutoCloseResult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlAutoCloseResult.Location = new System.Drawing.Point(84, 70);
+            this.ddlAutoCloseResult.Name = "ddlAutoCloseResult";
+            this.ddlAutoCloseResult.Size = new System.Drawing.Size(165, 21);
+            this.ddlAutoCloseResult.TabIndex = 3;
+            // 
+            // lblAutoCloseResult
+            // 
+            this.lblAutoCloseResult.AutoSize = true;
+            this.lblAutoCloseResult.Location = new System.Drawing.Point(33, 73);
+            this.lblAutoCloseResult.Name = "lblAutoCloseResult";
+            this.lblAutoCloseResult.Size = new System.Drawing.Size(37, 13);
+            this.lblAutoCloseResult.TabIndex = 4;
+            this.lblAutoCloseResult.Text = "Result";
+            // 
+            // ddlAutoCloseButton
+            // 
+            this.ddlAutoCloseButton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlAutoCloseButton.Location = new System.Drawing.Point(84, 43);
+            this.ddlAutoCloseButton.Name = "ddlAutoCloseButton";
+            this.ddlAutoCloseButton.Size = new System.Drawing.Size(165, 21);
+            this.ddlAutoCloseButton.TabIndex = 5;
+            // 
+            // lblAutoCloseButton
+            // 
+            this.lblAutoCloseButton.AutoSize = true;
+            this.lblAutoCloseButton.Location = new System.Drawing.Point(32, 46);
+            this.lblAutoCloseButton.Name = "lblAutoCloseButton";
+            this.lblAutoCloseButton.Size = new System.Drawing.Size(38, 13);
+            this.lblAutoCloseButton.TabIndex = 6;
+            this.lblAutoCloseButton.Text = "Button";
+            // 
+            // rdbAutoCloseButton
+            // 
+            this.rdbAutoCloseButton.AutoSize = true;
+            this.rdbAutoCloseButton.Location = new System.Drawing.Point(11, 46);
+            this.rdbAutoCloseButton.Name = "rdbAutoCloseButton";
+            this.rdbAutoCloseButton.Size = new System.Drawing.Size(14, 13);
+            this.rdbAutoCloseButton.TabIndex = 7;
+            this.rdbAutoCloseButton.TabStop = true;
+            this.rdbAutoCloseButton.UseVisualStyleBackColor = true;
+            // 
+            // rdbAutoCloseResult
+            // 
+            this.rdbAutoCloseResult.AutoSize = true;
+            this.rdbAutoCloseResult.Location = new System.Drawing.Point(11, 73);
+            this.rdbAutoCloseResult.Name = "rdbAutoCloseResult";
+            this.rdbAutoCloseResult.Size = new System.Drawing.Size(14, 13);
+            this.rdbAutoCloseResult.TabIndex = 8;
+            this.rdbAutoCloseResult.TabStop = true;
+            this.rdbAutoCloseResult.UseVisualStyleBackColor = true;
+            // 
+            // nudAutoCloseSeconds
+            // 
+            this.nudAutoCloseSeconds.InterceptArrowKeys = false;
+            this.nudAutoCloseSeconds.Location = new System.Drawing.Point(207, 18);
+            this.nudAutoCloseSeconds.Name = "nudAutoCloseSeconds";
+            this.nudAutoCloseSeconds.Size = new System.Drawing.Size(42, 20);
+            this.nudAutoCloseSeconds.TabIndex = 9;
+            this.nudAutoCloseSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudAutoCloseSeconds.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 503);
+            this.ClientSize = new System.Drawing.Size(828, 541);
+            this.Controls.Add(this.groupBox16);
             this.Controls.Add(this.groupBox15);
             this.Controls.Add(this.groupBox14);
             this.Controls.Add(this.groupBox13);
@@ -865,6 +983,9 @@ namespace InfoBox.Test
             this.groupBox14.ResumeLayout(false);
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -939,6 +1060,16 @@ namespace InfoBox.Test
         private System.Windows.Forms.RadioButton rdbStyleModern;
         private System.Windows.Forms.RadioButton rdbStyleStandard;
         private System.Windows.Forms.RadioButton rdbUser1;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.CheckBox chbActivateAutoClose;
+        private System.Windows.Forms.Label lblAutoCloseSeconds;
+        private System.Windows.Forms.Label lblAutoCloseButton;
+        private System.Windows.Forms.ComboBox ddlAutoCloseButton;
+        private System.Windows.Forms.Label lblAutoCloseResult;
+        private System.Windows.Forms.ComboBox ddlAutoCloseResult;
+        private System.Windows.Forms.RadioButton rdbAutoCloseResult;
+        private System.Windows.Forms.RadioButton rdbAutoCloseButton;
+        private System.Windows.Forms.NumericUpDown nudAutoCloseSeconds;
 
     }
 }
