@@ -180,6 +180,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Properties\Resources.pt-BR.resx"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Properties\Resources.resx"
                     BuildAction = "EmbeddedResource"
                 />
