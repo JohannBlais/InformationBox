@@ -30,7 +30,6 @@ namespace InfoBox
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxForm));
-            this.lblText = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.pnlBas = new System.Windows.Forms.Panel();
             this.pnlButtons = new GlassComponents.Controls.Panel();
@@ -38,6 +37,7 @@ namespace InfoBox
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlIcon = new System.Windows.Forms.Panel();
             this.pnlText = new System.Windows.Forms.Panel();
+            this.messageText = new System.Windows.Forms.TextBox();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.lblTitle = new GlassComponents.Controls.Label();
             this.tmrAutoClose = new System.Windows.Forms.Timer(this.components);
@@ -48,15 +48,6 @@ namespace InfoBox
             this.pnlText.SuspendLayout();
             this.pnlForm.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblText
-            // 
-            this.lblText.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblText.Location = new System.Drawing.Point(81, 28);
-            this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(28, 13);
-            this.lblText.TabIndex = 0;
-            this.lblText.Text = "Text";
             // 
             // pcbIcon
             // 
@@ -129,12 +120,25 @@ namespace InfoBox
             // 
             // pnlText
             // 
-            this.pnlText.Controls.Add(this.lblText);
+            this.pnlText.Controls.Add(this.messageText);
             this.pnlText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlText.Location = new System.Drawing.Point(0, 0);
             this.pnlText.Name = "pnlText";
             this.pnlText.Size = new System.Drawing.Size(257, 68);
             this.pnlText.TabIndex = 2;
+            // 
+            // messageText
+            // 
+            this.messageText.BackColor = System.Drawing.SystemColors.Control;
+            this.messageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.messageText.Location = new System.Drawing.Point(86, 25);
+            this.messageText.Multiline = true;
+            this.messageText.Name = "messageText";
+            this.messageText.ReadOnly = true;
+            this.messageText.Size = new System.Drawing.Size(100, 20);
+            this.messageText.TabIndex = 0;
+            this.messageText.Text = "Text";
+            this.messageText.WordWrap = false;
             // 
             // pnlForm
             // 
@@ -167,8 +171,8 @@ namespace InfoBox
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Title";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
             this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseMove);
+            this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
             this.lblTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseUp);
             // 
             // InformationBoxForm
@@ -192,6 +196,7 @@ namespace InfoBox
             this.pnlMain.ResumeLayout(false);
             this.pnlIcon.ResumeLayout(false);
             this.pnlText.ResumeLayout(false);
+            this.pnlText.PerformLayout();
             this.pnlForm.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -199,7 +204,6 @@ namespace InfoBox
 
         #endregion
 
-        private System.Windows.Forms.Label lblText;
         private System.Windows.Forms.PictureBox pcbIcon;
         private System.Windows.Forms.Panel pnlBas;
         private System.Windows.Forms.Panel pnlMain;
@@ -210,5 +214,6 @@ namespace InfoBox
         private System.Windows.Forms.Panel pnlForm;
         private GlassComponents.Controls.Label lblTitle;
         private System.Windows.Forms.Timer tmrAutoClose;
+        private System.Windows.Forms.TextBox messageText;
     }
 }
