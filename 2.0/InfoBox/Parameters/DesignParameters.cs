@@ -26,9 +26,9 @@ namespace InfoBox
         }
 
         /// <summary>
-        /// Gets the color of the bars back.
+        /// Gets the back color of the bars.
         /// </summary>
-        /// <value>The color of the bars back.</value>
+        /// <value>The back color of the bars.</value>
         public Color BarsBackColor
         {
             get { return _barsBackColor; }

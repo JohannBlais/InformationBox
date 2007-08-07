@@ -5,7 +5,7 @@ namespace InfoBox
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
-    public class InformationBox
+    public static class InformationBox
     {
         #region Show
 
