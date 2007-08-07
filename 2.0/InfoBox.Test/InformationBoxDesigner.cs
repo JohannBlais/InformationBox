@@ -8,6 +8,9 @@ namespace InfoBox.Test
 
     public partial class InformationBoxDesigner : Form
     {
+        private Color _barsColor = Color.Empty;
+        private Color _formColor = Color.Empty;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxDesigner"/> class.
         /// </summary>
@@ -70,6 +73,13 @@ namespace InfoBox.Test
 
             lblAutoCloseResult.DataBindings.Add("Enabled", rdbAutoCloseResult, "Checked");
             ddlAutoCloseResult.DataBindings.Add("Enabled", rdbAutoCloseResult, "Checked");
+
+            lblColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+            lblColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+            txbColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+            txbColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+            btnColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+            btnColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
         }
 
         /// <summary>
@@ -218,6 +228,18 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the design.
+        /// </summary>
+        /// <returns></returns>
+        private DesignParameters GetDesign()
+        {
+            if (!chbCustomColors.Checked)
+                return null;
+
+            return new DesignParameters(_formColor, _barsColor);
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -233,6 +255,7 @@ namespace InfoBox.Test
             InformationBoxCheckBox checkState = GetCheckBoxState();
             InformationBoxStyle style = GetStyle();
             AutoCloseParameters autoClose = GetAutoClose();
+            DesignParameters design = GetDesign();
 
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -278,7 +301,7 @@ namespace InfoBox.Test
                 codeBuilder.AppendFormat("InformationBoxPosition.{0}, ", position);
 
             if (chbHelpButton.Checked)
-                codeBuilder.AppendFormat("{0}, ", true);
+                codeBuilder.Append("true, ");
 
             if (!String.Empty.Equals(txbHelpFile.Text))
                 codeBuilder.AppendFormat("\"{0}\", ", txbHelpFile.Text);
@@ -326,6 +349,15 @@ namespace InfoBox.Test
                 }
             }
 
+            if (null != design)
+            {
+                codeBuilder.AppendFormat(
+                        "new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ",
+                        design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
+                        design.BarsBackColor.G, design.BarsBackColor.B);
+            }
+            
+
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
 
@@ -358,14 +390,15 @@ namespace InfoBox.Test
             CheckState state = 0;
             InformationBoxStyle style = GetStyle();
             AutoCloseParameters autoClose = GetAutoClose();
+            DesignParameters design = GetDesign();
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design);
             }
             else
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design);
             }
 
             if (checkState != 0)
@@ -423,5 +456,41 @@ namespace InfoBox.Test
         {
             InformationBox.Show("Help has been requested somewhere", "Help", InformationBoxButtons.OK, InformationBoxIcon.Question);
         }
+
+        #region Colors
+
+        /// <summary>
+        /// Handles the Click event of the btnColorsBars control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void btnColorsBars_Click(object sender, EventArgs e)
+        {
+            if (dlgColor.ShowDialog() != DialogResult.OK)
+                return;
+
+            Color selected = dlgColor.Color;
+
+            txbColorsBars.Text = selected.ToString();
+            _barsColor = selected;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnColorsForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void btnColorsForm_Click(object sender, EventArgs e)
+        {
+            if (dlgColor.ShowDialog() != DialogResult.OK)
+                return;
+
+            Color selected = dlgColor.Color;
+
+            txbColorsForm.Text = selected.ToString();
+            _formColor = selected;
+        }
+
+        #endregion Colors
     }
 }

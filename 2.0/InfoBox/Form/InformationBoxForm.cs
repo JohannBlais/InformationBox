@@ -32,6 +32,7 @@ namespace InfoBox
         private readonly InformationBoxCheckBox _checkBox = 0;
         private readonly InformationBoxStyle _style = InformationBoxStyle.Standard;
         private readonly AutoCloseParameters _autoClose = null;
+        private readonly DesignParameters _design = null;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -79,10 +80,10 @@ namespace InfoBox
 
             // Apply default font for message boxes
             Font = SystemFonts.MessageBoxFont;
-            lblText.Font = SystemFonts.MessageBoxFont;
+            messageText.Font = SystemFonts.MessageBoxFont;
             lblTitle.Font = SystemFonts.CaptionFont;
 
-            lblText.Text = text;
+            messageText.Text = text;
         }
 
         /// <summary>
@@ -188,6 +189,11 @@ namespace InfoBox
                 {
                     _autoClose = (AutoCloseParameters) parameter;
                 }
+                // Design parameters
+                else if (parameter is DesignParameters)
+                {
+                    _design = (DesignParameters) parameter;
+                }
             }
         }
 
@@ -257,13 +263,44 @@ namespace InfoBox
         {
             if (_style == InformationBoxStyle.Modern)
             {
-                pnlForm.BackColor = Color.Silver;
+                Color barsBackColor = Color.Black;
+                Color formBackColor = Color.Silver;
+
+                if (null != _design)
+                {
+                    barsBackColor = _design.BarsBackColor;
+                    formBackColor = _design.FormBackColor;
+                }
+
+                pnlForm.BackColor = formBackColor;
+                messageText.BackColor = formBackColor;
+
+                pnlButtons.BackColor = barsBackColor;
+                lblTitle.BackColor = barsBackColor;
+
                 FormBorderStyle = FormBorderStyle.None;
                 lblTitle.Visible = true;
+
+                foreach(GlassComponents.Controls.Button button in pnlButtons.Controls)
+                {
+                    button.BackColor = barsBackColor;
+                }
             }
             else if (_style == InformationBoxStyle.Standard)
             {
-                pnlButtons.BackColor = SystemColors.Control;
+                Color barsBackColor = SystemColors.Control;
+                Color formBackColor = SystemColors.Control;
+
+                if (null != _design)
+                {
+                    barsBackColor = _design.BarsBackColor;
+                    formBackColor = _design.FormBackColor;
+                }
+
+                pnlButtons.BackColor = barsBackColor;
+                pnlForm.BackColor = formBackColor;
+                messageText.BackColor = formBackColor;
+
                 FormBorderStyle = FormBorderStyle.FixedDialog;
                 lblTitle.Visible = false;
                 pnlMain.Top -= lblTitle.Height;
@@ -373,7 +410,7 @@ namespace InfoBox
             }
 
             // Text width
-            iconAndTextWidth += lblText.Width + BORDER_PADDING * 2;
+            iconAndTextWidth += messageText.Width + BORDER_PADDING * 2;
 
             // Gets the maximum size
             totalWidth = Math.Max(Math.Max(Math.Max(buttonsMinWidth, iconAndTextWidth), captionWidth), checkBoxWidth);
@@ -392,7 +429,7 @@ namespace InfoBox
             if (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined)
                 iconHeight = pcbIcon.Height;
 
-            int textHeight = lblText.Height;
+            int textHeight = messageText.Height;
 
             totalHeight = Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2 + pnlBas.Height;
             pnlMain.Size = new Size(totalWidth, Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2);
@@ -413,8 +450,8 @@ namespace InfoBox
             pcbIcon.Top = BORDER_PADDING;
 
             // Text
-            lblText.Left = (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined) ? ICON_PANEL_WIDTH + BORDER_PADDING : BORDER_PADDING;
-            lblText.Top = Convert.ToInt32((pnlText.Height - lblText.Height) / 2);
+            messageText.Left = (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined) ? ICON_PANEL_WIDTH + BORDER_PADDING : BORDER_PADDING;
+            messageText.Top = Convert.ToInt32((pnlText.Height - messageText.Height) / 2);
 
             // Buttons
             SetButtonsLayout();
@@ -505,7 +542,7 @@ namespace InfoBox
         {
             if (_autoSizeMode != InformationBoxAutoSizeMode.None)
             {
-                internalText = new StringBuilder(lblText.Text);
+                internalText = new StringBuilder(messageText.Text);
                 
                 Screen currentScreen = Screen.FromControl(this);
                 int screenWidth = currentScreen.WorkingArea.Width;
@@ -521,7 +558,7 @@ namespace InfoBox
 
                     foreach (Match sentence in sentences)
                     {
-                        int sentenceLength = (int) _measureGraphics.MeasureString(sentence.Value, lblText.Font).Width;
+                        int sentenceLength = (int) _measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
                         if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                         {
                             formattedText.Append(Environment.NewLine);
@@ -542,11 +579,11 @@ namespace InfoBox
                     internalText.Replace(": ", ":" + Environment.NewLine);
                 }
 
-                lblText.Text = internalText.ToString();
+                messageText.Text = internalText.ToString();
             }
 
-            lblText.Size = _measureGraphics.MeasureString(lblText.Text, lblText.Font).ToSize();
-            lblText.Width += BORDER_PADDING;
+            messageText.Size = _measureGraphics.MeasureString(messageText.Text, messageText.Font).ToSize();
+            messageText.Width += BORDER_PADDING;
         }
 
         #endregion Text

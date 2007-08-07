@@ -96,15 +96,24 @@ namespace InfoBox.Test
             this.rdbStyleModern = new System.Windows.Forms.RadioButton();
             this.rdbStyleStandard = new System.Windows.Forms.RadioButton();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.chbActivateAutoClose = new System.Windows.Forms.CheckBox();
-            this.lblAutoCloseSeconds = new System.Windows.Forms.Label();
-            this.ddlAutoCloseResult = new System.Windows.Forms.ComboBox();
-            this.lblAutoCloseResult = new System.Windows.Forms.Label();
-            this.ddlAutoCloseButton = new System.Windows.Forms.ComboBox();
-            this.lblAutoCloseButton = new System.Windows.Forms.Label();
-            this.rdbAutoCloseButton = new System.Windows.Forms.RadioButton();
-            this.rdbAutoCloseResult = new System.Windows.Forms.RadioButton();
             this.nudAutoCloseSeconds = new System.Windows.Forms.NumericUpDown();
+            this.rdbAutoCloseResult = new System.Windows.Forms.RadioButton();
+            this.rdbAutoCloseButton = new System.Windows.Forms.RadioButton();
+            this.lblAutoCloseButton = new System.Windows.Forms.Label();
+            this.ddlAutoCloseButton = new System.Windows.Forms.ComboBox();
+            this.lblAutoCloseResult = new System.Windows.Forms.Label();
+            this.ddlAutoCloseResult = new System.Windows.Forms.ComboBox();
+            this.lblAutoCloseSeconds = new System.Windows.Forms.Label();
+            this.chbActivateAutoClose = new System.Windows.Forms.CheckBox();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.chbCustomColors = new System.Windows.Forms.CheckBox();
+            this.txbColorsBars = new System.Windows.Forms.TextBox();
+            this.txbColorsForm = new System.Windows.Forms.TextBox();
+            this.btnColorsBars = new System.Windows.Forms.Button();
+            this.btnColorsForm = new System.Windows.Forms.Button();
+            this.dlgColor = new System.Windows.Forms.ColorDialog();
+            this.lblColorsBars = new System.Windows.Forms.Label();
+            this.lblColorsForm = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -122,6 +131,7 @@ namespace InfoBox.Test
             this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).BeginInit();
+            this.groupBox17.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -348,7 +358,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(317, 420);
+            this.btnShow.Location = new System.Drawing.Point(589, 435);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -407,7 +417,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 462);
+            this.txbCode.Location = new System.Drawing.Point(12, 482);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -418,7 +428,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(63, 420);
+            this.btnGenerate.Location = new System.Drawing.Point(336, 435);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -475,7 +485,7 @@ namespace InfoBox.Test
             this.groupBox7.Controls.Add(this.rdbLayoutGroupMiddle);
             this.groupBox7.Controls.Add(this.rdbLayoutGroupRight);
             this.groupBox7.Controls.Add(this.rdbLayoutGroupLeft);
-            this.groupBox7.Location = new System.Drawing.Point(283, 196);
+            this.groupBox7.Location = new System.Drawing.Point(282, 196);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(264, 65);
             this.groupBox7.TabIndex = 10;
@@ -604,9 +614,9 @@ namespace InfoBox.Test
             // 
             this.groupBox10.Controls.Add(this.rdbPositionCenterOnScreen);
             this.groupBox10.Controls.Add(this.rdbPositionCenterOnParent);
-            this.groupBox10.Location = new System.Drawing.Point(552, 249);
+            this.groupBox10.Location = new System.Drawing.Point(552, 267);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(265, 42);
+            this.groupBox10.Size = new System.Drawing.Size(265, 45);
             this.groupBox10.TabIndex = 13;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Position";
@@ -766,7 +776,7 @@ namespace InfoBox.Test
             this.groupBox14.Controls.Add(this.clbCheckBox);
             this.groupBox14.Location = new System.Drawing.Point(552, 196);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(265, 47);
+            this.groupBox14.Size = new System.Drawing.Size(265, 65);
             this.groupBox14.TabIndex = 17;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Do not show again ?";
@@ -782,7 +792,7 @@ namespace InfoBox.Test
             "Show",
             "Checked",
             "RightAligned"});
-            this.clbCheckBox.Location = new System.Drawing.Point(11, 20);
+            this.clbCheckBox.Location = new System.Drawing.Point(6, 30);
             this.clbCheckBox.MultiColumn = true;
             this.clbCheckBox.Name = "clbCheckBox";
             this.clbCheckBox.Size = new System.Drawing.Size(254, 15);
@@ -792,9 +802,9 @@ namespace InfoBox.Test
             // 
             this.groupBox15.Controls.Add(this.rdbStyleModern);
             this.groupBox15.Controls.Add(this.rdbStyleStandard);
-            this.groupBox15.Location = new System.Drawing.Point(552, 297);
+            this.groupBox15.Location = new System.Drawing.Point(282, 374);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(265, 44);
+            this.groupBox15.Size = new System.Drawing.Size(264, 44);
             this.groupBox15.TabIndex = 18;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Style";
@@ -832,85 +842,12 @@ namespace InfoBox.Test
             this.groupBox16.Controls.Add(this.ddlAutoCloseResult);
             this.groupBox16.Controls.Add(this.lblAutoCloseSeconds);
             this.groupBox16.Controls.Add(this.chbActivateAutoClose);
-            this.groupBox16.Location = new System.Drawing.Point(552, 347);
+            this.groupBox16.Location = new System.Drawing.Point(553, 318);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(264, 100);
             this.groupBox16.TabIndex = 19;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "AutoClose";
-            // 
-            // chbActivateAutoClose
-            // 
-            this.chbActivateAutoClose.AutoSize = true;
-            this.chbActivateAutoClose.Location = new System.Drawing.Point(11, 19);
-            this.chbActivateAutoClose.Name = "chbActivateAutoClose";
-            this.chbActivateAutoClose.Size = new System.Drawing.Size(65, 17);
-            this.chbActivateAutoClose.TabIndex = 0;
-            this.chbActivateAutoClose.Text = "Activate";
-            this.chbActivateAutoClose.UseVisualStyleBackColor = true;
-            // 
-            // lblAutoCloseSeconds
-            // 
-            this.lblAutoCloseSeconds.AutoSize = true;
-            this.lblAutoCloseSeconds.Location = new System.Drawing.Point(150, 20);
-            this.lblAutoCloseSeconds.Name = "lblAutoCloseSeconds";
-            this.lblAutoCloseSeconds.Size = new System.Drawing.Size(49, 13);
-            this.lblAutoCloseSeconds.TabIndex = 2;
-            this.lblAutoCloseSeconds.Text = "Seconds";
-            // 
-            // ddlAutoCloseResult
-            // 
-            this.ddlAutoCloseResult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlAutoCloseResult.Location = new System.Drawing.Point(84, 70);
-            this.ddlAutoCloseResult.Name = "ddlAutoCloseResult";
-            this.ddlAutoCloseResult.Size = new System.Drawing.Size(165, 21);
-            this.ddlAutoCloseResult.TabIndex = 3;
-            // 
-            // lblAutoCloseResult
-            // 
-            this.lblAutoCloseResult.AutoSize = true;
-            this.lblAutoCloseResult.Location = new System.Drawing.Point(33, 73);
-            this.lblAutoCloseResult.Name = "lblAutoCloseResult";
-            this.lblAutoCloseResult.Size = new System.Drawing.Size(37, 13);
-            this.lblAutoCloseResult.TabIndex = 4;
-            this.lblAutoCloseResult.Text = "Result";
-            // 
-            // ddlAutoCloseButton
-            // 
-            this.ddlAutoCloseButton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlAutoCloseButton.Location = new System.Drawing.Point(84, 43);
-            this.ddlAutoCloseButton.Name = "ddlAutoCloseButton";
-            this.ddlAutoCloseButton.Size = new System.Drawing.Size(165, 21);
-            this.ddlAutoCloseButton.TabIndex = 5;
-            // 
-            // lblAutoCloseButton
-            // 
-            this.lblAutoCloseButton.AutoSize = true;
-            this.lblAutoCloseButton.Location = new System.Drawing.Point(32, 46);
-            this.lblAutoCloseButton.Name = "lblAutoCloseButton";
-            this.lblAutoCloseButton.Size = new System.Drawing.Size(38, 13);
-            this.lblAutoCloseButton.TabIndex = 6;
-            this.lblAutoCloseButton.Text = "Button";
-            // 
-            // rdbAutoCloseButton
-            // 
-            this.rdbAutoCloseButton.AutoSize = true;
-            this.rdbAutoCloseButton.Location = new System.Drawing.Point(11, 46);
-            this.rdbAutoCloseButton.Name = "rdbAutoCloseButton";
-            this.rdbAutoCloseButton.Size = new System.Drawing.Size(14, 13);
-            this.rdbAutoCloseButton.TabIndex = 7;
-            this.rdbAutoCloseButton.TabStop = true;
-            this.rdbAutoCloseButton.UseVisualStyleBackColor = true;
-            // 
-            // rdbAutoCloseResult
-            // 
-            this.rdbAutoCloseResult.AutoSize = true;
-            this.rdbAutoCloseResult.Location = new System.Drawing.Point(11, 73);
-            this.rdbAutoCloseResult.Name = "rdbAutoCloseResult";
-            this.rdbAutoCloseResult.Size = new System.Drawing.Size(14, 13);
-            this.rdbAutoCloseResult.TabIndex = 8;
-            this.rdbAutoCloseResult.TabStop = true;
-            this.rdbAutoCloseResult.UseVisualStyleBackColor = true;
             // 
             // nudAutoCloseSeconds
             // 
@@ -926,11 +863,163 @@ namespace InfoBox.Test
             0,
             0});
             // 
+            // rdbAutoCloseResult
+            // 
+            this.rdbAutoCloseResult.AutoSize = true;
+            this.rdbAutoCloseResult.Location = new System.Drawing.Point(11, 73);
+            this.rdbAutoCloseResult.Name = "rdbAutoCloseResult";
+            this.rdbAutoCloseResult.Size = new System.Drawing.Size(14, 13);
+            this.rdbAutoCloseResult.TabIndex = 8;
+            this.rdbAutoCloseResult.TabStop = true;
+            this.rdbAutoCloseResult.UseVisualStyleBackColor = true;
+            // 
+            // rdbAutoCloseButton
+            // 
+            this.rdbAutoCloseButton.AutoSize = true;
+            this.rdbAutoCloseButton.Location = new System.Drawing.Point(11, 46);
+            this.rdbAutoCloseButton.Name = "rdbAutoCloseButton";
+            this.rdbAutoCloseButton.Size = new System.Drawing.Size(14, 13);
+            this.rdbAutoCloseButton.TabIndex = 7;
+            this.rdbAutoCloseButton.TabStop = true;
+            this.rdbAutoCloseButton.UseVisualStyleBackColor = true;
+            // 
+            // lblAutoCloseButton
+            // 
+            this.lblAutoCloseButton.AutoSize = true;
+            this.lblAutoCloseButton.Location = new System.Drawing.Point(32, 46);
+            this.lblAutoCloseButton.Name = "lblAutoCloseButton";
+            this.lblAutoCloseButton.Size = new System.Drawing.Size(38, 13);
+            this.lblAutoCloseButton.TabIndex = 6;
+            this.lblAutoCloseButton.Text = "Button";
+            // 
+            // ddlAutoCloseButton
+            // 
+            this.ddlAutoCloseButton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlAutoCloseButton.Location = new System.Drawing.Point(84, 43);
+            this.ddlAutoCloseButton.Name = "ddlAutoCloseButton";
+            this.ddlAutoCloseButton.Size = new System.Drawing.Size(165, 21);
+            this.ddlAutoCloseButton.TabIndex = 5;
+            // 
+            // lblAutoCloseResult
+            // 
+            this.lblAutoCloseResult.AutoSize = true;
+            this.lblAutoCloseResult.Location = new System.Drawing.Point(33, 73);
+            this.lblAutoCloseResult.Name = "lblAutoCloseResult";
+            this.lblAutoCloseResult.Size = new System.Drawing.Size(37, 13);
+            this.lblAutoCloseResult.TabIndex = 4;
+            this.lblAutoCloseResult.Text = "Result";
+            // 
+            // ddlAutoCloseResult
+            // 
+            this.ddlAutoCloseResult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlAutoCloseResult.Location = new System.Drawing.Point(84, 70);
+            this.ddlAutoCloseResult.Name = "ddlAutoCloseResult";
+            this.ddlAutoCloseResult.Size = new System.Drawing.Size(165, 21);
+            this.ddlAutoCloseResult.TabIndex = 3;
+            // 
+            // lblAutoCloseSeconds
+            // 
+            this.lblAutoCloseSeconds.AutoSize = true;
+            this.lblAutoCloseSeconds.Location = new System.Drawing.Point(150, 20);
+            this.lblAutoCloseSeconds.Name = "lblAutoCloseSeconds";
+            this.lblAutoCloseSeconds.Size = new System.Drawing.Size(49, 13);
+            this.lblAutoCloseSeconds.TabIndex = 2;
+            this.lblAutoCloseSeconds.Text = "Seconds";
+            // 
+            // chbActivateAutoClose
+            // 
+            this.chbActivateAutoClose.AutoSize = true;
+            this.chbActivateAutoClose.Location = new System.Drawing.Point(11, 19);
+            this.chbActivateAutoClose.Name = "chbActivateAutoClose";
+            this.chbActivateAutoClose.Size = new System.Drawing.Size(65, 17);
+            this.chbActivateAutoClose.TabIndex = 0;
+            this.chbActivateAutoClose.Text = "Activate";
+            this.chbActivateAutoClose.UseVisualStyleBackColor = true;
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.lblColorsForm);
+            this.groupBox17.Controls.Add(this.lblColorsBars);
+            this.groupBox17.Controls.Add(this.btnColorsForm);
+            this.groupBox17.Controls.Add(this.btnColorsBars);
+            this.groupBox17.Controls.Add(this.txbColorsForm);
+            this.groupBox17.Controls.Add(this.txbColorsBars);
+            this.groupBox17.Controls.Add(this.chbCustomColors);
+            this.groupBox17.Location = new System.Drawing.Point(12, 374);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(264, 97);
+            this.groupBox17.TabIndex = 20;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "Colors";
+            // 
+            // chbCustomColors
+            // 
+            this.chbCustomColors.AutoSize = true;
+            this.chbCustomColors.Location = new System.Drawing.Point(17, 16);
+            this.chbCustomColors.Name = "chbCustomColors";
+            this.chbCustomColors.Size = new System.Drawing.Size(92, 17);
+            this.chbCustomColors.TabIndex = 0;
+            this.chbCustomColors.Text = "Custom colors";
+            this.chbCustomColors.UseVisualStyleBackColor = true;
+            // 
+            // txbColorsBars
+            // 
+            this.txbColorsBars.Location = new System.Drawing.Point(52, 39);
+            this.txbColorsBars.Name = "txbColorsBars";
+            this.txbColorsBars.Size = new System.Drawing.Size(165, 20);
+            this.txbColorsBars.TabIndex = 1;
+            // 
+            // txbColorsForm
+            // 
+            this.txbColorsForm.Location = new System.Drawing.Point(52, 65);
+            this.txbColorsForm.Name = "txbColorsForm";
+            this.txbColorsForm.Size = new System.Drawing.Size(165, 20);
+            this.txbColorsForm.TabIndex = 2;
+            // 
+            // btnColorsBars
+            // 
+            this.btnColorsBars.Location = new System.Drawing.Point(219, 37);
+            this.btnColorsBars.Name = "btnColorsBars";
+            this.btnColorsBars.Size = new System.Drawing.Size(25, 22);
+            this.btnColorsBars.TabIndex = 6;
+            this.btnColorsBars.Text = "...";
+            this.btnColorsBars.UseVisualStyleBackColor = true;
+            this.btnColorsBars.Click += new System.EventHandler(this.btnColorsBars_Click);
+            // 
+            // btnColorsForm
+            // 
+            this.btnColorsForm.Location = new System.Drawing.Point(219, 63);
+            this.btnColorsForm.Name = "btnColorsForm";
+            this.btnColorsForm.Size = new System.Drawing.Size(25, 22);
+            this.btnColorsForm.TabIndex = 7;
+            this.btnColorsForm.Text = "...";
+            this.btnColorsForm.UseVisualStyleBackColor = true;
+            this.btnColorsForm.Click += new System.EventHandler(this.btnColorsForm_Click);
+            // 
+            // lblColorsBars
+            // 
+            this.lblColorsBars.AutoSize = true;
+            this.lblColorsBars.Location = new System.Drawing.Point(23, 42);
+            this.lblColorsBars.Name = "lblColorsBars";
+            this.lblColorsBars.Size = new System.Drawing.Size(28, 13);
+            this.lblColorsBars.TabIndex = 8;
+            this.lblColorsBars.Text = "Bars";
+            // 
+            // lblColorsForm
+            // 
+            this.lblColorsForm.AutoSize = true;
+            this.lblColorsForm.Location = new System.Drawing.Point(21, 68);
+            this.lblColorsForm.Name = "lblColorsForm";
+            this.lblColorsForm.Size = new System.Drawing.Size(30, 13);
+            this.lblColorsForm.TabIndex = 9;
+            this.lblColorsForm.Text = "Form";
+            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 541);
+            this.ClientSize = new System.Drawing.Size(828, 561);
+            this.Controls.Add(this.groupBox17);
             this.Controls.Add(this.groupBox16);
             this.Controls.Add(this.groupBox15);
             this.Controls.Add(this.groupBox14);
@@ -986,6 +1075,8 @@ namespace InfoBox.Test
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).EndInit();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1070,6 +1161,15 @@ namespace InfoBox.Test
         private System.Windows.Forms.RadioButton rdbAutoCloseResult;
         private System.Windows.Forms.RadioButton rdbAutoCloseButton;
         private System.Windows.Forms.NumericUpDown nudAutoCloseSeconds;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.Button btnColorsForm;
+        private System.Windows.Forms.Button btnColorsBars;
+        private System.Windows.Forms.TextBox txbColorsForm;
+        private System.Windows.Forms.TextBox txbColorsBars;
+        private System.Windows.Forms.CheckBox chbCustomColors;
+        private System.Windows.Forms.Label lblColorsForm;
+        private System.Windows.Forms.Label lblColorsBars;
+        private System.Windows.Forms.ColorDialog dlgColor;
 
     }
 }
