@@ -52,9 +52,9 @@ namespace InfoBox.Test
             this.txbUser1 = new System.Windows.Forms.TextBox();
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.rdbButton3 = new System.Windows.Forms.RadioButton();
-            this.rdbButton2 = new System.Windows.Forms.RadioButton();
-            this.rdbButton1 = new System.Windows.Forms.RadioButton();
+            this.rdbTitleIconCustom = new System.Windows.Forms.RadioButton();
+            this.rdbTitleIconSameAsBox = new System.Windows.Forms.RadioButton();
+            this.rdbTitleIconNone = new System.Windows.Forms.RadioButton();
             this.txbCode = new System.Windows.Forms.TextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -106,14 +106,21 @@ namespace InfoBox.Test
             this.lblAutoCloseSeconds = new System.Windows.Forms.Label();
             this.chbActivateAutoClose = new System.Windows.Forms.CheckBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.chbCustomColors = new System.Windows.Forms.CheckBox();
-            this.txbColorsBars = new System.Windows.Forms.TextBox();
-            this.txbColorsForm = new System.Windows.Forms.TextBox();
-            this.btnColorsBars = new System.Windows.Forms.Button();
-            this.btnColorsForm = new System.Windows.Forms.Button();
-            this.dlgColor = new System.Windows.Forms.ColorDialog();
-            this.lblColorsBars = new System.Windows.Forms.Label();
             this.lblColorsForm = new System.Windows.Forms.Label();
+            this.lblColorsBars = new System.Windows.Forms.Label();
+            this.btnColorsForm = new System.Windows.Forms.Button();
+            this.btnColorsBars = new System.Windows.Forms.Button();
+            this.txbColorsForm = new System.Windows.Forms.TextBox();
+            this.txbColorsBars = new System.Windows.Forms.TextBox();
+            this.chbCustomColors = new System.Windows.Forms.CheckBox();
+            this.dlgColor = new System.Windows.Forms.ColorDialog();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.rdbDefaultButton1 = new System.Windows.Forms.RadioButton();
+            this.rdbDefaultButton2 = new System.Windows.Forms.RadioButton();
+            this.rdbDefaultButton3 = new System.Windows.Forms.RadioButton();
+            this.btnTitleIconFile = new System.Windows.Forms.Button();
+            this.lblTitleIcon = new System.Windows.Forms.Label();
+            this.txbTitleIconFile = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -132,6 +139,7 @@ namespace InfoBox.Test
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).BeginInit();
             this.groupBox17.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -358,7 +366,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(589, 435);
+            this.btnShow.Location = new System.Drawing.Point(481, 491);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -368,9 +376,9 @@ namespace InfoBox.Test
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.rdbButton3);
-            this.groupBox5.Controls.Add(this.rdbButton2);
-            this.groupBox5.Controls.Add(this.rdbButton1);
+            this.groupBox5.Controls.Add(this.rdbDefaultButton3);
+            this.groupBox5.Controls.Add(this.rdbDefaultButton2);
+            this.groupBox5.Controls.Add(this.rdbDefaultButton1);
             this.groupBox5.Location = new System.Drawing.Point(282, 267);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(264, 45);
@@ -378,37 +386,37 @@ namespace InfoBox.Test
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Default button";
             // 
-            // rdbButton3
+            // rdbTitleIconCustom
             // 
-            this.rdbButton3.AutoSize = true;
-            this.rdbButton3.Location = new System.Drawing.Point(167, 19);
-            this.rdbButton3.Name = "rdbButton3";
-            this.rdbButton3.Size = new System.Drawing.Size(62, 17);
-            this.rdbButton3.TabIndex = 2;
-            this.rdbButton3.Text = "Button3";
-            this.rdbButton3.UseVisualStyleBackColor = true;
+            this.rdbTitleIconCustom.AutoSize = true;
+            this.rdbTitleIconCustom.Location = new System.Drawing.Point(162, 28);
+            this.rdbTitleIconCustom.Name = "rdbTitleIconCustom";
+            this.rdbTitleIconCustom.Size = new System.Drawing.Size(60, 17);
+            this.rdbTitleIconCustom.TabIndex = 2;
+            this.rdbTitleIconCustom.Text = "Custom";
+            this.rdbTitleIconCustom.UseVisualStyleBackColor = true;
             // 
-            // rdbButton2
+            // rdbTitleIconSameAsBox
             // 
-            this.rdbButton2.AutoSize = true;
-            this.rdbButton2.Location = new System.Drawing.Point(103, 19);
-            this.rdbButton2.Name = "rdbButton2";
-            this.rdbButton2.Size = new System.Drawing.Size(62, 17);
-            this.rdbButton2.TabIndex = 1;
-            this.rdbButton2.Text = "Button2";
-            this.rdbButton2.UseVisualStyleBackColor = true;
+            this.rdbTitleIconSameAsBox.AutoSize = true;
+            this.rdbTitleIconSameAsBox.Location = new System.Drawing.Point(74, 28);
+            this.rdbTitleIconSameAsBox.Name = "rdbTitleIconSameAsBox";
+            this.rdbTitleIconSameAsBox.Size = new System.Drawing.Size(82, 17);
+            this.rdbTitleIconSameAsBox.TabIndex = 1;
+            this.rdbTitleIconSameAsBox.Text = "SameAsBox";
+            this.rdbTitleIconSameAsBox.UseVisualStyleBackColor = true;
             // 
-            // rdbButton1
+            // rdbTitleIconNone
             // 
-            this.rdbButton1.AutoSize = true;
-            this.rdbButton1.Checked = true;
-            this.rdbButton1.Location = new System.Drawing.Point(35, 19);
-            this.rdbButton1.Name = "rdbButton1";
-            this.rdbButton1.Size = new System.Drawing.Size(62, 17);
-            this.rdbButton1.TabIndex = 0;
-            this.rdbButton1.TabStop = true;
-            this.rdbButton1.Text = "Button1";
-            this.rdbButton1.UseVisualStyleBackColor = true;
+            this.rdbTitleIconNone.AutoSize = true;
+            this.rdbTitleIconNone.Checked = true;
+            this.rdbTitleIconNone.Location = new System.Drawing.Point(17, 27);
+            this.rdbTitleIconNone.Name = "rdbTitleIconNone";
+            this.rdbTitleIconNone.Size = new System.Drawing.Size(51, 17);
+            this.rdbTitleIconNone.TabIndex = 0;
+            this.rdbTitleIconNone.TabStop = true;
+            this.rdbTitleIconNone.Text = "None";
+            this.rdbTitleIconNone.UseVisualStyleBackColor = true;
             // 
             // txbCode
             // 
@@ -417,7 +425,7 @@ namespace InfoBox.Test
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 482);
+            this.txbCode.Location = new System.Drawing.Point(12, 538);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -428,7 +436,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(336, 435);
+            this.btnGenerate.Location = new System.Drawing.Point(160, 491);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -517,7 +525,7 @@ namespace InfoBox.Test
             // rdbLayoutGroupRight
             // 
             this.rdbLayoutGroupRight.AutoSize = true;
-            this.rdbLayoutGroupRight.Location = new System.Drawing.Point(16, 40);
+            this.rdbLayoutGroupRight.Location = new System.Drawing.Point(17, 40);
             this.rdbLayoutGroupRight.Name = "rdbLayoutGroupRight";
             this.rdbLayoutGroupRight.Size = new System.Drawing.Size(79, 17);
             this.rdbLayoutGroupRight.TabIndex = 1;
@@ -527,7 +535,7 @@ namespace InfoBox.Test
             // rdbLayoutGroupLeft
             // 
             this.rdbLayoutGroupLeft.AutoSize = true;
-            this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(16, 20);
+            this.rdbLayoutGroupLeft.Location = new System.Drawing.Point(17, 20);
             this.rdbLayoutGroupLeft.Name = "rdbLayoutGroupLeft";
             this.rdbLayoutGroupLeft.Size = new System.Drawing.Size(72, 17);
             this.rdbLayoutGroupLeft.TabIndex = 0;
@@ -802,7 +810,7 @@ namespace InfoBox.Test
             // 
             this.groupBox15.Controls.Add(this.rdbStyleModern);
             this.groupBox15.Controls.Add(this.rdbStyleStandard);
-            this.groupBox15.Location = new System.Drawing.Point(282, 374);
+            this.groupBox15.Location = new System.Drawing.Point(553, 424);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(264, 44);
             this.groupBox15.TabIndex = 18;
@@ -847,7 +855,7 @@ namespace InfoBox.Test
             this.groupBox16.Size = new System.Drawing.Size(264, 100);
             this.groupBox16.TabIndex = 19;
             this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "AutoClose";
+            this.groupBox16.Text = "Auto-close";
             // 
             // nudAutoCloseSeconds
             // 
@@ -945,46 +953,30 @@ namespace InfoBox.Test
             this.groupBox17.Controls.Add(this.txbColorsForm);
             this.groupBox17.Controls.Add(this.txbColorsBars);
             this.groupBox17.Controls.Add(this.chbCustomColors);
-            this.groupBox17.Location = new System.Drawing.Point(12, 374);
+            this.groupBox17.Location = new System.Drawing.Point(282, 374);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(264, 97);
+            this.groupBox17.Size = new System.Drawing.Size(264, 94);
             this.groupBox17.TabIndex = 20;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Colors";
             // 
-            // chbCustomColors
+            // lblColorsForm
             // 
-            this.chbCustomColors.AutoSize = true;
-            this.chbCustomColors.Location = new System.Drawing.Point(17, 16);
-            this.chbCustomColors.Name = "chbCustomColors";
-            this.chbCustomColors.Size = new System.Drawing.Size(92, 17);
-            this.chbCustomColors.TabIndex = 0;
-            this.chbCustomColors.Text = "Custom colors";
-            this.chbCustomColors.UseVisualStyleBackColor = true;
+            this.lblColorsForm.AutoSize = true;
+            this.lblColorsForm.Location = new System.Drawing.Point(21, 68);
+            this.lblColorsForm.Name = "lblColorsForm";
+            this.lblColorsForm.Size = new System.Drawing.Size(30, 13);
+            this.lblColorsForm.TabIndex = 9;
+            this.lblColorsForm.Text = "Form";
             // 
-            // txbColorsBars
+            // lblColorsBars
             // 
-            this.txbColorsBars.Location = new System.Drawing.Point(52, 39);
-            this.txbColorsBars.Name = "txbColorsBars";
-            this.txbColorsBars.Size = new System.Drawing.Size(165, 20);
-            this.txbColorsBars.TabIndex = 1;
-            // 
-            // txbColorsForm
-            // 
-            this.txbColorsForm.Location = new System.Drawing.Point(52, 65);
-            this.txbColorsForm.Name = "txbColorsForm";
-            this.txbColorsForm.Size = new System.Drawing.Size(165, 20);
-            this.txbColorsForm.TabIndex = 2;
-            // 
-            // btnColorsBars
-            // 
-            this.btnColorsBars.Location = new System.Drawing.Point(219, 37);
-            this.btnColorsBars.Name = "btnColorsBars";
-            this.btnColorsBars.Size = new System.Drawing.Size(25, 22);
-            this.btnColorsBars.TabIndex = 6;
-            this.btnColorsBars.Text = "...";
-            this.btnColorsBars.UseVisualStyleBackColor = true;
-            this.btnColorsBars.Click += new System.EventHandler(this.btnColorsBars_Click);
+            this.lblColorsBars.AutoSize = true;
+            this.lblColorsBars.Location = new System.Drawing.Point(23, 42);
+            this.lblColorsBars.Name = "lblColorsBars";
+            this.lblColorsBars.Size = new System.Drawing.Size(28, 13);
+            this.lblColorsBars.TabIndex = 8;
+            this.lblColorsBars.Text = "Bars";
             // 
             // btnColorsForm
             // 
@@ -996,29 +988,120 @@ namespace InfoBox.Test
             this.btnColorsForm.UseVisualStyleBackColor = true;
             this.btnColorsForm.Click += new System.EventHandler(this.btnColorsForm_Click);
             // 
-            // lblColorsBars
+            // btnColorsBars
             // 
-            this.lblColorsBars.AutoSize = true;
-            this.lblColorsBars.Location = new System.Drawing.Point(23, 42);
-            this.lblColorsBars.Name = "lblColorsBars";
-            this.lblColorsBars.Size = new System.Drawing.Size(28, 13);
-            this.lblColorsBars.TabIndex = 8;
-            this.lblColorsBars.Text = "Bars";
+            this.btnColorsBars.Location = new System.Drawing.Point(219, 37);
+            this.btnColorsBars.Name = "btnColorsBars";
+            this.btnColorsBars.Size = new System.Drawing.Size(25, 22);
+            this.btnColorsBars.TabIndex = 6;
+            this.btnColorsBars.Text = "...";
+            this.btnColorsBars.UseVisualStyleBackColor = true;
+            this.btnColorsBars.Click += new System.EventHandler(this.btnColorsBars_Click);
             // 
-            // lblColorsForm
+            // txbColorsForm
             // 
-            this.lblColorsForm.AutoSize = true;
-            this.lblColorsForm.Location = new System.Drawing.Point(21, 68);
-            this.lblColorsForm.Name = "lblColorsForm";
-            this.lblColorsForm.Size = new System.Drawing.Size(30, 13);
-            this.lblColorsForm.TabIndex = 9;
-            this.lblColorsForm.Text = "Form";
+            this.txbColorsForm.Location = new System.Drawing.Point(52, 65);
+            this.txbColorsForm.Name = "txbColorsForm";
+            this.txbColorsForm.Size = new System.Drawing.Size(165, 20);
+            this.txbColorsForm.TabIndex = 2;
+            // 
+            // txbColorsBars
+            // 
+            this.txbColorsBars.Location = new System.Drawing.Point(52, 39);
+            this.txbColorsBars.Name = "txbColorsBars";
+            this.txbColorsBars.Size = new System.Drawing.Size(165, 20);
+            this.txbColorsBars.TabIndex = 1;
+            // 
+            // chbCustomColors
+            // 
+            this.chbCustomColors.AutoSize = true;
+            this.chbCustomColors.Location = new System.Drawing.Point(17, 16);
+            this.chbCustomColors.Name = "chbCustomColors";
+            this.chbCustomColors.Size = new System.Drawing.Size(92, 17);
+            this.chbCustomColors.TabIndex = 0;
+            this.chbCustomColors.Text = "Custom colors";
+            this.chbCustomColors.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.btnTitleIconFile);
+            this.groupBox18.Controls.Add(this.lblTitleIcon);
+            this.groupBox18.Controls.Add(this.txbTitleIconFile);
+            this.groupBox18.Controls.Add(this.rdbTitleIconCustom);
+            this.groupBox18.Controls.Add(this.rdbTitleIconNone);
+            this.groupBox18.Controls.Add(this.rdbTitleIconSameAsBox);
+            this.groupBox18.Location = new System.Drawing.Point(12, 374);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(264, 94);
+            this.groupBox18.TabIndex = 21;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Title Icon";
+            // 
+            // rdbDefaultButton1
+            // 
+            this.rdbDefaultButton1.AutoSize = true;
+            this.rdbDefaultButton1.Location = new System.Drawing.Point(17, 19);
+            this.rdbDefaultButton1.Name = "rdbDefaultButton1";
+            this.rdbDefaultButton1.Size = new System.Drawing.Size(62, 17);
+            this.rdbDefaultButton1.TabIndex = 0;
+            this.rdbDefaultButton1.TabStop = true;
+            this.rdbDefaultButton1.Text = "Button1";
+            this.rdbDefaultButton1.UseVisualStyleBackColor = true;
+            // 
+            // rdbDefaultButton2
+            // 
+            this.rdbDefaultButton2.AutoSize = true;
+            this.rdbDefaultButton2.Location = new System.Drawing.Point(85, 19);
+            this.rdbDefaultButton2.Name = "rdbDefaultButton2";
+            this.rdbDefaultButton2.Size = new System.Drawing.Size(62, 17);
+            this.rdbDefaultButton2.TabIndex = 1;
+            this.rdbDefaultButton2.TabStop = true;
+            this.rdbDefaultButton2.Text = "Button2";
+            this.rdbDefaultButton2.UseVisualStyleBackColor = true;
+            // 
+            // rdbDefaultButton3
+            // 
+            this.rdbDefaultButton3.AutoSize = true;
+            this.rdbDefaultButton3.Location = new System.Drawing.Point(153, 19);
+            this.rdbDefaultButton3.Name = "rdbDefaultButton3";
+            this.rdbDefaultButton3.Size = new System.Drawing.Size(62, 17);
+            this.rdbDefaultButton3.TabIndex = 2;
+            this.rdbDefaultButton3.TabStop = true;
+            this.rdbDefaultButton3.Text = "Button3";
+            this.rdbDefaultButton3.UseVisualStyleBackColor = true;
+            // 
+            // btnTitleIconFile
+            // 
+            this.btnTitleIconFile.Location = new System.Drawing.Point(214, 63);
+            this.btnTitleIconFile.Name = "btnTitleIconFile";
+            this.btnTitleIconFile.Size = new System.Drawing.Size(25, 22);
+            this.btnTitleIconFile.TabIndex = 5;
+            this.btnTitleIconFile.Text = "...";
+            this.btnTitleIconFile.UseVisualStyleBackColor = true;
+            this.btnTitleIconFile.Click += new System.EventHandler(this.btnTitleIconFile_Click);
+            // 
+            // lblTitleIcon
+            // 
+            this.lblTitleIcon.AutoSize = true;
+            this.lblTitleIcon.Location = new System.Drawing.Point(6, 68);
+            this.lblTitleIcon.Name = "lblTitleIcon";
+            this.lblTitleIcon.Size = new System.Drawing.Size(44, 13);
+            this.lblTitleIcon.TabIndex = 4;
+            this.lblTitleIcon.Text = "Icon file";
+            // 
+            // txbTitleIconFile
+            // 
+            this.txbTitleIconFile.Location = new System.Drawing.Point(51, 65);
+            this.txbTitleIconFile.Name = "txbTitleIconFile";
+            this.txbTitleIconFile.Size = new System.Drawing.Size(157, 20);
+            this.txbTitleIconFile.TabIndex = 3;
             // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 561);
+            this.ClientSize = new System.Drawing.Size(828, 617);
+            this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.groupBox17);
             this.Controls.Add(this.groupBox16);
             this.Controls.Add(this.groupBox15);
@@ -1077,6 +1160,8 @@ namespace InfoBox.Test
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).EndInit();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1105,9 +1190,9 @@ namespace InfoBox.Test
         private System.Windows.Forms.TextBox txbUser1;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton rdbButton3;
-        private System.Windows.Forms.RadioButton rdbButton2;
-        private System.Windows.Forms.RadioButton rdbButton1;
+        private System.Windows.Forms.RadioButton rdbTitleIconCustom;
+        private System.Windows.Forms.RadioButton rdbTitleIconSameAsBox;
+        private System.Windows.Forms.RadioButton rdbTitleIconNone;
         private System.Windows.Forms.TextBox txbCode;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -1170,6 +1255,13 @@ namespace InfoBox.Test
         private System.Windows.Forms.Label lblColorsForm;
         private System.Windows.Forms.Label lblColorsBars;
         private System.Windows.Forms.ColorDialog dlgColor;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.RadioButton rdbDefaultButton3;
+        private System.Windows.Forms.RadioButton rdbDefaultButton2;
+        private System.Windows.Forms.RadioButton rdbDefaultButton1;
+        private System.Windows.Forms.Button btnTitleIconFile;
+        private System.Windows.Forms.Label lblTitleIcon;
+        private System.Windows.Forms.TextBox txbTitleIconFile;
 
     }
 }

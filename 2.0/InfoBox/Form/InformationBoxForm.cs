@@ -22,8 +22,10 @@ namespace InfoBox
 
         #region Attributes
 
-        private readonly InformationBoxIcon _icon = InformationBoxIcon.None;
         private InformationBoxResult _result = InformationBoxResult.None;
+        
+        private readonly InformationBoxIcon _icon = InformationBoxIcon.None;
+        private readonly Icon _customIcon = null;
         private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
         private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
         private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
@@ -33,6 +35,8 @@ namespace InfoBox
         private readonly InformationBoxStyle _style = InformationBoxStyle.Standard;
         private readonly AutoCloseParameters _autoClose = null;
         private readonly DesignParameters _design = null;
+        private readonly InformationBoxTitleIconStyle _titleStyle = InformationBoxTitleIconStyle.SameAsBox;
+        private readonly Icon _titleIcon = null;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -135,7 +139,7 @@ namespace InfoBox
                 else if (parameter is Icon)
                 {
                     _iconType = IconType.UserDefined;
-                    pcbIcon.Image = new Icon((Icon)parameter, 48, 48).ToBitmap();
+                    _customIcon = new Icon((Icon)parameter, 48, 48);
                 }
                 // Default button
                 else if (parameter is InformationBoxDefaultButton)
@@ -193,6 +197,16 @@ namespace InfoBox
                 else if (parameter is DesignParameters)
                 {
                     _design = (DesignParameters) parameter;
+                }
+                // Title style
+                else if (parameter is InformationBoxTitleIconStyle)
+                {
+                    _titleStyle = (InformationBoxTitleIconStyle) parameter;
+                }
+                // Title icon
+                else if (parameter is InformationBoxTitleIcon)
+                {
+                    _titleIcon = ((InformationBoxTitleIcon) parameter).Icon;
                 }
             }
         }
@@ -387,6 +401,8 @@ namespace InfoBox
 
             // Caption width including button
             int captionWidth = Convert.ToInt32(_measureGraphics.MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
+            if (_titleStyle != InformationBoxTitleIconStyle.None)
+                captionWidth += BORDER_PADDING * 2;
 
             // "Do not show this dialog again" width
             int checkBoxWidth = ((_checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
@@ -524,11 +540,27 @@ namespace InfoBox
             }
             else
             {
+                pcbIcon.Image = _customIcon.ToBitmap();
                 pnlIcon.Visible = true;
             }
 
             pnlIcon.Width = ICON_PANEL_WIDTH;
-            this.Icon = Resources.IconBlank;
+
+            if (_titleStyle == InformationBoxTitleIconStyle.None)
+            {
+                Icon = Resources.IconBlank;
+            }
+            else if (_titleStyle == InformationBoxTitleIconStyle.SameAsBox)
+            {
+                if (_iconType == IconType.Internal)
+                    Icon = IconHelper.FromEnum(_icon);
+                else
+                    Icon = _customIcon;
+            }
+            else if (_titleStyle == InformationBoxTitleIconStyle.Custom)
+            {
+                Icon = _titleIcon;
+            }
         }
 
         #endregion Icon

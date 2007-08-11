@@ -80,6 +80,10 @@ namespace InfoBox.Test
             txbColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
             btnColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
             btnColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+
+            lblTitleIcon.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
+            txbTitleIconFile.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
+            btnTitleIconFile.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
         }
 
         /// <summary>
@@ -118,9 +122,9 @@ namespace InfoBox.Test
         /// <returns></returns>
         private InformationBoxDefaultButton GetDefaultButton()
         {
-            if (rdbButton1.Checked) return InformationBoxDefaultButton.Button1;
-            if (rdbButton2.Checked) return InformationBoxDefaultButton.Button2;
-            if (rdbButton3.Checked) return InformationBoxDefaultButton.Button3;
+            if (rdbDefaultButton1.Checked) return InformationBoxDefaultButton.Button1;
+            if (rdbDefaultButton2.Checked) return InformationBoxDefaultButton.Button2;
+            if (rdbDefaultButton3.Checked) return InformationBoxDefaultButton.Button3;
             return InformationBoxDefaultButton.Button1;
         }
 
@@ -240,6 +244,18 @@ namespace InfoBox.Test
         }
 
         /// <summary>
+        /// Gets the title style.
+        /// </summary>
+        /// <returns></returns>
+        private InformationBoxTitleIconStyle GetTitleStyle()
+        {
+            if (rdbTitleIconNone.Checked) return InformationBoxTitleIconStyle.None;
+            if (rdbTitleIconCustom.Checked) return InformationBoxTitleIconStyle.Custom;
+            if (rdbTitleIconSameAsBox.Checked) return InformationBoxTitleIconStyle.SameAsBox;
+            return InformationBoxTitleIconStyle.SameAsBox;
+        }
+
+        /// <summary>
         /// Generates the code.
         /// </summary>
         private void GenerateCode()
@@ -256,6 +272,7 @@ namespace InfoBox.Test
             InformationBoxStyle style = GetStyle();
             AutoCloseParameters autoClose = GetAutoClose();
             DesignParameters design = GetDesign();
+            InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
 
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -272,7 +289,7 @@ namespace InfoBox.Test
             }
 
             if (!String.Empty.Equals(txbHelpFile.Text) || !String.Empty.Equals(txbTitle.Text))
-                codeBuilder.AppendFormat("\"{0}\", ", txbText.Text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat("\"{0}\", ", txbTitle.Text);
 
             if (buttons != InformationBoxButtons.OK)
                 codeBuilder.AppendFormat("InformationBoxButtons.{0}, ", buttons);
@@ -356,6 +373,15 @@ namespace InfoBox.Test
                         design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
                         design.BarsBackColor.G, design.BarsBackColor.B);
             }
+
+            if (titleStyle == InformationBoxTitleIconStyle.Custom)
+            {
+                codeBuilder.AppendFormat("new InformationBoxTitleIcon(@\"{0}\"), ", txbTitleIconFile.Text);
+            }
+            else if (titleStyle == InformationBoxTitleIconStyle.None)
+            {
+                codeBuilder.Append("InformationBoxTitleIconStyle.None, ");
+            }
             
 
             codeBuilder[codeBuilder.Length - 2] = ')';
@@ -391,14 +417,20 @@ namespace InfoBox.Test
             InformationBoxStyle style = GetStyle();
             AutoCloseParameters autoClose = GetAutoClose();
             DesignParameters design = GetDesign();
+            InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
+            InformationBoxTitleIcon titleIcon = null;
+            if (titleStyle == InformationBoxTitleIconStyle.Custom)
+            {
+                titleIcon = new InformationBoxTitleIcon(txbTitleIconFile.Text);
+            }
 
             if (String.Empty.Equals(iconFileName))
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon);
             }
             else
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon);
             }
 
             if (checkState != 0)
@@ -430,6 +462,21 @@ namespace InfoBox.Test
             }
 
             txbIcon.Text = ofdIcon.FileName;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnTitleIconFile control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void btnTitleIconFile_Click(object sender, EventArgs e)
+        {
+            if (ofdIcon.ShowDialog() != DialogResult.OK)
+            {
+                txbTitleIconFile.Text = String.Empty;
+            }
+
+            txbTitleIconFile.Text = ofdIcon.FileName;
         }
 
         /// <summary>
