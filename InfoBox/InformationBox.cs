@@ -67,10 +67,18 @@ namespace InfoBox
         ///     <term><see cref="AutoCloseParameters"/></term>
         ///     <description>The parameters for the auto-close feature.</description>
         /// </item>
-        ///         <item>
-        ///             <term><see cref="DesignParameters"/></term>
-        ///             <description>The parameters for the design (colors).</description>
-        ///         </item>
+        /// <item>
+        ///     <term><see cref="DesignParameters"/></term>
+        ///     <description>the parameters for the design (colors).</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="InformationBoxTitleIconStyle"/></term>
+        ///     <description>which icon will be displayed in the title bar.</description>
+        /// </item>
+        /// <item>
+        ///     <term><see cref="InformationBoxTitleIcon"/></term>
+        ///     <description>the custom icon that will be displayed in the title bar.</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>
@@ -137,11 +145,19 @@ namespace InfoBox
         ///         </item>
         ///         <item>
         ///             <term><see cref="AutoCloseParameters"/></term>
-        ///             <description>The parameters for the auto-close feature.</description>
+        ///             <description>the parameters for the auto-close feature.</description>
         ///         </item>
         ///         <item>
         ///             <term><see cref="DesignParameters"/></term>
-        ///             <description>The parameters for the design (colors).</description>
+        ///             <description>the parameters for the design (colors).</description>
+        ///         </item>
+        ///         <item>
+        ///             <term><see cref="InformationBoxTitleIconStyle"/></term>
+        ///             <description>which icon will be displayed in the title bar.</description>
+        ///         </item>
+        ///         <item>
+        ///             <term><see cref="InformationBoxTitleIcon"/></term>
+        ///             <description>the custom icon that will be displayed in the title bar.</description>
         ///         </item>
         ///     </list>
         /// </summary>
