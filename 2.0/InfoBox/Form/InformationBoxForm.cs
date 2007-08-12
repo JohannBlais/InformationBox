@@ -7,6 +7,7 @@ namespace InfoBox
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
     using Properties;
+    using System.Media;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
@@ -230,6 +231,7 @@ namespace InfoBox
             SetPosition();
             SetWindowStyle();
             SetAutoClose();
+            PlaySound();
             ShowDialog();
 
             return _result;
@@ -248,6 +250,47 @@ namespace InfoBox
         }
 
         #endregion Show
+
+        #region Sound
+
+        /// <summary>
+        /// Plays the sound associated with the icon type.
+        /// </summary>
+        private void PlaySound()
+        {
+            SystemSound sound = null;
+
+            if (_iconType == IconType.UserDefined)
+            {
+                sound = System.Media.SystemSounds.Beep;
+            }
+            else
+            {
+                switch (IconHelper.GetCategory(_icon))
+                {
+                    case InformationBoxMessageCategory.Asterisk:
+                        sound = SystemSounds.Asterisk;
+                        break;
+                    case InformationBoxMessageCategory.Exclamation:
+                        sound = SystemSounds.Exclamation;
+                        break;
+                    case InformationBoxMessageCategory.Hand:
+                        sound = SystemSounds.Hand;
+                        break;
+                    case InformationBoxMessageCategory.Question:
+                        sound = SystemSounds.Question;
+                        break;
+                    default:
+                        sound = SystemSounds.Beep;
+                        break;
+                }
+            }
+
+            if (null != sound)
+                sound.Play();
+        }
+
+        #endregion Sound
 
         #region Box initialization
 
@@ -548,6 +591,7 @@ namespace InfoBox
 
             if (_titleStyle == InformationBoxTitleIconStyle.None)
             {
+                ShowIcon = false;
                 Icon = Resources.IconBlank;
             }
             else if (_titleStyle == InformationBoxTitleIconStyle.SameAsBox)

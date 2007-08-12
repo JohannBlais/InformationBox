@@ -65,5 +65,35 @@ namespace InfoBox
                     return null;
             }
         }
+
+        /// <summary>
+        /// Gets the category of the icon.
+        /// </summary>
+        /// <param name="iconType">Type of the icon.</param>
+        /// <returns></returns>
+        public static InformationBoxMessageCategory GetCategory(InformationBoxIcon iconType)
+        {
+            switch (iconType)
+            {
+                case InformationBoxIcon.Asterisk:
+                case InformationBoxIcon.Information:
+                    return InformationBoxMessageCategory.Asterisk;
+
+                case InformationBoxIcon.Error:
+                case InformationBoxIcon.Hand:
+                case InformationBoxIcon.Stop:
+                    return InformationBoxMessageCategory.Hand;
+
+                case InformationBoxIcon.Exclamation:
+                case InformationBoxIcon.Warning:
+                    return InformationBoxMessageCategory.Exclamation;
+
+                case InformationBoxIcon.Question:
+                    return InformationBoxMessageCategory.Question;
+
+                default:
+                    return InformationBoxMessageCategory.Other;
+            }
+        }
     }
 }
