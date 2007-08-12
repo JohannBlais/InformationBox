@@ -186,6 +186,7 @@ namespace InfoBox
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InformationBoxForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InformationBox_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InformationBoxForm_KeyDown);
