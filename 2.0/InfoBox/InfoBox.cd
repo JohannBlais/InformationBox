@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="InfoBox.InformationBoxForm" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Form\InformationBoxForm.cs</FileName>
+      <HashCode>IYAACAJoCiQglAICQcCRUYgCgAjHGliJRcKAiLCLGQg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBox.InformationBox">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>InformationBox.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBox.IconHelper" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Internals\IconHelper.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBox.AutoCloseParameters" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Parameters\AutoCloseParameters.cs</FileName>
+      <HashCode>EBAAAAAAAKAAAAACAgAAIAQAAIAAAAAAAAABAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBox.DesignParameters" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Parameters\DesignParameters.cs</FileName>
+      <HashCode>AACAAAAAIAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBox.InformationBoxTitleIcon" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Parameters\InformationBoxTitleIcon.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBox.Properties.Resources" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAFAEUAAAASAAlIIAJEAABAQABAAAADAAAQBCAAIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="InfoBox.IconType" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\IconType.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxAutoSizeMode" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxAutoSizeMode.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxButtons" Collapsed="true">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxButtons.cs</FileName>
+      <HashCode>AAAAAAAAAAEAAEAAIAAAAIAAAEAAAAAASAABAAACCAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxButtonsLayout" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxButtonsLayout.cs</FileName>
+      <HashCode>AAABAAAAAAAAAEAAAAAAAAACAAAAAAAAAABAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxCheckBox" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxCheckBox.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAEAAAAAAAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxDefaultButton" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxDefaultButton.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxIcon" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxIcon.cs</FileName>
+      <HashCode>AAAAEQAghCIAAQAACAAAABAAAgAAAAAEIQAAIAEAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxMessageCategory" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxMessageCategory.cs</FileName>
+      <HashCode>BAAAAAAAACAAAAAAAAAAAAAAAAAAAAAEAQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxPosition" Collapsed="true">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxPosition.cs</FileName>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxResult" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxResult.cs</FileName>
+      <HashCode>AAAAAAAASAAQACBAIAAAAAAAACAAAAAAAAABAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxStyle" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxStyle.cs</FileName>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.InformationBoxTitleIconStyle" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enums\InformationBoxTitleIconStyle.cs</FileName>
+      <HashCode>AAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InfoBox.AutoCloseDefinedParameters" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Internals\AutoCloseDefinedParameters.cs</FileName>
+      <HashCode>AEAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>
