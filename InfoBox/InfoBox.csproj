@@ -134,6 +134,7 @@
     <None Include="Resources\printer.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="InfoBox.cd" />
     <None Include="Properties\key.snk" />
     <None Include="Resources\scanner.ico" />
   </ItemGroup>
