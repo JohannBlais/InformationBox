@@ -309,7 +309,7 @@ namespace InfoBox.Test
                 codeBuilder.AppendFormat("InformationBoxDefaultButton.{0}, ", defaultButton);
 
             if (buttonsLayout != InformationBoxButtonsLayout.GroupMiddle)
-                codeBuilder.AppendFormat("InformationBoxDefaultButton.{0}, ", buttonsLayout);
+                codeBuilder.AppendFormat("InformationBoxButtonsLayout.{0}, ", buttonsLayout);
 
             if (autoSize != InformationBoxAutoSizeMode.None)
                 codeBuilder.AppendFormat("InformationBoxAutoSizeMode.{0}, ", autoSize);
