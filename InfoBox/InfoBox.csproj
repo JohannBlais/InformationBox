@@ -66,6 +66,7 @@
     <Compile Include="InformationBox.cs" />
     <Compile Include="Internals\AutoCloseDefinedParameters.cs" />
     <Compile Include="Internals\IconHelper.cs" />
+    <Compile Include="Internals\MessageBoxEnumConverter.cs" />
     <Compile Include="Parameters\AutoCloseParameters.cs" />
     <Compile Include="Parameters\DesignParameters.cs" />
     <Compile Include="Parameters\InformationBoxTitleIcon.cs" />

@@ -209,6 +209,16 @@ namespace InfoBox
                 {
                     _titleIcon = ((InformationBoxTitleIcon) parameter).Icon;
                 }
+                // MessageBox buttons
+                else if (parameter is MessageBoxButtons)
+                {
+                    _buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons) parameter);
+                }
+                // MessageBox icon
+                else if (parameter is MessageBoxIcon)
+                {
+                    _icon = MessageBoxEnumConverter.Parse((MessageBoxIcon) parameter);
+                }
             }
         }
 

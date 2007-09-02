@@ -79,6 +79,10 @@ namespace InfoBox
         ///     <term><see cref="InformationBoxTitleIcon"/></term>
         ///     <description>the custom icon that will be displayed in the title bar.</description>
         /// </item>
+        /// <item>
+        ///     <term>A MessageBox enum value</term>
+        ///     <description>the value for the correspondin InformationBox enum value.</description>
+        /// </item>
         /// </list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>
@@ -158,6 +162,10 @@ namespace InfoBox
         ///         <item>
         ///             <term><see cref="InformationBoxTitleIcon"/></term>
         ///             <description>the custom icon that will be displayed in the title bar.</description>
+        ///         </item>
+        ///         <item>
+        ///             <term>A MessageBox enum value</term>
+        ///             <description>the value for the correspondin InformationBox enum value.</description>
         ///         </item>
         ///     </list>
         /// </summary>
