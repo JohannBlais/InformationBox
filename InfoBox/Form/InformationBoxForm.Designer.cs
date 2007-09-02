@@ -36,6 +36,7 @@ namespace InfoBox
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlIcon = new System.Windows.Forms.Panel();
             this.pnlText = new System.Windows.Forms.Panel();
+            this.pnlScrollText = new System.Windows.Forms.Panel();
             this.messageText = new System.Windows.Forms.TextBox();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.lblTitle = new GlassComponents.Controls.Label();
@@ -45,6 +46,7 @@ namespace InfoBox
             this.pnlMain.SuspendLayout();
             this.pnlIcon.SuspendLayout();
             this.pnlText.SuspendLayout();
+            this.pnlScrollText.SuspendLayout();
             this.pnlForm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,18 +121,28 @@ namespace InfoBox
             // 
             // pnlText
             // 
-            this.pnlText.Controls.Add(this.messageText);
+            this.pnlText.Controls.Add(this.pnlScrollText);
             this.pnlText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlText.Location = new System.Drawing.Point(0, 0);
             this.pnlText.Name = "pnlText";
             this.pnlText.Size = new System.Drawing.Size(257, 68);
             this.pnlText.TabIndex = 2;
             // 
+            // pnlScrollText
+            // 
+            this.pnlScrollText.AutoScroll = true;
+            this.pnlScrollText.Controls.Add(this.messageText);
+            this.pnlScrollText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlScrollText.Location = new System.Drawing.Point(0, 0);
+            this.pnlScrollText.Name = "pnlScrollText";
+            this.pnlScrollText.Size = new System.Drawing.Size(257, 68);
+            this.pnlScrollText.TabIndex = 1;
+            // 
             // messageText
             // 
             this.messageText.BackColor = System.Drawing.SystemColors.Control;
             this.messageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.messageText.Location = new System.Drawing.Point(86, 25);
+            this.messageText.Location = new System.Drawing.Point(74, 26);
             this.messageText.Multiline = true;
             this.messageText.Name = "messageText";
             this.messageText.ReadOnly = true;
@@ -195,7 +207,8 @@ namespace InfoBox
             this.pnlMain.ResumeLayout(false);
             this.pnlIcon.ResumeLayout(false);
             this.pnlText.ResumeLayout(false);
-            this.pnlText.PerformLayout();
+            this.pnlScrollText.ResumeLayout(false);
+            this.pnlScrollText.PerformLayout();
             this.pnlForm.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -214,5 +227,6 @@ namespace InfoBox
         private GlassComponents.Controls.Label lblTitle;
         private System.Windows.Forms.Timer tmrAutoClose;
         private System.Windows.Forms.TextBox messageText;
+        private System.Windows.Forms.Panel pnlScrollText;
     }
 }

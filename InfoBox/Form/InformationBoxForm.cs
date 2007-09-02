@@ -491,7 +491,12 @@ namespace InfoBox
             int textHeight = messageText.Height;
 
             totalHeight = Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2 + pnlBas.Height;
-            pnlMain.Size = new Size(totalWidth, Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2);
+            
+            // Add a small space to avoid vertical scrollbar.
+            if (iconAndTextWidth > Screen.PrimaryScreen.WorkingArea.Width - 100)
+                totalHeight += 20;
+
+            pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - pnlBas.Height);
 
             if (_style == InformationBoxStyle.Modern)
                 totalHeight += lblTitle.Height;
@@ -499,7 +504,7 @@ namespace InfoBox
             #endregion Height
 
             // Sets the size;
-            ClientSize = new Size(totalWidth, totalHeight);
+            ClientSize = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight);
 
             #region Position
 
@@ -653,6 +658,7 @@ namespace InfoBox
                     internalText.Replace("? ", "?" + Environment.NewLine);
                     internalText.Replace("! ", "!" + Environment.NewLine);
                     internalText.Replace(": ", ":" + Environment.NewLine);
+                    internalText.Replace(") ", ")" + Environment.NewLine);
                 }
 
                 messageText.Text = internalText.ToString();
