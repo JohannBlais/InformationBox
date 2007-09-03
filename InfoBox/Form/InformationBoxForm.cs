@@ -524,7 +524,7 @@ namespace InfoBox
             pcbIcon.Top = BORDER_PADDING;
 
             // Text
-            messageText.Left = (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined) ? ICON_PANEL_WIDTH + BORDER_PADDING : BORDER_PADDING;
+            pnlScrollText.Width = ClientSize.Width - ((_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined) ? ICON_PANEL_WIDTH + BORDER_PADDING + 5 : BORDER_PADDING);
             messageText.Top = Convert.ToInt32((pnlText.Height - messageText.Height) / 2);
 
             // Buttons

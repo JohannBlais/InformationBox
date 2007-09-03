@@ -125,6 +125,7 @@ namespace InfoBox
             this.pnlText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlText.Location = new System.Drawing.Point(0, 0);
             this.pnlText.Name = "pnlText";
+            this.pnlText.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.pnlText.Size = new System.Drawing.Size(257, 68);
             this.pnlText.TabIndex = 2;
             // 
@@ -132,17 +133,17 @@ namespace InfoBox
             // 
             this.pnlScrollText.AutoScroll = true;
             this.pnlScrollText.Controls.Add(this.messageText);
-            this.pnlScrollText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlScrollText.Location = new System.Drawing.Point(0, 0);
+            this.pnlScrollText.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlScrollText.Location = new System.Drawing.Point(79, 0);
             this.pnlScrollText.Name = "pnlScrollText";
-            this.pnlScrollText.Size = new System.Drawing.Size(257, 68);
+            this.pnlScrollText.Size = new System.Drawing.Size(173, 68);
             this.pnlScrollText.TabIndex = 1;
             // 
             // messageText
             // 
             this.messageText.BackColor = System.Drawing.SystemColors.Control;
             this.messageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.messageText.Location = new System.Drawing.Point(74, 26);
+            this.messageText.Location = new System.Drawing.Point(3, 26);
             this.messageText.Multiline = true;
             this.messageText.Name = "messageText";
             this.messageText.ReadOnly = true;
@@ -182,8 +183,8 @@ namespace InfoBox
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Title";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
             this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseMove);
+            this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseDown);
             this.lblTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lblTitle_MouseUp);
             // 
             // InformationBoxForm
