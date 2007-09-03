@@ -5,7 +5,7 @@
     <Position X="5.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <FileName>Form\InformationBoxForm.cs</FileName>
-      <HashCode>IYAACAJoCiQglAICQcCRUYgCgAjHGliJRcKAiLCLGQg=</HashCode>
+      <HashCode>IcAACAJoCiQglAICQcCRUYgCgAjHGliJRcKAiLCLGQg=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="InfoBox.InformationBox">
@@ -15,7 +15,7 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="InfoBox.IconHelper">
+  <Class Name="InfoBox.IconHelper" Collapsed="true">
     <Position X="5.25" Y="1.25" Width="2" />
     <TypeIdentifier>
       <FileName>Internals\IconHelper.cs</FileName>
@@ -57,6 +57,13 @@
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
+  </Class>
+  <Class Name="InfoBox.MessageBoxEnumConverter" Collapsed="true">
+    <Position X="5.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <FileName>Internals\MessageBoxEnumConverter.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
   </Class>
   <Enum Name="InfoBox.IconType" Collapsed="true">
     <Position X="5.25" Y="3.25" Width="1.5" />
