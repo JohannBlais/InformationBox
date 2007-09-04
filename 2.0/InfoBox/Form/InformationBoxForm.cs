@@ -219,6 +219,11 @@ namespace InfoBox
                 {
                     _icon = MessageBoxEnumConverter.Parse((MessageBoxIcon) parameter);
                 }
+                // MessageBox default button
+                else if (parameter is MessageBoxDefaultButton)
+                {
+                    _defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton) parameter);
+                }
             }
         }
 
