@@ -26,5 +26,15 @@ namespace InfoBox
         {
             return (InformationBoxIcon) Enum.Parse(typeof(InformationBoxIcon), value.ToString());
         }
+
+        /// <summary>
+        /// Parses the specified MessageBoxDefaultButton value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static InformationBoxDefaultButton Parse(MessageBoxDefaultButton value)
+        {
+            return (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), value.ToString());
+        }
     }
 }
