@@ -3,7 +3,7 @@ namespace InfoBox
     using System.Drawing;
     using Properties;
 
-    internal class IconHelper
+    internal static class IconHelper
     {
         /// <summary>
         /// Return the <see cref="System.Drawing.Icon"/> associated with the specified <see cref="InformationBoxIcon"/>.

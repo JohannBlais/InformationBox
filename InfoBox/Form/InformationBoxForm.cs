@@ -8,6 +8,7 @@ namespace InfoBox
     using System.Windows.Forms;
     using Properties;
     using System.Media;
+    using System.Globalization;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
@@ -26,7 +27,7 @@ namespace InfoBox
         private InformationBoxResult _result = InformationBoxResult.None;
         
         private readonly InformationBoxIcon _icon = InformationBoxIcon.None;
-        private readonly Icon _customIcon = null;
+        private readonly Icon _customIcon;
         private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
         private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
         private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
@@ -34,41 +35,41 @@ namespace InfoBox
         private readonly InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
         private readonly InformationBoxCheckBox _checkBox = 0;
         private readonly InformationBoxStyle _style = InformationBoxStyle.Standard;
-        private readonly AutoCloseParameters _autoClose = null;
-        private readonly DesignParameters _design = null;
+        private readonly AutoCloseParameters _autoClose;
+        private readonly DesignParameters _design;
         private readonly InformationBoxTitleIconStyle _titleStyle = InformationBoxTitleIconStyle.SameAsBox;
-        private readonly Icon _titleIcon = null;
+        private readonly Icon _titleIcon;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
 
-        private readonly Control _buttonAbort = null;
-        private readonly Control _buttonOk = null;
-        private readonly Control _buttonYes = null;
-        private readonly Control _buttonRetry = null;
-        private readonly Control _buttonNo = null;
-        private readonly Control _buttonCancel = null;
-        private readonly Control _buttonIgnore = null;
-        private readonly Control _buttonUser1 = null;
-        private readonly Control _buttonUser2 = null;
-        private readonly Control _buttonHelp = null;
+        private readonly Control _buttonAbort;
+        private readonly Control _buttonOk;
+        private readonly Control _buttonYes;
+        private readonly Control _buttonRetry;
+        private readonly Control _buttonNo;
+        private readonly Control _buttonCancel;
+        private readonly Control _buttonIgnore;
+        private readonly Control _buttonUser1;
+        private readonly Control _buttonUser2;
+        private readonly Control _buttonHelp;
 
         private readonly IconType _iconType = IconType.Internal;
 
-        private readonly Graphics _measureGraphics = null;
-        private StringBuilder internalText = null;
+        private readonly Graphics _measureGraphics;
+        private StringBuilder internalText;
 
-        private readonly bool _showHelpButton = false;
+        private readonly bool _showHelpButton;
         private readonly string _helpFile = String.Empty;
         private readonly string _helpTopic = String.Empty;
         private readonly HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
 
-        private readonly Form _activeForm = null;
-        private bool _mouseDown = false;
+        private readonly Form _activeForm;
+        private bool _mouseDown;
 
         private Point _lastPointerPosition;
 
-        private int _elapsedTime = 0;
+        private int _elapsedTime;
 
         #endregion Attributes
 
@@ -760,7 +761,7 @@ namespace InfoBox
             }
 
             // Help button is displayed when asked or when a help file name exists
-            if (_showHelpButton || !String.Empty.Equals(_helpFile))
+            if (_showHelpButton || !String.IsNullOrEmpty(_helpFile))
             {
                 AddButton(_buttonHelp, "Help", Resources.LabelHelp);
             }
@@ -881,10 +882,10 @@ namespace InfoBox
             }
 
             // If a help file is specified
-            if (!String.Empty.Equals(_helpFile))
+            if (!String.IsNullOrEmpty(_helpFile))
             {
                 // If no topic is specified
-                if (String.Empty.Equals(_helpTopic))
+                if (String.IsNullOrEmpty(_helpTopic))
                     Help.ShowHelp(_activeForm, _helpFile, _helpNavigator);
                 else
                     Help.ShowHelp(_activeForm, _helpFile, _helpTopic);
@@ -1074,17 +1075,17 @@ namespace InfoBox
                     {
                         Button button = (Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
-                            button.Text = String.Format("{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
                         else
-                            button.Text = String.Format("{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
                     }
                     else if (buttonToUpdate is GlassComponents.Controls.Button)
                     {
                         GlassComponents.Controls.Button button = (GlassComponents.Controls.Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
-                            button.Text = String.Format("{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
                         else
-                            button.Text = String.Format("{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
                     }
                 }
             }
