@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace InfoBox
 {
-    class MessageBoxEnumConverter
+    static class MessageBoxEnumConverter
     {
         /// <summary>
         /// Parses the specified MessageBoxButtons value.

@@ -1,9 +1,11 @@
+using System;
 namespace InfoBox
 {
     /// <summary>
     /// Specifies constants defining whether the "Do not show this dialog again" checkbox is displayed or not.
     /// </summary>
-    public enum InformationBoxCheckBox : byte
+    [Flags]
+    public enum InformationBoxCheckBox
     {
         /// <summary>
         /// The checkbox will be displayed.
