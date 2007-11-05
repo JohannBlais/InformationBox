@@ -512,6 +512,15 @@ namespace InfoBox
             if (iconAndTextWidth > Screen.PrimaryScreen.WorkingArea.Width - 100)
                 totalHeight += 20;
 
+            bool verticalScroll = false;
+            if (totalHeight > Screen.PrimaryScreen.WorkingArea.Height - 50)
+            {
+                totalHeight = Screen.PrimaryScreen.WorkingArea.Height - 50;
+                totalWidth += 20;
+                messageText.Top = BORDER_PADDING;
+                verticalScroll = true;
+            }
+            
             pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - pnlBas.Height);
 
             if (_style == InformationBoxStyle.Modern)
@@ -521,7 +530,7 @@ namespace InfoBox
 
             // Sets the size;
             ClientSize = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight);
-
+            
             #region Position
 
             // Set new position for all components
@@ -531,7 +540,11 @@ namespace InfoBox
 
             // Text
             pnlScrollText.Width = ClientSize.Width - ((_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined) ? ICON_PANEL_WIDTH + BORDER_PADDING + 5 : BORDER_PADDING);
-            messageText.Top = Convert.ToInt32((pnlText.Height - messageText.Height) / 2);
+            if (!verticalScroll)
+            {
+                messageText.Top = Convert.ToInt32((pnlText.Height - messageText.Height) / 2);
+            }
+
 
             // Buttons
             SetButtonsLayout();
