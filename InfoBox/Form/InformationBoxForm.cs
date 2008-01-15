@@ -354,7 +354,7 @@ namespace InfoBox
                 FormBorderStyle = FormBorderStyle.None;
                 lblTitle.Visible = true;
 
-                foreach(GlassComponents.Controls.Button button in pnlButtons.Controls)
+                foreach(Controls.Button button in pnlButtons.Controls)
                 {
                     button.BackColor = barsBackColor;
                 }
@@ -377,7 +377,7 @@ namespace InfoBox
                 FormBorderStyle = FormBorderStyle.FixedDialog;
                 lblTitle.Visible = false;
                 pnlMain.Top -= lblTitle.Height;
-                pnlButtons.SideBorder = GlassComponents.Controls.SideBorder.None;
+                pnlButtons.SideBorder = InfoBox.Controls.SideBorder.None;
             }
         }
 
@@ -829,9 +829,9 @@ namespace InfoBox
             }
             else if (_style == InformationBoxStyle.Modern)
             {
-                button = new GlassComponents.Controls.Button();
-                (button as GlassComponents.Controls.Button).PersistantMode = false;
-                (button as GlassComponents.Controls.Button).Click += _button_Click;
+                button = new Controls.Button();
+                (button as Controls.Button).PersistantMode = false;
+                (button as Controls.Button).Click += _button_Click;
             }
 
             button.Font = SystemFonts.MessageBoxFont;
@@ -1092,9 +1092,9 @@ namespace InfoBox
                         else
                             button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
                     }
-                    else if (buttonToUpdate is GlassComponents.Controls.Button)
+                    else if (buttonToUpdate is Controls.Button)
                     {
-                        GlassComponents.Controls.Button button = (GlassComponents.Controls.Button) buttonToUpdate;
+                        Controls.Button button = (Controls.Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                             button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
                         else

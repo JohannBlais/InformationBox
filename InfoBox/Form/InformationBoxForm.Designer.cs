@@ -31,7 +31,7 @@ namespace InfoBox
             this.components = new System.ComponentModel.Container();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.pnlBas = new System.Windows.Forms.Panel();
-            this.pnlButtons = new GlassComponents.Controls.Panel();
+            this.pnlButtons = new InfoBox.Controls.Panel();
             this.chbDoNotShow = new System.Windows.Forms.CheckBox();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlIcon = new System.Windows.Forms.Panel();
@@ -39,7 +39,7 @@ namespace InfoBox
             this.pnlScrollText = new System.Windows.Forms.Panel();
             this.messageText = new System.Windows.Forms.TextBox();
             this.pnlForm = new System.Windows.Forms.Panel();
-            this.lblTitle = new GlassComponents.Controls.Label();
+            this.lblTitle = new InfoBox.Controls.Label();
             this.tmrAutoClose = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.pnlBas.SuspendLayout();
@@ -77,7 +77,7 @@ namespace InfoBox
             this.pnlButtons.ForeColor = System.Drawing.Color.White;
             this.pnlButtons.Location = new System.Drawing.Point(0, 18);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.SideBorder = GlassComponents.Controls.SideBorder.Both;
+            this.pnlButtons.SideBorder = InfoBox.Controls.SideBorder.Both;
             this.pnlButtons.SideBorderBottomColor = System.Drawing.Color.Transparent;
             this.pnlButtons.SideBorderTopColor = System.Drawing.Color.Black;
             this.pnlButtons.SideBorderWidth = 1;
@@ -175,7 +175,7 @@ namespace InfoBox
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.MinimumSize = new System.Drawing.Size(16, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.SideBorder = GlassComponents.Controls.SideBorder.Both;
+            this.lblTitle.SideBorder = InfoBox.Controls.SideBorder.Both;
             this.lblTitle.SideBorderBottomColor = System.Drawing.Color.Black;
             this.lblTitle.SideBorderTopColor = System.Drawing.Color.Transparent;
             this.lblTitle.SideBorderWidth = 1;
@@ -223,9 +223,9 @@ namespace InfoBox
         private System.Windows.Forms.Panel pnlIcon;
         private System.Windows.Forms.Panel pnlText;
         private System.Windows.Forms.CheckBox chbDoNotShow;
-        private GlassComponents.Controls.Panel pnlButtons;
+        private InfoBox.Controls.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlForm;
-        private GlassComponents.Controls.Label lblTitle;
+        private InfoBox.Controls.Label lblTitle;
         private System.Windows.Forms.Timer tmrAutoClose;
         private System.Windows.Forms.TextBox messageText;
         private System.Windows.Forms.Panel pnlScrollText;
