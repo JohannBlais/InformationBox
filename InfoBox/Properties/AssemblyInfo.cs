@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SaumonAgile")]
-[assembly: AssemblyProduct("InfoBox")]
+[assembly: AssemblyProduct("InformationBox")]
 [assembly: AssemblyCopyright("Copyright © SaumonAgile 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

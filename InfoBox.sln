@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox", "InfoBox\InfoBox.csproj", "{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Test", "InfoBox.Test\InfoBox.Test.csproj", "{2EFBB177-E826-47B4-8028-D124ECFAAE05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Designer", "InfoBox.Designer\InfoBox.Designer.csproj", "{2EFBB177-E826-47B4-8028-D124ECFAAE05}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -13,9 +13,9 @@ Global
 		SccProjectUniqueName1 = InfoBox\\InfoBox.csproj
 		SccProjectName1 = InfoBox
 		SccLocalPath1 = InfoBox
-		SccProjectUniqueName2 = InfoBox.Test\\InfoBox.Test.csproj
-		SccProjectName2 = InfoBox.Test
-		SccLocalPath2 = InfoBox.Test
+		SccProjectUniqueName2 = InfoBox.Designer\\InfoBox.Designer.csproj
+		SccProjectName2 = InfoBox.Designer
+		SccLocalPath2 = InfoBox.Designer
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
