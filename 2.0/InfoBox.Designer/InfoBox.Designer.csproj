@@ -7,8 +7,8 @@
     <ProjectGuid>{2EFBB177-E826-47B4-8028-D124ECFAAE05}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InfoBox.Test</RootNamespace>
-    <AssemblyName>InfoBox.Test</AssemblyName>
+    <RootNamespace>InfoBox.Designer</RootNamespace>
+    <AssemblyName>InfoBox.Designer</AssemblyName>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -75,7 +75,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InfoBox\InfoBox.csproj">
       <Project>{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}</Project>
-      <Name>Sagile.Forms</Name>
+      <Name>InfoBox</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
