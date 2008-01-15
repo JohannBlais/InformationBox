@@ -35,16 +35,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GlassComponents, Version=0.1.2769.33090, Culture=neutral, PublicKeyToken=4a86007e9a0ad891, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Button.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Button.Designer.cs">
+      <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PaintingEngine.cs" />
+    <Compile Include="Controls\Label.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Label.Designer.cs">
+      <DependentUpon>Label.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBorderEnum.cs" />
     <Compile Include="Enums\IconType.cs" />
     <Compile Include="Enums\InformationBoxAutoSizeMode.cs" />
     <Compile Include="Enums\InformationBoxButtons.cs" />
@@ -79,6 +91,18 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\Button.resx">
+      <DependentUpon>Button.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Label.resx">
+      <DependentUpon>Label.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Panel.resx">
+      <DependentUpon>Panel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\InformationBoxForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>InformationBoxForm.cs</DependentUpon>
@@ -140,7 +164,6 @@
     <None Include="Resources\scanner.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reference\GlassComponents.dll" />
     <Content Include="Resources\blank.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
