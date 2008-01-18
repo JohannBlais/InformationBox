@@ -638,6 +638,7 @@ namespace InfoBox
                     internalText.Replace("! ", "!" + Environment.NewLine);
                     internalText.Replace(": ", ":" + Environment.NewLine);
                     internalText.Replace(") ", ")" + Environment.NewLine);
+                    internalText.Replace(", ", "," + Environment.NewLine);
                 }
 
                 messageText.Text = internalText.ToString();
