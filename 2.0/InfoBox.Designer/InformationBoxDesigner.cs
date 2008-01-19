@@ -1,11 +1,11 @@
-namespace InfoBox.Test
-{
-    using System;
-    using System.Drawing;
-    using System.Text;
-    using System.Windows.Forms;
-    using System.Threading;
+using System;
+using System.Drawing;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
+namespace InfoBox.Designer
+{
     public partial class InformationBoxDesigner : Form
     {
         private Color _barsColor = Color.Empty;
@@ -199,7 +199,7 @@ namespace InfoBox.Test
                 return null;
 
             if (nudAutoCloseSeconds.Value == 30 && (!rdbAutoCloseButton.Checked || ddlAutoCloseButton.SelectedIndex == -1)
-                                                && (!rdbAutoCloseResult.Checked || ddlAutoCloseResult.SelectedIndex == -1))
+                && (!rdbAutoCloseResult.Checked || ddlAutoCloseResult.SelectedIndex == -1))
             {
                 return AutoCloseParameters.Default;
             }
@@ -258,7 +258,8 @@ namespace InfoBox.Test
         /// <summary>
         /// Generates the code.
         /// </summary>
-        private void GenerateCode()
+        /// <param name="behavior">The behavior.</param>
+        private void GenerateCode(InformationBoxBehavior behavior)
         {
             InformationBoxButtons buttons = GetButtons();
             InformationBoxIcon icon = GetIcon();
@@ -323,7 +324,7 @@ namespace InfoBox.Test
             if (!String.Empty.Equals(txbHelpFile.Text))
                 codeBuilder.AppendFormat("\"{0}\", ", txbHelpFile.Text);
 
-            if (navigator != (HelpNavigator) 0)
+            if (navigator != 0)
                 codeBuilder.AppendFormat("HelpNavigator.{0}, ", navigator);
 
             if (!String.Empty.Equals(txbHelpTopic.Text))
@@ -369,9 +370,9 @@ namespace InfoBox.Test
             if (null != design)
             {
                 codeBuilder.AppendFormat(
-                        "new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ",
-                        design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
-                        design.BarsBackColor.G, design.BarsBackColor.B);
+                    "new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ",
+                    design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
+                    design.BarsBackColor.G, design.BarsBackColor.B);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
@@ -382,6 +383,11 @@ namespace InfoBox.Test
             {
                 codeBuilder.Append("InformationBoxTitleIconStyle.None, ");
             }
+
+            if (behavior == InformationBoxBehavior.Modeless)
+            {
+                codeBuilder.Append("InformationBoxBehavior.Modeless, ");
+            }
             
 
             codeBuilder[codeBuilder.Length - 2] = ')';
@@ -391,19 +397,20 @@ namespace InfoBox.Test
         }
 
         /// <summary>
-        /// Handles the Click event of the btnShow control.
+        /// Call when a asynchronous InformationBox is closed.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnShow_Click(object sender, EventArgs e)
+        /// <param name="result">The result.</param>
+        private static void boxClosed(InformationBoxResult result)
         {
-            if (null != ddlLanguage.SelectedItem)
-            {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
-            }
+            InformationBox.Show(String.Format("I am the result of a modeless box : " + result));
+        }
 
-            GenerateCode();
-
+        /// <summary>
+        /// Shows the box.
+        /// </summary>
+        /// <param name="behavior">The behavior.</param>
+        private void ShowBox(InformationBoxBehavior behavior)
+        {
             InformationBoxButtons buttons = GetButtons();
             InformationBoxIcon icon = GetIcon();
             String iconFileName = txbIcon.Text;
@@ -418,25 +425,50 @@ namespace InfoBox.Test
             AutoCloseParameters autoClose = GetAutoClose();
             DesignParameters design = GetDesign();
             InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
+            
             InformationBoxTitleIcon titleIcon = null;
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
-            {
                 titleIcon = new InformationBoxTitleIcon(txbTitleIconFile.Text);
-            }
-
+            
             if (String.Empty.Equals(iconFileName))
-            {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon);
-            }
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), this);
             else
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), this);
+            
+            if (checkState != 0)
+                InformationBox.Show(String.Format("The state of the checkbox was {0}", state), InformationBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnShowModeless control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void btnShowModeless_Click(object sender, EventArgs e)
+        {
+            if (null != ddlLanguage.SelectedItem)
             {
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon);
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
             }
 
-            if (checkState != 0)
+            GenerateCode(InformationBoxBehavior.Modeless);
+            ShowBox(InformationBoxBehavior.Modeless);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            if (null != ddlLanguage.SelectedItem)
             {
-                InformationBox.Show(String.Format("The state of the checkbox was {0}", state), InformationBoxIcon.Information);
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
             }
+
+            GenerateCode(InformationBoxBehavior.Modal);
+            ShowBox(InformationBoxBehavior.Modal);
         }
 
         /// <summary>
@@ -446,7 +478,7 @@ namespace InfoBox.Test
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            GenerateCode();
+            GenerateCode(InformationBoxBehavior.Modal);
         }
 
         /// <summary>
