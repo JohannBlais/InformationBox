@@ -1,4 +1,4 @@
-namespace InfoBox.Test
+namespace InfoBox.Designer
 {
     partial class InformationBoxDesigner
     {
@@ -28,6 +28,7 @@ namespace InfoBox.Test
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxDesigner));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txbText = new System.Windows.Forms.TextBox();
             this.txbTitle = new System.Windows.Forms.TextBox();
@@ -52,6 +53,9 @@ namespace InfoBox.Test
             this.txbUser1 = new System.Windows.Forms.TextBox();
             this.btnShow = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rdbDefaultButton3 = new System.Windows.Forms.RadioButton();
+            this.rdbDefaultButton2 = new System.Windows.Forms.RadioButton();
+            this.rdbDefaultButton1 = new System.Windows.Forms.RadioButton();
             this.rdbTitleIconCustom = new System.Windows.Forms.RadioButton();
             this.rdbTitleIconSameAsBox = new System.Windows.Forms.RadioButton();
             this.rdbTitleIconNone = new System.Windows.Forms.RadioButton();
@@ -115,12 +119,10 @@ namespace InfoBox.Test
             this.chbCustomColors = new System.Windows.Forms.CheckBox();
             this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.rdbDefaultButton1 = new System.Windows.Forms.RadioButton();
-            this.rdbDefaultButton2 = new System.Windows.Forms.RadioButton();
-            this.rdbDefaultButton3 = new System.Windows.Forms.RadioButton();
             this.btnTitleIconFile = new System.Windows.Forms.Button();
             this.lblTitleIcon = new System.Windows.Forms.Label();
             this.txbTitleIconFile = new System.Windows.Forms.TextBox();
+            this.btnShowModeless = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -366,7 +368,7 @@ namespace InfoBox.Test
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(481, 491);
+            this.btnShow.Location = new System.Drawing.Point(323, 491);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -385,6 +387,39 @@ namespace InfoBox.Test
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Default button";
+            // 
+            // rdbDefaultButton3
+            // 
+            this.rdbDefaultButton3.AutoSize = true;
+            this.rdbDefaultButton3.Location = new System.Drawing.Point(153, 19);
+            this.rdbDefaultButton3.Name = "rdbDefaultButton3";
+            this.rdbDefaultButton3.Size = new System.Drawing.Size(62, 17);
+            this.rdbDefaultButton3.TabIndex = 2;
+            this.rdbDefaultButton3.TabStop = true;
+            this.rdbDefaultButton3.Text = "Button3";
+            this.rdbDefaultButton3.UseVisualStyleBackColor = true;
+            // 
+            // rdbDefaultButton2
+            // 
+            this.rdbDefaultButton2.AutoSize = true;
+            this.rdbDefaultButton2.Location = new System.Drawing.Point(85, 19);
+            this.rdbDefaultButton2.Name = "rdbDefaultButton2";
+            this.rdbDefaultButton2.Size = new System.Drawing.Size(62, 17);
+            this.rdbDefaultButton2.TabIndex = 1;
+            this.rdbDefaultButton2.TabStop = true;
+            this.rdbDefaultButton2.Text = "Button2";
+            this.rdbDefaultButton2.UseVisualStyleBackColor = true;
+            // 
+            // rdbDefaultButton1
+            // 
+            this.rdbDefaultButton1.AutoSize = true;
+            this.rdbDefaultButton1.Location = new System.Drawing.Point(17, 19);
+            this.rdbDefaultButton1.Name = "rdbDefaultButton1";
+            this.rdbDefaultButton1.Size = new System.Drawing.Size(62, 17);
+            this.rdbDefaultButton1.TabIndex = 0;
+            this.rdbDefaultButton1.TabStop = true;
+            this.rdbDefaultButton1.Text = "Button1";
+            this.rdbDefaultButton1.UseVisualStyleBackColor = true;
             // 
             // rdbTitleIconCustom
             // 
@@ -436,7 +471,7 @@ namespace InfoBox.Test
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(160, 491);
+            this.btnGenerate.Location = new System.Drawing.Point(118, 491);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -1037,39 +1072,6 @@ namespace InfoBox.Test
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Title Icon";
             // 
-            // rdbDefaultButton1
-            // 
-            this.rdbDefaultButton1.AutoSize = true;
-            this.rdbDefaultButton1.Location = new System.Drawing.Point(17, 19);
-            this.rdbDefaultButton1.Name = "rdbDefaultButton1";
-            this.rdbDefaultButton1.Size = new System.Drawing.Size(62, 17);
-            this.rdbDefaultButton1.TabIndex = 0;
-            this.rdbDefaultButton1.TabStop = true;
-            this.rdbDefaultButton1.Text = "Button1";
-            this.rdbDefaultButton1.UseVisualStyleBackColor = true;
-            // 
-            // rdbDefaultButton2
-            // 
-            this.rdbDefaultButton2.AutoSize = true;
-            this.rdbDefaultButton2.Location = new System.Drawing.Point(85, 19);
-            this.rdbDefaultButton2.Name = "rdbDefaultButton2";
-            this.rdbDefaultButton2.Size = new System.Drawing.Size(62, 17);
-            this.rdbDefaultButton2.TabIndex = 1;
-            this.rdbDefaultButton2.TabStop = true;
-            this.rdbDefaultButton2.Text = "Button2";
-            this.rdbDefaultButton2.UseVisualStyleBackColor = true;
-            // 
-            // rdbDefaultButton3
-            // 
-            this.rdbDefaultButton3.AutoSize = true;
-            this.rdbDefaultButton3.Location = new System.Drawing.Point(153, 19);
-            this.rdbDefaultButton3.Name = "rdbDefaultButton3";
-            this.rdbDefaultButton3.Size = new System.Drawing.Size(62, 17);
-            this.rdbDefaultButton3.TabIndex = 2;
-            this.rdbDefaultButton3.TabStop = true;
-            this.rdbDefaultButton3.Text = "Button3";
-            this.rdbDefaultButton3.UseVisualStyleBackColor = true;
-            // 
             // btnTitleIconFile
             // 
             this.btnTitleIconFile.Location = new System.Drawing.Point(214, 63);
@@ -1096,11 +1098,23 @@ namespace InfoBox.Test
             this.txbTitleIconFile.Size = new System.Drawing.Size(157, 20);
             this.txbTitleIconFile.TabIndex = 3;
             // 
+            // btnShowModeless
+            // 
+            this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShowModeless.Location = new System.Drawing.Point(528, 491);
+            this.btnShowModeless.Name = "btnShowModeless";
+            this.btnShowModeless.Size = new System.Drawing.Size(183, 27);
+            this.btnShowModeless.TabIndex = 22;
+            this.btnShowModeless.Text = "Show modeless";
+            this.btnShowModeless.UseVisualStyleBackColor = true;
+            this.btnShowModeless.Click += new System.EventHandler(this.btnShowModeless_Click);
+            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 617);
+            this.Controls.Add(this.btnShowModeless);
             this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.groupBox17);
             this.Controls.Add(this.groupBox16);
@@ -1122,6 +1136,7 @@ namespace InfoBox.Test
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "InformationBoxDesigner";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -1262,7 +1277,7 @@ namespace InfoBox.Test
         private System.Windows.Forms.Button btnTitleIconFile;
         private System.Windows.Forms.Label lblTitleIcon;
         private System.Windows.Forms.TextBox txbTitleIconFile;
+        private System.Windows.Forms.Button btnShowModeless;
 
     }
 }
-
