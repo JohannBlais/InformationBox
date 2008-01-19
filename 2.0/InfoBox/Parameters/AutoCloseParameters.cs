@@ -1,3 +1,5 @@
+using InfoBox.Internals;
+
 namespace InfoBox
 {
     /// <summary>

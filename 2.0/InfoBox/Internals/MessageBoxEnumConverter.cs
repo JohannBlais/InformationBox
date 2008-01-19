@@ -1,18 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
-namespace InfoBox
+namespace InfoBox.Internals
 {
-    static class MessageBoxEnumConverter
+    internal static class MessageBoxEnumConverter
     {
         /// <summary>
         /// Parses the specified MessageBoxButtons value.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static InformationBoxButtons Parse(MessageBoxButtons value)
+        internal static InformationBoxButtons Parse(MessageBoxButtons value)
         {
             return (InformationBoxButtons) Enum.Parse(typeof(InformationBoxButtons), value.ToString());
         }
@@ -22,7 +20,7 @@ namespace InfoBox
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static InformationBoxIcon Parse(MessageBoxIcon value)
+        internal static InformationBoxIcon Parse(MessageBoxIcon value)
         {
             return (InformationBoxIcon) Enum.Parse(typeof(InformationBoxIcon), value.ToString());
         }
@@ -32,7 +30,7 @@ namespace InfoBox
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static InformationBoxDefaultButton Parse(MessageBoxDefaultButton value)
+        internal static InformationBoxDefaultButton Parse(MessageBoxDefaultButton value)
         {
             return (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), value.ToString());
         }
