@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InfoBox
+namespace InfoBox.Internals
 {
     /// <summary>
     /// Defines constant representing the parameters specified for the auto-close feature.

@@ -9,7 +9,7 @@ namespace InfoBox
     {
         #region Internals
 
-        private Icon _icon;
+        private readonly Icon _icon;
 
         /// <summary>
         /// Gets the icon.

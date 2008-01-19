@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace InfoBox
 {
     /// <summary>
@@ -10,7 +6,7 @@ namespace InfoBox
     public enum InformationBoxPosition
     {
         /// <summary>
-        /// the <see cref="InformationBox"/> will be centered on the parent window. This is the default value.
+        /// the <see cref="InformationBox"/> will be centered on the parent window. This is the default value. Only for modal behavior.
         /// </summary>
         CenterOnParent,
         /// <summary>

@@ -1,8 +1,8 @@
-namespace InfoBox
-{
-    using System.Drawing;
-    using Properties;
+using System.Drawing;
+using InfoBox.Properties;
 
+namespace InfoBox.Internals
+{
     internal static class IconHelper
     {
         /// <summary>
@@ -10,7 +10,7 @@ namespace InfoBox
         /// </summary>
         /// <param name="iconType">Type of the icon.</param>
         /// <returns></returns>
-        public static Icon FromEnum(InformationBoxIcon iconType)
+        internal static Icon FromEnum(InformationBoxIcon iconType)
         {
             switch (iconType)
             {
@@ -71,7 +71,7 @@ namespace InfoBox
         /// </summary>
         /// <param name="iconType">Type of the icon.</param>
         /// <returns></returns>
-        public static InformationBoxMessageCategory GetCategory(InformationBoxIcon iconType)
+        internal static InformationBoxMessageCategory GetCategory(InformationBoxIcon iconType)
         {
             switch (iconType)
             {

@@ -40,6 +40,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncResultCallBack.cs" />
     <Compile Include="Controls\Button.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -59,6 +60,7 @@
     <Compile Include="Controls\SideBorderEnum.cs" />
     <Compile Include="Enums\IconType.cs" />
     <Compile Include="Enums\InformationBoxAutoSizeMode.cs" />
+    <Compile Include="Enums\InformationBoxBehavior.cs" />
     <Compile Include="Enums\InformationBoxButtons.cs" />
     <Compile Include="Enums\InformationBoxButtonsLayout.cs" />
     <Compile Include="Enums\InformationBoxCheckBox.cs" />
@@ -159,7 +161,6 @@
     <None Include="Resources\printer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="InfoBox.cd" />
     <None Include="Properties\key.snk" />
     <None Include="Resources\scanner.ico" />
   </ItemGroup>
