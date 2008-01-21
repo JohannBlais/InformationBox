@@ -21,6 +21,7 @@ namespace InfoBox.Designer
             LoadIcons();
             LoadButtons();
             LoadResults();
+            LoadOpacities();
 
             LoadBindings();
         }
@@ -34,6 +35,19 @@ namespace InfoBox.Designer
             {
                 ddlIcons.Items.Add(icon);
             }
+        }
+
+        /// <summary>
+        /// Loads the opacities.
+        /// </summary>
+        private void LoadOpacities()
+        {
+            foreach (InformationBoxOpacity op in Enum.GetValues(typeof(InformationBoxOpacity)))
+            {
+                ddlOpacities.Items.Add(op);
+            }
+
+            ddlOpacities.SelectedItem = InformationBoxOpacity.NoFade;
         }
 
         /// <summary>
@@ -114,6 +128,18 @@ namespace InfoBox.Designer
             if (null != ddlIcons.SelectedItem)
                 return (InformationBoxIcon) ddlIcons.SelectedItem;
             return InformationBoxIcon.None;
+        }
+
+        /// <summary>
+        /// Gets the opacity.
+        /// </summary>
+        /// <returns></returns>
+        private InformationBoxOpacity GetOpacity()
+        {
+            if (null != ddlOpacities.SelectedItem)
+                return (InformationBoxOpacity) ddlOpacities.SelectedItem;
+
+            return InformationBoxOpacity.NoFade;
         }
 
         /// <summary>
@@ -274,6 +300,7 @@ namespace InfoBox.Designer
             AutoCloseParameters autoClose = GetAutoClose();
             DesignParameters design = GetDesign();
             InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
+            InformationBoxOpacity opacity = GetOpacity();
 
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -355,7 +382,6 @@ namespace InfoBox.Designer
                     {
                         codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", Convert.ToInt32(nudAutoCloseSeconds.Value), (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), ddlAutoCloseButton.SelectedItem.ToString()));
                     }
-
                     else if (rdbAutoCloseResult.Checked && ddlAutoCloseResult.SelectedIndex != -1)
                     {
                         codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxResult.{1}), ", Convert.ToInt32(nudAutoCloseSeconds.Value), (InformationBoxResult)Enum.Parse(typeof(InformationBoxResult), ddlAutoCloseResult.SelectedItem.ToString()));
@@ -389,6 +415,8 @@ namespace InfoBox.Designer
                 codeBuilder.Append("InformationBoxBehavior.Modeless, ");
             }
             
+            if (opacity != InformationBoxOpacity.NoFade)
+                codeBuilder.AppendFormat("InformationBoxOpacity.{0}, ", opacity);
 
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
@@ -425,15 +453,16 @@ namespace InfoBox.Designer
             AutoCloseParameters autoClose = GetAutoClose();
             DesignParameters design = GetDesign();
             InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
+            InformationBoxOpacity opacity = GetOpacity();
             
             InformationBoxTitleIcon titleIcon = null;
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
                 titleIcon = new InformationBoxTitleIcon(txbTitleIconFile.Text);
             
             if (String.Empty.Equals(iconFileName))
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), this);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), opacity);
             else
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), this);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), opacity);
             
             if (checkState != 0)
                 InformationBox.Show(String.Format("The state of the checkbox was {0}", state), InformationBoxIcon.Information);

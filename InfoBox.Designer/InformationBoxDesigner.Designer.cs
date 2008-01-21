@@ -123,6 +123,8 @@ namespace InfoBox.Designer
             this.lblTitleIcon = new System.Windows.Forms.Label();
             this.txbTitleIconFile = new System.Windows.Forms.TextBox();
             this.btnShowModeless = new System.Windows.Forms.Button();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.ddlOpacities = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -142,6 +144,7 @@ namespace InfoBox.Designer
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).BeginInit();
             this.groupBox17.SuspendLayout();
             this.groupBox18.SuspendLayout();
+            this.groupBox19.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -152,7 +155,7 @@ namespace InfoBox.Designer
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 178);
+            this.groupBox1.Size = new System.Drawing.Size(264, 159);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Labels";
@@ -162,7 +165,7 @@ namespace InfoBox.Designer
             this.txbText.Location = new System.Drawing.Point(51, 53);
             this.txbText.Multiline = true;
             this.txbText.Name = "txbText";
-            this.txbText.Size = new System.Drawing.Size(196, 119);
+            this.txbText.Size = new System.Drawing.Size(196, 94);
             this.txbText.TabIndex = 2;
             // 
             // txbTitle
@@ -314,7 +317,7 @@ namespace InfoBox.Designer
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.ddlIcons);
-            this.groupBox3.Location = new System.Drawing.Point(12, 267);
+            this.groupBox3.Location = new System.Drawing.Point(12, 248);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(264, 45);
             this.groupBox3.TabIndex = 2;
@@ -424,7 +427,7 @@ namespace InfoBox.Designer
             // rdbTitleIconCustom
             // 
             this.rdbTitleIconCustom.AutoSize = true;
-            this.rdbTitleIconCustom.Location = new System.Drawing.Point(162, 28);
+            this.rdbTitleIconCustom.Location = new System.Drawing.Point(162, 16);
             this.rdbTitleIconCustom.Name = "rdbTitleIconCustom";
             this.rdbTitleIconCustom.Size = new System.Drawing.Size(60, 17);
             this.rdbTitleIconCustom.TabIndex = 2;
@@ -434,7 +437,7 @@ namespace InfoBox.Designer
             // rdbTitleIconSameAsBox
             // 
             this.rdbTitleIconSameAsBox.AutoSize = true;
-            this.rdbTitleIconSameAsBox.Location = new System.Drawing.Point(74, 28);
+            this.rdbTitleIconSameAsBox.Location = new System.Drawing.Point(74, 16);
             this.rdbTitleIconSameAsBox.Name = "rdbTitleIconSameAsBox";
             this.rdbTitleIconSameAsBox.Size = new System.Drawing.Size(82, 17);
             this.rdbTitleIconSameAsBox.TabIndex = 1;
@@ -445,7 +448,7 @@ namespace InfoBox.Designer
             // 
             this.rdbTitleIconNone.AutoSize = true;
             this.rdbTitleIconNone.Checked = true;
-            this.rdbTitleIconNone.Location = new System.Drawing.Point(17, 27);
+            this.rdbTitleIconNone.Location = new System.Drawing.Point(17, 16);
             this.rdbTitleIconNone.Name = "rdbTitleIconNone";
             this.rdbTitleIconNone.Size = new System.Drawing.Size(51, 17);
             this.rdbTitleIconNone.TabIndex = 0;
@@ -484,7 +487,7 @@ namespace InfoBox.Designer
             this.groupBox6.Controls.Add(this.btnIcon);
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.txbIcon);
-            this.groupBox6.Location = new System.Drawing.Point(12, 318);
+            this.groupBox6.Location = new System.Drawing.Point(12, 299);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(264, 50);
             this.groupBox6.TabIndex = 9;
@@ -613,7 +616,7 @@ namespace InfoBox.Designer
             this.groupBox9.Controls.Add(this.rdbAutoSizeNone);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumHeight);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumWidth);
-            this.groupBox9.Location = new System.Drawing.Point(12, 196);
+            this.groupBox9.Location = new System.Drawing.Point(12, 177);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(264, 65);
             this.groupBox9.TabIndex = 12;
@@ -1065,16 +1068,16 @@ namespace InfoBox.Designer
             this.groupBox18.Controls.Add(this.rdbTitleIconCustom);
             this.groupBox18.Controls.Add(this.rdbTitleIconNone);
             this.groupBox18.Controls.Add(this.rdbTitleIconSameAsBox);
-            this.groupBox18.Location = new System.Drawing.Point(12, 374);
+            this.groupBox18.Location = new System.Drawing.Point(12, 355);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(264, 94);
+            this.groupBox18.Size = new System.Drawing.Size(264, 63);
             this.groupBox18.TabIndex = 21;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Title Icon";
             // 
             // btnTitleIconFile
             // 
-            this.btnTitleIconFile.Location = new System.Drawing.Point(214, 63);
+            this.btnTitleIconFile.Location = new System.Drawing.Point(214, 34);
             this.btnTitleIconFile.Name = "btnTitleIconFile";
             this.btnTitleIconFile.Size = new System.Drawing.Size(25, 22);
             this.btnTitleIconFile.TabIndex = 5;
@@ -1085,7 +1088,7 @@ namespace InfoBox.Designer
             // lblTitleIcon
             // 
             this.lblTitleIcon.AutoSize = true;
-            this.lblTitleIcon.Location = new System.Drawing.Point(6, 68);
+            this.lblTitleIcon.Location = new System.Drawing.Point(6, 39);
             this.lblTitleIcon.Name = "lblTitleIcon";
             this.lblTitleIcon.Size = new System.Drawing.Size(44, 13);
             this.lblTitleIcon.TabIndex = 4;
@@ -1093,7 +1096,7 @@ namespace InfoBox.Designer
             // 
             // txbTitleIconFile
             // 
-            this.txbTitleIconFile.Location = new System.Drawing.Point(51, 65);
+            this.txbTitleIconFile.Location = new System.Drawing.Point(51, 36);
             this.txbTitleIconFile.Name = "txbTitleIconFile";
             this.txbTitleIconFile.Size = new System.Drawing.Size(157, 20);
             this.txbTitleIconFile.TabIndex = 3;
@@ -1109,11 +1112,30 @@ namespace InfoBox.Designer
             this.btnShowModeless.UseVisualStyleBackColor = true;
             this.btnShowModeless.Click += new System.EventHandler(this.btnShowModeless_Click);
             // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.ddlOpacities);
+            this.groupBox19.Location = new System.Drawing.Point(12, 424);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(264, 50);
+            this.groupBox19.TabIndex = 10;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "Opacity";
+            // 
+            // ddlOpacities
+            // 
+            this.ddlOpacities.FormattingEnabled = true;
+            this.ddlOpacities.Location = new System.Drawing.Point(17, 19);
+            this.ddlOpacities.Name = "ddlOpacities";
+            this.ddlOpacities.Size = new System.Drawing.Size(230, 21);
+            this.ddlOpacities.TabIndex = 0;
+            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 617);
+            this.Controls.Add(this.groupBox19);
             this.Controls.Add(this.btnShowModeless);
             this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.groupBox17);
@@ -1177,6 +1199,7 @@ namespace InfoBox.Designer
             this.groupBox17.PerformLayout();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
+            this.groupBox19.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1278,6 +1301,8 @@ namespace InfoBox.Designer
         private System.Windows.Forms.Label lblTitleIcon;
         private System.Windows.Forms.TextBox txbTitleIconFile;
         private System.Windows.Forms.Button btnShowModeless;
+        private System.Windows.Forms.GroupBox groupBox19;
+        private System.Windows.Forms.ComboBox ddlOpacities;
 
     }
 }

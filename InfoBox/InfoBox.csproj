@@ -67,6 +67,7 @@
     <Compile Include="Enums\InformationBoxDefaultButton.cs" />
     <Compile Include="Enums\InformationBoxIcon.cs" />
     <Compile Include="Enums\InformationBoxMessageCategory.cs" />
+    <Compile Include="Enums\InformationBoxOpacity.cs" />
     <Compile Include="Enums\InformationBoxPosition.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
     <Compile Include="Enums\InformationBoxStyle.cs" />
