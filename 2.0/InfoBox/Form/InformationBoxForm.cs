@@ -44,6 +44,7 @@ namespace InfoBox
         private readonly Icon _titleIcon;
         private readonly InformationBoxBehavior _behavior = InformationBoxBehavior.Modal;
         private readonly AsyncResultCallBack _callback;
+        private readonly InformationBoxOpacity _opacity;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
@@ -187,6 +188,9 @@ namespace InfoBox
                 // Callback for the result
                 else if (parameter is AsyncResultCallBack)
                     _callback = (AsyncResultCallBack) parameter;
+                // Opacity
+                else if (parameter is InformationBoxOpacity)
+                    _opacity = (InformationBoxOpacity) parameter;
             }
         }
 
@@ -209,6 +213,7 @@ namespace InfoBox
             SetPosition();
             SetWindowStyle();
             SetAutoClose();
+            SetOpacity();
             PlaySound();
             
             if (_behavior == InformationBoxBehavior.Modal)
@@ -292,6 +297,52 @@ namespace InfoBox
         }
 
         #endregion Auto close
+
+        #region Opacity
+
+        /// <summary>
+        /// Sets the opacity.
+        /// </summary>
+        private void SetOpacity()
+        {
+            switch (_opacity)
+            {
+                case InformationBoxOpacity.Faded10:
+                    Opacity = 0.1;
+                    break;
+                case InformationBoxOpacity.Faded20:
+                    Opacity = 0.2;
+                    break;
+                case InformationBoxOpacity.Faded30:
+                    Opacity = 0.3;
+                    break;
+                case InformationBoxOpacity.Faded40:
+                    Opacity = 0.4;
+                    break;
+                case InformationBoxOpacity.Faded50:
+                    Opacity = 0.5;
+                    break;
+                case InformationBoxOpacity.Faded60:
+                    Opacity = 0.6;
+                    break;
+                case InformationBoxOpacity.Faded70:
+                    Opacity = 0.7;
+                    break;
+                case InformationBoxOpacity.Faded80:
+                    Opacity = 0.8;
+                    break;
+                case InformationBoxOpacity.Faded90:
+                    Opacity = 0.9;
+                    break;
+                case InformationBoxOpacity.NoFade:
+                    Opacity = 1.0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion Opacity
 
         #region Style
 

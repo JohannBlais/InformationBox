@@ -84,12 +84,16 @@ namespace InfoBox
         ///         <description>the custom icon that will be displayed in the title bar.</description>
         ///     </item>
         ///     <item>
+        ///         <term><see cref="InformationBoxOpacity"/></term>
+        ///         <description>the opacity of the <see cref="InformationBox"/>.</description>
+        ///     </item>
+        ///     <item>
         ///         <term><see cref="AsyncResultCallBack"/></term>
         ///         <description>a method that will be called when a modeless dialog is closed.</description>
         ///     </item>
         ///     <item>
         ///         <term>A MessageBox enum value</term>
-        ///         <description>the value for the correspondin InformationBox enum value.</description>
+        ///         <description>the value for the corresponding <see cref="InformationBox"/> enum value.</description>
         ///     </item>
         /// </list>
         /// </summary>
@@ -176,12 +180,12 @@ namespace InfoBox
         ///         <description>the custom icon that will be displayed in the title bar.</description>
         ///     </item>
         ///     <item>
-        ///         <term><see cref="AsyncResultCallBack"/></term>
-        ///         <description>a method that will be called when a modeless dialog is closed.</description>
+        ///         <term><see cref="InformationBoxOpacity"/></term>
+        ///         <description>the opacity of the <see cref="InformationBox"/>.</description>
         ///     </item>
         ///     <item>
-        ///         <term><see cref="IWin32Window"/></term>
-        ///         <description>the owner of the <see cref="InformationBox"/></description>
+        ///         <term><see cref="AsyncResultCallBack"/></term>
+        ///         <description>a method that will be called when a modeless dialog is closed.</description>
         ///     </item>
         ///     <item>
         ///         <term>A MessageBox enum value</term>
