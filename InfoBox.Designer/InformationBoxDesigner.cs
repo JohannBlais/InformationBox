@@ -6,10 +6,19 @@ using System.Windows.Forms;
 
 namespace InfoBox.Designer
 {
+    /// <summary>
+    /// Designer for the InformationBoxes.
+    /// </summary>
     public partial class InformationBoxDesigner : Form
     {
+        #region Attributes
+
         private Color _barsColor = Color.Empty;
         private Color _formColor = Color.Empty;
+
+        #endregion Attributes
+
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxDesigner"/> class.
@@ -25,6 +34,10 @@ namespace InfoBox.Designer
 
             LoadBindings();
         }
+
+        #endregion Constructors
+
+        #region Loading
 
         /// <summary>
         /// Loads the icons.
@@ -99,6 +112,10 @@ namespace InfoBox.Designer
             txbTitleIconFile.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
             btnTitleIconFile.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
         }
+
+        #endregion Loading
+
+        #region Values
 
         /// <summary>
         /// Gets the buttons.
@@ -281,6 +298,10 @@ namespace InfoBox.Designer
             return InformationBoxTitleIconStyle.SameAsBox;
         }
 
+        #endregion Values
+
+        #region Code generation
+
         /// <summary>
         /// Generates the code.
         /// </summary>
@@ -424,6 +445,10 @@ namespace InfoBox.Designer
             txbCode.Text = codeBuilder.ToString().Replace("\"\"", "String.Empty");
         }
 
+        #endregion Code generation
+
+        #region Display
+
         /// <summary>
         /// Call when a asynchronous InformationBox is closed.
         /// </summary>
@@ -454,19 +479,33 @@ namespace InfoBox.Designer
             DesignParameters design = GetDesign();
             InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
             InformationBoxOpacity opacity = GetOpacity();
-            
+
             InformationBoxTitleIcon titleIcon = null;
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
                 titleIcon = new InformationBoxTitleIcon(txbTitleIconFile.Text);
-            
+
             if (String.Empty.Equals(iconFileName))
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), opacity);
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons,
+                                    new string[] {txbUser1.Text, txbUser2.Text}, icon, defaultButton, buttonsLayout,
+                                    autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator,
+                                    txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon,
+                                    behavior, new AsyncResultCallBack(boxClosed), opacity);
             else
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons, new string[] { txbUser1.Text, txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed), opacity);
-            
+                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons,
+                                    new string[] {txbUser1.Text, txbUser2.Text}, new Icon(iconFileName),
+                                    defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked,
+                                    txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose,
+                                    design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed),
+                                    opacity);
+
             if (checkState != 0)
-                InformationBox.Show(String.Format("The state of the checkbox was {0}", state), InformationBoxIcon.Information);
+                InformationBox.Show(String.Format("The state of the checkbox was {0}", state),
+                                    InformationBoxIcon.Information);
         }
+
+        #endregion Display
+
+        #region Event handlers
 
         /// <summary>
         /// Handles the Click event of the btnShowModeless control.
@@ -600,5 +639,7 @@ namespace InfoBox.Designer
         }
 
         #endregion Colors
+
+        #endregion Event handlers
     }
 }
