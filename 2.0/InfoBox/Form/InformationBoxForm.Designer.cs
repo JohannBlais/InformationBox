@@ -222,9 +222,9 @@ namespace InfoBox
         private System.Windows.Forms.Panel pnlIcon;
         private System.Windows.Forms.Panel pnlText;
         private System.Windows.Forms.CheckBox chbDoNotShow;
-        private InfoBox.Controls.Panel pnlButtons;
+        private Controls.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlForm;
-        private InfoBox.Controls.Label lblTitle;
+        private Controls.Label lblTitle;
         private System.Windows.Forms.Timer tmrAutoClose;
         private System.Windows.Forms.TextBox messageText;
         private System.Windows.Forms.Panel pnlScrollText;

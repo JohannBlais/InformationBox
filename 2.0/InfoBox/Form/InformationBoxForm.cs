@@ -29,35 +29,35 @@ namespace InfoBox
 
         private InformationBoxResult _result = InformationBoxResult.None;
 
-        private readonly InformationBoxIcon _icon = InformationBoxIcon.None;
-        private readonly Icon _customIcon;
-        private readonly InformationBoxButtons _buttons = InformationBoxButtons.OK;
-        private readonly InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
-        private readonly InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
-        private readonly InformationBoxAutoSizeMode _autoSizeMode = InformationBoxAutoSizeMode.None;
-        private readonly InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
-        private readonly InformationBoxCheckBox _checkBox = 0;
-        private readonly InformationBoxStyle _style = InformationBoxStyle.Standard;
-        private readonly AutoCloseParameters _autoClose;
-        private readonly DesignParameters _design;
-        private readonly InformationBoxTitleIconStyle _titleStyle = InformationBoxTitleIconStyle.SameAsBox;
-        private readonly Icon _titleIcon;
-        private readonly InformationBoxBehavior _behavior = InformationBoxBehavior.Modal;
+        private InformationBoxIcon _icon = InformationBoxIcon.None;
+        private Icon _customIcon;
+        private InformationBoxButtons _buttons = InformationBoxButtons.OK;
+        private InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
+        private InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
+        private InformationBoxAutoSizeMode _autoSizeMode = InformationBoxAutoSizeMode.None;
+        private InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
+        private InformationBoxCheckBox _checkBox = 0;
+        private InformationBoxStyle _style = InformationBoxStyle.Standard;
+        private AutoCloseParameters _autoClose;
+        private DesignParameters _design;
+        private InformationBoxTitleIconStyle _titleStyle = InformationBoxTitleIconStyle.SameAsBox;
+        private Icon _titleIcon;
+        private InformationBoxBehavior _behavior = InformationBoxBehavior.Modal;
         private readonly AsyncResultCallBack _callback;
-        private readonly InformationBoxOpacity _opacity;
+        private InformationBoxOpacity _opacity = InformationBoxOpacity.NoFade;
 
         private readonly string _buttonUser1Text = "User1";
         private readonly string _buttonUser2Text = "User2";
 
-        private readonly IconType _iconType = IconType.Internal;
+        private IconType _iconType = IconType.Internal;
 
         private readonly Graphics _measureGraphics;
         private StringBuilder internalText;
 
-        private readonly bool _showHelpButton;
+        private bool _showHelpButton;
         private readonly string _helpFile = String.Empty;
         private readonly string _helpTopic = String.Empty;
-        private readonly HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
+        private HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
 
         private readonly Form _activeForm;
         private bool _mouseDown;
@@ -95,6 +95,24 @@ namespace InfoBox
         internal InformationBoxForm(string text, params object[] parameters) : this(text)
         {
             _activeForm = ActiveForm;
+
+            // Looks for a parameter of the type InformationBoxInitialization.
+            // If found and equal to InformationBoxInitialization.FromParametersOnly,
+            // skips the scope parameters.
+            bool loadScope = true;
+            foreach (object param in parameters)
+            {
+                if (param is InformationBoxInitialization)
+                {
+                    InformationBoxInitialization value = (InformationBoxInitialization) param;
+                    if (InformationBoxInitialization.FromParametersOnly == value)
+                    {
+                        loadScope = false;
+                    }
+                }
+            }
+            if (loadScope)
+                LoadCurrentScope();
 
             int stringCount = 0;
 
@@ -280,6 +298,71 @@ namespace InfoBox
         #endregion Sound
 
         #region Box initialization
+
+        /// <summary>
+        /// Loads the current scope.
+        /// </summary>
+        private void LoadCurrentScope()
+        {
+            if (InformationBoxScope.Current == null)
+                return;
+
+            InformationBoxScopeParameters parameters = InformationBoxScope.Current.Parameters;
+
+            if (parameters.Icon.HasValue)
+                _icon = parameters.Icon.Value;
+            
+            if (parameters.CustomIcon != null)
+            {
+                _iconType = IconType.UserDefined;
+                _customIcon = parameters.CustomIcon;
+            }
+
+            if (parameters.Buttons.HasValue)
+                _buttons = parameters.Buttons.Value;
+
+            if (parameters.DefaultButton.HasValue)
+                _defaultButton = parameters.DefaultButton.Value;
+
+            if (parameters.Layout.HasValue)
+                _buttonsLayout = parameters.Layout.Value;
+
+            if (parameters.AutoSizeMode.HasValue)
+                _autoSizeMode = parameters.AutoSizeMode.Value;
+
+            if (parameters.Position.HasValue)
+                _position = parameters.Position.Value;
+
+            if (parameters.Checkbox.HasValue)
+                _checkBox = parameters.Checkbox.Value;
+
+            if (parameters.Style.HasValue)
+                _style = parameters.Style.Value;
+
+            if (parameters.AutoClose != null)
+                _autoClose = parameters.AutoClose;
+
+            if (parameters.Design != null)
+                _design = parameters.Design;
+
+            if (parameters.TitleIconStyle.HasValue)
+                _titleStyle = parameters.TitleIconStyle.Value;
+
+            if (parameters.TitleIcon != null)
+                _titleIcon = parameters.TitleIcon;
+
+            if (parameters.Behavior.HasValue)
+                _behavior = parameters.Behavior.Value;
+
+            if (parameters.Opacity.HasValue)
+                _opacity = parameters.Opacity.Value;
+
+            if (parameters.Help.HasValue)
+                _showHelpButton = parameters.Help.Value;
+
+            if (parameters.HelpNavigator.HasValue)
+                _helpNavigator = parameters.HelpNavigator.Value;
+        }
 
         #region Auto close
 
