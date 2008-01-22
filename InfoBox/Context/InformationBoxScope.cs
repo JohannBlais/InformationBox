@@ -11,7 +11,7 @@ namespace InfoBox
         #region Attributes
 
         private static readonly Stack<InformationBoxScope> scopesStack = new Stack<InformationBoxScope>();
-        private readonly InformationBoxScopeParameters parameters;
+        private readonly InformationBoxScopeParameters parameters = new InformationBoxScopeParameters();
 
         #endregion Attributes
 
@@ -55,19 +55,15 @@ namespace InfoBox
             scopesStack.Push(this);
         }
 
-        #endregion Constructors
-
-        #region Methods
-
         /// <summary>
-        /// Completes this instance.
+        /// Initializes a new instance of the <see cref="InformationBoxScope"/> class.
         /// </summary>
-        public void Complete()
+        public InformationBoxScope()
         {
-            Dispose();
+            scopesStack.Push(this);
         }
 
-        #endregion Methods
+        #endregion Constructors
 
         #region Dispose
 

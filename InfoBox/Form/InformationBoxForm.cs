@@ -111,6 +111,7 @@ namespace InfoBox
                     }
                 }
             }
+
             if (loadScope)
                 LoadCurrentScope();
 
