@@ -518,7 +518,7 @@ namespace InfoBox
             else
             {
                 StartPosition = FormStartPosition.CenterParent;
-                CenterToScreen();
+                CenterToParent();
             }
         }
 
@@ -614,8 +614,7 @@ namespace InfoBox
                 verticalScroll = true;
             }
 
-            pnlMain.Size =
-                new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - pnlBas.Height);
+            pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - pnlBas.Height);
 
             if (_style == InformationBoxStyle.Modern)
                 totalHeight += lblTitle.Height;
