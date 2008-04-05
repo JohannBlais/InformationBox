@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using InfoBox.Controls;
 using InfoBox.Properties;
+using System.Diagnostics;
 
 namespace InfoBox
 {
