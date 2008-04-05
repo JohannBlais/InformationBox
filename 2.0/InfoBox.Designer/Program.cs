@@ -2,6 +2,7 @@ namespace InfoBox.Test
 {
     using System;
     using System.Windows.Forms;
+    using InfoBox.Designer;
 
     static class Program
     {

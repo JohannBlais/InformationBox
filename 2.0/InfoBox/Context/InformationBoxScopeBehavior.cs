@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace InfoBox
+{
+    /// <summary>
+    /// Specifies constants defining how the new scope treats the parameters of the parent scopes.
+    /// </summary>
+    public enum InformationBoxScopeBehavior
+    {
+        /// <summary>
+        /// Parent parameters are ignored.
+        /// </summary>
+        None,
+        /// <summary>
+        /// The parameters of the direct parent are taken into account.
+        /// </summary>
+        InheritParent,
+        /// <summary>
+        /// The parameters of all active scopes are taken into account.
+        /// </summary>
+        InheritAll,
+    }
+}

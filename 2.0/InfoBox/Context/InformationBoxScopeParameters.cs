@@ -1,13 +1,15 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace InfoBox
 {
     /// <summary>
     /// Contains the parameters used by a specific scope.
     /// </summary>
-    public class InformationBoxScopeParameters
+    [DebuggerStepThrough]
+    public struct InformationBoxScopeParameters
     {
         #region Attributes
 
@@ -204,5 +206,70 @@ namespace InfoBox
         }
 
         #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Merges the specified parameters.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
+        public InformationBoxScopeParameters Merge(InformationBoxScopeParameters parameters)
+        {
+            if (parameters.Icon.HasValue && !Icon.HasValue)
+                icon = parameters.Icon.Value;
+
+            if (parameters.CustomIcon != null && null == CustomIcon)
+                customIcon = parameters.CustomIcon;
+
+            if (parameters.Buttons.HasValue && !Buttons.HasValue)
+                buttons = parameters.Buttons.Value;
+
+            if (parameters.DefaultButton.HasValue && !DefaultButton.HasValue)
+                defaultButton = parameters.DefaultButton.Value;
+
+            if (parameters.Layout.HasValue && !Layout.HasValue)
+                layout = parameters.Layout.Value;
+
+            if (parameters.AutoSizeMode.HasValue && !AutoSizeMode.HasValue)
+                autoSizeMode = parameters.AutoSizeMode.Value;
+
+            if (parameters.Position.HasValue && !Position.HasValue)
+                position = parameters.Position.Value;
+
+            if (parameters.Checkbox.HasValue && !Checkbox.HasValue)
+                checkbox = parameters.Checkbox.Value;
+
+            if (parameters.Style.HasValue && !Style.HasValue)
+                style = parameters.Style.Value;
+
+            if (parameters.AutoClose != null && null == AutoClose)
+                autoClose = parameters.AutoClose;
+
+            if (parameters.Design != null && null == Design)
+                design = parameters.Design;
+
+            if (parameters.TitleIconStyle.HasValue && !TitleIconStyle.HasValue)
+                titleIconStyle = parameters.TitleIconStyle.Value;
+
+            if (parameters.TitleIcon != null && null == TitleIcon)
+                titleIcon = parameters.TitleIcon;
+
+            if (parameters.Behavior.HasValue && !Behavior.HasValue)
+                behavior = parameters.Behavior.Value;
+
+            if (parameters.Opacity.HasValue && !Opacity.HasValue)
+                opacity = parameters.Opacity.Value;
+
+            if (parameters.Help.HasValue && !Help.HasValue)
+                help = parameters.Help.Value;
+
+            if (parameters.HelpNavigator.HasValue && !HelpNavigator.HasValue)
+                helpNavigator = parameters.HelpNavigator.Value;
+
+            return this;
+        }
+
+        #endregion Methods
     }
 }

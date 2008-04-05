@@ -11,7 +11,9 @@ namespace InfoBox
         #region Attributes
 
         private static readonly Stack<InformationBoxScope> scopesStack = new Stack<InformationBoxScope>();
-        private readonly InformationBoxScopeParameters parameters = new InformationBoxScopeParameters();
+        private readonly InformationBoxScopeParameters definedParameters = new InformationBoxScopeParameters();
+
+        internal InformationBoxScopeParameters effectiveParameters = new InformationBoxScopeParameters();
 
         #endregion Attributes
 
@@ -37,7 +39,7 @@ namespace InfoBox
         /// <value>The parameters.</value>
         public InformationBoxScopeParameters Parameters
         {
-            get { return parameters; }
+            get { return effectiveParameters; }
         }
 
         #endregion Properties
@@ -50,7 +52,37 @@ namespace InfoBox
         /// <param name="parameters">The parameters.</param>
         public InformationBoxScope(InformationBoxScopeParameters parameters)
         {
-            this.parameters = parameters;
+            this.definedParameters = parameters;
+
+            scopesStack.Push(this);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxScope"/> class.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="behavior">The behavior.</param>
+        public InformationBoxScope(InformationBoxScopeParameters parameters, InformationBoxScopeBehavior behavior)
+        {
+            this.definedParameters = parameters;
+            this.effectiveParameters = parameters;
+            
+            if (behavior == InformationBoxScopeBehavior.InheritParent)
+            {
+                if (null != Current)
+                {
+                    // Merge with the parameters defined explicitly in the direct parent
+                    this.effectiveParameters.Merge(Current.definedParameters);
+                }
+            }
+            else if (behavior == InformationBoxScopeBehavior.InheritAll)
+            {
+                if (null != Current)
+                {
+                    // Merge the effective parameters from the parent
+                    this.effectiveParameters.Merge(Current.Parameters);
+                }
+            }
 
             scopesStack.Push(this);
         }
