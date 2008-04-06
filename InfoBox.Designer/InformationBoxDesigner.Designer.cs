@@ -596,10 +596,12 @@ namespace InfoBox.Designer
             this.ddlLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlLanguage.Items.AddRange(new object[] {
             "en - English",
-            "fr - Français"});
+            "fr - Français",
+            "nl - Dutch",
+            "pt-BR - Brazilian Portuguese"});
             this.ddlLanguage.Location = new System.Drawing.Point(72, 19);
             this.ddlLanguage.Name = "ddlLanguage";
-            this.ddlLanguage.Size = new System.Drawing.Size(165, 21);
+            this.ddlLanguage.Size = new System.Drawing.Size(176, 21);
             this.ddlLanguage.TabIndex = 2;
             // 
             // label4

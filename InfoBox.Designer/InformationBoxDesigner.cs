@@ -416,10 +416,9 @@ namespace InfoBox.Designer
 
             if (null != design)
             {
-                codeBuilder.AppendFormat(
-                    "new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ",
-                    design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
-                    design.BarsBackColor.G, design.BarsBackColor.B);
+                codeBuilder.AppendFormat("new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ",
+                                         design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
+                                         design.BarsBackColor.G, design.BarsBackColor.B);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
@@ -435,9 +434,11 @@ namespace InfoBox.Designer
             {
                 codeBuilder.Append("InformationBoxBehavior.Modeless, ");
             }
-            
+
             if (opacity != InformationBoxOpacity.NoFade)
+            {
                 codeBuilder.AppendFormat("InformationBoxOpacity.{0}, ", opacity);
+            }
 
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
@@ -516,7 +517,15 @@ namespace InfoBox.Designer
         {
             if (null != ddlLanguage.SelectedItem)
             {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+                String culture = ddlLanguage.SelectedItem.ToString();
+                if (culture[2] == '-')
+                {
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 5));
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+                }
             }
 
             GenerateCode(InformationBoxBehavior.Modeless);
@@ -532,7 +541,15 @@ namespace InfoBox.Designer
         {
             if (null != ddlLanguage.SelectedItem)
             {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+                String culture = ddlLanguage.SelectedItem.ToString();
+                if (culture[2] == '-')
+                {
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 5));
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+                }
             }
 
             GenerateCode(InformationBoxBehavior.Modal);
