@@ -1,3 +1,9 @@
+// <copyright file="InformationBox.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Displays a message box that can contain text, buttons, and symbols that inform and instruct the user</summary>
+
 namespace InfoBox
 {
     using System.Windows.Forms;

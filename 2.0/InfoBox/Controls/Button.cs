@@ -1,10 +1,16 @@
-using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
+// <copyright file="Button.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Glass button</summary>
 
 namespace InfoBox.Controls
 {
+    using System;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     /// <summary>
     /// Glass button
     /// </summary>
@@ -15,6 +21,57 @@ namespace InfoBox.Controls
     [ToolboxBitmap(typeof(System.Windows.Forms.Button))]
     public partial class Button : Panel
     {
+        #region Attributes
+
+        #region Button state
+
+        /// <summary>
+        /// Flag for the pushed state
+        /// </summary>
+        private bool pushed;
+
+        /// <summary>
+        /// Flag for the hover state
+        /// </summary>
+        private bool hover;
+
+        /// <summary>
+        /// Flag for the pushed persistant mode
+        /// </summary>
+        private bool persistantMode;
+
+        #endregion Button state
+
+        /// <summary>
+        /// Value of the alpha channel
+        /// </summary>
+        private int alphaChannelCoeff = 0;
+
+        /// <summary>
+        /// Text alignment
+        /// </summary>
+        private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
+
+        /// <summary>
+        /// Fore color used for the disabled state
+        /// </summary>
+        private Color disabledForeColor = Color.Gray;
+
+        #endregion Attributes
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Button"/> class.
+        /// </summary>
+        public Button()
+        {
+            this.InitializeComponent();
+            this.DoubleBuffered = true;
+        }
+
+        #endregion Constructor
+
         #region Events
 
         /// <summary>
@@ -24,35 +81,6 @@ namespace InfoBox.Controls
 
         #endregion Events
 
-        #region Attributes
-
-        #region Button state
-
-        private bool pushed;
-        private bool hover;
-        private bool persistantMode;
-
-        #endregion Button state
-
-        private int alphaChannelCoeff = 0;
-        private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
-        private Color disabledForeColor = Color.Gray;
-
-        #endregion Attributes
-
-        #region Constructor
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Button()
-        {
-            InitializeComponent();
-            this.DoubleBuffered = true;
-        }
-
-        #endregion Constructor
-
         #region Properties
 
         /// <summary>
@@ -61,11 +89,15 @@ namespace InfoBox.Controls
         [Category("Appearance"), Description("Defines the text color when the button is disabled")]
         public Color DisabledForeColor
         {
-            get { return disabledForeColor; }
+            get
+            {
+                return this.disabledForeColor;
+            }
+
             set
             {
-                disabledForeColor = value;
-                RefreshLabelColor();
+                this.disabledForeColor = value;
+                this.RefreshLabelColor();
             }
         }
 
@@ -75,12 +107,16 @@ namespace InfoBox.Controls
         [Category("Appearance"), Description("Defines the alignment of the text")]
         public ContentAlignment TextAlign
         {
-            get { return textAlign; }
+            get
+            {
+                return this.textAlign;
+            }
+
             set
             {
-                textAlign = value;
-                buttonText.TextAlign = textAlign;
-                Invalidate();
+                this.textAlign = value;
+                this.buttonText.TextAlign = this.textAlign;
+                this.Invalidate();
             }
         }
 
@@ -90,85 +126,104 @@ namespace InfoBox.Controls
         [Category("Appearance"), Description("Defines the text of the button"), Browsable(true)]
         public override string Text
         {
-            get { return buttonText.Text; }
+            get
+            {
+                return this.buttonText.Text;
+            }
+
             set
             {
-                buttonText.Text = value;
-                Invalidate();
+                this.buttonText.Text = value;
+                this.Invalidate();
             }
         }
 
         /// <summary>
-        /// Gets or sets if the button remains clicked after mouse button is released
+        /// Gets or sets a value indicating whether the button remains clicked after mouse button is released.
         /// </summary>
+        /// <value><c>true</c> if the button remains clicked after mouse button is released; otherwise, <c>false</c>.</value>
         [Category("Behavior"), Description("Defines if the button remains clicked after mouse button is released"), DefaultValue("false")]
         public bool PersistantMode
         {
-            get { return persistantMode; }
-            set {
-                persistantMode = value;
-                Invalidate();
+            get
+            {
+                return this.persistantMode;
+            }
+
+            set
+            {
+                this.persistantMode = value;
+                this.Invalidate();
             }
         }
 
         /// <summary>
-        /// Gets or sets if button is pushed (only if persistant mode)
+        /// Gets or sets a value indicating whether this <see cref="Button"/> is pushed.
         /// </summary>
+        /// <value><c>true</c> if pushed; otherwise, <c>false</c>.</value>
         [Category("Behavior"), Description("Defines if button appears as pushed"), Browsable(true)]
         public bool Pushed
         {
-            get { return pushed; }
+            get
+            {
+                return this.pushed;
+            }
+
             set
             {
                 // Do nothing if not in persistant mode
-                if (!persistantMode) return;
+                if (!this.persistantMode)
+                {
+                    return;
+                }
 
-                pushed = value;
-                Invalidate();
+                this.pushed = value;
+                this.Invalidate();
             }
         }
 
         #endregion Properties
 
-        #region Methods
-        /// <summary>
-        /// Sets the text forecolor
-        /// </summary>
-        private void RefreshLabelColor()
-        {
-            buttonText.ForeColor = Enabled ? ForeColor : disabledForeColor;
-            Invalidate();
-        }
-
-        #endregion Methods
-
         #region Event handlers
+
+        /// <summary>
+        /// When button is clicked
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        protected override void OnClick(EventArgs e)
+        {
+            if (this.Click != null)
+            {
+                this.Click(this, e);
+            }
+        }
 
         #region Background
 
         /// <summary>
         /// Paints the background
         /// </summary>
-        /// <param name="pevent"></param>
+        /// <param name="pevent">A <see cref="T:System.Windows.Forms.PaintEventArgs"></see> that contains information about the control to paint.</param>
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             base.OnPaintBackground(pevent);
 
             int tailleZoneSuperieure = (Height - 3) / 2;
 
-            if (pushed)
+            if (this.pushed)
             {
                 PaintingEngine.PaintPushedEffect(pevent.Graphics, Width, Height);
             }
-            else if (Enabled && (hover || timerFade.Enabled))
+            else if (Enabled && (this.hover || this.timerFade.Enabled))
             {
-                PaintingEngine.PaintHoverEffect(pevent.Graphics,
-                                                Color.FromArgb(12 * alphaChannelCoeff, Color.Gainsboro),
-                                                Color.FromArgb(12 * alphaChannelCoeff, Color.Black),
-                                                Color.FromArgb(10 * alphaChannelCoeff, Color.White),
-                                                Color.FromArgb(5 * alphaChannelCoeff, Color.Beige),
-                                                Width,
-                                                Height);
+                PaintingEngine.PaintHoverEffect(
+                    pevent.Graphics,
+                    Color.FromArgb(12 * this.alphaChannelCoeff, Color.Gainsboro),
+                    Color.FromArgb(12 * this.alphaChannelCoeff, Color.Black),
+                    Color.FromArgb(10 * this.alphaChannelCoeff, Color.White),
+                    Color.FromArgb(5 * this.alphaChannelCoeff, Color.Beige),
+                    this.Width,
+                    this.Height);
             }
         }
 
@@ -177,149 +232,171 @@ namespace InfoBox.Controls
         /// <summary>
         /// When forecolor is changed
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnNewForeColor(object sender, EventArgs e)
         {
-            RefreshLabelColor();
+            this.RefreshLabelColor();
         }
 
         /// <summary>
         /// When the 'Enabled' property is changed
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnEnabledChanged(object sender, EventArgs e)
         {
-            RefreshLabelColor();
-            Invalidate();
-        }
-
-        /// <summary>
-        /// When button is clicked
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnClick(EventArgs e)
-        {
-            if (Click != null)
-                Click(this, e);
+            this.RefreshLabelColor();
+            this.Invalidate();
         }
 
         /// <summary>
         /// When mouse enters the button
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnTextEnter(object sender, EventArgs e)
         {
             if (!Enabled)
+            {
                 return;
+            }
 
-            if (pushed && persistantMode)
+            if (this.pushed && this.persistantMode)
+            {
                 return;
+            }
 
-            hover = true;
-            timerFade.Start();
-            Invalidate();
+            this.hover = true;
+            this.timerFade.Start();
+            this.Invalidate();
 
-            base.OnEnter(e);
+            this.OnEnter(e);
         }
 
         /// <summary>
         /// When mouse leaves the button
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnTextLeave(object sender, EventArgs e)
         {
             if (!Enabled)
+            {
                 return;
+            }
 
-            if (pushed && persistantMode)
+            if (this.pushed && this.persistantMode)
+            {
                 return;
+            }
 
-            hover = false;
-            timerFade.Start();
-            Invalidate();
+            this.hover = false;
+            this.timerFade.Start();
+            this.Invalidate();
 
-            base.OnLeave(e);
+            this.OnLeave(e);
         }
 
         /// <summary>
         /// When user clicks on the button
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         private void OnTextDown(object sender, MouseEventArgs e)
         {
-            timerFade.Stop();
+            this.timerFade.Stop();
 
             if (!Enabled)
-                return;
-
-            if (pushed && persistantMode)
             {
-                pushed = false;
+                return;
+            }
+
+            if (this.pushed && this.persistantMode)
+            {
+                this.pushed = false;
             }
             else
             {
-                pushed = true;
+                this.pushed = true;
             }
 
-            Invalidate();
+            this.Invalidate();
         }
 
         /// <summary>
         /// When user release the mouse button
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         private void OnTextUp(object sender, MouseEventArgs e)
         {
             if (!Enabled)
+            {
                 return;
+            }
 
-            if (persistantMode)
+            if (this.persistantMode)
+            {
                 return;
+            }
 
-            pushed = false;
-            hover = true;
-            Invalidate();
+            this.pushed = false;
+            this.hover = true;
+            this.Invalidate();
 
             // Raises event
-            OnClick(new EventArgs());
+            this.OnClick(new EventArgs());
         }
 
         #region Timer Tick (for fading effect)
 
+        /// <summary>
+        /// Called when [fade tick].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnFadeTick(object sender, EventArgs e)
         {
-            if (hover)
+            if (this.hover)
             {
-                alphaChannelCoeff += 2;
+                this.alphaChannelCoeff += 2;
 
-                if (alphaChannelCoeff >= 10)
+                if (this.alphaChannelCoeff >= 10)
                 {
-                    alphaChannelCoeff = 10;
-                    timerFade.Stop();
+                    this.alphaChannelCoeff = 10;
+                    this.timerFade.Stop();
                 }
             }
-            else if (!pushed)
+            else if (!this.pushed)
             {
-                alphaChannelCoeff -= 2;
+                this.alphaChannelCoeff -= 2;
 
-                if (alphaChannelCoeff <= 0)
+                if (this.alphaChannelCoeff <= 0)
                 {
-                    alphaChannelCoeff = 0;
-                    timerFade.Stop();
+                    this.alphaChannelCoeff = 0;
+                    this.timerFade.Stop();
                 }
             }
 
-            Invalidate();
+            this.Invalidate();
         }
 
         #endregion Timer Tick (for fading effect)
 
         #endregion Event handlers
+
+        #region Methods
+
+        /// <summary>
+        /// Sets the text forecolor
+        /// </summary>
+        private void RefreshLabelColor()
+        {
+            this.buttonText.ForeColor = Enabled ? ForeColor : this.disabledForeColor;
+            Invalidate();
+        }
+
+        #endregion Methods
     }
 }

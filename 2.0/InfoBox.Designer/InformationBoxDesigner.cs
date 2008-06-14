@@ -1,11 +1,17 @@
-using System;
-using System.Drawing;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
+// <copyright file="InformationBoxDesigner.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Designer window</summary>
 
 namespace InfoBox.Designer
 {
+    using System;
+    using System.Drawing;
+    using System.Text;
+    using System.Threading;
+    using System.Windows.Forms;
+
     /// <summary>
     /// Designer for the InformationBoxes.
     /// </summary>
@@ -13,8 +19,15 @@ namespace InfoBox.Designer
     {
         #region Attributes
 
-        private Color _barsColor = Color.Empty;
-        private Color _formColor = Color.Empty;
+        /// <summary>
+        /// Color of the bars
+        /// </summary>
+        private Color barsColor = Color.Empty;
+
+        /// <summary>
+        /// Color of the form
+        /// </summary>
+        private Color formColor = Color.Empty;
 
         #endregion Attributes
 
@@ -25,17 +38,75 @@ namespace InfoBox.Designer
         /// </summary>
         public InformationBoxDesigner()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            LoadIcons();
-            LoadButtons();
-            LoadResults();
-            LoadOpacities();
+            this.LoadIcons();
+            this.LoadButtons();
+            this.LoadResults();
+            this.LoadOpacities();
 
-            LoadBindings();
+            this.LoadBindings();
         }
 
         #endregion Constructors
+
+        #region Display
+
+        /// <summary>
+        /// Call when a asynchronous InformationBox is closed.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        private static void BoxClosed(InformationBoxResult result)
+        {
+            InformationBox.Show(String.Format("I am the result of a modeless box : " + result));
+        }
+
+        /// <summary>
+        /// Shows the box.
+        /// </summary>
+        /// <param name="behavior">The behavior.</param>
+        private void ShowBox(InformationBoxBehavior behavior)
+        {
+            InformationBoxButtons buttons = this.GetButtons();
+            InformationBoxIcon icon = this.GetIcon();
+            string iconFileName = this.txbIcon.Text;
+            InformationBoxDefaultButton defaultButton = this.GetDefaultButton();
+            InformationBoxButtonsLayout buttonsLayout = this.GetButtonsLayout();
+            InformationBoxAutoSizeMode autoSize = this.GetAutoSize();
+            InformationBoxPosition position = this.GetPosition();
+            HelpNavigator navigator = this.GetHelpNavigator();
+            InformationBoxCheckBox checkState = this.GetCheckBoxState();
+            CheckState state = 0;
+            InformationBoxStyle style = this.GetStyle();
+            AutoCloseParameters autoClose = this.GetAutoClose();
+            DesignParameters design = this.GetDesign();
+            InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
+            InformationBoxOpacity opacity = this.GetOpacity();
+
+            InformationBoxTitleIcon titleIcon = null;
+            if (titleStyle == InformationBoxTitleIconStyle.Custom)
+            {
+                titleIcon = new InformationBoxTitleIcon(this.txbTitleIconFile.Text);
+            }
+
+            if (String.Empty.Equals(iconFileName))
+            {
+                InformationBox.Show(this.txbText.Text, ref state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(BoxClosed), opacity);
+            }
+            else
+            {
+                InformationBox.Show(this.txbText.Text, ref state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(BoxClosed), opacity);
+            }
+
+            if (checkState != 0)
+            {
+                InformationBox.Show(
+                    String.Format("The state of the checkbox was {0}", state),
+                    InformationBoxIcon.Information);
+            }
+        }
+
+        #endregion Display
 
         #region Loading
 
@@ -46,7 +117,7 @@ namespace InfoBox.Designer
         {
             foreach (InformationBoxIcon icon in Enum.GetValues(typeof(InformationBoxIcon)))
             {
-                ddlIcons.Items.Add(icon);
+                this.ddlIcons.Items.Add(icon);
             }
         }
 
@@ -57,10 +128,10 @@ namespace InfoBox.Designer
         {
             foreach (InformationBoxOpacity op in Enum.GetValues(typeof(InformationBoxOpacity)))
             {
-                ddlOpacities.Items.Add(op);
+                this.ddlOpacities.Items.Add(op);
             }
 
-            ddlOpacities.SelectedItem = InformationBoxOpacity.NoFade;
+            this.ddlOpacities.SelectedItem = InformationBoxOpacity.NoFade;
         }
 
         /// <summary>
@@ -70,7 +141,7 @@ namespace InfoBox.Designer
         {
             foreach (InformationBoxDefaultButton icon in Enum.GetValues(typeof(InformationBoxDefaultButton)))
             {
-                ddlAutoCloseButton.Items.Add(icon);
+                this.ddlAutoCloseButton.Items.Add(icon);
             }
         }
 
@@ -81,7 +152,7 @@ namespace InfoBox.Designer
         {
             foreach (InformationBoxResult icon in Enum.GetValues(typeof(InformationBoxResult)))
             {
-                ddlAutoCloseResult.Items.Add(icon);
+                this.ddlAutoCloseResult.Items.Add(icon);
             }
         }
 
@@ -90,27 +161,27 @@ namespace InfoBox.Designer
         /// </summary>
         private void LoadBindings()
         {
-            rdbAutoCloseButton.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
-            rdbAutoCloseResult.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
-            nudAutoCloseSeconds.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
-            lblAutoCloseSeconds.DataBindings.Add("Enabled", chbActivateAutoClose, "Checked");
+            this.rdbAutoCloseButton.DataBindings.Add("Enabled", this.chbActivateAutoClose, "Checked");
+            this.rdbAutoCloseResult.DataBindings.Add("Enabled", this.chbActivateAutoClose, "Checked");
+            this.nudAutoCloseSeconds.DataBindings.Add("Enabled", this.chbActivateAutoClose, "Checked");
+            this.lblAutoCloseSeconds.DataBindings.Add("Enabled", this.chbActivateAutoClose, "Checked");
 
-            lblAutoCloseButton.DataBindings.Add("Enabled", rdbAutoCloseButton, "Checked");
-            ddlAutoCloseButton.DataBindings.Add("Enabled", rdbAutoCloseButton, "Checked");
+            this.lblAutoCloseButton.DataBindings.Add("Enabled", this.rdbAutoCloseButton, "Checked");
+            this.ddlAutoCloseButton.DataBindings.Add("Enabled", this.rdbAutoCloseButton, "Checked");
 
-            lblAutoCloseResult.DataBindings.Add("Enabled", rdbAutoCloseResult, "Checked");
-            ddlAutoCloseResult.DataBindings.Add("Enabled", rdbAutoCloseResult, "Checked");
+            this.lblAutoCloseResult.DataBindings.Add("Enabled", this.rdbAutoCloseResult, "Checked");
+            this.ddlAutoCloseResult.DataBindings.Add("Enabled", this.rdbAutoCloseResult, "Checked");
 
-            lblColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
-            lblColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
-            txbColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
-            txbColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
-            btnColorsBars.DataBindings.Add("Enabled", chbCustomColors, "Checked");
-            btnColorsForm.DataBindings.Add("Enabled", chbCustomColors, "Checked");
+            this.lblColorsBars.DataBindings.Add("Enabled", this.chbCustomColors, "Checked");
+            this.lblColorsForm.DataBindings.Add("Enabled", this.chbCustomColors, "Checked");
+            this.txbColorsBars.DataBindings.Add("Enabled", this.chbCustomColors, "Checked");
+            this.txbColorsForm.DataBindings.Add("Enabled", this.chbCustomColors, "Checked");
+            this.btnColorsBars.DataBindings.Add("Enabled", this.chbCustomColors, "Checked");
+            this.btnColorsForm.DataBindings.Add("Enabled", this.chbCustomColors, "Checked");
 
-            lblTitleIcon.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
-            txbTitleIconFile.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
-            btnTitleIconFile.DataBindings.Add("Enabled", rdbTitleIconCustom, "Checked");
+            this.lblTitleIcon.DataBindings.Add("Enabled", this.rdbTitleIconCustom, "Checked");
+            this.txbTitleIconFile.DataBindings.Add("Enabled", this.rdbTitleIconCustom, "Checked");
+            this.btnTitleIconFile.DataBindings.Add("Enabled", this.rdbTitleIconCustom, "Checked");
         }
 
         #endregion Loading
@@ -120,41 +191,86 @@ namespace InfoBox.Designer
         /// <summary>
         /// Gets the buttons.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The value of the buttons</returns>
         private InformationBoxButtons GetButtons()
         {
-            if (rdbAbortRetryIgnore.Checked) return InformationBoxButtons.AbortRetryIgnore;
-            if (rdbOK.Checked) return InformationBoxButtons.OK;
-            if (rdbOKCancel.Checked) return InformationBoxButtons.OKCancel;
-            if (rdbRetryCancel.Checked) return InformationBoxButtons.RetryCancel;
-            if (rdbYesNo.Checked) return InformationBoxButtons.YesNo;
-            if (rdbYesNoCancel.Checked) return InformationBoxButtons.YesNoCancel;
-            if (rdbYesNoUser1.Checked) return InformationBoxButtons.YesNoUser1;
-            if (rdbOKCancelUser1.Checked) return InformationBoxButtons.OKCancelUser1;
-            if (rdbUser1User2.Checked) return InformationBoxButtons.User1User2;
-            if (rdbUser1.Checked) return InformationBoxButtons.User1;
+            if (this.rdbAbortRetryIgnore.Checked)
+            {
+                return InformationBoxButtons.AbortRetryIgnore;
+            }
+
+            if (this.rdbOK.Checked)
+            {
+                return InformationBoxButtons.OK;
+            }
+
+            if (this.rdbOKCancel.Checked)
+            {
+                return InformationBoxButtons.OKCancel;
+            }
+
+            if (this.rdbRetryCancel.Checked)
+            {
+                return InformationBoxButtons.RetryCancel;
+            }
+
+            if (this.rdbYesNo.Checked)
+            {
+                return InformationBoxButtons.YesNo;
+            }
+
+            if (this.rdbYesNoCancel.Checked)
+            {
+                return InformationBoxButtons.YesNoCancel;
+            }
+
+            if (this.rdbYesNoUser1.Checked)
+            {
+                return InformationBoxButtons.YesNoUser1;
+            }
+
+            if (this.rdbOKCancelUser1.Checked)
+            {
+                return InformationBoxButtons.OKCancelUser1;
+            }
+
+            if (this.rdbUser1User2.Checked)
+            {
+                return InformationBoxButtons.User1User2;
+            }
+
+            if (this.rdbUser1.Checked)
+            {
+                return InformationBoxButtons.User1;
+            }
+
             return InformationBoxButtons.OK;
         }
 
         /// <summary>
         /// Gets the icon.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The selected icon</returns>
         private InformationBoxIcon GetIcon()
         {
-            if (null != ddlIcons.SelectedItem)
-                return (InformationBoxIcon) ddlIcons.SelectedItem;
+            if (null != this.ddlIcons.SelectedItem)
+            {
+                return (InformationBoxIcon) this.ddlIcons.SelectedItem;
+            }
+
             return InformationBoxIcon.None;
         }
 
         /// <summary>
         /// Gets the opacity.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The opacity</returns>
         private InformationBoxOpacity GetOpacity()
         {
-            if (null != ddlOpacities.SelectedItem)
-                return (InformationBoxOpacity) ddlOpacities.SelectedItem;
+            if (null != this.ddlOpacities.SelectedItem)
+            {
+                return (InformationBoxOpacity) this.ddlOpacities.SelectedItem;
+            }
 
             return InformationBoxOpacity.NoFade;
         }
@@ -162,139 +278,232 @@ namespace InfoBox.Designer
         /// <summary>
         /// Gets the default button.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The default button</returns>
         private InformationBoxDefaultButton GetDefaultButton()
         {
-            if (rdbDefaultButton1.Checked) return InformationBoxDefaultButton.Button1;
-            if (rdbDefaultButton2.Checked) return InformationBoxDefaultButton.Button2;
-            if (rdbDefaultButton3.Checked) return InformationBoxDefaultButton.Button3;
+            if (this.rdbDefaultButton1.Checked)
+            {
+                return InformationBoxDefaultButton.Button1;
+            }
+
+            if (this.rdbDefaultButton2.Checked)
+            {
+                return InformationBoxDefaultButton.Button2;
+            }
+
+            if (this.rdbDefaultButton3.Checked)
+            {
+                return InformationBoxDefaultButton.Button3;
+            }
+
             return InformationBoxDefaultButton.Button1;
         }
 
         /// <summary>
         /// Gets the buttons layout.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The buttons layout</returns>
         private InformationBoxButtonsLayout GetButtonsLayout()
         {
-            if (rdbLayoutGroupLeft.Checked) return InformationBoxButtonsLayout.GroupLeft;
-            if (rdbLayoutGroupRight.Checked) return InformationBoxButtonsLayout.GroupRight;
-            if (rdbLayoutGroupMiddle.Checked) return InformationBoxButtonsLayout.GroupMiddle;
-            if (rdbLayoutSeparate.Checked) return InformationBoxButtonsLayout.Separate;
+            if (this.rdbLayoutGroupLeft.Checked)
+            {
+                return InformationBoxButtonsLayout.GroupLeft;
+            }
+
+            if (this.rdbLayoutGroupRight.Checked)
+            {
+                return InformationBoxButtonsLayout.GroupRight;
+            }
+
+            if (this.rdbLayoutGroupMiddle.Checked)
+            {
+                return InformationBoxButtonsLayout.GroupMiddle;
+            }
+
+            if (this.rdbLayoutSeparate.Checked)
+            {
+                return InformationBoxButtonsLayout.Separate;
+            }
+
             return InformationBoxButtonsLayout.GroupMiddle;
         }
 
         /// <summary>
         /// Gets the auto size mode.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The auto size mode</returns>
         private InformationBoxAutoSizeMode GetAutoSize()
         {
-            if (rdbAutoSizeMinimumHeight.Checked) return InformationBoxAutoSizeMode.MinimumHeight;
-            if (rdbAutoSizeMinimumWidth.Checked) return InformationBoxAutoSizeMode.MinimumWidth;
+            if (this.rdbAutoSizeMinimumHeight.Checked)
+            {
+                return InformationBoxAutoSizeMode.MinimumHeight;
+            }
+
+            if (this.rdbAutoSizeMinimumWidth.Checked)
+            {
+                return InformationBoxAutoSizeMode.MinimumWidth;
+            }
+
             return InformationBoxAutoSizeMode.None;
         }
 
         /// <summary>
         /// Gets the position.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The position</returns>
         private InformationBoxPosition GetPosition()
         {
-            if (rdbPositionCenterOnParent.Checked) return InformationBoxPosition.CenterOnParent;
-            if (rdbPositionCenterOnScreen.Checked) return InformationBoxPosition.CenterOnScreen;
+            if (this.rdbPositionCenterOnParent.Checked)
+            {
+                return InformationBoxPosition.CenterOnParent;
+            }
+
+            if (this.rdbPositionCenterOnScreen.Checked)
+            {
+                return InformationBoxPosition.CenterOnScreen;
+            }
+
             return InformationBoxPosition.CenterOnParent;
         }
 
         /// <summary>
         /// Gets the help navigator.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The help navigator</returns>
         private HelpNavigator GetHelpNavigator()
         {
-            if (rdbHelpFind.Checked) return HelpNavigator.Find;
-            if (rdbHelpIndex.Checked) return HelpNavigator.Index;
-            if (rdbHelpTopic.Checked) return HelpNavigator.Topic;
-            if (rdbHelpTableOfContents.Checked) return HelpNavigator.TableOfContents;
+            if (this.rdbHelpFind.Checked)
+            {
+                return HelpNavigator.Find;
+            }
+
+            if (this.rdbHelpIndex.Checked)
+            {
+                return HelpNavigator.Index;
+            }
+
+            if (this.rdbHelpTopic.Checked)
+            {
+                return HelpNavigator.Topic;
+            }
+
+            if (this.rdbHelpTableOfContents.Checked)
+            {
+                return HelpNavigator.TableOfContents;
+            }
+
             return 0;
         }
 
         /// <summary>
         /// Gets the state of the check box.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The state of the checkbox</returns>
         private InformationBoxCheckBox GetCheckBoxState()
         {
             InformationBoxCheckBox check = 0;
-            if (clbCheckBox.GetItemCheckState(0) == CheckState.Checked) check |= InformationBoxCheckBox.Show;
-            if (clbCheckBox.GetItemCheckState(1) == CheckState.Checked) check |= InformationBoxCheckBox.Checked;
-            if (clbCheckBox.GetItemCheckState(2) == CheckState.Checked) check |= InformationBoxCheckBox.RightAligned;
+            if (this.clbCheckBox.GetItemCheckState(0) == CheckState.Checked)
+            {
+                check |= InformationBoxCheckBox.Show;
+            }
+
+            if (this.clbCheckBox.GetItemCheckState(1) == CheckState.Checked)
+            {
+                check |= InformationBoxCheckBox.Checked;
+            }
+
+            if (this.clbCheckBox.GetItemCheckState(2) == CheckState.Checked)
+            {
+                check |= InformationBoxCheckBox.RightAligned;
+            }
+
             return check;
         }
 
         /// <summary>
         /// Gets the auto close.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The auto close parameters</returns>
         private AutoCloseParameters GetAutoClose()
         {
-            if (!chbActivateAutoClose.Checked)
+            if (!this.chbActivateAutoClose.Checked)
+            {
                 return null;
+            }
 
-            if (nudAutoCloseSeconds.Value == 30 && (!rdbAutoCloseButton.Checked || ddlAutoCloseButton.SelectedIndex == -1)
-                && (!rdbAutoCloseResult.Checked || ddlAutoCloseResult.SelectedIndex == -1))
+            if (this.nudAutoCloseSeconds.Value == 30 &&
+                (!this.rdbAutoCloseButton.Checked || this.ddlAutoCloseButton.SelectedIndex == -1) &&
+                (!this.rdbAutoCloseResult.Checked || this.ddlAutoCloseResult.SelectedIndex == -1))
             {
                 return AutoCloseParameters.Default;
             }
 
-            if (rdbAutoCloseButton.Checked && ddlAutoCloseButton.SelectedIndex != -1)
+            if (this.rdbAutoCloseButton.Checked && this.ddlAutoCloseButton.SelectedIndex != -1)
             {
-                return new AutoCloseParameters(Convert.ToInt32(nudAutoCloseSeconds.Value),
-                                               (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton),
-                                                                                        ddlAutoCloseButton.SelectedItem.ToString()));
+                return new AutoCloseParameters(
+                    Convert.ToInt32(this.nudAutoCloseSeconds.Value),
+                    (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
             }
 
-            if (rdbAutoCloseResult.Checked && ddlAutoCloseResult.SelectedIndex != -1)
+            if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1)
             {
-                return new AutoCloseParameters(Convert.ToInt32(nudAutoCloseSeconds.Value),
-                                               (InformationBoxResult) Enum.Parse(typeof(InformationBoxResult),
-                                                                                 ddlAutoCloseResult.SelectedItem.ToString()));
+                return new AutoCloseParameters(
+                    Convert.ToInt32(this.nudAutoCloseSeconds.Value),
+                    (InformationBoxResult) Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
             }
 
-            return new AutoCloseParameters(Convert.ToInt32(nudAutoCloseSeconds.Value));
+            return new AutoCloseParameters(Convert.ToInt32(this.nudAutoCloseSeconds.Value));
         }
 
         /// <summary>
         /// Gets the style.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The style.</returns>
         private InformationBoxStyle GetStyle()
         {
-            if (rdbStyleModern.Checked) return InformationBoxStyle.Modern;
+            if (this.rdbStyleModern.Checked)
+            {
+                return InformationBoxStyle.Modern;
+            }
+
             return InformationBoxStyle.Standard;
         }
 
         /// <summary>
         /// Gets the design.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The design.</returns>
         private DesignParameters GetDesign()
         {
-            if (!chbCustomColors.Checked)
+            if (!this.chbCustomColors.Checked)
+            {
                 return null;
+            }
 
-            return new DesignParameters(_formColor, _barsColor);
+            return new DesignParameters(this.formColor, this.barsColor);
         }
 
         /// <summary>
         /// Gets the title style.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The style of the title</returns>
         private InformationBoxTitleIconStyle GetTitleStyle()
         {
-            if (rdbTitleIconNone.Checked) return InformationBoxTitleIconStyle.None;
-            if (rdbTitleIconCustom.Checked) return InformationBoxTitleIconStyle.Custom;
-            if (rdbTitleIconSameAsBox.Checked) return InformationBoxTitleIconStyle.SameAsBox;
+            if (this.rdbTitleIconNone.Checked)
+            {
+                return InformationBoxTitleIconStyle.None;
+            }
+
+            if (this.rdbTitleIconCustom.Checked)
+            {
+                return InformationBoxTitleIconStyle.Custom;
+            }
+
+            if (this.rdbTitleIconSameAsBox.Checked)
+            {
+                return InformationBoxTitleIconStyle.SameAsBox;
+            }
+
             return InformationBoxTitleIconStyle.SameAsBox;
         }
 
@@ -308,122 +517,154 @@ namespace InfoBox.Designer
         /// <param name="behavior">The behavior.</param>
         private void GenerateCode(InformationBoxBehavior behavior)
         {
-            InformationBoxButtons buttons = GetButtons();
-            InformationBoxIcon icon = GetIcon();
-            String iconFileName = txbIcon.Text;
-            InformationBoxDefaultButton defaultButton = GetDefaultButton();
-            InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
-            InformationBoxAutoSizeMode autoSize = GetAutoSize();
-            InformationBoxPosition position = GetPosition();
-            HelpNavigator navigator = GetHelpNavigator();
-            InformationBoxCheckBox checkState = GetCheckBoxState();
-            InformationBoxStyle style = GetStyle();
-            AutoCloseParameters autoClose = GetAutoClose();
-            DesignParameters design = GetDesign();
-            InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
-            InformationBoxOpacity opacity = GetOpacity();
+            InformationBoxButtons buttons = this.GetButtons();
+            InformationBoxIcon icon = this.GetIcon();
+            string iconFileName = this.txbIcon.Text;
+            InformationBoxDefaultButton defaultButton = this.GetDefaultButton();
+            InformationBoxButtonsLayout buttonsLayout = this.GetButtonsLayout();
+            InformationBoxAutoSizeMode autoSize = this.GetAutoSize();
+            InformationBoxPosition position = this.GetPosition();
+            HelpNavigator navigator = this.GetHelpNavigator();
+            InformationBoxCheckBox checkState = this.GetCheckBoxState();
+            InformationBoxStyle style = this.GetStyle();
+            AutoCloseParameters autoClose = this.GetAutoClose();
+            DesignParameters design = this.GetDesign();
+            InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
+            InformationBoxOpacity opacity = this.GetOpacity();
 
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
             {
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ",
-                                         txbText.Text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ", this.txbText.Text.Replace(Environment.NewLine, "\\n"));
             }
             else
             {
                 codeBuilder.Append("CheckState doNotShowState = CheckState.Indeterminate;");
                 codeBuilder.Append(Environment.NewLine);
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ref doNotShowState, ",
-                                         txbText.Text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ref doNotShowState, ", this.txbText.Text.Replace(Environment.NewLine, "\\n"));
             }
 
-            if (!String.Empty.Equals(txbHelpFile.Text) || !String.Empty.Equals(txbTitle.Text))
-                codeBuilder.AppendFormat("\"{0}\", ", txbTitle.Text);
+            if (!String.Empty.Equals(this.txbHelpFile.Text) || !String.Empty.Equals(this.txbTitle.Text))
+            {
+                codeBuilder.AppendFormat("\"{0}\", ", this.txbTitle.Text);
+            }
 
             if (buttons != InformationBoxButtons.OK)
+            {
                 codeBuilder.AppendFormat("InformationBoxButtons.{0}, ", buttons);
+            }
 
             if (buttons == InformationBoxButtons.OKCancelUser1 ||
                 buttons == InformationBoxButtons.User1User2 ||
                 buttons == InformationBoxButtons.YesNoUser1)
-                codeBuilder.AppendFormat("new string[] {{ \"{0}\", \"{1}\" }}, ", txbUser1.Text, txbUser2.Text);
+            {
+                codeBuilder.AppendFormat("new string[] {{ \"{0}\", \"{1}\" }}, ", this.txbUser1.Text, this.txbUser2.Text);
+            }
 
             if (icon != InformationBoxIcon.None)
+            {
                 codeBuilder.AppendFormat("InformationBoxIcon.{0}, ", icon);
+            }
 
             if (!String.Empty.Equals(iconFileName))
+            {
                 codeBuilder.AppendFormat("new System.Drawing.Icon(@\"{0}\"), ", iconFileName);
+            }
 
             if (defaultButton != InformationBoxDefaultButton.Button1)
+            {
                 codeBuilder.AppendFormat("InformationBoxDefaultButton.{0}, ", defaultButton);
+            }
 
             if (buttonsLayout != InformationBoxButtonsLayout.GroupMiddle)
+            {
                 codeBuilder.AppendFormat("InformationBoxButtonsLayout.{0}, ", buttonsLayout);
+            }
 
             if (autoSize != InformationBoxAutoSizeMode.None)
+            {
                 codeBuilder.AppendFormat("InformationBoxAutoSizeMode.{0}, ", autoSize);
+            }
 
             if (position != InformationBoxPosition.CenterOnParent)
+            {
                 codeBuilder.AppendFormat("InformationBoxPosition.{0}, ", position);
+            }
 
-            if (chbHelpButton.Checked)
+            if (this.chbHelpButton.Checked)
+            {
                 codeBuilder.Append("true, ");
+            }
 
-            if (!String.Empty.Equals(txbHelpFile.Text))
-                codeBuilder.AppendFormat("\"{0}\", ", txbHelpFile.Text);
+            if (!String.Empty.Equals(this.txbHelpFile.Text))
+            {
+                codeBuilder.AppendFormat("\"{0}\", ", this.txbHelpFile.Text);
+            }
 
             if (navigator != 0)
+            {
                 codeBuilder.AppendFormat("HelpNavigator.{0}, ", navigator);
+            }
 
-            if (!String.Empty.Equals(txbHelpTopic.Text))
-                codeBuilder.AppendFormat("\"{0}\", ", txbHelpTopic.Text);
+            if (!String.Empty.Equals(this.txbHelpTopic.Text))
+            {
+                codeBuilder.AppendFormat("\"{0}\", ", this.txbHelpTopic.Text);
+            }
 
             if (checkState != 0)
             {
                 codeBuilder.Append("InformationBoxCheckBox.Show");
                 if ((checkState & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked)
+                {
                     codeBuilder.Append(" | InformationBoxCheckBox.Checked");
+                }
+
                 if ((checkState & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
+                {
                     codeBuilder.Append(" | InformationBoxCheckBox.RightAligned");
+                }
+
                 codeBuilder.Append(", ");
             }
 
             if (style != InformationBoxStyle.Standard)
-                codeBuilder.AppendFormat("InformationBoxStyle.{0}, ", style);
-
-            if (chbActivateAutoClose.Checked)
             {
-                if (autoClose.Seconds == AutoCloseParameters.Default.Seconds && autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && autoClose.Result == InformationBoxResult.None)
+                codeBuilder.AppendFormat("InformationBoxStyle.{0}, ", style);
+            }
+
+            if (this.chbActivateAutoClose.Checked)
+            {
+                if (autoClose.Seconds == AutoCloseParameters.Default.Seconds &&
+                    autoClose.DefaultButton == InformationBoxDefaultButton.Button1 &&
+                    autoClose.Result == InformationBoxResult.None)
                 {
                     codeBuilder.Append("AutoCloseParameters.Default, ");
                 }
                 else
                 {
-                    if (rdbAutoCloseButton.Checked && ddlAutoCloseButton.SelectedIndex != -1)
+                    if (this.rdbAutoCloseButton.Checked && this.ddlAutoCloseButton.SelectedIndex != -1)
                     {
-                        codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", Convert.ToInt32(nudAutoCloseSeconds.Value), (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), ddlAutoCloseButton.SelectedItem.ToString()));
+                        codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", Convert.ToInt32(this.nudAutoCloseSeconds.Value), (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
                     }
-                    else if (rdbAutoCloseResult.Checked && ddlAutoCloseResult.SelectedIndex != -1)
+                    else if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1)
                     {
-                        codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxResult.{1}), ", Convert.ToInt32(nudAutoCloseSeconds.Value), (InformationBoxResult)Enum.Parse(typeof(InformationBoxResult), ddlAutoCloseResult.SelectedItem.ToString()));
+                        codeBuilder.AppendFormat("new AutoCloseParameters({0}, InformationBoxResult.{1}), ", Convert.ToInt32(this.nudAutoCloseSeconds.Value), (InformationBoxResult) Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
                     }
                     else
                     {
-                        codeBuilder.AppendFormat("new AutoCloseParameters({0}), ", Convert.ToInt32(nudAutoCloseSeconds.Value));
+                        codeBuilder.AppendFormat("new AutoCloseParameters({0}), ", Convert.ToInt32(this.nudAutoCloseSeconds.Value));
                     }
                 }
             }
 
             if (null != design)
             {
-                codeBuilder.AppendFormat("new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ",
-                                         design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R,
-                                         design.BarsBackColor.G, design.BarsBackColor.B);
+                codeBuilder.AppendFormat("new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
             {
-                codeBuilder.AppendFormat("new InformationBoxTitleIcon(@\"{0}\"), ", txbTitleIconFile.Text);
+                codeBuilder.AppendFormat("new InformationBoxTitleIcon(@\"{0}\"), ", this.txbTitleIconFile.Text);
             }
             else if (titleStyle == InformationBoxTitleIconStyle.None)
             {
@@ -443,68 +684,10 @@ namespace InfoBox.Designer
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
 
-            txbCode.Text = codeBuilder.ToString().Replace("\"\"", "String.Empty");
+            this.txbCode.Text = codeBuilder.ToString().Replace("\"\"", "String.Empty");
         }
 
         #endregion Code generation
-
-        #region Display
-
-        /// <summary>
-        /// Call when a asynchronous InformationBox is closed.
-        /// </summary>
-        /// <param name="result">The result.</param>
-        private static void boxClosed(InformationBoxResult result)
-        {
-            InformationBox.Show(String.Format("I am the result of a modeless box : " + result));
-        }
-
-        /// <summary>
-        /// Shows the box.
-        /// </summary>
-        /// <param name="behavior">The behavior.</param>
-        private void ShowBox(InformationBoxBehavior behavior)
-        {
-            InformationBoxButtons buttons = GetButtons();
-            InformationBoxIcon icon = GetIcon();
-            String iconFileName = txbIcon.Text;
-            InformationBoxDefaultButton defaultButton = GetDefaultButton();
-            InformationBoxButtonsLayout buttonsLayout = GetButtonsLayout();
-            InformationBoxAutoSizeMode autoSize = GetAutoSize();
-            InformationBoxPosition position = GetPosition();
-            HelpNavigator navigator = GetHelpNavigator();
-            InformationBoxCheckBox checkState = GetCheckBoxState();
-            CheckState state = 0;
-            InformationBoxStyle style = GetStyle();
-            AutoCloseParameters autoClose = GetAutoClose();
-            DesignParameters design = GetDesign();
-            InformationBoxTitleIconStyle titleStyle = GetTitleStyle();
-            InformationBoxOpacity opacity = GetOpacity();
-
-            InformationBoxTitleIcon titleIcon = null;
-            if (titleStyle == InformationBoxTitleIconStyle.Custom)
-                titleIcon = new InformationBoxTitleIcon(txbTitleIconFile.Text);
-
-            if (String.Empty.Equals(iconFileName))
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons,
-                                    new string[] {txbUser1.Text, txbUser2.Text}, icon, defaultButton, buttonsLayout,
-                                    autoSize, position, chbHelpButton.Checked, txbHelpFile.Text, navigator,
-                                    txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon,
-                                    behavior, new AsyncResultCallBack(boxClosed), opacity);
-            else
-                InformationBox.Show(txbText.Text, ref state, txbTitle.Text, buttons,
-                                    new string[] {txbUser1.Text, txbUser2.Text}, new Icon(iconFileName),
-                                    defaultButton, buttonsLayout, autoSize, position, chbHelpButton.Checked,
-                                    txbHelpFile.Text, navigator, txbHelpTopic.Text, checkState, style, autoClose,
-                                    design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(boxClosed),
-                                    opacity);
-
-            if (checkState != 0)
-                InformationBox.Show(String.Format("The state of the checkbox was {0}", state),
-                                    InformationBoxIcon.Information);
-        }
-
-        #endregion Display
 
         #region Event handlers
 
@@ -513,23 +696,23 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnShowModeless_Click(object sender, EventArgs e)
+        private void BtnShowModeless_Click(object sender, EventArgs e)
         {
-            if (null != ddlLanguage.SelectedItem)
+            if (null != this.ddlLanguage.SelectedItem)
             {
-                String culture = ddlLanguage.SelectedItem.ToString();
+                string culture = this.ddlLanguage.SelectedItem.ToString();
                 if (culture[2] == '-')
                 {
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 5));
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(this.ddlLanguage.SelectedItem.ToString().Substring(0, 5));
                 }
                 else
                 {
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(this.ddlLanguage.SelectedItem.ToString().Substring(0, 2));
                 }
             }
 
-            GenerateCode(InformationBoxBehavior.Modeless);
-            ShowBox(InformationBoxBehavior.Modeless);
+            this.GenerateCode(InformationBoxBehavior.Modeless);
+            this.ShowBox(InformationBoxBehavior.Modeless);
         }
 
         /// <summary>
@@ -537,23 +720,23 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnShow_Click(object sender, EventArgs e)
+        private void BtnShow_Click(object sender, EventArgs e)
         {
-            if (null != ddlLanguage.SelectedItem)
+            if (null != this.ddlLanguage.SelectedItem)
             {
-                String culture = ddlLanguage.SelectedItem.ToString();
+                string culture = this.ddlLanguage.SelectedItem.ToString();
                 if (culture[2] == '-')
                 {
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 5));
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(this.ddlLanguage.SelectedItem.ToString().Substring(0, 5));
                 }
                 else
                 {
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(ddlLanguage.SelectedItem.ToString().Substring(0, 2));
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(this.ddlLanguage.SelectedItem.ToString().Substring(0, 2));
                 }
             }
 
-            GenerateCode(InformationBoxBehavior.Modal);
-            ShowBox(InformationBoxBehavior.Modal);
+            this.GenerateCode(InformationBoxBehavior.Modal);
+            this.ShowBox(InformationBoxBehavior.Modal);
         }
 
         /// <summary>
@@ -561,9 +744,9 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnGenerate_Click(object sender, EventArgs e)
+        private void BtnGenerate_Click(object sender, EventArgs e)
         {
-            GenerateCode(InformationBoxBehavior.Modal);
+            this.GenerateCode(InformationBoxBehavior.Modal);
         }
 
         /// <summary>
@@ -571,14 +754,14 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnIcon_Click(object sender, EventArgs e)
+        private void BtnIcon_Click(object sender, EventArgs e)
         {
-            if (ofdIcon.ShowDialog() != DialogResult.OK)
+            if (this.ofdIcon.ShowDialog() != DialogResult.OK)
             {
-                txbIcon.Text = String.Empty;
+                this.txbIcon.Text = String.Empty;
             }
 
-            txbIcon.Text = ofdIcon.FileName;
+            this.txbIcon.Text = this.ofdIcon.FileName;
         }
 
         /// <summary>
@@ -586,14 +769,14 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnTitleIconFile_Click(object sender, EventArgs e)
+        private void BtnTitleIconFile_Click(object sender, EventArgs e)
         {
-            if (ofdIcon.ShowDialog() != DialogResult.OK)
+            if (this.ofdIcon.ShowDialog() != DialogResult.OK)
             {
-                txbTitleIconFile.Text = String.Empty;
+                this.txbTitleIconFile.Text = String.Empty;
             }
 
-            txbTitleIconFile.Text = ofdIcon.FileName;
+            this.txbTitleIconFile.Text = this.ofdIcon.FileName;
         }
 
         /// <summary>
@@ -601,14 +784,14 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnHelpFile_Click(object sender, EventArgs e)
+        private void BtnHelpFile_Click(object sender, EventArgs e)
         {
-            if (ofdHelpFile.ShowDialog() != DialogResult.OK)
+            if (this.ofdHelpFile.ShowDialog() != DialogResult.OK)
             {
-                txbHelpFile.Text = String.Empty;
+                this.txbHelpFile.Text = String.Empty;
             }
 
-            txbHelpFile.Text = ofdHelpFile.FileName;
+            this.txbHelpFile.Text = this.ofdHelpFile.FileName;
         }
 
         /// <summary>
@@ -628,15 +811,17 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnColorsBars_Click(object sender, EventArgs e)
+        private void BtnColorsBars_Click(object sender, EventArgs e)
         {
-            if (dlgColor.ShowDialog() != DialogResult.OK)
+            if (this.dlgColor.ShowDialog() != DialogResult.OK)
+            {
                 return;
+            }
 
-            Color selected = dlgColor.Color;
+            Color selected = this.dlgColor.Color;
 
-            txbColorsBars.Text = selected.ToString();
-            _barsColor = selected;
+            this.txbColorsBars.Text = selected.ToString();
+            this.barsColor = selected;
         }
 
         /// <summary>
@@ -644,15 +829,17 @@ namespace InfoBox.Designer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void btnColorsForm_Click(object sender, EventArgs e)
+        private void BtnColorsForm_Click(object sender, EventArgs e)
         {
-            if (dlgColor.ShowDialog() != DialogResult.OK)
+            if (this.dlgColor.ShowDialog() != DialogResult.OK)
+            {
                 return;
+            }
 
-            Color selected = dlgColor.Color;
+            Color selected = this.dlgColor.Color;
 
-            txbColorsForm.Text = selected.ToString();
-            _formColor = selected;
+            this.txbColorsForm.Text = selected.ToString();
+            this.formColor = selected;
         }
 
         #endregion Colors

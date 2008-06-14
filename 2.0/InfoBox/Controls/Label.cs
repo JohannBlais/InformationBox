@@ -1,22 +1,35 @@
-using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
+// <copyright file="Label.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Glass label</summary>
 
 namespace InfoBox.Controls
 {
+    using System;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     /// <summary>
     /// Glass label
     /// </summary>
     [Category("Glass Components")]
     [DefaultProperty("Text")]
     [Description("Label with glass look and feel")]
-    [ToolboxBitmap(typeof (System.Windows.Forms.Label))]
+    [ToolboxBitmap(typeof(System.Windows.Forms.Label))]
     public partial class Label : Panel
     {
         #region Attributes
 
+        /// <summary>
+        /// Fore color used for the disabled state
+        /// </summary>
         private Color disabledForeColor = Color.Gray;
+
+        /// <summary>
+        /// Text alignment
+        /// </summary>
         private ContentAlignment textAlign = ContentAlignment.MiddleCenter;
 
         #endregion Attributes
@@ -28,7 +41,7 @@ namespace InfoBox.Controls
         /// </summary>
         public Label()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.DoubleBuffered = true;
         }
 
@@ -43,11 +56,15 @@ namespace InfoBox.Controls
         [Category("Appearance"), Description("Defines the text color when the label is disabled")]
         public Color DisabledForeColor
         {
-            get { return disabledForeColor; }
+            get
+            {
+                return this.disabledForeColor;
+            }
+
             set
             {
-                disabledForeColor = value;
-                RefreshLabelColor();
+                this.disabledForeColor = value;
+                this.RefreshLabelColor();
             }
         }
 
@@ -58,12 +75,16 @@ namespace InfoBox.Controls
         [Category("Appearance"), Description("Defines the alignment of the text")]
         public ContentAlignment TextAlign
         {
-            get { return textAlign; }
+            get
+            {
+                return this.textAlign;
+            }
+
             set
             {
-                textAlign = value;
-                labelText.TextAlign = textAlign;
-                labelText.Invalidate();
+                this.textAlign = value;
+                this.labelText.TextAlign = this.textAlign;
+                this.labelText.Invalidate();
             }
         }
 
@@ -75,11 +96,15 @@ namespace InfoBox.Controls
         [Category("Appearance"), Description("Defines the text of the label"), Browsable(true)]
         public override string Text
         {
-            get { return labelText.Text; }
+            get
+            {
+                return this.labelText.Text;
+            }
+
             set
             {
-                labelText.Text = value;
-                labelText.Invalidate();
+                this.labelText.Text = value;
+                this.labelText.Invalidate();
             }
         }
 
@@ -92,8 +117,8 @@ namespace InfoBox.Controls
         /// </summary>
         private void RefreshLabelColor()
         {
-            labelText.ForeColor = Enabled ? ForeColor : disabledForeColor;
-            labelText.Invalidate();
+            this.labelText.ForeColor = Enabled ? ForeColor : this.disabledForeColor;
+            this.labelText.Invalidate();
         }
 
         #endregion Methods
@@ -103,22 +128,22 @@ namespace InfoBox.Controls
         /// <summary>
         /// When forecolor is changed
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnNewForeColor(object sender, EventArgs e)
         {
-            RefreshLabelColor();
+            this.RefreshLabelColor();
         }
 
         /// <summary>
         /// When the 'Enabled' property is changed
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnEnabledChanged(object sender, EventArgs e)
         {
-            RefreshLabelColor();
-            Invalidate();
+            this.RefreshLabelColor();
+            this.Invalidate();
         }
 
         #endregion Event handlers
@@ -130,7 +155,7 @@ namespace InfoBox.Controls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        private void labelText_MouseDown(object sender, MouseEventArgs e)
+        private void LabelText_MouseDown(object sender, MouseEventArgs e)
         {
             OnMouseDown(e);
         }
@@ -140,7 +165,7 @@ namespace InfoBox.Controls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        private void labelText_MouseMove(object sender, MouseEventArgs e)
+        private void LabelText_MouseMove(object sender, MouseEventArgs e)
         {
             OnMouseMove(e);
         }
@@ -150,7 +175,7 @@ namespace InfoBox.Controls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        private void labelText_MouseUp(object sender, MouseEventArgs e)
+        private void LabelText_MouseUp(object sender, MouseEventArgs e)
         {
             OnMouseUp(e);
         }

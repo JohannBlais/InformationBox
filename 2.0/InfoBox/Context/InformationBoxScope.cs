@@ -1,8 +1,14 @@
-using System;
-using System.Collections.Generic;
+// <copyright file="InformationBoxScope.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Represents the scope of a set of parameters for the InformationBoxes</summary>
 
 namespace InfoBox
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Represents the scope of a set of parameters for the InformationBoxes.
     /// </summary>
@@ -10,39 +16,22 @@ namespace InfoBox
     {
         #region Attributes
 
+        /// <summary>
+        /// Stack of all scopes
+        /// </summary>
         private static readonly Stack<InformationBoxScope> scopesStack = new Stack<InformationBoxScope>();
+
+        /// <summary>
+        /// Contains the parameters defined within the scope
+        /// </summary>
         private readonly InformationBoxScopeParameters definedParameters = new InformationBoxScopeParameters();
 
-        internal InformationBoxScopeParameters effectiveParameters = new InformationBoxScopeParameters();
+        /// <summary>
+        /// Contains the effective parameters of a scope
+        /// </summary>
+        private InformationBoxScopeParameters effectiveParameters = new InformationBoxScopeParameters();
 
         #endregion Attributes
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the current scope.
-        /// </summary>
-        /// <value>The current.</value>
-        internal static InformationBoxScope Current
-        {
-            get
-            {
-                if (scopesStack.Count > 0)
-                    return scopesStack.Peek();
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the parameters.
-        /// </summary>
-        /// <value>The parameters.</value>
-        public InformationBoxScopeParameters Parameters
-        {
-            get { return effectiveParameters; }
-        }
-
-        #endregion Properties
 
         #region Constructors
 
@@ -65,14 +54,14 @@ namespace InfoBox
         public InformationBoxScope(InformationBoxScopeParameters parameters, InformationBoxScopeBehavior behavior)
         {
             this.definedParameters = parameters;
-            this.effectiveParameters = parameters;
+            this.EffectiveParameters = parameters;
             
             if (behavior == InformationBoxScopeBehavior.InheritParent)
             {
                 if (null != Current)
                 {
                     // Merge with the parameters defined explicitly in the direct parent
-                    this.effectiveParameters.Merge(Current.definedParameters);
+                    this.EffectiveParameters.Merge(Current.definedParameters);
                 }
             }
             else if (behavior == InformationBoxScopeBehavior.InheritAll)
@@ -80,7 +69,7 @@ namespace InfoBox
                 if (null != Current)
                 {
                     // Merge the effective parameters from the parent
-                    this.effectiveParameters.Merge(Current.Parameters);
+                    this.EffectiveParameters.Merge(Current.Parameters);
                 }
             }
 
@@ -96,6 +85,46 @@ namespace InfoBox
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the parameters.
+        /// </summary>
+        /// <value>The parameters.</value>
+        public InformationBoxScopeParameters Parameters
+        {
+            get { return this.EffectiveParameters; }
+        }
+
+        /// <summary>
+        /// Gets the current scope.
+        /// </summary>
+        /// <value>The current.</value>
+        internal static InformationBoxScope Current
+        {
+            get
+            {
+                if (scopesStack.Count > 0)
+                {
+                    return scopesStack.Peek();
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the effective parameters.
+        /// </summary>
+        /// <value>The effective parameters.</value>
+        internal InformationBoxScopeParameters EffectiveParameters
+        {
+            get { return this.effectiveParameters; }
+            set { this.effectiveParameters = value; }
+        }
+
+        #endregion Properties
 
         #region Dispose
 

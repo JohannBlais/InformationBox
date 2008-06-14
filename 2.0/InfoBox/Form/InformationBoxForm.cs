@@ -1,19 +1,23 @@
-using InfoBox.Internals;
-
-using System;
-using System.Drawing;
-using System.Globalization;
-using System.Media;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using InfoBox.Controls;
-using InfoBox.Properties;
-using System.Diagnostics;
+// <copyright file="InformationBoxForm.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Displays a message box that can contain text, buttons, and symbols that inform and instruct the user</summary>
 
 namespace InfoBox
 {
+    using System;
+    using System.Drawing;
+    using System.Globalization;
+    using System.Media;
+    using System.Reflection;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using InfoBox.Controls;
+    using InfoBox.Internals;
+    using InfoBox.Properties;
+
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
@@ -21,51 +25,169 @@ namespace InfoBox
     {
         #region Consts
 
-        private const int ICON_PANEL_WIDTH = 68;
-        private const int BORDER_PADDING = 10;
+        /// <summary>
+        /// Width of the icon panel
+        /// </summary>
+        private const int IconPanelWidth = 68;
+
+        /// <summary>
+        /// Padding for the borders
+        /// </summary>
+        private const int BorderPadding = 10;
 
         #endregion Consts
 
         #region Attributes
 
-        private InformationBoxResult _result = InformationBoxResult.None;
+        /// <summary>
+        /// Contains the callback used to inform the caller of a modeless box
+        /// </summary>
+        private readonly AsyncResultCallBack callback;
 
-        private InformationBoxIcon _icon = InformationBoxIcon.None;
-        private Icon _customIcon;
-        private InformationBoxButtons _buttons = InformationBoxButtons.OK;
-        private InformationBoxDefaultButton _defaultButton = InformationBoxDefaultButton.Button1;
-        private InformationBoxButtonsLayout _buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
-        private InformationBoxAutoSizeMode _autoSizeMode = InformationBoxAutoSizeMode.None;
-        private InformationBoxPosition _position = InformationBoxPosition.CenterOnParent;
-        private InformationBoxCheckBox _checkBox = 0;
-        private InformationBoxStyle _style = InformationBoxStyle.Standard;
-        private AutoCloseParameters _autoClose;
-        private DesignParameters _design;
-        private InformationBoxTitleIconStyle _titleStyle = InformationBoxTitleIconStyle.SameAsBox;
-        private Icon _titleIcon;
-        private InformationBoxBehavior _behavior = InformationBoxBehavior.Modal;
-        private readonly AsyncResultCallBack _callback;
-        private InformationBoxOpacity _opacity = InformationBoxOpacity.NoFade;
+        /// <summary>
+        /// Text for the first user button
+        /// </summary>
+        private readonly string buttonUser1Text = "User1";
 
-        private readonly string _buttonUser1Text = "User1";
-        private readonly string _buttonUser2Text = "User2";
+        /// <summary>
+        /// Text for the second user button
+        /// </summary>
+        private readonly string buttonUser2Text = "User2";
 
-        private IconType _iconType = IconType.Internal;
+        /// <summary>
+        /// Help file associated to the help button
+        /// </summary>
+        private readonly string helpFile = String.Empty;
 
-        private readonly Graphics _measureGraphics;
+        /// <summary>
+        /// Help topic associated to the help button
+        /// </summary>
+        private readonly string helpTopic = String.Empty;
+
+        /// <summary>
+        /// Contains the graphics used to measure the strings
+        /// </summary>
+        private readonly Graphics measureGraphics;
+
+        /// <summary>
+        /// Contains a reference to the active form
+        /// </summary>
+        private readonly Form activeForm;
+
+        /// <summary>
+        /// Result corresponding the clicked button
+        /// </summary>
+        private InformationBoxResult result = InformationBoxResult.None;
+
+        /// <summary>
+        /// Main icon of the form
+        /// </summary>
+        private InformationBoxIcon icon = InformationBoxIcon.None;
+
+        /// <summary>
+        /// Custom icon
+        /// </summary>
+        private Icon customIcon;
+
+        /// <summary>
+        /// Buttons displayed on the form
+        /// </summary>
+        private InformationBoxButtons buttons = InformationBoxButtons.OK;
+        
+        /// <summary>
+        /// Default button
+        /// </summary>
+        private InformationBoxDefaultButton defaultButton = InformationBoxDefaultButton.Button1;
+
+        /// <summary>
+        /// Buttons layout
+        /// </summary>
+        private InformationBoxButtonsLayout buttonsLayout = InformationBoxButtonsLayout.GroupMiddle;
+
+        /// <summary>
+        /// Contains the autosize mode
+        /// </summary>
+        private InformationBoxAutoSizeMode autoSizeMode = InformationBoxAutoSizeMode.None;
+
+        /// <summary>
+        /// Contains the box initial position
+        /// </summary>
+        private InformationBoxPosition position = InformationBoxPosition.CenterOnParent;
+
+        /// <summary>
+        /// Contains a value defining whether displaying the checkbox or not
+        /// </summary>
+        private InformationBoxCheckBox checkBox = 0;
+
+        /// <summary>
+        /// Contains the style of the box
+        /// </summary>
+        private InformationBoxStyle style = InformationBoxStyle.Standard;
+
+        /// <summary>
+        /// Contains the autoclose parameters
+        /// </summary>
+        private AutoCloseParameters autoClose;
+
+        /// <summary>
+        /// Contains the design parameters
+        /// </summary>
+        private DesignParameters design;
+
+        /// <summary>
+        /// Contains the style of the title
+        /// </summary>
+        private InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.SameAsBox;
+
+        /// <summary>
+        /// Contains the title icon
+        /// </summary>
+        private Icon titleIcon;
+
+        /// <summary>
+        /// Contains if the box is modal or not
+        /// </summary>
+        private InformationBoxBehavior behavior = InformationBoxBehavior.Modal;
+
+        /// <summary>
+        /// Contains the opacity of the form
+        /// </summary>
+        private InformationBoxOpacity opacity = InformationBoxOpacity.NoFade;
+
+        /// <summary>
+        /// Contains the icon type
+        /// </summary>
+        private IconType iconType = IconType.Internal;
+
+        /// <summary>
+        /// Contains the text
+        /// </summary>
         private StringBuilder internalText;
 
-        private bool _showHelpButton;
-        private readonly string _helpFile = String.Empty;
-        private readonly string _helpTopic = String.Empty;
-        private HelpNavigator _helpNavigator = HelpNavigator.TableOfContents;
+        /// <summary>
+        /// Contains if the help button should be displayed
+        /// </summary>
+        private bool showHelpButton;
 
-        private readonly Form _activeForm;
-        private bool _mouseDown;
+        /// <summary>
+        /// Help navigator associated to the help button
+        /// </summary>
+        private HelpNavigator helpNavigator = HelpNavigator.TableOfContents;
 
-        private Point _lastPointerPosition;
+        /// <summary>
+        /// Contains whether a mouse button is down
+        /// </summary>
+        private bool mouseDown;
 
-        private int _elapsedTime;
+        /// <summary>
+        /// Last stored pointer position
+        /// </summary>
+        private Point lastPointerPosition;
+        
+        /// <summary>
+        /// Elapsed time for the autoclose
+        /// </summary>
+        private int elapsedTime;
 
         #endregion Attributes
 
@@ -74,28 +196,28 @@ namespace InfoBox
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxForm"/> class using the specified text.
         /// </summary>
-        /// <param name="text">The text.</param>
+        /// <param name="text">The text of the box.</param>
         internal InformationBoxForm(string text)
         {
-            InitializeComponent();
-            _measureGraphics = CreateGraphics();
+            this.InitializeComponent();
+            this.measureGraphics = CreateGraphics();
 
             // Apply default font for message boxes
             this.Font = SystemFonts.MessageBoxFont;
-            messageText.Font = SystemFonts.MessageBoxFont;
-            lblTitle.Font = SystemFonts.CaptionFont;
+            this.messageText.Font = SystemFonts.MessageBoxFont;
+            this.lblTitle.Font = SystemFonts.CaptionFont;
 
-            messageText.Text = text;
+            this.messageText.Text = text;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxForm"/> class.
         /// </summary>
-        /// <param name="text">The text.</param>
+        /// <param name="text">The text of the box.</param>
         /// <param name="parameters">The parameters.</param>
         internal InformationBoxForm(string text, params object[] parameters) : this(text)
         {
-            _activeForm = ActiveForm;
+            this.activeForm = ActiveForm;
 
             // Looks for a parameter of the type InformationBoxInitialization.
             // If found and equal to InformationBoxInitialization.FromParametersOnly,
@@ -114,14 +236,18 @@ namespace InfoBox
             }
 
             if (loadScope)
-                LoadCurrentScope();
+            {
+                this.LoadCurrentScope();
+            }
 
             int stringCount = 0;
 
             foreach (object parameter in parameters)
             {
                 if (null == parameter)
+                {
                     continue;
+                }
 
                 // Simple string -> caption
                 // Or Help file if the string contains a file name
@@ -130,87 +256,139 @@ namespace InfoBox
                     if (stringCount == 0)
                     {
                         this.Text = (string) parameter;
-                        lblTitle.Text = (string) parameter;
+                        this.lblTitle.Text = (string) parameter;
                     }
                     else if (stringCount == 1)
-                        _helpFile = (string) parameter;
+                    {
+                        this.helpFile = (string) parameter;
+                    }
                     else if (stringCount == 2)
-                        _helpTopic = (string) parameter;
+                    {
+                        this.helpTopic = (string) parameter;
+                    }
+
                     stringCount++;
                 }
-                // Buttons
                 else if (parameter is InformationBoxButtons)
-                    _buttons = (InformationBoxButtons) parameter;
-                // Internal icon
+                {
+                    // Buttons
+                    this.buttons = (InformationBoxButtons) parameter;
+                }
                 else if (parameter is InformationBoxIcon)
-                    _icon = (InformationBoxIcon) parameter;
-                // User defined icon
+                {
+                    // Internal icon
+                    this.icon = (InformationBoxIcon) parameter;
+                }
                 else if (parameter is Icon)
                 {
-                    _iconType = IconType.UserDefined;
-                    _customIcon = new Icon((Icon) parameter, 48, 48);
+                    // User defined icon
+                    this.iconType = IconType.UserDefined;
+                    this.customIcon = new Icon((Icon) parameter, 48, 48);
                 }
-                // Default button
                 else if (parameter is InformationBoxDefaultButton)
-                    _defaultButton = (InformationBoxDefaultButton) parameter;
-                // Custom buttons
+                {
+                    // Default button
+                    this.defaultButton = (InformationBoxDefaultButton) parameter;
+                }
                 else if (parameter is string[])
                 {
+                    // Custom buttons
                     string[] labels = (string[]) parameter;
-                    if (labels.Length > 0) _buttonUser1Text = labels[0];
-                    if (labels.Length > 1) _buttonUser2Text = labels[1];
+                    if (labels.Length > 0)
+                    {
+                        this.buttonUser1Text = labels[0];
+                    }
+
+                    if (labels.Length > 1)
+                    {
+                        this.buttonUser2Text = labels[1];
+                    }
                 }
-                // Buttons layout
                 else if (parameter is InformationBoxButtonsLayout)
-                    _buttonsLayout = (InformationBoxButtonsLayout) parameter;
-                // Autosize mode
+                {
+                    // Buttons layout
+                    this.buttonsLayout = (InformationBoxButtonsLayout) parameter;
+                }
                 else if (parameter is InformationBoxAutoSizeMode)
-                    _autoSizeMode = (InformationBoxAutoSizeMode) parameter;
-                // Position
+                {
+                    // Autosize mode
+                    this.autoSizeMode = (InformationBoxAutoSizeMode) parameter;
+                }
                 else if (parameter is InformationBoxPosition)
-                    _position = (InformationBoxPosition) parameter;
-                // Help button
+                {
+                    // Position
+                    this.position = (InformationBoxPosition) parameter;
+                }
                 else if (parameter is bool)
-                    _showHelpButton = (bool) parameter;
-                // Help navigator
+                {
+                    // Help button
+                    this.showHelpButton = (bool) parameter;
+                }
                 else if (parameter is HelpNavigator)
-                    _helpNavigator = (HelpNavigator) parameter;
-                // Do not show this dialog again ?
+                {
+                    // Help navigator
+                    this.helpNavigator = (HelpNavigator) parameter;
+                }
                 else if (parameter is InformationBoxCheckBox)
-                    _checkBox = (InformationBoxCheckBox) parameter;
-                // Visual style
+                {
+                    // Do not show this dialog again ?
+                    this.checkBox = (InformationBoxCheckBox) parameter;
+                }
                 else if (parameter is InformationBoxStyle)
-                    _style = (InformationBoxStyle) parameter;
-                // Auto-close parameters
+                {
+                    // Visual style
+                    this.style = (InformationBoxStyle) parameter;
+                }
                 else if (parameter is AutoCloseParameters)
-                    _autoClose = (AutoCloseParameters) parameter;
-                // Design parameters
+                {
+                    // Auto-close parameters
+                    this.autoClose = (AutoCloseParameters) parameter;
+                }
                 else if (parameter is DesignParameters)
-                    _design = (DesignParameters) parameter;
-                // Title style
+                {
+                    // Design parameters
+                    this.design = (DesignParameters) parameter;
+                }
                 else if (parameter is InformationBoxTitleIconStyle)
-                    _titleStyle = (InformationBoxTitleIconStyle) parameter;
-                // Title icon
+                {
+                    // Title style
+                    this.titleStyle = (InformationBoxTitleIconStyle) parameter;
+                }
                 else if (parameter is InformationBoxTitleIcon)
-                    _titleIcon = ((InformationBoxTitleIcon) parameter).Icon;
-                // MessageBox buttons
+                {
+                    // Title icon
+                    this.titleIcon = ((InformationBoxTitleIcon) parameter).Icon;
+                }
                 else if (parameter is MessageBoxButtons)
-                    _buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons) parameter);
-                // MessageBox icon
+                {
+                    // MessageBox buttons
+                    this.buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons) parameter);
+                }
                 else if (parameter is MessageBoxIcon)
-                    _icon = MessageBoxEnumConverter.Parse((MessageBoxIcon) parameter);
-                // MessageBox default button
+                {
+                    // MessageBox icon
+                    this.icon = MessageBoxEnumConverter.Parse((MessageBoxIcon) parameter);
+                }
                 else if (parameter is MessageBoxDefaultButton)
-                    _defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton) parameter);
-                // InformationBox behaviour
+                {
+                    // MessageBox default button
+                    this.defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton) parameter);
+                }
                 else if (parameter is InformationBoxBehavior)
-                    _behavior = (InformationBoxBehavior) parameter;
-                // Callback for the result
+                {
+                    // InformationBox behaviour
+                    this.behavior = (InformationBoxBehavior) parameter;
+                }
                 else if (parameter is AsyncResultCallBack)
-                    _callback = (AsyncResultCallBack) parameter;
-                // Opacity
+                {
+                    // Callback for the result
+                    this.callback = (AsyncResultCallBack) parameter;
+                }
                 else if (parameter is InformationBoxOpacity)
-                    _opacity = (InformationBoxOpacity) parameter;
+                {
+                    // Opacity
+                    this.opacity = (InformationBoxOpacity) parameter;
+                }
             }
         }
 
@@ -221,39 +399,43 @@ namespace InfoBox
         /// <summary>
         /// Shows this InformationBox.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The result corresponding to the button clicked</returns>
         internal new InformationBoxResult Show()
         {
-            SetCheckBox();
-            SetButtons();
-            SetText();
-            SetIcon();
-            SetLayout();
-            SetFocus();
-            SetPosition();
-            SetWindowStyle();
-            SetAutoClose();
-            SetOpacity();
-            PlaySound();
-            
-            if (_behavior == InformationBoxBehavior.Modal)
+            this.SetCheckBox();
+            this.SetButtons();
+            this.SetText();
+            this.SetIcon();
+            this.SetLayout();
+            this.SetFocus();
+            this.SetPosition();
+            this.SetWindowStyle();
+            this.SetAutoClose();
+            this.SetOpacity();
+            this.PlaySound();
+
+            if (this.behavior == InformationBoxBehavior.Modal)
+            {
                 ShowDialog();
+            }
             else
+            {
                 base.Show();
-            
-            return _result;
+            }
+
+            return this.result;
         }
 
         /// <summary>
         /// Shows this InformationBox.
         /// </summary>
         /// <param name="state">The state of the checkbox.</param>
-        /// <returns></returns>
+        /// <returns>The result corresponding to the button clicked</returns>
         internal InformationBoxResult Show(ref CheckState state)
         {
-            InformationBoxResult result = Show();
-            state = chbDoNotShow.CheckState;
-            return result;
+            InformationBoxResult result = this.Show();
+            state = this.chbDoNotShow.CheckState;
+            return this.result;
         }
 
         #endregion Show
@@ -267,13 +449,13 @@ namespace InfoBox
         {
             SystemSound sound;
 
-            if (_iconType == IconType.UserDefined)
+            if (this.iconType == IconType.UserDefined)
             {
                 sound = SystemSounds.Beep;
             }
             else
             {
-                switch (IconHelper.GetCategory(_icon))
+                switch (IconHelper.GetCategory(this.icon))
                 {
                     case InformationBoxMessageCategory.Asterisk:
                         sound = SystemSounds.Asterisk;
@@ -294,7 +476,9 @@ namespace InfoBox
             }
 
             if (null != sound)
+            {
                 sound.Play();
+            }
         }
 
         #endregion Sound
@@ -307,63 +491,97 @@ namespace InfoBox
         private void LoadCurrentScope()
         {
             if (InformationBoxScope.Current == null)
+            {
                 return;
+            }
 
             InformationBoxScopeParameters parameters = InformationBoxScope.Current.Parameters;
 
             if (parameters.Icon.HasValue)
-                _icon = parameters.Icon.Value;
+            {
+                this.icon = parameters.Icon.Value;
+            }
             
             if (parameters.CustomIcon != null)
             {
-                _iconType = IconType.UserDefined;
-                _customIcon = parameters.CustomIcon;
+                this.iconType = IconType.UserDefined;
+                this.customIcon = parameters.CustomIcon;
             }
 
             if (parameters.Buttons.HasValue)
-                _buttons = parameters.Buttons.Value;
+            {
+                this.buttons = parameters.Buttons.Value;
+            }
 
             if (parameters.DefaultButton.HasValue)
-                _defaultButton = parameters.DefaultButton.Value;
+            {
+                this.defaultButton = parameters.DefaultButton.Value;
+            }
 
             if (parameters.Layout.HasValue)
-                _buttonsLayout = parameters.Layout.Value;
+            {
+                this.buttonsLayout = parameters.Layout.Value;
+            }
 
             if (parameters.AutoSizeMode.HasValue)
-                _autoSizeMode = parameters.AutoSizeMode.Value;
+            {
+                this.autoSizeMode = parameters.AutoSizeMode.Value;
+            }
 
             if (parameters.Position.HasValue)
-                _position = parameters.Position.Value;
+            {
+                this.position = parameters.Position.Value;
+            }
 
             if (parameters.Checkbox.HasValue)
-                _checkBox = parameters.Checkbox.Value;
+            {
+                this.checkBox = parameters.Checkbox.Value;
+            }
 
             if (parameters.Style.HasValue)
-                _style = parameters.Style.Value;
+            {
+                this.style = parameters.Style.Value;
+            }
 
             if (parameters.AutoClose != null)
-                _autoClose = parameters.AutoClose;
+            {
+                this.autoClose = parameters.AutoClose;
+            }
 
             if (parameters.Design != null)
-                _design = parameters.Design;
+            {
+                this.design = parameters.Design;
+            }
 
             if (parameters.TitleIconStyle.HasValue)
-                _titleStyle = parameters.TitleIconStyle.Value;
+            {
+                this.titleStyle = parameters.TitleIconStyle.Value;
+            }
 
             if (parameters.TitleIcon != null)
-                _titleIcon = parameters.TitleIcon;
+            {
+                this.titleIcon = parameters.TitleIcon;
+            }
 
             if (parameters.Behavior.HasValue)
-                _behavior = parameters.Behavior.Value;
+            {
+                this.behavior = parameters.Behavior.Value;
+            }
 
             if (parameters.Opacity.HasValue)
-                _opacity = parameters.Opacity.Value;
+            {
+                this.opacity = parameters.Opacity.Value;
+            }
 
             if (parameters.Help.HasValue)
-                _showHelpButton = parameters.Help.Value;
+            {
+                this.showHelpButton = parameters.Help.Value;
+            }
 
             if (parameters.HelpNavigator.HasValue)
-                _helpNavigator = parameters.HelpNavigator.Value;
+            {
+                this.helpNavigator = parameters.HelpNavigator.Value;
+            }
         }
 
         #region Auto close
@@ -373,12 +591,14 @@ namespace InfoBox
         /// </summary>
         private void SetAutoClose()
         {
-            if (null == _autoClose)
+            if (null == this.autoClose)
+            {
                 return;
+            }
 
-            tmrAutoClose.Interval = 1000;
-            tmrAutoClose.Tick += tmrAutoClose_Tick;
-            tmrAutoClose.Start();
+            this.tmrAutoClose.Interval = 1000;
+            this.tmrAutoClose.Tick += this.TmrAutoClose_Tick;
+            this.tmrAutoClose.Start();
         }
 
         #endregion Auto close
@@ -390,7 +610,7 @@ namespace InfoBox
         /// </summary>
         private void SetOpacity()
         {
-            switch (_opacity)
+            switch (this.opacity)
             {
                 case InformationBoxOpacity.Faded10:
                     Opacity = 0.1;
@@ -436,48 +656,50 @@ namespace InfoBox
         /// </summary>
         private void SetWindowStyle()
         {
-            if (_style == InformationBoxStyle.Modern)
+            if (this.style == InformationBoxStyle.Modern)
             {
                 Color barsBackColor = Color.Black;
                 Color formBackColor = Color.Silver;
 
-                if (null != _design)
+                if (null != this.design)
                 {
-                    barsBackColor = _design.BarsBackColor;
-                    formBackColor = _design.FormBackColor;
+                    barsBackColor = this.design.BarsBackColor;
+                    formBackColor = this.design.FormBackColor;
                 }
 
-                pnlForm.BackColor = formBackColor;
-                messageText.BackColor = formBackColor;
+                this.pnlForm.BackColor = formBackColor;
+                this.messageText.BackColor = formBackColor;
 
-                pnlButtons.BackColor = barsBackColor;
-                lblTitle.BackColor = barsBackColor;
+                this.pnlButtons.BackColor = barsBackColor;
+                this.lblTitle.BackColor = barsBackColor;
 
                 FormBorderStyle = FormBorderStyle.None;
-                lblTitle.Visible = true;
+                this.lblTitle.Visible = true;
 
-                foreach (Controls.Button button in pnlButtons.Controls)
+                foreach (Controls.Button button in this.pnlButtons.Controls)
+                {
                     button.BackColor = barsBackColor;
+                }
             }
-            else if (_style == InformationBoxStyle.Standard)
+            else if (this.style == InformationBoxStyle.Standard)
             {
                 Color barsBackColor = SystemColors.Control;
                 Color formBackColor = SystemColors.Control;
 
-                if (null != _design)
+                if (null != this.design)
                 {
-                    barsBackColor = _design.BarsBackColor;
-                    formBackColor = _design.FormBackColor;
+                    barsBackColor = this.design.BarsBackColor;
+                    formBackColor = this.design.FormBackColor;
                 }
 
-                pnlButtons.BackColor = barsBackColor;
-                pnlForm.BackColor = formBackColor;
-                messageText.BackColor = formBackColor;
+                this.pnlButtons.BackColor = barsBackColor;
+                this.pnlForm.BackColor = formBackColor;
+                this.messageText.BackColor = formBackColor;
 
                 FormBorderStyle = FormBorderStyle.FixedDialog;
-                lblTitle.Visible = false;
-                pnlMain.Top -= lblTitle.Height;
-                pnlButtons.SideBorder = SideBorder.None;
+                this.lblTitle.Visible = false;
+                this.pnlMain.Top -= this.lblTitle.Height;
+                this.pnlButtons.SideBorder = SideBorder.None;
             }
         }
 
@@ -490,14 +712,14 @@ namespace InfoBox
         /// </summary>
         private void SetCheckBox()
         {
-            chbDoNotShow.Text = Resources.LabelDoNotShow;
+            this.chbDoNotShow.Text = Resources.LabelDoNotShow;
 
-            chbDoNotShow.Visible = ((_checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show);
-            chbDoNotShow.Checked = ((_checkBox & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked);
-            chbDoNotShow.TextAlign = ((_checkBox & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
+            this.chbDoNotShow.Visible = ((this.checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show);
+            this.chbDoNotShow.Checked = ((this.checkBox & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked);
+            this.chbDoNotShow.TextAlign = ((this.checkBox & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
                                          ? ContentAlignment.BottomRight
                                          : ContentAlignment.BottomLeft;
-            chbDoNotShow.CheckAlign = ((_checkBox & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
+            this.chbDoNotShow.CheckAlign = ((this.checkBox & InformationBoxCheckBox.RightAligned) == InformationBoxCheckBox.RightAligned)
                                           ? ContentAlignment.MiddleRight
                                           : ContentAlignment.MiddleLeft;
         }
@@ -511,7 +733,7 @@ namespace InfoBox
         /// </summary>
         private void SetPosition()
         {
-            if (_position == InformationBoxPosition.CenterOnScreen)
+            if (this.position == InformationBoxPosition.CenterOnScreen)
             {
                 StartPosition = FormStartPosition.CenterScreen;
                 CenterToScreen();
@@ -532,14 +754,20 @@ namespace InfoBox
         /// </summary>
         private void SetFocus()
         {
-            if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
-                pnlButtons.Controls[0].Select();
+            if (this.defaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
+            {
+                this.pnlButtons.Controls[0].Select();
+            }
 
-            if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
-                pnlButtons.Controls[1].Select();
+            if (this.defaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
+            {
+                this.pnlButtons.Controls[1].Select();
+            }
 
-            if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
-                pnlButtons.Controls[2].Select();
+            if (this.defaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
+            {
+                this.pnlButtons.Controls[2].Select();
+            }
         }
 
         #endregion Focus
@@ -557,29 +785,35 @@ namespace InfoBox
             #region Width
 
             // Caption width including button
-            int captionWidth = Convert.ToInt32(_measureGraphics.MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
-            if (_titleStyle != InformationBoxTitleIconStyle.None)
-                captionWidth += BORDER_PADDING * 2;
+            int captionWidth = Convert.ToInt32(this.measureGraphics.MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
+            if (this.titleStyle != InformationBoxTitleIconStyle.None)
+            {
+                captionWidth += BorderPadding * 2;
+            }
 
             // "Do not show this dialog again" width
-            int checkBoxWidth = ((_checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
-                                    ? (int) _measureGraphics.MeasureString(chbDoNotShow.Text, chbDoNotShow.Font).Width + BORDER_PADDING * 4
+            int checkBoxWidth = ((this.checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
+                                    ? (int) this.measureGraphics.MeasureString(this.chbDoNotShow.Text, this.chbDoNotShow.Font).Width + BorderPadding * 4
                                     : 0;
 
             // Width of the text and icon.
             int iconAndTextWidth = 0;
 
             // Minimum width to display all needed buttons.
-            int buttonsMinWidth = (pnlButtons.Controls.Count + 4) * BORDER_PADDING;
-            foreach (Control ctrl in pnlButtons.Controls)
+            int buttonsMinWidth = (this.pnlButtons.Controls.Count + 4) * BorderPadding;
+            foreach (Control ctrl in this.pnlButtons.Controls)
+            {
                 buttonsMinWidth += ctrl.Width;
+            }
 
             // Icon width
-            if (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined)
-                iconAndTextWidth += ICON_PANEL_WIDTH;
+            if (this.icon != InformationBoxIcon.None || this.iconType == IconType.UserDefined)
+            {
+                iconAndTextWidth += IconPanelWidth;
+            }
 
             // Text width
-            iconAndTextWidth += messageText.Width + BORDER_PADDING * 2;
+            iconAndTextWidth += this.messageText.Width + BorderPadding * 2;
 
             // Gets the maximum size
             totalWidth = Math.Max(Math.Max(Math.Max(buttonsMinWidth, iconAndTextWidth), captionWidth), checkBoxWidth);
@@ -588,37 +822,43 @@ namespace InfoBox
 
             #region Height
 
-            if ((_checkBox & InformationBoxCheckBox.Show) != InformationBoxCheckBox.Show)
+            if ((this.checkBox & InformationBoxCheckBox.Show) != InformationBoxCheckBox.Show)
             {
-                chbDoNotShow.Visible = false;
-                pnlBas.Height -= chbDoNotShow.Height;
+                this.chbDoNotShow.Visible = false;
+                this.pnlBas.Height -= this.chbDoNotShow.Height;
             }
 
             int iconHeight = 0;
-            if (_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined)
-                iconHeight = pcbIcon.Height;
+            if (this.icon != InformationBoxIcon.None || this.iconType == IconType.UserDefined)
+            {
+                iconHeight = this.pcbIcon.Height;
+            }
 
-            int textHeight = messageText.Height;
+            int textHeight = this.messageText.Height;
 
-            totalHeight = Math.Max(iconHeight, textHeight) + BORDER_PADDING * 2 + pnlBas.Height;
+            totalHeight = Math.Max(iconHeight, textHeight) + BorderPadding * 2 + this.pnlBas.Height;
 
             // Add a small space to avoid vertical scrollbar.
             if (iconAndTextWidth > Screen.PrimaryScreen.WorkingArea.Width - 100)
+            {
                 totalHeight += 20;
+            }
 
             bool verticalScroll = false;
             if (totalHeight > Screen.PrimaryScreen.WorkingArea.Height - 50)
             {
                 totalHeight = Screen.PrimaryScreen.WorkingArea.Height - 50;
                 totalWidth += 20;
-                messageText.Top = BORDER_PADDING;
+                this.messageText.Top = BorderPadding;
                 verticalScroll = true;
             }
 
-            pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - pnlBas.Height);
+            vpnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - this.pnlBas.Height);
 
-            if (_style == InformationBoxStyle.Modern)
-                totalHeight += lblTitle.Height;
+            if (this.style == InformationBoxStyle.Modern)
+            {
+                totalHeight += vlblTitle.Height;
+            }
 
             #endregion Height
 
@@ -629,58 +869,67 @@ namespace InfoBox
 
             // Set new position for all components
             // Icon
-            pcbIcon.Left = BORDER_PADDING;
-            pcbIcon.Top = BORDER_PADDING;
+            this.pcbIcon.Left = BorderPadding;
+            this.pcbIcon.Top = BorderPadding;
 
             // Text
-            pnlScrollText.Width = ClientSize.Width - ((_icon != InformationBoxIcon.None || _iconType == IconType.UserDefined)
-                                       ? ICON_PANEL_WIDTH + BORDER_PADDING + 5
-                                       : BORDER_PADDING);
+            this.pnlScrollText.Width = ClientSize.Width - ((this.icon != InformationBoxIcon.None || this.iconType == IconType.UserDefined)
+                                       ? IconPanelWidth + BorderPadding + 5
+                                       : BorderPadding);
             if (!verticalScroll)
-                messageText.Top = Convert.ToInt32((pnlText.Height - messageText.Height) / 2);
+            {
+                this.messageText.Top = Convert.ToInt32((this.pnlText.Height - this.messageText.Height) / 2);
+            }
 
             // Buttons
-            SetButtonsLayout();
+            this.SetButtonsLayout();
 
             #endregion Position
         }
 
+        /// <summary>
+        /// Sets the buttons layout.
+        /// </summary>
         private void SetButtonsLayout()
         {
             // Do not count the checkbox
-            int buttonsCount = pnlButtons.Controls.Count;
+            int buttonsCount = this.pnlButtons.Controls.Count;
             int index = 0;
             int initialPosition = 0;
             int spaceBetween = 0;
-            switch (_buttonsLayout)
+            switch (this.buttonsLayout)
             {
                 case InformationBoxButtonsLayout.GroupLeft:
-                    initialPosition = BORDER_PADDING;
-                    spaceBetween = BORDER_PADDING;
+                    initialPosition = BorderPadding;
+                    spaceBetween = BorderPadding;
                     break;
                 case InformationBoxButtonsLayout.GroupMiddle:
-                    spaceBetween = BORDER_PADDING;
+                    spaceBetween = BorderPadding;
 
                     // If there is only one button then we must center it
                     if (buttonsCount == 1)
-                        initialPosition += Convert.ToInt32((Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    {
+                        initialPosition += Convert.ToInt32((Width - buttonsCount * this.pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    }
                     else
-                        initialPosition = Convert.ToInt32((Width - (buttonsCount * (pnlButtons.Controls[0].Width + BORDER_PADDING))) / 2);
+                    {
+                        initialPosition = Convert.ToInt32((Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding))) / 2);
+                    }
+
                     break;
                 case InformationBoxButtonsLayout.GroupRight:
-                    spaceBetween = BORDER_PADDING;
-                    initialPosition = ClientSize.Width -
-                                      (buttonsCount * (pnlButtons.Controls[0].Width + BORDER_PADDING));
+                    spaceBetween = BorderPadding;
+                    initialPosition = ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding));
                     break;
                 case InformationBoxButtonsLayout.Separate:
-                    spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * this.pnlButtons.Controls[0].Width) / (buttonsCount + 1));
                     initialPosition = spaceBetween;
                     break;
                 default:
                     break;
             }
 
-            foreach (Control ctrl in pnlButtons.Controls)
+            foreach (Control ctrl in this.pnlButtons.Controls)
             {
                 ctrl.Left = initialPosition + spaceBetween * (index) + ctrl.Width * index;
                 ++index;
@@ -696,41 +945,47 @@ namespace InfoBox
         /// </summary>
         private void SetIcon()
         {
-            if (_iconType == IconType.Internal)
+            if (this.iconType == IconType.Internal)
             {
-                if (_icon == InformationBoxIcon.None)
+                if (this.icon == InformationBoxIcon.None)
                 {
-                    pnlIcon.Visible = false;
-                    pcbIcon.Image = null;
+                    this.pnlIcon.Visible = false;
+                    this.pcbIcon.Image = null;
                 }
                 else
                 {
-                    pnlIcon.Visible = true;
-                    pcbIcon.Image = IconHelper.FromEnum(_icon).ToBitmap();
+                    this.pnlIcon.Visible = true;
+                    this.pcbIcon.Image = IconHelper.FromEnum(this.icon).ToBitmap();
                 }
             }
             else
             {
-                pcbIcon.Image = _customIcon.ToBitmap();
-                pnlIcon.Visible = true;
+                this.pcbIcon.Image = this.customIcon.ToBitmap();
+                this.pnlIcon.Visible = true;
             }
 
-            pnlIcon.Width = ICON_PANEL_WIDTH;
+            this.pnlIcon.Width = IconPanelWidth;
 
-            if (_titleStyle == InformationBoxTitleIconStyle.None)
+            if (this.titleStyle == InformationBoxTitleIconStyle.None)
             {
                 ShowIcon = false;
                 Icon = Resources.IconBlank;
             }
-            else if (_titleStyle == InformationBoxTitleIconStyle.SameAsBox)
+            else if (this.titleStyle == InformationBoxTitleIconStyle.SameAsBox)
             {
-                if (_iconType == IconType.Internal)
-                    Icon = IconHelper.FromEnum(_icon);
+                if (this.iconType == IconType.Internal)
+                {
+                    Icon = IconHelper.FromEnum(this.icon);
+                }
                 else
-                    Icon = _customIcon;
+                {
+                    Icon = this.customIcon;
+                }
             }
-            else if (_titleStyle == InformationBoxTitleIconStyle.Custom)
-                Icon = _titleIcon;
+            else if (this.titleStyle == InformationBoxTitleIconStyle.Custom)
+            {
+                Icon = this.titleIcon;
+            }
         }
 
         #endregion Icon
@@ -742,28 +997,28 @@ namespace InfoBox
         /// </summary>
         private void SetText()
         {
-            messageText.Text = messageText.Text.Replace("\n\r", "\n");
-            messageText.Text = messageText.Text.Replace("\n", Environment.NewLine);
+            this.messageText.Text = this.messageText.Text.Replace("\n\r", "\n");
+            this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
 
-            if (_autoSizeMode != InformationBoxAutoSizeMode.None)
+            if (this.autoSizeMode != InformationBoxAutoSizeMode.None)
             {
-                internalText = new StringBuilder(messageText.Text);
+                this.internalText = new StringBuilder(this.messageText.Text);
 
                 Screen currentScreen = Screen.FromControl(this);
                 int screenWidth = currentScreen.WorkingArea.Width;
 
-                if (_autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
+                if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
                 {
                     // Remove line breaks.
-                    internalText = internalText.Replace(Environment.NewLine, " ");
+                    this.internalText = this.internalText.Replace(Environment.NewLine, " ");
                     Regex splitter = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled);
-                    MatchCollection sentences = splitter.Matches(internalText.ToString());
+                    MatchCollection sentences = splitter.Matches(this.internalText.ToString());
                     StringBuilder formattedText = new StringBuilder();
                     int currentWidth = 0;
 
                     foreach (Match sentence in sentences)
                     {
-                        int sentenceLength = (int) _measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
+                        int sentenceLength = (int) this.measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
                         if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                         {
                             formattedText.Append(Environment.NewLine);
@@ -774,23 +1029,23 @@ namespace InfoBox
                         formattedText.Append(sentence.Value);
                     }
 
-                    internalText = formattedText;
+                    this.internalText = formattedText;
                 }
-                else if (_autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
+                else if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
                 {
-                    internalText.Replace(". ", "." + Environment.NewLine);
-                    internalText.Replace("? ", "?" + Environment.NewLine);
-                    internalText.Replace("! ", "!" + Environment.NewLine);
-                    internalText.Replace(": ", ":" + Environment.NewLine);
-                    internalText.Replace(") ", ")" + Environment.NewLine);
-                    internalText.Replace(", ", "," + Environment.NewLine);
+                    this.internalText.Replace(". ", "." + Environment.NewLine);
+                    this.internalText.Replace("? ", "?" + Environment.NewLine);
+                    this.internalText.Replace("! ", "!" + Environment.NewLine);
+                    this.internalText.Replace(": ", ":" + Environment.NewLine);
+                    this.internalText.Replace(") ", ")" + Environment.NewLine);
+                    this.internalText.Replace(", ", "," + Environment.NewLine);
                 }
 
-                messageText.Text = internalText.ToString();
+                this.messageText.Text = this.internalText.ToString();
             }
 
-            messageText.Size = _measureGraphics.MeasureString(messageText.Text, messageText.Font).ToSize();
-            messageText.Width += BORDER_PADDING;
+            this.messageText.Size = this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font).ToSize();
+            this.messageText.Width += BorderPadding;
         }
 
         #endregion Text
@@ -803,79 +1058,79 @@ namespace InfoBox
         private void SetButtons()
         {
             // Abort button
-            if (_buttons == InformationBoxButtons.AbortRetryIgnore)
+            if (this.buttons == InformationBoxButtons.AbortRetryIgnore)
             {
-                AddButton("Abort", Resources.LabelAbort);
+                this.AddButton("Abort", Resources.LabelAbort);
             }
 
             // Ok
-            if (_buttons == InformationBoxButtons.OK ||
-                _buttons == InformationBoxButtons.OKCancel ||
-                _buttons == InformationBoxButtons.OKCancelUser1)
+            if (this.buttons == InformationBoxButtons.OK ||
+                this.buttons == InformationBoxButtons.OKCancel ||
+                this.buttons == InformationBoxButtons.OKCancelUser1)
             {
-                AddButton("OK", Resources.LabelOK);
+                this.AddButton("OK", Resources.LabelOK);
             }
 
             // Yes
-            if (_buttons == InformationBoxButtons.YesNo ||
-                _buttons == InformationBoxButtons.YesNoCancel ||
-                _buttons == InformationBoxButtons.YesNoUser1)
+            if (this.buttons == InformationBoxButtons.YesNo ||
+                this.buttons == InformationBoxButtons.YesNoCancel ||
+                this.buttons == InformationBoxButtons.YesNoUser1)
             {
-                AddButton("Yes", Resources.LabelYes);
+                this.AddButton("Yes", Resources.LabelYes);
             }
 
             // Retry
-            if (_buttons == InformationBoxButtons.AbortRetryIgnore ||
-                _buttons == InformationBoxButtons.RetryCancel)
+            if (this.buttons == InformationBoxButtons.AbortRetryIgnore ||
+                this.buttons == InformationBoxButtons.RetryCancel)
             {
-                AddButton("Retry", Resources.LabelRetry);
+                this.AddButton("Retry", Resources.LabelRetry);
             }
 
             // No
-            if (_buttons == InformationBoxButtons.YesNo ||
-                _buttons == InformationBoxButtons.YesNoCancel ||
-                _buttons == InformationBoxButtons.YesNoUser1)
+            if (this.buttons == InformationBoxButtons.YesNo ||
+                this.buttons == InformationBoxButtons.YesNoCancel ||
+                this.buttons == InformationBoxButtons.YesNoUser1)
             {
-                AddButton("No", Resources.LabelNo);
+                this.AddButton("No", Resources.LabelNo);
             }
 
             // Cancel
-            if (_buttons == InformationBoxButtons.OKCancel ||
-                _buttons == InformationBoxButtons.OKCancelUser1 ||
-                _buttons == InformationBoxButtons.RetryCancel ||
-                _buttons == InformationBoxButtons.YesNoCancel)
+            if (this.buttons == InformationBoxButtons.OKCancel ||
+                this.buttons == InformationBoxButtons.OKCancelUser1 ||
+                this.buttons == InformationBoxButtons.RetryCancel ||
+                this.buttons == InformationBoxButtons.YesNoCancel)
             {
-                AddButton("Cancel", Resources.LabelCancel);
+                this.AddButton("Cancel", Resources.LabelCancel);
             }
 
             // Ignore
-            if (_buttons == InformationBoxButtons.AbortRetryIgnore)
+            if (this.buttons == InformationBoxButtons.AbortRetryIgnore)
             {
-                AddButton("Ignore", Resources.LabelIgnore);
+                this.AddButton("Ignore", Resources.LabelIgnore);
             }
             
             // User1
-            if (_buttons == InformationBoxButtons.OKCancelUser1 ||
-                _buttons == InformationBoxButtons.User1User2 ||
-                _buttons == InformationBoxButtons.YesNoUser1 ||
-                _buttons == InformationBoxButtons.User1)
+            if (this.buttons == InformationBoxButtons.OKCancelUser1 ||
+                this.buttons == InformationBoxButtons.User1User2 ||
+                this.buttons == InformationBoxButtons.YesNoUser1 ||
+                this.buttons == InformationBoxButtons.User1)
             {
-                AddButton("User1", _buttonUser1Text);
+                this.AddButton("User1", this.buttonUser1Text);
             }
 
             // User2
-            if (_buttons == InformationBoxButtons.User1User2)
+            if (this.buttons == InformationBoxButtons.User1User2)
             {
-                AddButton("User2", _buttonUser2Text);
+                this.AddButton("User2", this.buttonUser2Text);
             }
 
             // Help button is displayed when asked or when a help file name exists
-            if (_showHelpButton || !String.IsNullOrEmpty(_helpFile))
+            if (this.showHelpButton || !String.IsNullOrEmpty(this.helpFile))
             {
-                AddButton("Help", Resources.LabelHelp);
+                this.AddButton("Help", Resources.LabelHelp);
             }
 
-            SetButtonsSize();
+            this.SetButtonsSize();
         }
 
         /// <summary>
@@ -887,19 +1142,21 @@ namespace InfoBox
             int maxSize = 0;
 
             // Measures the width of each button
-            foreach (Control ctrl in pnlButtons.Controls)
-                maxSize = Math.Max(Convert.ToInt32(_measureGraphics.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
-
-            foreach (Control ctrl in pnlButtons.Controls)
+            foreach (Control ctrl in this.pnlButtons.Controls)
             {
-                if (_style == InformationBoxStyle.Standard)
+                maxSize = Math.Max(Convert.ToInt32(this.measureGraphics.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
+            }
+
+            foreach (Control ctrl in this.pnlButtons.Controls)
+            {
+                if (this.style == InformationBoxStyle.Standard)
                 {
                     ctrl.Size = new Size(maxSize, 23);
                     ctrl.Top = 5;
                 }
-                else if (_style == InformationBoxStyle.Modern)
+                else if (this.style == InformationBoxStyle.Modern)
                 {
-                    ctrl.Size = new Size(maxSize, pnlButtons.Height);
+                    ctrl.Size = new Size(maxSize, this.pnlButtons.Height);
                     ctrl.Top = 0;
                 }
             }
@@ -908,31 +1165,30 @@ namespace InfoBox
         /// <summary>
         /// Adds the button.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="text">The text.</param>
+        /// <param name="name">The name of the button.</param>
+        /// <param name="text">The text of the button.</param>
         private void AddButton(string name, string text)
         {
             Control buttonToAdd;
 
-            if (_style == InformationBoxStyle.Modern)
+            if (this.style == InformationBoxStyle.Modern)
             {
                 buttonToAdd = new Controls.Button();
                 (buttonToAdd as Controls.Button).PersistantMode = false;
-                (buttonToAdd as Controls.Button).Click += _button_Click;
+                (buttonToAdd as Controls.Button).Click += this.Button_Click;
             }
             else
             {
                 buttonToAdd = new System.Windows.Forms.Button();
                 (buttonToAdd as System.Windows.Forms.Button).FlatStyle = FlatStyle.System;
                 (buttonToAdd as System.Windows.Forms.Button).UseVisualStyleBackColor = true;
-                (buttonToAdd as System.Windows.Forms.Button).Click += _button_Click;
-
+                (buttonToAdd as System.Windows.Forms.Button).Click += this.Button_Click;
             }
 
             buttonToAdd.Font = SystemFonts.MessageBoxFont;
             buttonToAdd.Name = name;
             buttonToAdd.Text = text;
-            pnlButtons.Controls.Add(buttonToAdd);
+            this.pnlButtons.Controls.Add(buttonToAdd);
         }
 
         #endregion Buttons
@@ -951,46 +1207,48 @@ namespace InfoBox
             switch (senderControl.Name)
             {
                 case "Abort":
-                    _result = InformationBoxResult.Abort;
+                    this.result = InformationBoxResult.Abort;
                     break;
                 case "OK":
-                    _result = InformationBoxResult.OK;
+                    this.result = InformationBoxResult.OK;
                     break;
                 case "Yes":
-                    _result = InformationBoxResult.Yes;
+                    this.result = InformationBoxResult.Yes;
                     break;
                 case "Retry":
-                    _result = InformationBoxResult.Retry;
+                    this.result = InformationBoxResult.Retry;
                     break;
                 case "No":
-                    _result = InformationBoxResult.No;
+                    this.result = InformationBoxResult.No;
                     break;
                 case "Cancel":
-                    _result = InformationBoxResult.Cancel;
+                    this.result = InformationBoxResult.Cancel;
                     break;
                 case "Ignore":
-                    _result = InformationBoxResult.Ignore;
+                    this.result = InformationBoxResult.Ignore;
                     break;
                 case "User1":
-                    _result = InformationBoxResult.User1;
+                    this.result = InformationBoxResult.User1;
                     break;
                 case "User2":
-                    _result = InformationBoxResult.User2;
+                    this.result = InformationBoxResult.User2;
                     break;
                 default:
-                    _result = InformationBoxResult.None;
+                    this.result = InformationBoxResult.None;
                     break;
             }
 
             if (senderControl.Name.Equals("Help"))
             {
-                OpenHelp();
+                this.OpenHelp();
             }
             else
             {
                 DialogResult = DialogResult.OK;
-                if (_behavior == InformationBoxBehavior.Modeless)
+                if (this.behavior == InformationBoxBehavior.Modeless)
+                {
                     Close();
+                }
             }
         }
 
@@ -998,27 +1256,34 @@ namespace InfoBox
 
         #region Help
 
+        /// <summary>
+        /// Opens the help.
+        /// </summary>
         private void OpenHelp()
         {
             // If there is an active form
-            if (null != _activeForm)
+            if (null != this.activeForm)
             {
-                MethodInfo met = _activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
+                MethodInfo met = this.activeForm.GetType().GetMethod("OnHelpRequested", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
                 if (null != met)
                 {
                     // Call for help on the active form.
-                    met.Invoke(_activeForm, new object[] {new HelpEventArgs(MousePosition)});
+                    met.Invoke(this.activeForm, new object[] { new HelpEventArgs(MousePosition) });
                 }
             }
 
             // If a help file is specified
-            if (!String.IsNullOrEmpty(_helpFile))
+            if (!String.IsNullOrEmpty(this.helpFile))
             {
                 // If no topic is specified
-                if (String.IsNullOrEmpty(_helpTopic))
-                    Help.ShowHelp(_activeForm, _helpFile, _helpNavigator);
+                if (String.IsNullOrEmpty(this.helpTopic))
+                {
+                    Help.ShowHelp(this.activeForm, this.helpFile, this.helpNavigator);
+                }
                 else
-                    Help.ShowHelp(_activeForm, _helpFile, _helpTopic);
+                {
+                    Help.ShowHelp(this.activeForm, this.helpFile, this.helpTopic);
+                }
             }
         }
 
@@ -1031,10 +1296,12 @@ namespace InfoBox
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void _button_Click(object sender, EventArgs e)
+        private void Button_Click(object sender, EventArgs e)
         {
             if (sender is Control)
-                HandleButton((Control) sender);
+            {
+                this.HandleButton((Control) sender);
+            }
         }
 
         /// <summary>
@@ -1044,11 +1311,15 @@ namespace InfoBox
         /// <param name="e">The <see cref="System.Windows.Forms.FormClosedEventArgs"/> instance containing the event data.</param>
         private void InformationBox_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (_result == InformationBoxResult.None)
-                _result = InformationBoxResult.Cancel;
+            if (this.result == InformationBoxResult.None)
+            {
+                this.result = InformationBoxResult.Cancel;
+            }
 
-            if (_behavior == InformationBoxBehavior.Modeless && null != _callback)
-                Invoke(_callback, _result);
+            if (this.behavior == InformationBoxBehavior.Modeless && null != this.callback)
+            {
+                Invoke(this.callback, this.result);
+            }
         }
 
         /// <summary>
@@ -1056,10 +1327,12 @@ namespace InfoBox
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
-        private void pnlForm_Paint(object sender, PaintEventArgs e)
+        private void PnlForm_Paint(object sender, PaintEventArgs e)
         {
-            if (_style == InformationBoxStyle.Modern)
-                ControlPaint.DrawBorder(e.Graphics, pnlForm.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            if (this.style == InformationBoxStyle.Modern)
+            {
+                ControlPaint.DrawBorder(e.Graphics, this.pnlForm.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+            }
         }
 
         /// <summary>
@@ -1067,12 +1340,12 @@ namespace InfoBox
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        private void lblTitle_MouseDown(object sender, MouseEventArgs e)
+        private void LblTitle_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                _lastPointerPosition = e.Location;
-                _mouseDown = true;
+                this.lastPointerPosition = e.Location;
+                this.mouseDown = true;
             }
         }
 
@@ -1081,15 +1354,16 @@ namespace InfoBox
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        private void lblTitle_MouseMove(object sender, MouseEventArgs e)
+        private void LblTitle_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!_mouseDown)
+            if (!this.mouseDown)
+            {
                 return;
+            }
 
             Point location = DesktopLocation;
 
-            location.Offset(new Point(e.Location.X - _lastPointerPosition.X,
-                                      e.Location.Y - _lastPointerPosition.Y));
+            location.Offset(new Point(e.Location.X - this.lastPointerPosition.X, e.Location.Y - this.lastPointerPosition.Y));
 
             DesktopLocation = location;
         }
@@ -1099,10 +1373,12 @@ namespace InfoBox
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        private void lblTitle_MouseUp(object sender, MouseEventArgs e)
+        private void LblTitle_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-                _mouseDown = false;
+            {
+                this.mouseDown = false;
+            }
         }
 
         /// <summary>
@@ -1113,18 +1389,26 @@ namespace InfoBox
         private void InformationBoxForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
+            {
                 Close();
+            }
 
-            if (_style == InformationBoxStyle.Modern)
+            if (this.style == InformationBoxStyle.Modern)
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
-                        HandleButton(pnlButtons.Controls[0]);
-                    else if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
-                        HandleButton(pnlButtons.Controls[1]);
-                    else if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
-                        HandleButton(pnlButtons.Controls[2]);
+                    if (this.defaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
+                    {
+                        this.HandleButton(this.pnlButtons.Controls[0]);
+                    }
+                    else if (this.defaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
+                    {
+                        this.HandleButton(this.pnlButtons.Controls[1]);
+                    }
+                    else if (this.defaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
+                    {
+                        this.HandleButton(this.pnlButtons.Controls[2]);
+                    }
                 }
             }
         }
@@ -1134,32 +1418,46 @@ namespace InfoBox
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void tmrAutoClose_Tick(object sender, EventArgs e)
+        private void TmrAutoClose_Tick(object sender, EventArgs e)
         {
-            if (_elapsedTime == _autoClose.Seconds)
+            if (this.elapsedTime == this.autoClose.Seconds)
             {
-                tmrAutoClose.Stop();
+                this.tmrAutoClose.Stop();
 
-                switch (_autoClose.Mode)
+                switch (this.autoClose.Mode)
                 {
                     case AutoCloseDefinedParameters.Button:
-                        if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
-                            HandleButton(pnlButtons.Controls[0]);
-                        else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
-                            HandleButton(pnlButtons.Controls[1]);
-                        else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
-                            HandleButton(pnlButtons.Controls[2]);
+                        if (this.autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
+                        {
+                            this.HandleButton(this.pnlButtons.Controls[0]);
+                        }
+                        else if (this.autoClose.DefaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
+                        {
+                            this.HandleButton(this.pnlButtons.Controls[1]);
+                        }
+                        else if (this.autoClose.DefaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
+                        {
+                            this.HandleButton(this.pnlButtons.Controls[2]);
+                        }
+
                         return;
                     case AutoCloseDefinedParameters.TimeOnly:
-                        if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
-                            HandleButton(pnlButtons.Controls[0]);
-                        else if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
-                            HandleButton(pnlButtons.Controls[1]);
-                        else if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
-                            HandleButton(pnlButtons.Controls[2]);
+                        if (this.defaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
+                        {
+                            this.HandleButton(this.pnlButtons.Controls[0]);
+                        }
+                        else if (this.defaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
+                        {
+                            this.HandleButton(this.pnlButtons.Controls[1]);
+                        }
+                        else if (this.defaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
+                        {
+                            this.HandleButton(this.pnlButtons.Controls[2]);
+                        }
+
                         return;
                     case AutoCloseDefinedParameters.Result:
-                        _result = _autoClose.Result;
+                        this.result = this.autoClose.Result;
                         DialogResult = DialogResult.OK;
                         return;
                     default:
@@ -1169,23 +1467,35 @@ namespace InfoBox
             else
             {
                 Control buttonToUpdate = null;
-                if (_autoClose.Mode == AutoCloseDefinedParameters.Button)
+                if (this.autoClose.Mode == AutoCloseDefinedParameters.Button)
                 {
-                    if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
-                        buttonToUpdate = pnlButtons.Controls[0];
-                    else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
-                        buttonToUpdate = pnlButtons.Controls[1];
-                    else if (_autoClose.DefaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
-                        buttonToUpdate = pnlButtons.Controls[2];
+                    if (this.autoClose.DefaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
+                    {
+                        buttonToUpdate = this.pnlButtons.Controls[0];
+                    }
+                    else if (this.autoClose.DefaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
+                    {
+                        buttonToUpdate = this.pnlButtons.Controls[1];
+                    }
+                    else if (this.autoClose.DefaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
+                    {
+                        buttonToUpdate = this.pnlButtons.Controls[2];
+                    }
                 }
                 else
                 {
-                    if (_defaultButton == InformationBoxDefaultButton.Button1 && pnlButtons.Controls.Count > 0)
-                        buttonToUpdate = pnlButtons.Controls[0];
-                    else if (_defaultButton == InformationBoxDefaultButton.Button2 && pnlButtons.Controls.Count > 1)
-                        buttonToUpdate = pnlButtons.Controls[1];
-                    else if (_defaultButton == InformationBoxDefaultButton.Button3 && pnlButtons.Controls.Count > 2)
-                        buttonToUpdate = pnlButtons.Controls[2];
+                    if (this.defaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
+                    {
+                        buttonToUpdate = this.pnlButtons.Controls[0];
+                    }
+                    else if (this.defaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
+                    {
+                        buttonToUpdate = this.pnlButtons.Controls[1];
+                    }
+                    else if (this.defaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
+                    {
+                        buttonToUpdate = this.pnlButtons.Controls[2];
+                    }
                 }
 
                 if (null != buttonToUpdate)
@@ -1197,25 +1507,29 @@ namespace InfoBox
                         System.Windows.Forms.Button button = (System.Windows.Forms.Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
+                        {
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, this.autoClose.Seconds - this.elapsedTime);
+                        }
                     }
                     else if (buttonToUpdate is Controls.Button)
                     {
                         Controls.Button button = (Controls.Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), _autoClose.Seconds - _elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, _autoClose.Seconds - _elapsedTime);
+                        {
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, this.autoClose.Seconds - this.elapsedTime);
+                        }
                     }
                 }
             }
 
-            _elapsedTime++;
+            this.elapsedTime++;
         }
 
         #endregion Event handling        

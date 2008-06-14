@@ -1,3 +1,9 @@
+// <copyright file="DesignParameters.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains the values of the design parameters</summary>
+
 namespace InfoBox
 {
     using System.Drawing;
@@ -9,32 +15,17 @@ namespace InfoBox
     {
         #region Internals
 
-        private readonly Color _formBackColor = SystemColors.Control;
-        private readonly Color _barsBackColor = SystemColors.Control;
+        /// <summary>
+        /// Contains the form back color
+        /// </summary>
+        private readonly Color formBackColor = SystemColors.Control;
+
+        /// <summary>
+        /// Contains the bars back color
+        /// </summary>
+        private readonly Color barsBackColor = SystemColors.Control;
 
         #endregion Internals
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the back color of the form.
-        /// </summary>
-        /// <value>The back color of the form.</value>
-        public Color FormBackColor
-        {
-            get { return _formBackColor; }
-        }
-
-        /// <summary>
-        /// Gets the back color of the bars.
-        /// </summary>
-        /// <value>The back color of the bars.</value>
-        public Color BarsBackColor
-        {
-            get { return _barsBackColor; }
-        }
-        
-        #endregion Properties
 
         #region Constructors
 
@@ -45,10 +36,32 @@ namespace InfoBox
         /// <param name="barsBackColor">BackColor of the bars.</param>
         public DesignParameters(Color formBackColor, Color barsBackColor)
         {
-            _formBackColor = formBackColor;
-            _barsBackColor = barsBackColor;
+            this.formBackColor = formBackColor;
+            this.barsBackColor = barsBackColor;
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the back color of the form.
+        /// </summary>
+        /// <value>The back color of the form.</value>
+        public Color FormBackColor
+        {
+            get { return this.formBackColor; }
+        }
+
+        /// <summary>
+        /// Gets the back color of the bars.
+        /// </summary>
+        /// <value>The back color of the bars.</value>
+        public Color BarsBackColor
+        {
+            get { return this.barsBackColor; }
+        }
+        
+        #endregion Properties
     }
 }

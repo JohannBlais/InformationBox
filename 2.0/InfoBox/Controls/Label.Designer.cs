@@ -48,9 +48,9 @@ namespace InfoBox.Controls
             this.labelText.TabIndex = 0;
             this.labelText.Text = "Label de test";
             this.labelText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelText_MouseDown);
-            this.labelText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.labelText_MouseMove);
-            this.labelText.MouseUp += new System.Windows.Forms.MouseEventHandler(this.labelText_MouseUp);
+            this.labelText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelText_MouseDown);
+            this.labelText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelText_MouseMove);
+            this.labelText.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelText_MouseUp);
             // 
             // Label
             // 

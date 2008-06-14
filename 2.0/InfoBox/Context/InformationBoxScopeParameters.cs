@@ -1,10 +1,16 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Diagnostics;
+// <copyright file="InformationBoxScopeParameters.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains the parameters used by a specific scope</summary>
 
 namespace InfoBox
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using System.Diagnostics;
+
     /// <summary>
     /// Contains the parameters used by a specific scope.
     /// </summary>
@@ -13,22 +19,89 @@ namespace InfoBox
     {
         #region Attributes
 
+        /// <summary>
+        /// Contains the autoclose parameters
+        /// </summary>
         private AutoCloseParameters autoClose;
+
+        /// <summary>
+        /// Contains the autosize mode
+        /// </summary>
         private InformationBoxAutoSizeMode? autoSizeMode;
+
+        /// <summary>
+        /// Contains the behavior
+        /// </summary>
         private InformationBoxBehavior? behavior;
+
+        /// <summary>
+        /// Contains the buttons
+        /// </summary>
         private InformationBoxButtons? buttons;
+
+        /// <summary>
+        /// Contains the layout
+        /// </summary>
         private InformationBoxButtonsLayout? layout;
+
+        /// <summary>
+        /// Contains the check box for the "do not show again" feature
+        /// </summary>
         private InformationBoxCheckBox? checkbox;
+
+        /// <summary>
+        /// Contains the default button
+        /// </summary>
         private InformationBoxDefaultButton? defaultButton;
+        
+        /// <summary>
+        /// Contains the main icon
+        /// </summary>
         private InformationBoxIcon? icon;
+
+        /// <summary>
+        /// Contains the title icon
+        /// </summary>
         private Icon titleIcon;
+
+        /// <summary>
+        /// Contains a custom icon
+        /// </summary>
         private Icon customIcon;
+
+        /// <summary>
+        /// Contains the opacity
+        /// </summary>
         private InformationBoxOpacity? opacity;
+
+        /// <summary>
+        /// Contains the position
+        /// </summary>
         private InformationBoxPosition? position;
+
+        /// <summary>
+        /// Contains the global style of the box
+        /// </summary>
         private InformationBoxStyle? style;
+
+        /// <summary>
+        /// Contains the style of the title icon
+        /// </summary>
         private InformationBoxTitleIconStyle? titleIconStyle;
-        private Boolean? help;
+
+        /// <summary>
+        /// Contains a value defining whether or not to show the help button
+        /// </summary>
+        private bool? help;
+
+        /// <summary>
+        /// Contains an optional help navigator
+        /// </summary>
         private HelpNavigator? helpNavigator;
+
+        /// <summary>
+        /// Contains the design parameters
+        /// </summary>
         private DesignParameters design;
 
         #endregion Attributes
@@ -41,8 +114,8 @@ namespace InfoBox
         /// <value>The auto close.</value>
         public AutoCloseParameters AutoClose
         {
-            get { return autoClose; }
-            set { autoClose = value; }
+            get { return this.autoClose; }
+            set { this.autoClose = value; }
         }
 
         /// <summary>
@@ -51,8 +124,8 @@ namespace InfoBox
         /// <value>The auto size mode.</value>
         public InformationBoxAutoSizeMode? AutoSizeMode
         {
-            get { return autoSizeMode; }
-            set { autoSizeMode = value; }
+            get { return this.autoSizeMode; }
+            set { this.autoSizeMode = value; }
         }
 
         /// <summary>
@@ -61,8 +134,8 @@ namespace InfoBox
         /// <value>The behavior.</value>
         public InformationBoxBehavior? Behavior
         {
-            get { return behavior; }
-            set { behavior = value; }
+            get { return this.behavior; }
+            set { this.behavior = value; }
         }
 
         /// <summary>
@@ -71,8 +144,8 @@ namespace InfoBox
         /// <value>The buttons.</value>
         public InformationBoxButtons? Buttons
         {
-            get { return buttons; }
-            set { buttons = value; }
+            get { return this.buttons; }
+            set { this.buttons = value; }
         }
 
         /// <summary>
@@ -81,8 +154,8 @@ namespace InfoBox
         /// <value>The layout.</value>
         public InformationBoxButtonsLayout? Layout
         {
-            get { return layout; }
-            set { layout = value; }
+            get { return this.layout; }
+            set { this.layout = value; }
         }
 
         /// <summary>
@@ -91,8 +164,8 @@ namespace InfoBox
         /// <value>The checkbox.</value>
         public InformationBoxCheckBox? Checkbox
         {
-            get { return checkbox; }
-            set { checkbox = value; }
+            get { return this.checkbox; }
+            set { this.checkbox = value; }
         }
 
         /// <summary>
@@ -101,28 +174,28 @@ namespace InfoBox
         /// <value>The default button.</value>
         public InformationBoxDefaultButton? DefaultButton
         {
-            get { return defaultButton; }
-            set { defaultButton = value; }
+            get { return this.defaultButton; }
+            set { this.defaultButton = value; }
         }
 
         /// <summary>
         /// Gets or sets the icon.
         /// </summary>
-        /// <value>The icon.</value>
+        /// <value>The main icon.</value>
         public InformationBoxIcon? Icon
         {
-            get { return icon; }
-            set { icon = value; }
+            get { return this.icon; }
+            set { this.icon = value; }
         }
 
         /// <summary>
         /// Gets or sets the title icon.
         /// </summary>
-        /// <value>The icon.</value>
+        /// <value>The title icon.</value>
         public Icon TitleIcon
         {
-            get { return titleIcon; }
-            set { titleIcon = value; }
+            get { return this.titleIcon; }
+            set { this.titleIcon = value; }
         }
 
         /// <summary>
@@ -131,8 +204,8 @@ namespace InfoBox
         /// <value>The custom icon.</value>
         public Icon CustomIcon
         {
-            get { return customIcon; }
-            set { customIcon = value; }
+            get { return this.customIcon; }
+            set { this.customIcon = value; }
         }
 
         /// <summary>
@@ -141,8 +214,8 @@ namespace InfoBox
         /// <value>The opacity.</value>
         public InformationBoxOpacity? Opacity
         {
-            get { return opacity; }
-            set { opacity = value; }
+            get { return this.opacity; }
+            set { this.opacity = value; }
         }
 
         /// <summary>
@@ -151,8 +224,8 @@ namespace InfoBox
         /// <value>The position.</value>
         public InformationBoxPosition? Position
         {
-            get { return position; }
-            set { position = value; }
+            get { return this.position; }
+            set { this.position = value; }
         }
 
         /// <summary>
@@ -161,8 +234,8 @@ namespace InfoBox
         /// <value>The style.</value>
         public InformationBoxStyle? Style
         {
-            get { return style; }
-            set { style = value; }
+            get { return this.style; }
+            set { this.style = value; }
         }
 
         /// <summary>
@@ -171,18 +244,18 @@ namespace InfoBox
         /// <value>The title icon style.</value>
         public InformationBoxTitleIconStyle? TitleIconStyle
         {
-            get { return titleIconStyle; }
-            set { titleIconStyle = value; }
+            get { return this.titleIconStyle; }
+            set { this.titleIconStyle = value; }
         }
 
         /// <summary>
         /// Gets or sets the help.
         /// </summary>
-        /// <value>The help.</value>
+        /// <value>The help value.</value>
         public bool? Help
         {
-            get { return help; }
-            set { help = value; }
+            get { return this.help; }
+            set { this.help = value; }
         }
 
         /// <summary>
@@ -191,8 +264,8 @@ namespace InfoBox
         /// <value>The help navigator.</value>
         public HelpNavigator? HelpNavigator
         {
-            get { return helpNavigator; }
-            set { helpNavigator = value; }
+            get { return this.helpNavigator; }
+            set { this.helpNavigator = value; }
         }
 
         /// <summary>
@@ -201,8 +274,8 @@ namespace InfoBox
         /// <value>The design.</value>
         public DesignParameters Design
         {
-            get { return design; }
-            set { design = value; }
+            get { return this.design; }
+            set { this.design = value; }
         }
 
         #endregion Properties
@@ -213,59 +286,93 @@ namespace InfoBox
         /// Merges the specified parameters.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
+        /// <returns>The result of the merge operation </returns>
         public InformationBoxScopeParameters Merge(InformationBoxScopeParameters parameters)
         {
-            if (parameters.Icon.HasValue && !Icon.HasValue)
-                icon = parameters.Icon.Value;
+            if (parameters.Icon.HasValue && !this.Icon.HasValue)
+            {
+                this.icon = parameters.Icon.Value;
+            }
 
-            if (parameters.CustomIcon != null && null == CustomIcon)
-                customIcon = parameters.CustomIcon;
+            if (parameters.CustomIcon != null && null == this.CustomIcon)
+            {
+                this.customIcon = parameters.CustomIcon;
+            }
 
-            if (parameters.Buttons.HasValue && !Buttons.HasValue)
-                buttons = parameters.Buttons.Value;
+            if (parameters.Buttons.HasValue && !this.Buttons.HasValue)
+            {
+                this.buttons = parameters.Buttons.Value;
+            }
 
-            if (parameters.DefaultButton.HasValue && !DefaultButton.HasValue)
-                defaultButton = parameters.DefaultButton.Value;
+            if (parameters.DefaultButton.HasValue && !this.DefaultButton.HasValue)
+            {
+                this.defaultButton = parameters.DefaultButton.Value;
+            }
 
-            if (parameters.Layout.HasValue && !Layout.HasValue)
-                layout = parameters.Layout.Value;
+            if (parameters.Layout.HasValue && !this.Layout.HasValue)
+            {
+                this.layout = parameters.Layout.Value;
+            }
 
-            if (parameters.AutoSizeMode.HasValue && !AutoSizeMode.HasValue)
-                autoSizeMode = parameters.AutoSizeMode.Value;
+            if (parameters.AutoSizeMode.HasValue && !this.AutoSizeMode.HasValue)
+            {
+                this.autoSizeMode = parameters.AutoSizeMode.Value;
+            }
 
-            if (parameters.Position.HasValue && !Position.HasValue)
-                position = parameters.Position.Value;
+            if (parameters.Position.HasValue && !this.Position.HasValue)
+            {
+                this.position = parameters.Position.Value;
+            }
 
-            if (parameters.Checkbox.HasValue && !Checkbox.HasValue)
-                checkbox = parameters.Checkbox.Value;
+            if (parameters.Checkbox.HasValue && !this.Checkbox.HasValue)
+            {
+                this.checkbox = parameters.Checkbox.Value;
+            }
 
-            if (parameters.Style.HasValue && !Style.HasValue)
-                style = parameters.Style.Value;
+            if (parameters.Style.HasValue && !this.Style.HasValue)
+            {
+                this.style = parameters.Style.Value;
+            }
 
-            if (parameters.AutoClose != null && null == AutoClose)
-                autoClose = parameters.AutoClose;
+            if (parameters.AutoClose != null && null == this.AutoClose)
+            {
+                this.autoClose = parameters.AutoClose;
+            }
 
-            if (parameters.Design != null && null == Design)
-                design = parameters.Design;
+            if (parameters.Design != null && null == this.Design)
+            {
+                this.design = parameters.Design;
+            }
 
-            if (parameters.TitleIconStyle.HasValue && !TitleIconStyle.HasValue)
-                titleIconStyle = parameters.TitleIconStyle.Value;
+            if (parameters.TitleIconStyle.HasValue && !this.TitleIconStyle.HasValue)
+            {
+                this.titleIconStyle = parameters.TitleIconStyle.Value;
+            }
 
-            if (parameters.TitleIcon != null && null == TitleIcon)
-                titleIcon = parameters.TitleIcon;
+            if (parameters.TitleIcon != null && null == this.TitleIcon)
+            {
+                this.titleIcon = parameters.TitleIcon;
+            }
 
-            if (parameters.Behavior.HasValue && !Behavior.HasValue)
-                behavior = parameters.Behavior.Value;
+            if (parameters.Behavior.HasValue && !this.Behavior.HasValue)
+            {
+                this.behavior = parameters.Behavior.Value;
+            }
 
-            if (parameters.Opacity.HasValue && !Opacity.HasValue)
-                opacity = parameters.Opacity.Value;
+            if (parameters.Opacity.HasValue && !this.Opacity.HasValue)
+            {
+                this.opacity = parameters.Opacity.Value;
+            }
 
-            if (parameters.Help.HasValue && !Help.HasValue)
-                help = parameters.Help.Value;
+            if (parameters.Help.HasValue && !this.Help.HasValue)
+            {
+                this.help = parameters.Help.Value;
+            }
 
-            if (parameters.HelpNavigator.HasValue && !HelpNavigator.HasValue)
-                helpNavigator = parameters.HelpNavigator.Value;
+            if (parameters.HelpNavigator.HasValue && !this.HelpNavigator.HasValue)
+            {
+                this.helpNavigator = parameters.HelpNavigator.Value;
+            }
 
             return this;
         }

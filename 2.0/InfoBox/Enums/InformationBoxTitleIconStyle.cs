@@ -1,3 +1,9 @@
+// <copyright file="InformationBoxTitleIconStyle.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Specifies constants defining which icon is displayed on the title bar</summary>
+
 namespace InfoBox
 {
     /// <summary>
@@ -6,13 +12,15 @@ namespace InfoBox
     public enum InformationBoxTitleIconStyle
     {
         /// <summary>
-        /// No icon.
+        /// No title icon.
         /// </summary>
         None,
+
         /// <summary>
         /// Use the icon displayed in the box.
         /// </summary>
         SameAsBox,
+
         /// <summary>
         /// Use a custom icon.
         /// </summary>

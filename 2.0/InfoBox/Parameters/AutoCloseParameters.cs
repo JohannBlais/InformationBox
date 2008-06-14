@@ -1,83 +1,57 @@
-using InfoBox.Internals;
+// <copyright file="AutoCloseParameters.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains the parameters used for the auto-close feature</summary>
 
 namespace InfoBox
 {
+    using InfoBox.Internals;
+
     /// <summary>
     /// Contains the parameters used for the auto-close feature.
     /// </summary>
     public class AutoCloseParameters
     {
-        #region Internals
-
-        private static readonly AutoCloseParameters _default = new AutoCloseParameters(30);
-
-        private readonly int _timeToWait = 30;
-        private readonly InformationBoxDefaultButton _button = InformationBoxDefaultButton.Button1;
-        private readonly InformationBoxResult _result = InformationBoxResult.None;
-
-        private readonly AutoCloseDefinedParameters _mode = AutoCloseDefinedParameters.TimeOnly;
-
-        #endregion Internals
-
-        #region Properties
+        #region Attributes
 
         /// <summary>
-        /// Gets the seconds.
+        /// Contains the default parameters
         /// </summary>
-        /// <value>The seconds.</value>
-        public int Seconds
-        {
-            get { return _timeToWait; }
-        }
+        private static readonly AutoCloseParameters defaultParameters = new AutoCloseParameters(30);
 
         /// <summary>
-        /// Gets the default button.
+        /// Contains the time to wait before return
         /// </summary>
-        /// <value>The default button.</value>
-        public InformationBoxDefaultButton DefaultButton
-        {
-            get { return _button; }
-        }
+        private readonly int timeToWait = 30;
 
         /// <summary>
-        /// Gets the result.
+        /// Contains the default button
         /// </summary>
-        /// <value>The result.</value>
-        public InformationBoxResult Result
-        {
-            get { return _result; }
-        }
+        private readonly InformationBoxDefaultButton button = InformationBoxDefaultButton.Button1;
+        
+        /// <summary>
+        /// Contains the result to use
+        /// </summary>
+        private readonly InformationBoxResult result = InformationBoxResult.None;
 
         /// <summary>
-        /// Gets the mode.
+        /// Contains the autoclose defined parameters
         /// </summary>
-        /// <value>The mode.</value>
-        internal AutoCloseDefinedParameters Mode
-        {
-            get { return _mode; }
-        }
+        private readonly AutoCloseDefinedParameters mode = AutoCloseDefinedParameters.TimeOnly;
 
-        /// <summary>
-        /// Gets the default AutoCloseParameters.
-        /// </summary>
-        /// <value>The default AutoCloseParameters.</value>
-        public static AutoCloseParameters Default
-        {
-            get { return _default; }
-        }
-
-        #endregion Properties
+        #endregion Attributes
 
         #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoCloseParameters"/> class using time as the number of seconds before autoclosing.
         /// </summary>
-        /// <param name="time">The time.</param>
+        /// <param name="time">The time to wait.</param>
         public AutoCloseParameters(int time)
         {
-            _mode = AutoCloseDefinedParameters.TimeOnly;
-            _timeToWait = time;
+            this.mode = AutoCloseDefinedParameters.TimeOnly;
+            this.timeToWait = time;
         }
 
         /// <summary>
@@ -86,20 +60,20 @@ namespace InfoBox
         /// <param name="buttonToUse">The button to use.</param>
         public AutoCloseParameters(InformationBoxDefaultButton buttonToUse)
         {
-            _mode = AutoCloseDefinedParameters.Button;
-            _button = buttonToUse;
+            this.mode = AutoCloseDefinedParameters.Button;
+            this.button = buttonToUse;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoCloseParameters"/> class using time as the number of seconds before autoclosing, and buttonToUse as the button that will be used for auto-closing.
         /// </summary>
-        /// <param name="time">The time.</param>
+        /// <param name="time">The time to wait.</param>
         /// <param name="buttonToUse">The button to use.</param>
         public AutoCloseParameters(int time, InformationBoxDefaultButton buttonToUse)
         {
-            _mode = AutoCloseDefinedParameters.Button;
-            _timeToWait = time;
-            _button = buttonToUse;
+            this.mode = AutoCloseDefinedParameters.Button;
+            this.timeToWait = time;
+            this.button = buttonToUse;
         }
 
         /// <summary>
@@ -108,22 +82,71 @@ namespace InfoBox
         /// <param name="result">The result.</param>
         public AutoCloseParameters(InformationBoxResult result)
         {
-            _mode = AutoCloseDefinedParameters.Result;
-            _result = result;
+            this.mode = AutoCloseDefinedParameters.Result;
+            this.result = result;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoCloseParameters"/> class using time as the number of seconds before autoclosing, and result as the InformationBoxResult that will be used as the return.
         /// </summary>
-        /// <param name="time">The time.</param>
-        /// <param name="result">The result.</param>
+        /// <param name="time">The time to wait.</param>
+        /// <param name="result">The result to use.</param>
         public AutoCloseParameters(int time, InformationBoxResult result)
         {
-            _mode = AutoCloseDefinedParameters.Result;
-            _timeToWait = time;
-            _result = result;
+            this.mode = AutoCloseDefinedParameters.Result;
+            this.timeToWait = time;
+            this.result = result;
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the default AutoCloseParameters.
+        /// </summary>
+        /// <value>The default AutoCloseParameters.</value>
+        public static AutoCloseParameters Default
+        {
+            get { return defaultParameters; }
+        }
+
+        /// <summary>
+        /// Gets the seconds.
+        /// </summary>
+        /// <value>The seconds.</value>
+        public int Seconds
+        {
+            get { return this.timeToWait; }
+        }
+
+        /// <summary>
+        /// Gets the default button.
+        /// </summary>
+        /// <value>The default button.</value>
+        public InformationBoxDefaultButton DefaultButton
+        {
+            get { return this.button; }
+        }
+
+        /// <summary>
+        /// Gets the result.
+        /// </summary>
+        /// <value>The result.</value>
+        public InformationBoxResult Result
+        {
+            get { return this.result; }
+        }
+
+        /// <summary>
+        /// Gets the mode.
+        /// </summary>
+        /// <value>The autoclose mode.</value>
+        internal AutoCloseDefinedParameters Mode
+        {
+            get { return this.mode; }
+        }
+
+        #endregion Properties
     }
 }
