@@ -21,7 +21,7 @@
     <RootNamespaceContainer>False</RootNamespaceContainer>
     <RootNamespaceTitle />
     <HelpTitle>InformationBox Help</HelpTitle>
-    <HtmlHelpName>Documentation</HtmlHelpName>
+    <HtmlHelpName>InfoBox</HtmlHelpName>
     <Language>en-US</Language>
     <CopyrightHref />
     <CopyrightText />
