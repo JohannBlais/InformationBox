@@ -42,7 +42,7 @@ namespace InfoBox
         /// <summary>
         /// Contains the callback used to inform the caller of a modeless box
         /// </summary>
-        private readonly AsyncResultCallBack callback;
+        private readonly AsyncResultCallback callback;
 
         /// <summary>
         /// Text for the first user button
@@ -379,10 +379,10 @@ namespace InfoBox
                     // InformationBox behaviour
                     this.behavior = (InformationBoxBehavior) parameter;
                 }
-                else if (parameter is AsyncResultCallBack)
+                else if (parameter is AsyncResultCallback)
                 {
                     // Callback for the result
-                    this.callback = (AsyncResultCallBack) parameter;
+                    this.callback = (AsyncResultCallback) parameter;
                 }
                 else if (parameter is InformationBoxOpacity)
                 {
@@ -431,9 +431,9 @@ namespace InfoBox
         /// </summary>
         /// <param name="state">The state of the checkbox.</param>
         /// <returns>The result corresponding to the button clicked</returns>
-        internal InformationBoxResult Show(ref CheckState state)
+        internal InformationBoxResult Show(out CheckState state)
         {
-            InformationBoxResult result = this.Show();
+            this.result = this.Show();
             state = this.chbDoNotShow.CheckState;
             return this.result;
         }
@@ -533,9 +533,9 @@ namespace InfoBox
                 this.position = parameters.Position.Value;
             }
 
-            if (parameters.Checkbox.HasValue)
+            if (parameters.CheckBox.HasValue)
             {
-                this.checkBox = parameters.Checkbox.Value;
+                this.checkBox = parameters.CheckBox.Value;
             }
 
             if (parameters.Style.HasValue)
@@ -1507,7 +1507,7 @@ namespace InfoBox
                         System.Windows.Forms.Button button = (System.Windows.Forms.Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), this.autoClose.Seconds - this.elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
                         {
@@ -1519,7 +1519,7 @@ namespace InfoBox
                         Controls.Button button = (Controls.Button) buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (")), this.autoClose.Seconds - this.elapsedTime);
+                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
                         {

@@ -11,6 +11,7 @@ namespace InfoBox.Designer
     using System.Text;
     using System.Threading;
     using System.Windows.Forms;
+    using System.Globalization;
 
     /// <summary>
     /// Designer for the InformationBoxes.
@@ -58,7 +59,7 @@ namespace InfoBox.Designer
         /// <param name="result">The result.</param>
         private static void BoxClosed(InformationBoxResult result)
         {
-            InformationBox.Show(String.Format("I am the result of a modeless box : " + result));
+            InformationBox.Show(String.Format(CultureInfo.InvariantCulture, "I am the result of a modeless box : " + result));
         }
 
         /// <summary>
@@ -89,19 +90,19 @@ namespace InfoBox.Designer
                 titleIcon = new InformationBoxTitleIcon(this.txbTitleIconFile.Text);
             }
 
-            if (String.Empty.Equals(iconFileName))
+            if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, ref state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(BoxClosed), opacity);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, ref state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallBack(BoxClosed), opacity);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity);
             }
 
             if (checkState != 0)
             {
                 InformationBox.Show(
-                    String.Format("The state of the checkbox was {0}", state),
+                    String.Format(CultureInfo.InvariantCulture, "The state of the checkbox was {0}", state),
                     InformationBoxIcon.Information);
             }
         }
@@ -544,7 +545,7 @@ namespace InfoBox.Designer
                 codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ref doNotShowState, ", this.txbText.Text.Replace(Environment.NewLine, "\\n"));
             }
 
-            if (!String.Empty.Equals(this.txbHelpFile.Text) || !String.Empty.Equals(this.txbTitle.Text))
+            if (!String.IsNullOrEmpty(this.txbHelpFile.Text) || !String.IsNullOrEmpty(this.txbTitle.Text))
             {
                 codeBuilder.AppendFormat("\"{0}\", ", this.txbTitle.Text);
             }
@@ -566,7 +567,7 @@ namespace InfoBox.Designer
                 codeBuilder.AppendFormat("InformationBoxIcon.{0}, ", icon);
             }
 
-            if (!String.Empty.Equals(iconFileName))
+            if (!String.IsNullOrEmpty(iconFileName))
             {
                 codeBuilder.AppendFormat("new System.Drawing.Icon(@\"{0}\"), ", iconFileName);
             }
@@ -596,7 +597,7 @@ namespace InfoBox.Designer
                 codeBuilder.Append("true, ");
             }
 
-            if (!String.Empty.Equals(this.txbHelpFile.Text))
+            if (!String.IsNullOrEmpty(this.txbHelpFile.Text))
             {
                 codeBuilder.AppendFormat("\"{0}\", ", this.txbHelpFile.Text);
             }
@@ -606,7 +607,7 @@ namespace InfoBox.Designer
                 codeBuilder.AppendFormat("HelpNavigator.{0}, ", navigator);
             }
 
-            if (!String.Empty.Equals(this.txbHelpTopic.Text))
+            if (!String.IsNullOrEmpty(this.txbHelpTopic.Text))
             {
                 codeBuilder.AppendFormat("\"{0}\", ", this.txbHelpTopic.Text);
             }
@@ -659,12 +660,12 @@ namespace InfoBox.Designer
 
             if (null != design)
             {
-                codeBuilder.AppendFormat("new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
             {
-                codeBuilder.AppendFormat("new InformationBoxTitleIcon(@\"{0}\"), ", this.txbTitleIconFile.Text);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "new InformationBoxTitleIcon(@\"{0}\"), ", this.txbTitleIconFile.Text);
             }
             else if (titleStyle == InformationBoxTitleIconStyle.None)
             {

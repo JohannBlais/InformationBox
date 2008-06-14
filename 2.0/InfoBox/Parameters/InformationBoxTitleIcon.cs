@@ -27,8 +27,8 @@ namespace InfoBox
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxTitleIcon"/> class.
         /// </summary>
-        /// <param name="filename">The filename.</param>
-        public InformationBoxTitleIcon(string filename) : this(new Icon(filename))
+        /// <param name="fileName">Name of the file.</param>
+        public InformationBoxTitleIcon(string fileName) : this(new Icon(fileName))
         {
         }
 
