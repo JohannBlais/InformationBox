@@ -18,7 +18,7 @@ namespace InfoBox.Controls
         {
             if (disposing && (components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }

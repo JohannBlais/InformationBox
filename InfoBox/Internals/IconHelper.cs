@@ -1,15 +1,24 @@
-using System.Drawing;
-using InfoBox.Properties;
+// <copyright file="IconHelper.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains utility methods related to icons</summary>
 
 namespace InfoBox.Internals
 {
+    using System.Drawing;
+    using InfoBox.Properties;
+
+    /// <summary>
+    /// Contains utility methods related to icons
+    /// </summary>
     internal static class IconHelper
     {
         /// <summary>
         /// Return the <see cref="System.Drawing.Icon"/> associated with the specified <see cref="InformationBoxIcon"/>.
         /// </summary>
         /// <param name="iconType">Type of the icon.</param>
-        /// <returns></returns>
+        /// <returns>An icon corresponding to the iconType</returns>
         internal static Icon FromEnum(InformationBoxIcon iconType)
         {
             switch (iconType)
@@ -70,7 +79,7 @@ namespace InfoBox.Internals
         /// Gets the category of the icon.
         /// </summary>
         /// <param name="iconType">Type of the icon.</param>
-        /// <returns></returns>
+        /// <returns>A message category corresponding to the iconType</returns>
         internal static InformationBoxMessageCategory GetCategory(InformationBoxIcon iconType)
         {
             switch (iconType)

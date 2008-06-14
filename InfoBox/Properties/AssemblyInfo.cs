@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="AssemblyInfo.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains assembly informations</summary>
+
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 

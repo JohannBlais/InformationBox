@@ -1,167 +1,177 @@
-using System.Drawing;
-using System.Drawing.Drawing2D;
+// <copyright file="PaintingEngine.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains methods to paint the glass effect</summary>
 
 namespace InfoBox.Controls
 {
+    using System.Drawing;
+    using System.Drawing.Drawing2D;
+
+    /// <summary>
+    /// Contains methods to paint the glass effect.
+    /// </summary>
     internal class PaintingEngine
     {
         /// <summary>
         /// Private constructor
         /// </summary>
-        private PaintingEngine() { }
-
-        /// <summary>
-        /// Paints a glass effect on pGraphics using the pWidth width, the pHeight height and the pColor color
-        /// </summary>
-        /// <param name="pGraphics">Graphics to paint into</param>
-        /// <param name="pColor">Base color of the glass effect</param>
-        /// <param name="pWidth">Width of the effect</param>
-        /// <param name="pHeight">Height of the effect</param>
-        internal static void PaintGlassEffect(Graphics pGraphics, Color pColor, int pWidth, int pHeight)
+        private PaintingEngine()
         {
-            // Fill the background
-            SolidBrush BackBrush = new SolidBrush(Color.Gainsboro);
-            pGraphics.FillRectangle(BackBrush, new Rectangle(0, 0, pWidth, pHeight));
-
-            int TopZoneHeight = (pHeight - 3) / 2;
-
-            // Create brushes
-            LinearGradientBrush loBrushTop = new LinearGradientBrush(new RectangleF(0, 0, pWidth, TopZoneHeight),
-                                                                     Color.FromArgb(50, pColor),
-                                                                     Color.FromArgb(160, pColor),
-                                                                     LinearGradientMode.Vertical);
-
-            LinearGradientBrush loBrushMiddle = new LinearGradientBrush(new RectangleF(0, 0, pWidth, pHeight - 3 - TopZoneHeight),
-                                                                        Color.FromArgb(190, pColor),
-                                                                        Color.FromArgb(210, pColor),
-                                                                        LinearGradientMode.Vertical);
-
-            LinearGradientBrush loBrushBottom = new LinearGradientBrush(new RectangleF(0, 0, pWidth, 3),
-                                                                        Color.FromArgb(210, pColor),
-                                                                        Color.FromArgb(50, pColor),
-                                                                        LinearGradientMode.Vertical);
-
-            // Fill zones
-            pGraphics.FillRectangle(loBrushTop, new Rectangle(0, 0, pWidth, TopZoneHeight));
-            pGraphics.FillRectangle(loBrushMiddle, new Rectangle(0, TopZoneHeight, pWidth, pHeight - 3 - TopZoneHeight));
-            pGraphics.FillRectangle(loBrushBottom, new Rectangle(0, pHeight - 3, pWidth, 3));
-
-            pGraphics.DrawLine(new Pen(Color.DimGray), new Point(0, pHeight - 1), new Point(pWidth, pHeight - 1));
         }
 
         /// <summary>
-        /// Paints borders on sides on selected sides of the zone delimited by pWidth and pHeight
+        /// Paints a glass effect on graphics using the width width, the height height and the pColor color
         /// </summary>
-        /// <param name="pGraphics">Graphics to paint into</param>
-        /// <param name="pTopColor">Top color of the border</param>
-        /// <param name="pBottomColor">Bottom color of the border</param>
-        /// <param name="pWidth">Width of the control</param>
-        /// <param name="pHeight">Height of the control</param>
-        /// <param name="pBorderWidth">Width of the border</param>
-        /// <param name="pSides">Represents on which sides are the borders</param>
-        internal static void PaintGradientBorders(Graphics pGraphics, Color pTopColor, Color pBottomColor, int pWidth, int pHeight, int pBorderWidth, SideBorder pSides)
+        /// <param name="graphics">Graphics to paint into</param>
+        /// <param name="color">Base color of the glass effect</param>
+        /// <param name="width">Width of the effect</param>
+        /// <param name="height">Height of the effect</param>
+        internal static void PaintGlassEffect(Graphics graphics, Color color, int width, int height)
         {
-            if (pSides != SideBorder.None)
+            // Fill the background
+            SolidBrush backBrush = new SolidBrush(Color.Gainsboro);
+            graphics.FillRectangle(backBrush, new Rectangle(0, 0, width, height));
+
+            int topZoneHeight = (height - 3) / 2;
+
+            // Create brushes
+            LinearGradientBrush brushTop = new LinearGradientBrush(
+                new RectangleF(0, 0, width, topZoneHeight),
+                Color.FromArgb(50, color),
+                Color.FromArgb(160, color),
+                LinearGradientMode.Vertical);
+
+            LinearGradientBrush brushMiddle = new LinearGradientBrush(
+                new RectangleF(0, 0, width, height - 3 - topZoneHeight),
+                Color.FromArgb(190, color),
+                Color.FromArgb(210, color),
+                LinearGradientMode.Vertical);
+
+            LinearGradientBrush brushBottom = new LinearGradientBrush(
+                new RectangleF(0, 0, width, 3),
+                Color.FromArgb(210, color),
+                Color.FromArgb(50, color),
+                LinearGradientMode.Vertical);
+
+            // Fill zones
+            graphics.FillRectangle(brushTop, new Rectangle(0, 0, width, topZoneHeight));
+            graphics.FillRectangle(brushMiddle, new Rectangle(0, topZoneHeight, width, height - 3 - topZoneHeight));
+            graphics.FillRectangle(brushBottom, new Rectangle(0, height - 3, width, 3));
+
+            graphics.DrawLine(new Pen(Color.DimGray), new Point(0, height - 1), new Point(width, height - 1));
+        }
+
+        /// <summary>
+        /// Paints borders on sides on selected sides of the zone delimited by width and height
+        /// </summary>
+        /// <param name="graphics">Graphics to paint into</param>
+        /// <param name="topColor">Top color of the border</param>
+        /// <param name="bottomColor">Bottom color of the border</param>
+        /// <param name="width">Width of the control</param>
+        /// <param name="height">Height of the control</param>
+        /// <param name="borderWidth">Width of the border</param>
+        /// <param name="sides">Represents on which sides are the borders</param>
+        internal static void PaintGradientBorders(Graphics graphics, Color topColor, Color bottomColor, int width, int height, int borderWidth, SideBorder sides)
+        {
+            if (sides != SideBorder.None)
             {
-                LinearGradientBrush loBrushSide = new LinearGradientBrush(new Rectangle(0, 0, pBorderWidth, pHeight),
-                                                                          pTopColor,
-                                                                          pBottomColor,
-                                                                          LinearGradientMode.Vertical);
+                LinearGradientBrush brushSide = new LinearGradientBrush(new Rectangle(0, 0, borderWidth, height), topColor, bottomColor, LinearGradientMode.Vertical);
 
-                if (pSides != SideBorder.Right)
-                    pGraphics.FillRectangle(loBrushSide, new Rectangle(0, 0, pBorderWidth, pHeight));
-                if (pSides != SideBorder.Left)
-                    pGraphics.FillRectangle(loBrushSide, new Rectangle(pWidth - pBorderWidth, 0, pBorderWidth, pHeight));
+                if (sides != SideBorder.Right)
+                {
+                    graphics.FillRectangle(brushSide, new Rectangle(0, 0, borderWidth, height));
+                }
+
+                if (sides != SideBorder.Left)
+                {
+                    graphics.FillRectangle(brushSide, new Rectangle(width - borderWidth, 0, borderWidth, height));
+                }
             }
-
         }
 
         /// <summary>
         /// Paints an hover effect according the provided position ans style
         /// </summary>
-        /// <param name="pGraphics">Graphics to paint into</param>
-        /// <param name="pOuterColor">Outer color of the effect</param>
-        /// <param name="pMiddleColor">Middle color of the effect</param>
-        /// <param name="pInnerColor">Inner color of the effect</param>
-        /// <param name="pLightColor">Color of the light effect</param>
-        /// <param name="pWidth">Width of the control (for centering purpose)</param>
-        /// <param name="pHeight">Height of the control (for centering purpose)</param>
-        internal static void PaintHoverEffect(Graphics pGraphics,
-                                              Color pOuterColor,
-                                              Color pMiddleColor,
-                                              Color pInnerColor,
-                                              Color pLightColor,
-                                              int pWidth,
-                                              int pHeight)
+        /// <param name="graphics">The graphics.</param>
+        /// <param name="outerColor">Outer color of the effect</param>
+        /// <param name="middleColor">Middle color of the effect</param>
+        /// <param name="innerColor">Inner color of the effect</param>
+        /// <param name="lightColor">Color of the light effect</param>
+        /// <param name="width">Width of the control (for centering purpose)</param>
+        /// <param name="height">Height of the control (for centering purpose)</param>
+        internal static void PaintHoverEffect(Graphics graphics, Color outerColor, Color middleColor, Color innerColor, Color lightColor, int width, int height)
         {
             // Light effect
-            int TopZoneHeight = (pHeight - 3) / 2;
-            Rectangle LightEffectRectangle;
+            int topZoneHeight = (height - 3) / 2;
+            Rectangle lightEffectRectangle;
 
-            Pen OuterBorderPen = new Pen(new SolidBrush(pOuterColor));
-            Pen MiddleBorderPen = new Pen(new SolidBrush(pMiddleColor));
-            Pen InnerBorderPen = new Pen(new SolidBrush(pInnerColor));
+            Pen outerBorderPen = new Pen(new SolidBrush(outerColor));
+            Pen middleBorderPen = new Pen(new SolidBrush(middleColor));
+            Pen innerBorderPen = new Pen(new SolidBrush(innerColor));
 
-            GraphicsPath OuterBorderPath = new GraphicsPath();
-            GraphicsPath MiddleBorderPath = new GraphicsPath();
-            GraphicsPath InnerBorderPath = new GraphicsPath();
+            GraphicsPath outerBorderPath = new GraphicsPath();
+            GraphicsPath middleBorderPath = new GraphicsPath();
+            GraphicsPath innerBorderPath = new GraphicsPath();
 
-            OuterBorderPath.AddLine(new Point(3, pHeight), new Point(3, 5));
-            OuterBorderPath.AddCurve(new Point[] { new Point(3, 5), new Point(5, 3) }, 0.5f);
-            OuterBorderPath.AddLine(new Point(5, 3), new Point(pWidth - 6, 3));
-            OuterBorderPath.AddCurve(new Point[] { new Point(pWidth - 6, 3), new Point(pWidth - 4, 5) }, 0.5f);
-            OuterBorderPath.AddLine(new Point(pWidth - 4, 5), new Point(pWidth - 4, pHeight));
+            outerBorderPath.AddLine(new Point(3, height), new Point(3, 5));
+            outerBorderPath.AddCurve(new Point[] { new Point(3, 5), new Point(5, 3) }, 0.5f);
+            outerBorderPath.AddLine(new Point(5, 3), new Point(width - 6, 3));
+            outerBorderPath.AddCurve(new Point[] { new Point(width - 6, 3), new Point(width - 4, 5) }, 0.5f);
+            outerBorderPath.AddLine(new Point(width - 4, 5), new Point(width - 4, height));
 
-            MiddleBorderPath.AddLine(new Point(4, pHeight), new Point(4, 5));
-            MiddleBorderPath.AddLine(new Point(5, 4), new Point(pWidth - 6, 4));
-            MiddleBorderPath.AddLine(new Point(pWidth - 5, 5), new Point(pWidth - 5, pHeight));
+            middleBorderPath.AddLine(new Point(4, height), new Point(4, 5));
+            middleBorderPath.AddLine(new Point(5, 4), new Point(width - 6, 4));
+            middleBorderPath.AddLine(new Point(width - 5, 5), new Point(width - 5, height));
 
-            InnerBorderPath.AddLines(new Point[] { new Point(5, pHeight), new Point(5, 5), new Point(pWidth - 6, 5), new Point(pWidth - 6, pHeight) });
+            innerBorderPath.AddLines(new Point[] { new Point(5, height), new Point(5, 5), new Point(width - 6, 5), new Point(width - 6, height) });
 
-            LightEffectRectangle = new Rectangle(new Point(6, 6), new Size(pWidth - 12, TopZoneHeight - 6));
+            lightEffectRectangle = new Rectangle(new Point(6, 6), new Size(width - 12, topZoneHeight - 6));
 
-            pGraphics.DrawPath(OuterBorderPen, OuterBorderPath);
-            pGraphics.DrawPath(MiddleBorderPen, MiddleBorderPath);
-            pGraphics.DrawPath(InnerBorderPen, InnerBorderPath);
+            graphics.DrawPath(outerBorderPen, outerBorderPath);
+            graphics.DrawPath(middleBorderPen, middleBorderPath);
+            graphics.DrawPath(innerBorderPen, innerBorderPath);
 
-            SolidBrush HoverEffectButton = new SolidBrush(pLightColor);
-            pGraphics.FillRectangle(HoverEffectButton, LightEffectRectangle);
+            SolidBrush hoverEffectButton = new SolidBrush(lightColor);
+            graphics.FillRectangle(hoverEffectButton, lightEffectRectangle);
         }
 
         /// <summary>
         /// Paints an pushed effect according the provided position ans style
         /// </summary>
-        /// <param name="pGraphics">Graphics to paint into</param>
-        /// <param name="pWidth">Width of the control (for centering purpose)</param>
-        /// <param name="pHeight">Height of the control (for centering purpose)</param>
-        internal static void PaintPushedEffect(Graphics pGraphics,
-                                               int pWidth,
-                                               int pHeight)
+        /// <param name="graphics">Graphics to paint into</param>
+        /// <param name="width">Width of the control (for centering purposes)</param>
+        /// <param name="height">Height of the control (for centering purposes)</param>
+        internal static void PaintPushedEffect(Graphics graphics, int width, int height)
         {
-            Pen OuterBorderPen = new Pen(new SolidBrush(Color.FromArgb(120, Color.Gainsboro)));
-            GraphicsPath OuterBorderPath = new GraphicsPath();
-            OuterBorderPath.AddLine(new Point(3, pHeight), new Point(3, 5));
-            OuterBorderPath.AddCurve(new Point[] { new Point(3, 5), new Point(5, 3) }, 0.5f);
-            OuterBorderPath.AddLine(new Point(5, 3), new Point(pWidth - 6, 3));
-            OuterBorderPath.AddCurve(new Point[] { new Point(pWidth - 6, 3), new Point(pWidth - 4, 5) }, 0.5f);
-            OuterBorderPath.AddLine(new Point(pWidth - 4, 5), new Point(pWidth - 4, pHeight));
+            Pen outerBorderPen = new Pen(new SolidBrush(Color.FromArgb(120, Color.Gainsboro)));
+            GraphicsPath outerBorderPath = new GraphicsPath();
+            outerBorderPath.AddLine(new Point(3, height), new Point(3, 5));
+            outerBorderPath.AddCurve(new Point[] { new Point(3, 5), new Point(5, 3) }, 0.5f);
+            outerBorderPath.AddLine(new Point(5, 3), new Point(width - 6, 3));
+            outerBorderPath.AddCurve(new Point[] { new Point(width - 6, 3), new Point(width - 4, 5) }, 0.5f);
+            outerBorderPath.AddLine(new Point(width - 4, 5), new Point(width - 4, height));
 
-            Pen InnerBorderPen = new Pen(new SolidBrush(Color.FromArgb(120, Color.Black)));
-            GraphicsPath InnerBorderPath = new GraphicsPath();
-            InnerBorderPath.AddLine(new Point(4, pHeight), new Point(4, 5));
-            InnerBorderPath.AddLine(new Point(5, 4), new Point(pWidth - 6, 4));
-            InnerBorderPath.AddLine(new Point(pWidth - 5, 5), new Point(pWidth - 5, pHeight));
+            Pen innerBorderPen = new Pen(new SolidBrush(Color.FromArgb(120, Color.Black)));
+            GraphicsPath innerBorderPath = new GraphicsPath();
+            innerBorderPath.AddLine(new Point(4, height), new Point(4, 5));
+            innerBorderPath.AddLine(new Point(5, 4), new Point(width - 6, 4));
+            innerBorderPath.AddLine(new Point(width - 5, 5), new Point(width - 5, height));
 
-            Pen OuterBorderButtonPen = new Pen(new SolidBrush(Color.FromArgb(70, Color.Black)));
-            GraphicsPath OuterButtonBorderPath = new GraphicsPath();
-            OuterButtonBorderPath.AddLines(new Point[] { new Point(5, pHeight),
-                                                         new Point(5, 5),
-                                                         new Point(pWidth - 6, 5),
-                                                         new Point(pWidth - 6, pHeight) });
+            Pen outerBorderButtonPen = new Pen(new SolidBrush(Color.FromArgb(70, Color.Black)));
+            GraphicsPath outerButtonBorderPath = new GraphicsPath();
+            outerButtonBorderPath.AddLines(new Point[]
+            {
+                new Point(5, height),
+                new Point(5, 5),
+                new Point(width - 6, 5),
+                new Point(width - 6, height)
+            });
 
-            pGraphics.DrawPath(OuterBorderPen, OuterBorderPath);
-            pGraphics.DrawPath(InnerBorderPen, InnerBorderPath);
-            pGraphics.DrawPath(OuterBorderButtonPen, OuterButtonBorderPath);
+            graphics.DrawPath(outerBorderPen, outerBorderPath);
+            graphics.DrawPath(innerBorderPen, innerBorderPath);
+            graphics.DrawPath(outerBorderButtonPen, outerButtonBorderPath);
         }
     }
 }

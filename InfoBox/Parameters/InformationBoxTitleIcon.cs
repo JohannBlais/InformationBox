@@ -1,37 +1,28 @@
-using System.Drawing;
+// <copyright file="InformationBoxTitleIcon.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Represents the icon for the title bar</summary>
 
 namespace InfoBox
 {
+    using System.Drawing;
+
     /// <summary>
     /// Represents the icon for the title bar
     /// </summary>
     public class InformationBoxTitleIcon
     {
-        #region Internals
-
-        private readonly Icon _icon;
+        #region Attributes
 
         /// <summary>
-        /// Gets the icon.
+        /// The title icon file
         /// </summary>
-        /// <value>The icon.</value>
-        internal Icon Icon
-        {
-            get { return _icon; }
-        }
+        private readonly Icon icon;
 
-        #endregion Internals
+        #endregion Attributes
 
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InformationBoxTitleIcon"/> class.
-        /// </summary>
-        /// <param name="icon">The icon.</param>
-        public InformationBoxTitleIcon(Icon icon)
-        {
-            _icon = icon;
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxTitleIcon"/> class.
@@ -42,5 +33,27 @@ namespace InfoBox
         }
 
         #endregion Constructors
+
+        #region Properties
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxTitleIcon"/> class.
+        /// </summary>
+        /// <param name="icon">The title icon.</param>
+        public InformationBoxTitleIcon(Icon icon)
+        {
+            this.icon = icon;
+        }
+
+        /// <summary>
+        /// Gets the icon.
+        /// </summary>
+        /// <value>The title icon.</value>
+        internal Icon Icon
+        {
+            get { return this.icon; }
+        }
+
+        #endregion Properties
     }
 }

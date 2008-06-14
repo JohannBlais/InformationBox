@@ -1,84 +1,108 @@
+// <copyright file="InformationBoxIcon.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains all possible values for the InformationBox icon</summary>
+
 namespace InfoBox
 {
     /// <summary>
-    /// Contains all possible values for the InformationBoxForm icon.
+    /// Contains all possible values for the InformationBox icon.
     /// </summary>
     public enum InformationBoxIcon
     {
         /// <summary>
-        /// Asterisk
+        /// Asterisk icon
         /// </summary>
         Asterisk,
+
         /// <summary>
-        /// Error
+        /// Error icon
         /// </summary>
         Error,
+
         /// <summary>
-        /// Exclamation
+        /// Exclamation icon
         /// </summary>
         Exclamation,
+
         /// <summary>
-        /// Hand
+        /// Hand icon.
         /// </summary>
         Hand,
+
         /// <summary>
-        /// Information
+        /// Information icon
         /// </summary>
         Information,
+
         /// <summary>
-        /// None
+        /// Do not show an icon
         /// </summary>
         None,
+
         /// <summary>
-        /// Question
+        /// Question icon
         /// </summary>
         Question,
+
         /// <summary>
-        /// Stop
+        /// Stop icon.
         /// </summary>
         Stop,
+
         /// <summary>
-        /// Warning
+        /// Warning icon
         /// </summary>
         Warning,
+
         /// <summary>
-        /// Success
+        /// Success icon
         /// </summary>
         Success,
+
         /// <summary>
-        /// Fax
+        /// A fax icon
         /// </summary>
         Fax,
+
         /// <summary>
-        /// Gamepad
+        /// Gamepad icon
         /// </summary>
         Gamepad,
+
         /// <summary>
-        /// Joystick
+        /// Joystick icon
         /// </summary>
         Joystick,
+
         /// <summary>
-        /// Keys
+        /// Keys icon.
         /// </summary>
         Keys,
+
         /// <summary>
-        /// Locker
+        /// Locker icon
         /// </summary>
         Locker,
+
         /// <summary>
-        /// Phone
+        /// Phone icon
         /// </summary>
         Phone,
+
         /// <summary>
-        /// Printer
+        /// Printer icon
         /// </summary>
         Printer,
+
         /// <summary>
-        /// Scanner
+        /// Scanner icon
         /// </summary>
         Scanner,
+
         /// <summary>
-        /// Speakers
+        /// Speakers icon
         /// </summary>
         Speakers,
     }

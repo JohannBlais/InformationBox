@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="AssemblyInfo.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Contains assembly informations</summary>
+
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -31,6 +37,5 @@ using System.Runtime.InteropServices;
 //      Minor Version 
 //      Build Number
 //      Revision
-//
 [assembly: AssemblyVersion("0.7.0.*")]
 [assembly: AssemblyFileVersion("0.7.0.0")]

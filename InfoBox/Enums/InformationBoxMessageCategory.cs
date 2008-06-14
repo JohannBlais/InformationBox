@@ -1,3 +1,9 @@
+// <copyright file="InformationBoxMessageCategory.cs" company="Johann Blais">
+// Copyright (c) 2008 All Right Reserved
+// </copyright>
+// <author>Johann Blais</author>
+// <summary>Specifies constants defining the sound category of the message</summary>
+
 namespace InfoBox
 {
     /// <summary>
@@ -6,23 +12,27 @@ namespace InfoBox
     internal enum InformationBoxMessageCategory
     {
         /// <summary>
-        /// Asterisk
+        /// Asterisk sound
         /// </summary>
         Asterisk,
+
         /// <summary>
-        /// Exclamation
+        /// Exclamation sound
         /// </summary>
         Exclamation,
+
         /// <summary>
-        /// Hand
+        /// Hand sound
         /// </summary>
         Hand,
+
         /// <summary>
-        /// Other
+        /// Other sound
         /// </summary>
         Other,
+
         /// <summary>
-        /// Question
+        /// Question sound
         /// </summary>
         Question,
     }

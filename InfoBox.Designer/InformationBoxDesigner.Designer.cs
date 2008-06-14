@@ -377,7 +377,7 @@ namespace InfoBox.Designer
             this.btnShow.TabIndex = 7;
             this.btnShow.Text = "Show";
             this.btnShow.UseVisualStyleBackColor = true;
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            this.btnShow.Click += new System.EventHandler(this.BtnShow_Click);
             // 
             // groupBox5
             // 
@@ -480,7 +480,7 @@ namespace InfoBox.Designer
             this.btnGenerate.TabIndex = 6;
             this.btnGenerate.Text = "Generate code";
             this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            this.btnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
             // 
             // groupBox6
             // 
@@ -502,7 +502,7 @@ namespace InfoBox.Designer
             this.btnIcon.TabIndex = 2;
             this.btnIcon.Text = "...";
             this.btnIcon.UseVisualStyleBackColor = true;
-            this.btnIcon.Click += new System.EventHandler(this.btnIcon_Click);
+            this.btnIcon.Click += new System.EventHandler(this.BtnIcon_Click);
             // 
             // label3
             // 
@@ -711,7 +711,7 @@ namespace InfoBox.Designer
             this.btnHelpFile.TabIndex = 5;
             this.btnHelpFile.Text = "...";
             this.btnHelpFile.UseVisualStyleBackColor = true;
-            this.btnHelpFile.Click += new System.EventHandler(this.btnHelpFile_Click);
+            this.btnHelpFile.Click += new System.EventHandler(this.BtnHelpFile_Click);
             // 
             // label5
             // 
@@ -1026,7 +1026,7 @@ namespace InfoBox.Designer
             this.btnColorsForm.TabIndex = 7;
             this.btnColorsForm.Text = "...";
             this.btnColorsForm.UseVisualStyleBackColor = true;
-            this.btnColorsForm.Click += new System.EventHandler(this.btnColorsForm_Click);
+            this.btnColorsForm.Click += new System.EventHandler(this.BtnColorsForm_Click);
             // 
             // btnColorsBars
             // 
@@ -1036,7 +1036,7 @@ namespace InfoBox.Designer
             this.btnColorsBars.TabIndex = 6;
             this.btnColorsBars.Text = "...";
             this.btnColorsBars.UseVisualStyleBackColor = true;
-            this.btnColorsBars.Click += new System.EventHandler(this.btnColorsBars_Click);
+            this.btnColorsBars.Click += new System.EventHandler(this.BtnColorsBars_Click);
             // 
             // txbColorsForm
             // 
@@ -1085,7 +1085,7 @@ namespace InfoBox.Designer
             this.btnTitleIconFile.TabIndex = 5;
             this.btnTitleIconFile.Text = "...";
             this.btnTitleIconFile.UseVisualStyleBackColor = true;
-            this.btnTitleIconFile.Click += new System.EventHandler(this.btnTitleIconFile_Click);
+            this.btnTitleIconFile.Click += new System.EventHandler(this.BtnTitleIconFile_Click);
             // 
             // lblTitleIcon
             // 
@@ -1112,7 +1112,7 @@ namespace InfoBox.Designer
             this.btnShowModeless.TabIndex = 22;
             this.btnShowModeless.Text = "Show modeless";
             this.btnShowModeless.UseVisualStyleBackColor = true;
-            this.btnShowModeless.Click += new System.EventHandler(this.btnShowModeless_Click);
+            this.btnShowModeless.Click += new System.EventHandler(this.BtnShowModeless_Click);
             // 
             // groupBox19
             // 
