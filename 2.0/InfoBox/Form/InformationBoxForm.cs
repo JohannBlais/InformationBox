@@ -853,11 +853,11 @@ namespace InfoBox
                 verticalScroll = true;
             }
 
-            vpnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - this.pnlBas.Height);
+            this.pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - this.pnlBas.Height);
 
             if (this.style == InformationBoxStyle.Modern)
             {
-                totalHeight += vlblTitle.Height;
+                totalHeight += this.lblTitle.Height;
             }
 
             #endregion Height
