@@ -162,7 +162,7 @@ namespace InfoBox
         /// Gets or sets the checkbox.
         /// </summary>
         /// <value>The checkbox.</value>
-        public InformationBoxCheckBox? Checkbox
+        public InformationBoxCheckBox? CheckBox
         {
             get { return this.checkbox; }
             set { this.checkbox = value; }
@@ -324,9 +324,9 @@ namespace InfoBox
                 this.position = parameters.Position.Value;
             }
 
-            if (parameters.Checkbox.HasValue && !this.Checkbox.HasValue)
+            if (parameters.CheckBox.HasValue && !this.CheckBox.HasValue)
             {
-                this.checkbox = parameters.Checkbox.Value;
+                this.checkbox = parameters.CheckBox.Value;
             }
 
             if (parameters.Style.HasValue && !this.Style.HasValue)
@@ -378,5 +378,112 @@ namespace InfoBox
         }
 
         #endregion Methods
+
+        #region Overrides
+
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <param name="obj">Another object to compare to.</param>
+        /// <returns>
+        /// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            if (null == obj)
+            {
+                return false;
+            }
+
+            if (obj is InformationBoxScopeParameters == false)
+            {
+                return false;
+            }
+
+            InformationBoxScopeParameters compared = (InformationBoxScopeParameters) obj;
+
+            return this.AutoClose == compared.AutoClose &&
+                   this.AutoSizeMode == compared.AutoSizeMode &&
+                   this.Behavior == compared.Behavior &&
+                   this.Buttons == compared.Buttons &&
+                   this.CheckBox == compared.CheckBox &&
+                   this.CustomIcon == compared.CustomIcon &&
+                   this.DefaultButton == compared.DefaultButton &&
+                   this.Design == compared.Design &&
+                   this.Help == compared.Help &&
+                   this.HelpNavigator == compared.HelpNavigator &&
+                   this.Icon == compared.Icon &&
+                   this.Layout == compared.Layout &&
+                   this.Opacity == compared.Opacity &&
+                   this.Position == compared.Position &&
+                   this.Style == compared.Style &&
+                   this.TitleIcon == compared.TitleIcon &&
+                   this.TitleIconStyle == compared.TitleIconStyle;
+        }
+
+        /// <summary>
+        /// Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A 32-bit signed integer that is the hash code for this instance.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return this.AutoClose.GetHashCode() ^
+                   this.AutoSizeMode.GetHashCode() ^
+                   this.Behavior.GetHashCode() ^
+                   this.Buttons.GetHashCode() ^
+                   this.CheckBox.GetHashCode() ^
+                   this.CustomIcon.GetHashCode() ^
+                   this.DefaultButton.GetHashCode() ^
+                   this.Design.GetHashCode() ^
+                   this.Help.GetHashCode() ^
+                   this.HelpNavigator.GetHashCode() ^
+                   this.Icon.GetHashCode() ^
+                   this.Layout.GetHashCode() ^
+                   this.Opacity.GetHashCode() ^
+                   this.Position.GetHashCode() ^
+                   this.Style.GetHashCode() ^
+                   this.TitleIcon.GetHashCode() ^
+                   this.TitleIconStyle.GetHashCode();
+        }
+
+        #endregion Overrides
+
+        #region Operators
+
+        /// <summary>
+        /// Implements the operator ==.
+        /// </summary>
+        /// <param name="parameter1">The first parameter1.</param>
+        /// <param name="parameter2">The parameter2.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(InformationBoxScopeParameters parameter1, InformationBoxScopeParameters parameter2)
+        {
+            if (null == (object) parameter1)
+            {
+                return false;
+            }
+
+            if (null == (object) parameter2)
+            {
+                return false;
+            }
+
+            return parameter1.Equals(parameter2);
+        }
+
+        /// <summary>
+        /// Implements the operator !=.
+        /// </summary>
+        /// <param name="parameter1">The parameter1.</param>
+        /// <param name="parameter2">The parameter2.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator !=(InformationBoxScopeParameters parameter1, InformationBoxScopeParameters parameter2)
+        {
+            return !(parameter1 == parameter2);
+        }
+
+        #endregion Operators
     }
 }

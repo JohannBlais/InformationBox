@@ -94,7 +94,7 @@ namespace InfoBox
         ///         <description>the opacity of the <see cref="InformationBox"/>.</description>
         ///     </item>
         ///     <item>
-        ///         <term><see cref="AsyncResultCallBack"/></term>
+        ///         <term><see cref="AsyncResultCallback"/></term>
         ///         <description>a method that will be called when a modeless dialog is closed.</description>
         ///     </item>
         ///     <item>
@@ -190,7 +190,7 @@ namespace InfoBox
         ///         <description>the opacity of the <see cref="InformationBox"/>.</description>
         ///     </item>
         ///     <item>
-        ///         <term><see cref="AsyncResultCallBack"/></term>
+        ///         <term><see cref="AsyncResultCallback"/></term>
         ///         <description>a method that will be called when a modeless dialog is closed.</description>
         ///     </item>
         ///     <item>
@@ -205,9 +205,9 @@ namespace InfoBox
         /// <returns>
         /// One of the <see cref="InformationBoxResult"/> values.
         /// </returns>
-        public static InformationBoxResult Show(string text, ref CheckState checkBoxState, params object[] parameters)
+        public static InformationBoxResult Show(string text, out CheckState checkBoxState, params object[] parameters)
         {
-            return new InformationBoxForm(text, parameters).Show(ref checkBoxState);
+            return new InformationBoxForm(text, parameters).Show(out checkBoxState);
         }
 
         #endregion Show

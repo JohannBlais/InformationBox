@@ -38,7 +38,7 @@ namespace InfoBox.Controls
             // 
             // buttonText
             // 
-            this.buttonText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.buttonText.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonText.BackColor = System.Drawing.Color.Transparent;
@@ -52,12 +52,12 @@ namespace InfoBox.Controls
             this.buttonText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonText.MouseLeave += new System.EventHandler(this.OnTextLeave);
             this.buttonText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnTextDown);
-            this.buttonText.MouseEnter += new System.EventHandler(this.OnTextEnter);
             this.buttonText.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnTextUp);
+            this.buttonText.MouseEnter += new System.EventHandler(this.OnTextEnter);
             // 
             // timerFade
             // 
-            this.timerFade.Interval = 20;
+            this.timerFade.Interval = 2000;
             this.timerFade.Tick += new System.EventHandler(this.OnFadeTick);
             // 
             // Button

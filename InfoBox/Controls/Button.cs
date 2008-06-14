@@ -45,7 +45,7 @@ namespace InfoBox.Controls
         /// <summary>
         /// Value of the alpha channel
         /// </summary>
-        private int alphaChannelCoeff = 0;
+        private int alphaChannelCoeff;
 
         /// <summary>
         /// Text alignment
@@ -68,6 +68,7 @@ namespace InfoBox.Controls
         {
             this.InitializeComponent();
             this.DoubleBuffered = true;
+            this.timerFade.Interval = 20;
         }
 
         #endregion Constructor
@@ -207,8 +208,6 @@ namespace InfoBox.Controls
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             base.OnPaintBackground(pevent);
-
-            int tailleZoneSuperieure = (Height - 3) / 2;
 
             if (this.pushed)
             {
