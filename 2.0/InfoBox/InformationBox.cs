@@ -6,11 +6,13 @@
 
 namespace InfoBox
 {
+    using System.Security.Permissions;
     using System.Windows.Forms;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
+    [UIPermission(SecurityAction.Demand)]
     public static class InformationBox
     {
         #region Show
