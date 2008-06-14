@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<project SchemaVersion="2.0">
+    <assemblies>
+        <assembly location=".\InfoBox\bin\Debug\InfoBox.dll" documentation=".\InfoBox\bin\Debug\InfoBox.xml" />
+    </assemblies>
+    <documenters>
+        <documenter name="MSDN-CHM">
+            <property name="OutputDirectory" value=".\Help\" />
+            <property name="HtmlHelpName" value="InfoBox" />
+            <property name="Title" value="InformationBox Help" />
+            <property name="Version" value="0.7.1.0" />
+            <property name="AssemblyVersionInfo" value="AssemblyVersion" />
+            <property name="CleanIntermediates" value="True" />
+        </documenter>
+        <documenter name="Intellisense">
+            <property name="OutputDirectory" value=".\intellisense\" />
+        </documenter>
+    </documenters>
+</project>

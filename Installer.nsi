@@ -97,7 +97,7 @@ Section "Help File" SecHlp
 
   CreateDirectory "$INSTDIR\help"
   SetOutPath $INSTDIR\help
-  File "..\CodePlex InfoBox\2.0\Help\InfoBox.chm"
+  File "Help\InfoBox.chm"
 
   CreateDirectory "$SMPROGRAMS\InformationBox"
   CreateShortCut "$SMPROGRAMS\InformationBox\InformationBox Help.lnk" "$INSTDIR\help\InfoBox.chm" "" "$INSTDIR\help\InfoBox.chm" 0
