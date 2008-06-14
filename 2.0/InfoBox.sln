@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Designer", "InfoBox
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InstallerFiles", "InstallerFiles", "{04FDC672-3496-4AF2-AB85-34FD1AECB6AC}"
 	ProjectSection(SolutionItems) = preProject
-		Help.ndoc = Help.ndoc
+		InfoBox.shfb = InfoBox.shfb
 		Installer.nsi = Installer.nsi
 		license.txt = license.txt
 		Logo.bmp = Logo.bmp
