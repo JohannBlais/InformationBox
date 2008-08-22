@@ -137,7 +137,7 @@ namespace InfoBox
         /// <summary>
         /// Contains the style of the title
         /// </summary>
-        private InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.SameAsBox;
+        private InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.None;
 
         /// <summary>
         /// Contains the title icon
