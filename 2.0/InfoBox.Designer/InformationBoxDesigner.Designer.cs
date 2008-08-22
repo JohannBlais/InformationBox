@@ -62,6 +62,9 @@ namespace InfoBox.Designer
             this.rdbTitleIconNone = new System.Windows.Forms.RadioButton();
             this.txbCode = new System.Windows.Forms.TextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.cmsLanguage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmCSharp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVbNet = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnIcon = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -126,14 +129,12 @@ namespace InfoBox.Designer
             this.btnShowModeless = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.ddlOpacities = new System.Windows.Forms.ComboBox();
-            this.cmsLanguage = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmCSharp = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmVbNet = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.cmsLanguage.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -149,7 +150,6 @@ namespace InfoBox.Designer
             this.groupBox17.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
-            this.cmsLanguage.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -487,6 +487,28 @@ namespace InfoBox.Designer
             this.btnGenerate.Text = "Generate code";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
+            // 
+            // cmsLanguage
+            // 
+            this.cmsLanguage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCSharp,
+            this.tsmVbNet});
+            this.cmsLanguage.Name = "cmsLanguage";
+            this.cmsLanguage.Size = new System.Drawing.Size(153, 70);
+            // 
+            // tsmCSharp
+            // 
+            this.tsmCSharp.Name = "tsmCSharp";
+            this.tsmCSharp.Size = new System.Drawing.Size(152, 22);
+            this.tsmCSharp.Text = "C#";
+            this.tsmCSharp.Click += new System.EventHandler(this.tsmCSharp_Click);
+            // 
+            // tsmVbNet
+            // 
+            this.tsmVbNet.Name = "tsmVbNet";
+            this.tsmVbNet.Size = new System.Drawing.Size(152, 22);
+            this.tsmVbNet.Text = "VB.NET";
+            this.tsmVbNet.Click += new System.EventHandler(this.tsmVbNet_Click);
             // 
             // groupBox6
             // 
@@ -1138,29 +1160,6 @@ namespace InfoBox.Designer
             this.ddlOpacities.Size = new System.Drawing.Size(230, 21);
             this.ddlOpacities.TabIndex = 0;
             // 
-            // cmsLanguage
-            // 
-            this.cmsLanguage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCSharp,
-            this.tsmVbNet});
-            this.cmsLanguage.Name = "cmsLanguage";
-            this.cmsLanguage.Size = new System.Drawing.Size(217, 70);
-            // 
-            // tsmCSharp
-            // 
-            this.tsmCSharp.Name = "tsmCSharp";
-            this.tsmCSharp.Size = new System.Drawing.Size(216, 22);
-            this.tsmCSharp.Text = "C#";
-            this.tsmCSharp.Click += new System.EventHandler(this.tsmCSharp_Click);
-            // 
-            // tsmVbNet
-            // 
-            this.tsmVbNet.Enabled = false;
-            this.tsmVbNet.Name = "tsmVbNet";
-            this.tsmVbNet.Size = new System.Drawing.Size(216, 22);
-            this.tsmVbNet.Text = "VB.NET (not implemented)";
-            this.tsmVbNet.Click += new System.EventHandler(this.tsmVbNet_Click);
-            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1204,6 +1203,7 @@ namespace InfoBox.Designer
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.cmsLanguage.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -1231,7 +1231,6 @@ namespace InfoBox.Designer
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox19.ResumeLayout(false);
-            this.cmsLanguage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
