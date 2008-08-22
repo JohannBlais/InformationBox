@@ -4,12 +4,12 @@
 // <author>Johann Blais</author>
 // <summary>Defines constant representing the parameters specified for the auto-close feature</summary>
 
-namespace InfoBox.Internals
+namespace InfoBox
 {
     /// <summary>
     /// Defines constant representing the parameters specified for the auto-close feature.
     /// </summary>
-    internal enum AutoCloseDefinedParameters
+    public enum AutoCloseDefinedParameters
     {
         /// <summary>
         /// The button to use is defined.

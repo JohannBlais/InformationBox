@@ -28,6 +28,7 @@ namespace InfoBox.Designer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxDesigner));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txbText = new System.Windows.Forms.TextBox();
@@ -125,6 +126,9 @@ namespace InfoBox.Designer
             this.btnShowModeless = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.ddlOpacities = new System.Windows.Forms.ComboBox();
+            this.cmsLanguage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmCSharp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVbNet = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -141,10 +145,11 @@ namespace InfoBox.Designer
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.nudAutoCloseSeconds)).BeginInit();
             this.groupBox17.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
+            this.cmsLanguage.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -155,7 +160,7 @@ namespace InfoBox.Designer
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 159);
+            this.groupBox1.Size = new System.Drawing.Size(264, 154);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Labels";
@@ -317,7 +322,7 @@ namespace InfoBox.Designer
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.ddlIcons);
-            this.groupBox3.Location = new System.Drawing.Point(12, 248);
+            this.groupBox3.Location = new System.Drawing.Point(12, 243);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(264, 45);
             this.groupBox3.TabIndex = 2;
@@ -370,8 +375,8 @@ namespace InfoBox.Designer
             // 
             // btnShow
             // 
-            this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(323, 491);
+            this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShow.Location = new System.Drawing.Point(323, 483);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -458,11 +463,11 @@ namespace InfoBox.Designer
             // 
             // txbCode
             // 
-            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.txbCode.Location = new System.Drawing.Point(12, 538);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
@@ -473,8 +478,9 @@ namespace InfoBox.Designer
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGenerate.Location = new System.Drawing.Point(118, 491);
+            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGenerate.ContextMenuStrip = this.cmsLanguage;
+            this.btnGenerate.Location = new System.Drawing.Point(118, 483);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -487,7 +493,7 @@ namespace InfoBox.Designer
             this.groupBox6.Controls.Add(this.btnIcon);
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.txbIcon);
-            this.groupBox6.Location = new System.Drawing.Point(12, 299);
+            this.groupBox6.Location = new System.Drawing.Point(12, 294);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(264, 50);
             this.groupBox6.TabIndex = 9;
@@ -618,7 +624,7 @@ namespace InfoBox.Designer
             this.groupBox9.Controls.Add(this.rdbAutoSizeNone);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumHeight);
             this.groupBox9.Controls.Add(this.rdbAutoSizeMinimumWidth);
-            this.groupBox9.Location = new System.Drawing.Point(12, 177);
+            this.groupBox9.Location = new System.Drawing.Point(12, 172);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(264, 65);
             this.groupBox9.TabIndex = 12;
@@ -1070,7 +1076,7 @@ namespace InfoBox.Designer
             this.groupBox18.Controls.Add(this.rdbTitleIconCustom);
             this.groupBox18.Controls.Add(this.rdbTitleIconNone);
             this.groupBox18.Controls.Add(this.rdbTitleIconSameAsBox);
-            this.groupBox18.Location = new System.Drawing.Point(12, 355);
+            this.groupBox18.Location = new System.Drawing.Point(12, 350);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(264, 63);
             this.groupBox18.TabIndex = 21;
@@ -1105,8 +1111,8 @@ namespace InfoBox.Designer
             // 
             // btnShowModeless
             // 
-            this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShowModeless.Location = new System.Drawing.Point(528, 491);
+            this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShowModeless.Location = new System.Drawing.Point(528, 483);
             this.btnShowModeless.Name = "btnShowModeless";
             this.btnShowModeless.Size = new System.Drawing.Size(183, 27);
             this.btnShowModeless.TabIndex = 22;
@@ -1117,9 +1123,9 @@ namespace InfoBox.Designer
             // groupBox19
             // 
             this.groupBox19.Controls.Add(this.ddlOpacities);
-            this.groupBox19.Location = new System.Drawing.Point(12, 424);
+            this.groupBox19.Location = new System.Drawing.Point(12, 419);
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(264, 50);
+            this.groupBox19.Size = new System.Drawing.Size(264, 49);
             this.groupBox19.TabIndex = 10;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "Opacity";
@@ -1131,6 +1137,29 @@ namespace InfoBox.Designer
             this.ddlOpacities.Name = "ddlOpacities";
             this.ddlOpacities.Size = new System.Drawing.Size(230, 21);
             this.ddlOpacities.TabIndex = 0;
+            // 
+            // cmsLanguage
+            // 
+            this.cmsLanguage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCSharp,
+            this.tsmVbNet});
+            this.cmsLanguage.Name = "cmsLanguage";
+            this.cmsLanguage.Size = new System.Drawing.Size(217, 70);
+            // 
+            // tsmCSharp
+            // 
+            this.tsmCSharp.Name = "tsmCSharp";
+            this.tsmCSharp.Size = new System.Drawing.Size(216, 22);
+            this.tsmCSharp.Text = "C#";
+            this.tsmCSharp.Click += new System.EventHandler(this.tsmCSharp_Click);
+            // 
+            // tsmVbNet
+            // 
+            this.tsmVbNet.Enabled = false;
+            this.tsmVbNet.Name = "tsmVbNet";
+            this.tsmVbNet.Size = new System.Drawing.Size(216, 22);
+            this.tsmVbNet.Text = "VB.NET (not implemented)";
+            this.tsmVbNet.Click += new System.EventHandler(this.tsmVbNet_Click);
             // 
             // InformationBoxDesigner
             // 
@@ -1160,7 +1189,7 @@ namespace InfoBox.Designer
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "InformationBoxDesigner";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -1196,12 +1225,13 @@ namespace InfoBox.Designer
             this.groupBox15.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.nudAutoCloseSeconds)).EndInit();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox19.ResumeLayout(false);
+            this.cmsLanguage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1305,6 +1335,9 @@ namespace InfoBox.Designer
         private System.Windows.Forms.Button btnShowModeless;
         private System.Windows.Forms.GroupBox groupBox19;
         private System.Windows.Forms.ComboBox ddlOpacities;
+        private System.Windows.Forms.ContextMenuStrip cmsLanguage;
+        private System.Windows.Forms.ToolStripMenuItem tsmCSharp;
+        private System.Windows.Forms.ToolStripMenuItem tsmVbNet;
 
     }
 }

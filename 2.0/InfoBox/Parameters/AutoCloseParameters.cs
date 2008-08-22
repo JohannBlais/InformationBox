@@ -142,7 +142,7 @@ namespace InfoBox
         /// Gets the mode.
         /// </summary>
         /// <value>The autoclose mode.</value>
-        internal AutoCloseDefinedParameters Mode
+        public AutoCloseDefinedParameters Mode
         {
             get { return this.mode; }
         }
