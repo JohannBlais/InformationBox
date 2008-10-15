@@ -1392,25 +1392,6 @@ namespace InfoBox
             {
                 Close();
             }
-
-            if (this.style == InformationBoxStyle.Modern)
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (this.defaultButton == InformationBoxDefaultButton.Button1 && this.pnlButtons.Controls.Count > 0)
-                    {
-                        this.HandleButton(this.pnlButtons.Controls[0]);
-                    }
-                    else if (this.defaultButton == InformationBoxDefaultButton.Button2 && this.pnlButtons.Controls.Count > 1)
-                    {
-                        this.HandleButton(this.pnlButtons.Controls[1]);
-                    }
-                    else if (this.defaultButton == InformationBoxDefaultButton.Button3 && this.pnlButtons.Controls.Count > 2)
-                    {
-                        this.HandleButton(this.pnlButtons.Controls[2]);
-                    }
-                }
-            }
         }
 
         /// <summary>
