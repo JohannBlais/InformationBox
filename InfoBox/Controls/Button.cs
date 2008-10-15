@@ -10,6 +10,7 @@ namespace InfoBox.Controls
     using System.ComponentModel;
     using System.Drawing;
     using System.Windows.Forms;
+    using System.Drawing.Drawing2D;
 
     /// <summary>
     /// Glass button
@@ -19,9 +20,29 @@ namespace InfoBox.Controls
     [DefaultProperty("Text")]
     [Description("Button with glass look and feel")]
     [ToolboxBitmap(typeof(System.Windows.Forms.Button))]
-    public partial class Button : Panel
+    public partial class Button : Control
     {
         #region Attributes
+
+        /// <summary>
+        /// Contains the side borders
+        /// </summary>
+        private SideBorder sideBorder;
+
+        /// <summary>
+        /// Contains the side border bottom column
+        /// </summary>
+        private Color sideBorderBottomColor = Color.Transparent;
+
+        /// <summary>
+        /// Contains the side border top column
+        /// </summary>
+        private Color sideBorderTopColor = Color.White;
+
+        /// <summary>
+        /// Contains the side border width
+        /// </summary>
+        private int sideBorderWidth = 1;
 
         #region Button state
 
@@ -69,9 +90,75 @@ namespace InfoBox.Controls
             this.InitializeComponent();
             this.DoubleBuffered = true;
             this.timerFade.Interval = 20;
+
+            this.BackColor = Color.Black;
+            this.ForeColor = Color.White;
+
+            this.GotFocus += Control_GotFocus;
+            this.LostFocus += Control_LostFocus;
+            this.KeyDown += Control_KeyDown;
+            this.KeyUp += Control_KeyUp;
         }
 
         #endregion Constructor
+
+        #region Focus
+
+        /// <summary>
+        /// Handles the GotFocus event of the Control control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void Control_GotFocus(object sender, System.EventArgs e)
+        {
+            Refresh();
+        }
+
+        /// <summary>
+        /// Handles the LostFocus event of the Control control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void Control_LostFocus(object sender, System.EventArgs e)
+        {
+            Refresh();
+        }
+
+        /// <summary>
+        /// Processes a mnemonic character.
+        /// </summary>
+        /// <param name="charCode">The character to process.</param>
+        /// <returns>
+        /// true if the character was processed as a mnemonic by the control; otherwise, false.
+        /// </returns>
+        protected override bool ProcessMnemonic(char charCode)
+        {
+            if (Enabled && Visible && IsMnemonic(charCode, this.Text))
+            {
+                // Perform action associated with mnemonic
+                // Moves focus to our control
+                Focus();
+                Refresh();
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Handles the ChangeUICues event of the FocusableControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.UICuesEventArgs"/> instance containing the event data.</param>
+        private void FocusableControl_ChangeUICues(object sender, UICuesEventArgs e)
+        {
+            if (e.ChangeFocus || e.ChangeKeyboard)
+            {
+                Refresh();
+            }
+        }
+
+        #endregion Focus
 
         #region Events
 
@@ -83,6 +170,88 @@ namespace InfoBox.Controls
         #endregion Events
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets if a custom border is shown on the sides of the control
+        /// </summary>
+        /// <value>The side border.</value>
+        [Category("Side Border"), Description("Defines if a special side border should be displayed"),
+         DefaultValue("None")]
+        public SideBorder SideBorder
+        {
+            get
+            {
+                return this.sideBorder;
+            }
+
+            set
+            {
+                this.sideBorder = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the border width
+        /// </summary>
+        /// <value>The width of the side border.</value>
+        [Category("Side Border"), Description("Defines the width of the side border")]
+        public int SideBorderWidth
+        {
+            get
+            {
+                return this.sideBorderWidth;
+            }
+
+            set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentException("The border width must be positive");
+                }
+
+                this.sideBorderWidth = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the top border color
+        /// </summary>
+        /// <value>The top color of the side border.</value>
+        [Category("Side Border"), Description("Defines the top color of the side border")]
+        public Color SideBorderTopColor
+        {
+            get
+            {
+                return this.sideBorderTopColor;
+            }
+
+            set
+            {
+                this.sideBorderTopColor = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the bottom border color
+        /// </summary>
+        /// <value>The bottom color of the side border.</value>
+        [Category("Side Border"), Description("Defines the bottom color of the side border")]
+        public Color SideBorderBottomColor
+        {
+            get
+            {
+                return this.sideBorderBottomColor;
+            }
+
+            set
+            {
+                this.sideBorderBottomColor = value;
+                this.Invalidate();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the text color when the button is disabled
@@ -209,6 +378,9 @@ namespace InfoBox.Controls
         {
             base.OnPaintBackground(pevent);
 
+            PaintingEngine.PaintGlassEffect(pevent.Graphics, BackColor, Width, Height);
+            PaintingEngine.PaintGradientBorders(pevent.Graphics, this.sideBorderTopColor, this.sideBorderBottomColor, Width, Height, this.sideBorderWidth, this.sideBorder);
+
             if (this.pushed)
             {
                 PaintingEngine.PaintPushedEffect(pevent.Graphics, Width, Height);
@@ -224,9 +396,49 @@ namespace InfoBox.Controls
                     this.Width,
                     this.Height);
             }
+
+            // Draw a dotted line inside the client rectangle
+            if (ShowFocusCues && ContainsFocus)
+            {
+                Rectangle r = ClientRectangle;
+                r.Inflate(-7, -7);
+                r.Width--;
+                r.Height--;
+                Pen p = new Pen(Color.White, 1);
+                p.DashStyle = DashStyle.Dot;
+                pevent.Graphics.DrawRectangle(p, r);
+            }
         }
 
         #endregion Background
+
+        private void Control_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt == false &&
+                e.Control == false &&
+                e.Shift == false &&
+                (e.KeyCode == Keys.Space ||
+                 e.KeyCode == Keys.Enter))
+            {
+                ClickPressed();
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Control_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Alt == false &&
+                e.Control == false &&
+                e.Shift == false &&
+                (e.KeyCode == Keys.Space ||
+                 e.KeyCode == Keys.Enter))
+            {
+                ClickReleased();
+                e.Handled = true;
+                return;
+            }
+        }
 
         /// <summary>
         /// When forecolor is changed
@@ -304,23 +516,7 @@ namespace InfoBox.Controls
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         private void OnTextDown(object sender, MouseEventArgs e)
         {
-            this.timerFade.Stop();
-
-            if (!Enabled)
-            {
-                return;
-            }
-
-            if (this.pushed && this.persistantMode)
-            {
-                this.pushed = false;
-            }
-            else
-            {
-                this.pushed = true;
-            }
-
-            this.Invalidate();
+            ClickPressed();
         }
 
         /// <summary>
@@ -330,22 +526,7 @@ namespace InfoBox.Controls
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         private void OnTextUp(object sender, MouseEventArgs e)
         {
-            if (!Enabled)
-            {
-                return;
-            }
-
-            if (this.persistantMode)
-            {
-                return;
-            }
-
-            this.pushed = false;
-            this.hover = true;
-            this.Invalidate();
-
-            // Raises event
-            this.OnClick(new EventArgs());
+            ClickReleased();
         }
 
         #region Timer Tick (for fading effect)
@@ -386,6 +567,53 @@ namespace InfoBox.Controls
         #endregion Event handlers
 
         #region Methods
+
+        /// <summary>
+        /// Click pressed.
+        /// </summary>
+        private void ClickPressed()
+        {
+            this.timerFade.Stop();
+
+            if (!Enabled)
+            {
+                return;
+            }
+
+            if (this.pushed && this.persistantMode)
+            {
+                this.pushed = false;
+            }
+            else
+            {
+                this.pushed = true;
+            }
+
+            this.Invalidate();
+        }
+
+        /// <summary>
+        /// Click released.
+        /// </summary>
+        private void ClickReleased()
+        {
+            if (!Enabled)
+            {
+                return;
+            }
+
+            if (this.persistantMode)
+            {
+                return;
+            }
+
+            this.pushed = false;
+            this.hover = true;
+            this.Invalidate();
+
+            // Raises event
+            this.OnClick(new EventArgs());
+        }
 
         /// <summary>
         /// Sets the text forecolor

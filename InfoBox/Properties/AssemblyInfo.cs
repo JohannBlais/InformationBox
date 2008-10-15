@@ -15,9 +15,9 @@ using System.Resources;
 [assembly: AssemblyTitle("InfoBox")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SaumonAgile")]
+[assembly: AssemblyCompany("Johann Blais")]
 [assembly: AssemblyProduct("InformationBox")]
-[assembly: AssemblyCopyright("Copyright © SaumonAgile 2007-2008")]
+[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -44,5 +44,5 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("0.7.1.*")]
-[assembly: AssemblyFileVersion("0.7.1.0")]
+[assembly: AssemblyVersion("0.8.0.0")]
+[assembly: AssemblyFileVersion("0.8.0.0")]

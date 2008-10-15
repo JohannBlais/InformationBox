@@ -15,9 +15,9 @@ using System.Resources;
 [assembly: AssemblyTitle("InfoBox.Designer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SaumonAgile")]
-[assembly: AssemblyProduct("InformationBox.Designer")]
-[assembly: AssemblyCopyright("Copyright © SaumonAgile 2007")]
+[assembly: AssemblyCompany("Johann Blais")]
+[assembly: AssemblyProduct("InformationBox Designer")]
+[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -41,5 +41,5 @@ using System.Resources;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("0.7.1.*")]
-[assembly: AssemblyFileVersion("0.7.1.0")]
+[assembly: AssemblyVersion("0.8.0.0")]
+[assembly: AssemblyFileVersion("0.8.0.0")]
