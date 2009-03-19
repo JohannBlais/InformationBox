@@ -26,11 +26,6 @@ namespace InfoBox
         /// </summary>
         private readonly InformationBoxScopeParameters definedParameters = new InformationBoxScopeParameters();
 
-        /// <summary>
-        /// Contains the effective parameters of a scope
-        /// </summary>
-        private InformationBoxScopeParameters effectiveParameters = new InformationBoxScopeParameters();
-
         #endregion Attributes
 
         #region Constructors
@@ -118,11 +113,7 @@ namespace InfoBox
         /// Gets or sets the effective parameters.
         /// </summary>
         /// <value>The effective parameters.</value>
-        internal InformationBoxScopeParameters EffectiveParameters
-        {
-            get { return this.effectiveParameters; }
-            set { this.effectiveParameters = value; }
-        }
+        internal InformationBoxScopeParameters EffectiveParameters { get; set; }
 
         #endregion Properties
 

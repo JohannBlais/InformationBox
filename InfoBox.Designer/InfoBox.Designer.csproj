@@ -25,9 +25,9 @@
     <GenerateManifests>true</GenerateManifests>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>3442C007232FEFE56FF0B273F04B97F78D0DE7A7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>21128F6ED06C13D12A4C885A401053CD8492E543</ManifestCertificateThumbprint>
     <ManifestKeyFile>InfoBox.Designer_TemporaryKey.pfx</ManifestKeyFile>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>ftp://johannblais.developpez.com/publish/infobox/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -104,7 +104,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="InfoBox.Designer_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\key.snk" />
     <None Include="Properties\Settings.settings">

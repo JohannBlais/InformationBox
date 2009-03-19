@@ -146,7 +146,7 @@ namespace InfoBox.Designer
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.nudAutoCloseSeconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).BeginInit();
             this.groupBox17.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
@@ -375,7 +375,7 @@ namespace InfoBox.Designer
             // 
             // btnShow
             // 
-            this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnShow.Location = new System.Drawing.Point(323, 483);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
@@ -463,11 +463,11 @@ namespace InfoBox.Designer
             // 
             // txbCode
             // 
-            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbCode.Location = new System.Drawing.Point(12, 538);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
@@ -478,7 +478,7 @@ namespace InfoBox.Designer
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGenerate.ContextMenuStrip = this.cmsLanguage;
             this.btnGenerate.Location = new System.Drawing.Point(118, 483);
             this.btnGenerate.Name = "btnGenerate";
@@ -494,19 +494,19 @@ namespace InfoBox.Designer
             this.tsmCSharp,
             this.tsmVbNet});
             this.cmsLanguage.Name = "cmsLanguage";
-            this.cmsLanguage.Size = new System.Drawing.Size(153, 70);
+            this.cmsLanguage.Size = new System.Drawing.Size(114, 48);
             // 
             // tsmCSharp
             // 
             this.tsmCSharp.Name = "tsmCSharp";
-            this.tsmCSharp.Size = new System.Drawing.Size(152, 22);
+            this.tsmCSharp.Size = new System.Drawing.Size(113, 22);
             this.tsmCSharp.Text = "C#";
             this.tsmCSharp.Click += new System.EventHandler(this.tsmCSharp_Click);
             // 
             // tsmVbNet
             // 
             this.tsmVbNet.Name = "tsmVbNet";
-            this.tsmVbNet.Size = new System.Drawing.Size(152, 22);
+            this.tsmVbNet.Size = new System.Drawing.Size(113, 22);
             this.tsmVbNet.Text = "VB.NET";
             this.tsmVbNet.Click += new System.EventHandler(this.tsmVbNet_Click);
             // 
@@ -623,6 +623,7 @@ namespace InfoBox.Designer
             // 
             this.ddlLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlLanguage.Items.AddRange(new object[] {
+            "ar - Arabic",
             "en - English",
             "fr - Français",
             "nl - Dutch",
@@ -1133,7 +1134,7 @@ namespace InfoBox.Designer
             // 
             // btnShowModeless
             // 
-            this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnShowModeless.Location = new System.Drawing.Point(528, 483);
             this.btnShowModeless.Name = "btnShowModeless";
             this.btnShowModeless.Size = new System.Drawing.Size(183, 27);
@@ -1188,7 +1189,7 @@ namespace InfoBox.Designer
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "InformationBoxDesigner";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -1225,7 +1226,7 @@ namespace InfoBox.Designer
             this.groupBox15.PerformLayout();
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.nudAutoCloseSeconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAutoCloseSeconds)).EndInit();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
             this.groupBox18.ResumeLayout(false);
