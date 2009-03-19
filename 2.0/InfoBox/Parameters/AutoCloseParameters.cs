@@ -7,6 +7,7 @@
 namespace InfoBox
 {
     using InfoBox.Internals;
+    using System;
 
     /// <summary>
     /// Contains the parameters used for the auto-close feature.
@@ -161,12 +162,13 @@ namespace InfoBox
         /// <exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
         public override bool Equals(object obj)
         {
-            AutoCloseParameters compared = obj as AutoCloseParameters;
-            if (null == obj)
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
 
+            AutoCloseParameters compared = (AutoCloseParameters) obj;
+            
             return this.DefaultButton == compared.DefaultButton &&
                    this.Mode == compared.Mode &&
                    this.Result == compared.Result &&

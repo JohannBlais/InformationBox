@@ -7,6 +7,7 @@
 namespace InfoBox
 {
     using System.Drawing;
+    using System;
 
     /// <summary>
     /// Contains the values of the design parameters.
@@ -76,12 +77,13 @@ namespace InfoBox
         /// <exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
         public override bool Equals(object obj)
         {
-            DesignParameters compared = obj as DesignParameters;
-            if (null == obj)
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
 
+            DesignParameters compared = (DesignParameters) obj;
+            
             return this.BarsBackColor == compared.BarsBackColor &&
                    this.FormBackColor == compared.FormBackColor;
         }

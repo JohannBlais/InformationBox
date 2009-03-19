@@ -31,7 +31,7 @@ namespace InfoBox.Internals
         /// <returns>The converted value</returns>
         internal static InformationBoxIcon Parse(MessageBoxIcon value)
         {
-            return (InformationBoxIcon) Enum.Parse(typeof(InformationBoxIcon), value.ToString());
+            return (InformationBoxIcon)Enum.Parse(typeof(InformationBoxIcon), value.ToString());
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace InfoBox.Internals
         /// <returns>The converted value</returns>
         internal static InformationBoxDefaultButton Parse(MessageBoxDefaultButton value)
         {
-            return (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), value.ToString());
+            return (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), value.ToString());
         }
     }
 }

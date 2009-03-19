@@ -7,6 +7,8 @@
 namespace InfoBox
 {
     using System.Drawing;
+    using System;
+    using System.IO;
 
     /// <summary>
     /// Represents the icon for the title bar
@@ -28,13 +30,10 @@ namespace InfoBox
         /// Initializes a new instance of the <see cref="InformationBoxTitleIcon"/> class.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        public InformationBoxTitleIcon(string fileName) : this(new Icon(fileName))
+        public InformationBoxTitleIcon(string fileName)
         {
+            this.icon = new Icon(fileName);
         }
-
-        #endregion Constructors
-
-        #region Properties
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxTitleIcon"/> class.
@@ -44,6 +43,10 @@ namespace InfoBox
         {
             this.icon = icon;
         }
+
+        #endregion Constructors
+
+        #region Properties
 
         /// <summary>
         /// Gets the icon.

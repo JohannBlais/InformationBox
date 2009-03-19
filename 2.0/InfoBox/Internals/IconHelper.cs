@@ -6,6 +6,7 @@
 
 namespace InfoBox.Internals
 {
+    using System;
     using System.Drawing;
     using InfoBox.Properties;
 

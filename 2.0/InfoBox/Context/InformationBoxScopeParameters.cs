@@ -429,23 +429,26 @@ namespace InfoBox
         /// </returns>
         public override int GetHashCode()
         {
-            return this.AutoClose.GetHashCode() ^
-                   this.AutoSizeMode.GetHashCode() ^
-                   this.Behavior.GetHashCode() ^
-                   this.Buttons.GetHashCode() ^
-                   this.CheckBox.GetHashCode() ^
-                   this.CustomIcon.GetHashCode() ^
-                   this.DefaultButton.GetHashCode() ^
-                   this.Design.GetHashCode() ^
-                   this.Help.GetHashCode() ^
-                   this.HelpNavigator.GetHashCode() ^
-                   this.Icon.GetHashCode() ^
-                   this.Layout.GetHashCode() ^
-                   this.Opacity.GetHashCode() ^
-                   this.Position.GetHashCode() ^
-                   this.Style.GetHashCode() ^
-                   this.TitleIcon.GetHashCode() ^
-                   this.TitleIconStyle.GetHashCode();
+            int hashCode = 0;
+            hashCode ^= this.AutoClose == null ? 0 : this.AutoClose.GetHashCode();
+            hashCode ^= this.AutoSizeMode == null ? 0 : this.AutoSizeMode.GetHashCode();
+            hashCode ^= this.Behavior == null ? 0 : this.Behavior.GetHashCode();
+            hashCode ^= this.Buttons == null ? 0 : this.Buttons.GetHashCode();
+            hashCode ^= this.CheckBox == null ? 0 : this.CheckBox.GetHashCode();
+            hashCode ^= this.CustomIcon == null ? 0 : this.CustomIcon.GetHashCode();
+            hashCode ^= this.DefaultButton == null ? 0 : this.DefaultButton.GetHashCode();
+            hashCode ^= this.Design == null ? 0 : this.Design.GetHashCode();
+            hashCode ^= this.Help == null ? 0 : this.Help.GetHashCode();
+            hashCode ^= this.HelpNavigator == null ? 0 : this.HelpNavigator.GetHashCode();
+            hashCode ^= this.Icon == null ? 0 : this.Icon.GetHashCode();
+            hashCode ^= this.Layout == null ? 0 : this.Layout.GetHashCode();
+            hashCode ^= this.Opacity == null ? 0 : this.Opacity.GetHashCode();
+            hashCode ^= this.Position == null ? 0 : this.Position.GetHashCode();
+            hashCode ^= this.Style == null ? 0 : this.Style.GetHashCode();
+            hashCode ^= this.TitleIcon == null ? 0 : this.TitleIcon.GetHashCode();
+            hashCode ^= this.TitleIconStyle == null ? 0 : this.TitleIconStyle.GetHashCode();
+
+            return hashCode;
         }
 
         #endregion Overrides
