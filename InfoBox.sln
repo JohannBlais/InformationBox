@@ -1,9 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox", "InfoBox\InfoBox.csproj", "{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Designer", "InfoBox.Designer\InfoBox.Designer.csproj", "{2EFBB177-E826-47B4-8028-D124ECFAAE05}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InstallerFiles", "InstallerFiles", "{04FDC672-3496-4AF2-AB85-34FD1AECB6AC}"
 	ProjectSection(SolutionItems) = preProject
 		InfoBox.shfb = InfoBox.shfb
@@ -14,18 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InstallerFiles", "Installer
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11BF73EF-1C37-4B34-BB1B-E378D733E8DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox", "InfoBox\InfoBox.csproj", "{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Designer", "InfoBox.Designer\InfoBox.Designer.csproj", "{2EFBB177-E826-47B4-8028-D124ECFAAE05}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs03.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = InfoBox\\InfoBox.csproj
-		SccProjectName1 = InfoBox
-		SccLocalPath1 = InfoBox
-		SccProjectUniqueName2 = InfoBox.Designer\\InfoBox.Designer.csproj
-		SccProjectName2 = InfoBox.Designer
-		SccLocalPath2 = InfoBox.Designer
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
