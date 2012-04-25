@@ -26,8 +26,6 @@
     <GenerateManifests>true</GenerateManifests>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>21128F6ED06C13D12A4C885A401053CD8492E543</ManifestCertificateThumbprint>
-    <ManifestKeyFile>InfoBox.Designer_TemporaryKey.pfx</ManifestKeyFile>
     <SignManifests>false</SignManifests>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <PublishUrl>ftp://johannblais.developpez.com/publish/infobox/</PublishUrl>
