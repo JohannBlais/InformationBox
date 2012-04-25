@@ -93,7 +93,7 @@ namespace InfoBox
         /// Buttons displayed on the form
         /// </summary>
         private InformationBoxButtons buttons = InformationBoxButtons.OK;
-        
+
         /// <summary>
         /// Default button
         /// </summary>
@@ -183,7 +183,7 @@ namespace InfoBox
         /// Last stored pointer position
         /// </summary>
         private Point lastPointerPosition;
-        
+
         /// <summary>
         /// Elapsed time for the autoclose
         /// </summary>
@@ -215,7 +215,8 @@ namespace InfoBox
         /// </summary>
         /// <param name="text">The text of the box.</param>
         /// <param name="parameters">The parameters.</param>
-        internal InformationBoxForm(string text, params object[] parameters) : this(text)
+        internal InformationBoxForm(string text, params object[] parameters)
+            : this(text)
         {
             this.activeForm = ActiveForm;
 
@@ -227,7 +228,7 @@ namespace InfoBox
             {
                 if (param is InformationBoxInitialization)
                 {
-                    InformationBoxInitialization value = (InformationBoxInitialization) param;
+                    InformationBoxInitialization value = (InformationBoxInitialization)param;
                     if (InformationBoxInitialization.FromParametersOnly == value)
                     {
                         loadScope = false;
@@ -255,16 +256,16 @@ namespace InfoBox
                 {
                     if (stringCount == 0)
                     {
-                        this.Text = (string) parameter;
-                        this.lblTitle.Text = (string) parameter;
+                        this.Text = (string)parameter;
+                        this.lblTitle.Text = (string)parameter;
                     }
                     else if (stringCount == 1)
                     {
-                        this.helpFile = (string) parameter;
+                        this.helpFile = (string)parameter;
                     }
                     else if (stringCount == 2)
                     {
-                        this.helpTopic = (string) parameter;
+                        this.helpTopic = (string)parameter;
                     }
 
                     stringCount++;
@@ -272,28 +273,28 @@ namespace InfoBox
                 else if (parameter is InformationBoxButtons)
                 {
                     // Buttons
-                    this.buttons = (InformationBoxButtons) parameter;
+                    this.buttons = (InformationBoxButtons)parameter;
                 }
                 else if (parameter is InformationBoxIcon)
                 {
                     // Internal icon
-                    this.icon = (InformationBoxIcon) parameter;
+                    this.icon = (InformationBoxIcon)parameter;
                 }
                 else if (parameter is Icon)
                 {
                     // User defined icon
                     this.iconType = IconType.UserDefined;
-                    this.customIcon = new Icon((Icon) parameter, 48, 48);
+                    this.customIcon = new Icon((Icon)parameter, 48, 48);
                 }
                 else if (parameter is InformationBoxDefaultButton)
                 {
                     // Default button
-                    this.defaultButton = (InformationBoxDefaultButton) parameter;
+                    this.defaultButton = (InformationBoxDefaultButton)parameter;
                 }
                 else if (parameter is string[])
                 {
                     // Custom buttons
-                    string[] labels = (string[]) parameter;
+                    string[] labels = (string[])parameter;
                     if (labels.Length > 0)
                     {
                         this.buttonUser1Text = labels[0];
@@ -307,87 +308,87 @@ namespace InfoBox
                 else if (parameter is InformationBoxButtonsLayout)
                 {
                     // Buttons layout
-                    this.buttonsLayout = (InformationBoxButtonsLayout) parameter;
+                    this.buttonsLayout = (InformationBoxButtonsLayout)parameter;
                 }
                 else if (parameter is InformationBoxAutoSizeMode)
                 {
                     // Autosize mode
-                    this.autoSizeMode = (InformationBoxAutoSizeMode) parameter;
+                    this.autoSizeMode = (InformationBoxAutoSizeMode)parameter;
                 }
                 else if (parameter is InformationBoxPosition)
                 {
                     // Position
-                    this.position = (InformationBoxPosition) parameter;
+                    this.position = (InformationBoxPosition)parameter;
                 }
                 else if (parameter is bool)
                 {
                     // Help button
-                    this.showHelpButton = (bool) parameter;
+                    this.showHelpButton = (bool)parameter;
                 }
                 else if (parameter is HelpNavigator)
                 {
                     // Help navigator
-                    this.helpNavigator = (HelpNavigator) parameter;
+                    this.helpNavigator = (HelpNavigator)parameter;
                 }
                 else if (parameter is InformationBoxCheckBox)
                 {
                     // Do not show this dialog again ?
-                    this.checkBox = (InformationBoxCheckBox) parameter;
+                    this.checkBox = (InformationBoxCheckBox)parameter;
                 }
                 else if (parameter is InformationBoxStyle)
                 {
                     // Visual style
-                    this.style = (InformationBoxStyle) parameter;
+                    this.style = (InformationBoxStyle)parameter;
                 }
                 else if (parameter is AutoCloseParameters)
                 {
                     // Auto-close parameters
-                    this.autoClose = (AutoCloseParameters) parameter;
+                    this.autoClose = (AutoCloseParameters)parameter;
                 }
                 else if (parameter is DesignParameters)
                 {
                     // Design parameters
-                    this.design = (DesignParameters) parameter;
+                    this.design = (DesignParameters)parameter;
                 }
                 else if (parameter is InformationBoxTitleIconStyle)
                 {
                     // Title style
-                    this.titleStyle = (InformationBoxTitleIconStyle) parameter;
+                    this.titleStyle = (InformationBoxTitleIconStyle)parameter;
                 }
                 else if (parameter is InformationBoxTitleIcon)
                 {
                     // Title icon
-                    this.titleIcon = ((InformationBoxTitleIcon) parameter).Icon;
+                    this.titleIcon = ((InformationBoxTitleIcon)parameter).Icon;
                 }
-                else if (parameter is MessageBoxButtons)
+                else if (parameter is MessageBoxButtons? && parameter != null)
                 {
                     // MessageBox buttons
-                    this.buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons) parameter);
+                    this.buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons)parameter);
                 }
-                else if (parameter is MessageBoxIcon)
+                else if (parameter is MessageBoxIcon? && parameter != null)
                 {
                     // MessageBox icon
-                    this.icon = MessageBoxEnumConverter.Parse((MessageBoxIcon) parameter);
+                    this.icon = MessageBoxEnumConverter.Parse((MessageBoxIcon)parameter);
                 }
-                else if (parameter is MessageBoxDefaultButton)
+                else if (parameter is MessageBoxDefaultButton? && parameter != null)
                 {
                     // MessageBox default button
-                    this.defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton) parameter);
+                    this.defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton)parameter);
                 }
                 else if (parameter is InformationBoxBehavior)
                 {
                     // InformationBox behaviour
-                    this.behavior = (InformationBoxBehavior) parameter;
+                    this.behavior = (InformationBoxBehavior)parameter;
                 }
                 else if (parameter is AsyncResultCallback)
                 {
                     // Callback for the result
-                    this.callback = (AsyncResultCallback) parameter;
+                    this.callback = (AsyncResultCallback)parameter;
                 }
                 else if (parameter is InformationBoxOpacity)
                 {
                     // Opacity
-                    this.opacity = (InformationBoxOpacity) parameter;
+                    this.opacity = (InformationBoxOpacity)parameter;
                 }
             }
         }
@@ -501,7 +502,7 @@ namespace InfoBox
             {
                 this.icon = parameters.Icon.Value;
             }
-            
+
             if (parameters.CustomIcon != null)
             {
                 this.iconType = IconType.UserDefined;
@@ -793,7 +794,7 @@ namespace InfoBox
 
             // "Do not show this dialog again" width
             int checkBoxWidth = ((this.checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
-                                    ? (int) this.measureGraphics.MeasureString(this.chbDoNotShow.Text, this.chbDoNotShow.Font).Width + BorderPadding * 4
+                                    ? (int)this.measureGraphics.MeasureString(this.chbDoNotShow.Text, this.chbDoNotShow.Font).Width + BorderPadding * 4
                                     : 0;
 
             // Width of the text and icon.
@@ -1018,7 +1019,7 @@ namespace InfoBox
 
                     foreach (Match sentence in sentences)
                     {
-                        int sentenceLength = (int) this.measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
+                        int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
                         if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                         {
                             formattedText.Append(Environment.NewLine);
@@ -1108,7 +1109,7 @@ namespace InfoBox
             {
                 this.AddButton("Ignore", Resources.LabelIgnore);
             }
-            
+
             // User1
             if (this.buttons == InformationBoxButtons.OKCancelUser1 ||
                 this.buttons == InformationBoxButtons.User1User2 ||
@@ -1300,7 +1301,7 @@ namespace InfoBox
         {
             if (sender is Control)
             {
-                this.HandleButton((Control) sender);
+                this.HandleButton((Control)sender);
             }
         }
 
@@ -1485,7 +1486,7 @@ namespace InfoBox
 
                     if (buttonToUpdate is System.Windows.Forms.Button)
                     {
-                        System.Windows.Forms.Button button = (System.Windows.Forms.Button) buttonToUpdate;
+                        System.Windows.Forms.Button button = (System.Windows.Forms.Button)buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                         {
                             button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
@@ -1497,7 +1498,7 @@ namespace InfoBox
                     }
                     else if (buttonToUpdate is Controls.Button)
                     {
-                        Controls.Button button = (Controls.Button) buttonToUpdate;
+                        Controls.Button button = (Controls.Button)buttonToUpdate;
                         if (extractLabel.IsMatch(button.Text))
                         {
                             button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
@@ -1513,6 +1514,6 @@ namespace InfoBox
             this.elapsedTime++;
         }
 
-        #endregion Event handling        
+        #endregion Event handling
     }
 }

@@ -8,10 +8,9 @@ namespace InfoBox.Designer
 {
     using System;
     using System.Drawing;
-    using System.Text;
+    using System.Globalization;
     using System.Threading;
     using System.Windows.Forms;
-    using System.Globalization;
     using InfoBox.Designer.CodeGeneration;
 
     /// <summary>
@@ -257,7 +256,7 @@ namespace InfoBox.Designer
         {
             if (null != this.ddlIcons.SelectedItem)
             {
-                return (InformationBoxIcon) this.ddlIcons.SelectedItem;
+                return (InformationBoxIcon)this.ddlIcons.SelectedItem;
             }
 
             return InformationBoxIcon.None;
@@ -271,7 +270,7 @@ namespace InfoBox.Designer
         {
             if (null != this.ddlOpacities.SelectedItem)
             {
-                return (InformationBoxOpacity) this.ddlOpacities.SelectedItem;
+                return (InformationBoxOpacity)this.ddlOpacities.SelectedItem;
             }
 
             return InformationBoxOpacity.NoFade;
@@ -444,14 +443,14 @@ namespace InfoBox.Designer
             {
                 return new AutoCloseParameters(
                     Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                    (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
+                    (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
             }
 
             if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1)
             {
                 return new AutoCloseParameters(
                     Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                    (InformationBoxResult) Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
+                    (InformationBoxResult)Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
             }
 
             return new AutoCloseParameters(Convert.ToInt32(this.nudAutoCloseSeconds.Value));
@@ -605,7 +604,7 @@ namespace InfoBox.Designer
         {
             cmsLanguage.Show(btnGenerate, new Point(0, btnGenerate.Height));
         }
-        
+
         /// <summary>
         /// Handles the Click event of the tsmCSharp control.
         /// </summary>
@@ -719,7 +718,7 @@ namespace InfoBox.Designer
             this.formColor = selected;
         }
 
-        #endregion Colors        
+        #endregion Colors
 
         #endregion Event handlers
     }
