@@ -463,8 +463,8 @@ namespace InfoBox.Designer
             // 
             // txbCode
             // 
-            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -625,9 +625,10 @@ namespace InfoBox.Designer
             this.ddlLanguage.Items.AddRange(new object[] {
             "ar - Arabic",
             "en - English",
+            "fa - Persian",
             "fr - Français",
             "nl - Dutch",
-            "pt-BR - Brazilian Portuguese"});
+            "pt - Portuguese"});
             this.ddlLanguage.Location = new System.Drawing.Point(72, 19);
             this.ddlLanguage.Name = "ddlLanguage";
             this.ddlLanguage.Size = new System.Drawing.Size(176, 21);
