@@ -104,6 +104,11 @@ namespace InfoBox
         /// </summary>
         private DesignParameters design;
 
+        /// <summary>
+        /// Contains the z-order of the box
+        /// </summary>
+        private InformationBoxOrder? order;
+
         #endregion Attributes
 
         #region Properties
@@ -278,6 +283,16 @@ namespace InfoBox
             set { this.design = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the order.
+        /// </summary>
+        /// <value>The order.</value>
+        public InformationBoxOrder? Order
+        {
+            get { return this.order; }
+            set { this.order = value; }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -374,6 +389,11 @@ namespace InfoBox
                 this.helpNavigator = parameters.HelpNavigator.Value;
             }
 
+            if (parameters.Order.HasValue && !this.Order.HasValue)
+            {
+                this.order = parameters.Order.Value;
+            }
+
             return this;
         }
 
@@ -418,7 +438,8 @@ namespace InfoBox
                    this.Position == compared.Position &&
                    this.Style == compared.Style &&
                    this.TitleIcon == compared.TitleIcon &&
-                   this.TitleIconStyle == compared.TitleIconStyle;
+                   this.TitleIconStyle == compared.TitleIconStyle &&
+                   this.Order == compared.Order;
         }
 
         /// <summary>
@@ -447,6 +468,7 @@ namespace InfoBox
             hashCode ^= this.Style == null ? 0 : this.Style.GetHashCode();
             hashCode ^= this.TitleIcon == null ? 0 : this.TitleIcon.GetHashCode();
             hashCode ^= this.TitleIconStyle == null ? 0 : this.TitleIconStyle.GetHashCode();
+            hashCode ^= this.Order == null ? 0 : this.Order.GetHashCode();
 
             return hashCode;
         }

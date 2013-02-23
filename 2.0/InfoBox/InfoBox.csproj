@@ -118,6 +118,7 @@
     <Compile Include="Enums\InformationBoxInitialization.cs" />
     <Compile Include="Enums\InformationBoxMessageCategory.cs" />
     <Compile Include="Enums\InformationBoxOpacity.cs" />
+    <Compile Include="Enums\InformationBoxOrder.cs" />
     <Compile Include="Enums\InformationBoxPosition.cs" />
     <Compile Include="Enums\InformationBoxResult.cs" />
     <Compile Include="Enums\InformationBoxStyle.cs" />
