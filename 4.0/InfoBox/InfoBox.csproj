@@ -108,6 +108,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SideBorderEnum.cs" />
+    <Compile Include="Enums\InformationBoxOrder.cs" />
     <Compile Include="Enums\IconType.cs" />
     <Compile Include="Enums\InformationBoxAutoSizeMode.cs" />
     <Compile Include="Enums\InformationBoxBehavior.cs" />

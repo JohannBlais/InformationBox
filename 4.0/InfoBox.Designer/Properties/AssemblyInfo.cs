@@ -17,7 +17,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Johann Blais")]
 [assembly: AssemblyProduct("InformationBox Designer")]
-[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2008")]
+[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -41,5 +41,5 @@ using System.Resources;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyFileVersion("0.9.0.0")]
