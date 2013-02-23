@@ -9,7 +9,7 @@
 Name "InformationBox"
 
 ; The file to write
-OutFile "InformationBoxSetup.exe"
+OutFile "InformationBoxSetup-2.0.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\InformationBox
