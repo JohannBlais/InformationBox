@@ -389,6 +389,11 @@ namespace InfoBox
                     // Opacity
                     this.opacity = (InformationBoxOpacity) parameter;
                 }
+                else if (parameter is Form)
+                {
+                    // Form parent
+                    this.Parent = (Form)Parent;
+                }
             }
         }
 
@@ -1000,12 +1005,17 @@ namespace InfoBox
             this.messageText.Text = this.messageText.Text.Replace("\n\r", "\n");
             this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
 
-            if (this.autoSizeMode != InformationBoxAutoSizeMode.None)
+            Screen currentScreen = Screen.FromControl(this);
+            int screenWidth = currentScreen.WorkingArea.Width;
+
+            if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
+            {
+                this.messageText.WordWrap = true;
+                this.messageText.Size = this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth / 2).ToSize();
+            }
+            else
             {
                 this.internalText = new StringBuilder(this.messageText.Text);
-
-                Screen currentScreen = Screen.FromControl(this);
-                int screenWidth = currentScreen.WorkingArea.Width;
 
                 if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
                 {
@@ -1018,7 +1028,7 @@ namespace InfoBox
 
                     foreach (Match sentence in sentences)
                     {
-                        int sentenceLength = (int) this.measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
+                        int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
                         if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                         {
                             formattedText.Append(Environment.NewLine);
@@ -1042,9 +1052,10 @@ namespace InfoBox
                 }
 
                 this.messageText.Text = this.internalText.ToString();
+
+                this.messageText.Size = this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font).ToSize();
             }
 
-            this.messageText.Size = this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font).ToSize();
             this.messageText.Width += BorderPadding;
         }
 

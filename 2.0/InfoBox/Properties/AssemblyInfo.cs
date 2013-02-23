@@ -18,7 +18,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Johann Blais")]
 [assembly: AssemblyProduct("InformationBox")]
-[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2009")]
+[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -45,5 +45,5 @@ using System.Runtime.CompilerServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyFileVersion("0.9.0.0")]
