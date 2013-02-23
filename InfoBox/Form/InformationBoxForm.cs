@@ -189,6 +189,11 @@ namespace InfoBox
         /// </summary>
         private int elapsedTime;
 
+        /// <summary>
+        /// Z-Order of the form
+        /// </summary>
+        private InformationBoxOrder order = InformationBoxOrder.Default;
+
         #endregion Attributes
 
         #region Constructors
@@ -394,6 +399,11 @@ namespace InfoBox
                     // Form parent
                     this.Parent = (Form)Parent;
                 }
+                else if (parameter is InformationBoxOrder)
+                {
+                    // z-order
+                    this.order = (InformationBoxOrder)parameter;
+                }
             }
         }
 
@@ -418,6 +428,7 @@ namespace InfoBox
             this.SetAutoClose();
             this.SetOpacity();
             this.PlaySound();
+            this.SetOrder();
 
             if (this.behavior == InformationBoxBehavior.Modal)
             {
@@ -586,6 +597,11 @@ namespace InfoBox
             if (parameters.HelpNavigator.HasValue)
             {
                 this.helpNavigator = parameters.HelpNavigator.Value;
+            }
+
+            if (parameters.Order.HasValue)
+            {
+                this.order = parameters.Order.Value;
             }
         }
 
@@ -994,6 +1010,21 @@ namespace InfoBox
         }
 
         #endregion Icon
+
+        #region Z-Order
+
+        /// <summary>
+        /// Sets the order.
+        /// </summary>
+        private void SetOrder()
+        {
+            if (this.order == InformationBoxOrder.TopMost)
+            {
+                this.TopMost = true;
+            }
+        }
+
+        #endregion Z-Order
 
         #region Text
 

@@ -129,6 +129,9 @@ namespace InfoBox.Designer
             this.btnShowModeless = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.ddlOpacities = new System.Windows.Forms.ComboBox();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.rdbOrderTopMost = new System.Windows.Forms.RadioButton();
+            this.rdbOrderDefault = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -150,6 +153,7 @@ namespace InfoBox.Designer
             this.groupBox17.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
+            this.groupBox20.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -376,7 +380,7 @@ namespace InfoBox.Designer
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(323, 483);
+            this.btnShow.Location = new System.Drawing.Point(323, 534);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -468,7 +472,7 @@ namespace InfoBox.Designer
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 538);
+            this.txbCode.Location = new System.Drawing.Point(12, 589);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -480,7 +484,7 @@ namespace InfoBox.Designer
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGenerate.ContextMenuStrip = this.cmsLanguage;
-            this.btnGenerate.Location = new System.Drawing.Point(118, 483);
+            this.btnGenerate.Location = new System.Drawing.Point(118, 534);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -1136,7 +1140,7 @@ namespace InfoBox.Designer
             // btnShowModeless
             // 
             this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShowModeless.Location = new System.Drawing.Point(528, 483);
+            this.btnShowModeless.Location = new System.Drawing.Point(528, 534);
             this.btnShowModeless.Name = "btnShowModeless";
             this.btnShowModeless.Size = new System.Drawing.Size(183, 27);
             this.btnShowModeless.TabIndex = 22;
@@ -1162,11 +1166,45 @@ namespace InfoBox.Designer
             this.ddlOpacities.Size = new System.Drawing.Size(230, 21);
             this.ddlOpacities.TabIndex = 0;
             // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.rdbOrderTopMost);
+            this.groupBox20.Controls.Add(this.rdbOrderDefault);
+            this.groupBox20.Location = new System.Drawing.Point(12, 474);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(264, 44);
+            this.groupBox20.TabIndex = 23;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Z-Order";
+            // 
+            // rdbOrderTopMost
+            // 
+            this.rdbOrderTopMost.AutoSize = true;
+            this.rdbOrderTopMost.Location = new System.Drawing.Point(147, 18);
+            this.rdbOrderTopMost.Name = "rdbOrderTopMost";
+            this.rdbOrderTopMost.Size = new System.Drawing.Size(67, 17);
+            this.rdbOrderTopMost.TabIndex = 1;
+            this.rdbOrderTopMost.Text = "TopMost";
+            this.rdbOrderTopMost.UseVisualStyleBackColor = true;
+            // 
+            // rdbOrderDefault
+            // 
+            this.rdbOrderDefault.AutoSize = true;
+            this.rdbOrderDefault.Checked = true;
+            this.rdbOrderDefault.Location = new System.Drawing.Point(18, 18);
+            this.rdbOrderDefault.Name = "rdbOrderDefault";
+            this.rdbOrderDefault.Size = new System.Drawing.Size(59, 17);
+            this.rdbOrderDefault.TabIndex = 0;
+            this.rdbOrderDefault.TabStop = true;
+            this.rdbOrderDefault.Text = "Default";
+            this.rdbOrderDefault.UseVisualStyleBackColor = true;
+            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 617);
+            this.ClientSize = new System.Drawing.Size(828, 668);
+            this.Controls.Add(this.groupBox20);
             this.Controls.Add(this.groupBox19);
             this.Controls.Add(this.btnShowModeless);
             this.Controls.Add(this.groupBox18);
@@ -1233,6 +1271,8 @@ namespace InfoBox.Designer
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox19.ResumeLayout(false);
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1339,6 +1379,9 @@ namespace InfoBox.Designer
         private System.Windows.Forms.ContextMenuStrip cmsLanguage;
         private System.Windows.Forms.ToolStripMenuItem tsmCSharp;
         private System.Windows.Forms.ToolStripMenuItem tsmVbNet;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.RadioButton rdbOrderTopMost;
+        private System.Windows.Forms.RadioButton rdbOrderDefault;
 
     }
 }

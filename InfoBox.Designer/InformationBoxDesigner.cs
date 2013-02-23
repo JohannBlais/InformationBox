@@ -8,10 +8,9 @@ namespace InfoBox.Designer
 {
     using System;
     using System.Drawing;
-    using System.Text;
+    using System.Globalization;
     using System.Threading;
     using System.Windows.Forms;
-    using System.Globalization;
     using InfoBox.Designer.CodeGeneration;
 
     /// <summary>
@@ -84,6 +83,7 @@ namespace InfoBox.Designer
             DesignParameters design = this.GetDesign();
             InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
             InformationBoxOpacity opacity = this.GetOpacity();
+            InformationBoxOrder order = this.GetOrder();
 
             InformationBoxTitleIcon titleIcon = null;
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
@@ -93,11 +93,11 @@ namespace InfoBox.Designer
 
             if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order);
             }
 
             if (checkState != 0)
@@ -257,7 +257,7 @@ namespace InfoBox.Designer
         {
             if (null != this.ddlIcons.SelectedItem)
             {
-                return (InformationBoxIcon) this.ddlIcons.SelectedItem;
+                return (InformationBoxIcon)this.ddlIcons.SelectedItem;
             }
 
             return InformationBoxIcon.None;
@@ -271,7 +271,7 @@ namespace InfoBox.Designer
         {
             if (null != this.ddlOpacities.SelectedItem)
             {
-                return (InformationBoxOpacity) this.ddlOpacities.SelectedItem;
+                return (InformationBoxOpacity)this.ddlOpacities.SelectedItem;
             }
 
             return InformationBoxOpacity.NoFade;
@@ -398,6 +398,21 @@ namespace InfoBox.Designer
         }
 
         /// <summary>
+        /// Gets the z-order of the form.
+        /// </summary>
+        /// <returns>The z-order of the form</returns>
+        private InformationBoxOrder GetOrder()
+        {
+            InformationBoxOrder order = InformationBoxOrder.Default;
+            if (rdbOrderTopMost.Checked)
+            {
+                order = InformationBoxOrder.TopMost;
+            }
+
+            return order;
+        }
+
+        /// <summary>
         /// Gets the state of the check box.
         /// </summary>
         /// <returns>The state of the checkbox</returns>
@@ -444,14 +459,14 @@ namespace InfoBox.Designer
             {
                 return new AutoCloseParameters(
                     Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                    (InformationBoxDefaultButton) Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
+                    (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
             }
 
             if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1)
             {
                 return new AutoCloseParameters(
                     Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                    (InformationBoxResult) Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
+                    (InformationBoxResult)Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
             }
 
             return new AutoCloseParameters(Convert.ToInt32(this.nudAutoCloseSeconds.Value));
@@ -533,6 +548,7 @@ namespace InfoBox.Designer
             DesignParameters design = this.GetDesign();
             InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
             InformationBoxOpacity opacity = this.GetOpacity();
+            InformationBoxOrder order = this.GetOrder();
 
             ICodeGeneratorFactory factory = new CodeGeneratorFactory();
             ICodeGenerator codeGen = factory.CreateGenerator(language);
@@ -541,7 +557,7 @@ namespace InfoBox.Designer
                     behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text,
                     icon, iconFileName, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked,
                     this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, style, this.chbActivateAutoClose.Checked,
-                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity);
+                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order);
 
             this.txbCode.Text = generatedCode;
         }
@@ -605,7 +621,7 @@ namespace InfoBox.Designer
         {
             cmsLanguage.Show(btnGenerate, new Point(0, btnGenerate.Height));
         }
-        
+
         /// <summary>
         /// Handles the Click event of the tsmCSharp control.
         /// </summary>
@@ -719,7 +735,7 @@ namespace InfoBox.Designer
             this.formColor = selected;
         }
 
-        #endregion Colors        
+        #endregion Colors
 
         #endregion Event handlers
     }

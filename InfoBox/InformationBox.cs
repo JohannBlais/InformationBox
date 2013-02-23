@@ -207,6 +207,10 @@ namespace InfoBox
         ///         <term>A Form instance</term>
         ///         <description>the parent of the <see cref="InformationBox"/>.</description>
         ///     </item>
+        ///     <item>
+        ///         <term><see cref="InformationBoxOrder"/></term>
+        ///         <description>how the <see cref="InformationBox"/> will appear on the screen compared to the other forms.</description>
+        ///     </item>
         /// </list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>
