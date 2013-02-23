@@ -56,8 +56,14 @@ Section "Assemblies and Designer (required)" SecBin
   File "InfoBox.Designer\bin\Release\InfoBox.dll"
   SetOutPath $INSTDIR\bin\fr
   File "InfoBox.Designer\bin\Release\fr\InfoBox.resources.dll"
-  SetOutPath $INSTDIR\bin\pt-BR
-  File "InfoBox.Designer\bin\Release\pt-BR\InfoBox.resources.dll"
+  SetOutPath $INSTDIR\bin\pt
+  File "InfoBox.Designer\bin\Release\pt\InfoBox.resources.dll"
+  SetOutPath $INSTDIR\bin\ar
+  File "InfoBox.Designer\bin\Release\ar\InfoBox.resources.dll"
+  SetOutPath $INSTDIR\bin\fa
+  File "InfoBox.Designer\bin\Release\fa\InfoBox.resources.dll"
+  SetOutPath $INSTDIR\bin\nl
+  File "InfoBox.Designer\bin\Release\nl\InfoBox.resources.dll"
   
   SetOutPath $INSTDIR
   

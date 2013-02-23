@@ -103,6 +103,10 @@ namespace InfoBox
         ///         <term>A MessageBox enum value</term>
         ///         <description>the value for the corresponding <see cref="InformationBox"/> enum value.</description>
         ///     </item>
+        ///     <item>
+        ///         <term>A Form instance</term>
+        ///         <description>the parent of the <see cref="InformationBox"/>.</description>
+        ///     </item>
         /// </list>
         /// </summary>
         /// <param name="text">The text to display in the message box.</param>
@@ -198,6 +202,10 @@ namespace InfoBox
         ///     <item>
         ///         <term>A MessageBox enum value</term>
         ///         <description>the value for the correspondin <see cref="InformationBox"/> enum value.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>A Form instance</term>
+        ///         <description>the parent of the <see cref="InformationBox"/>.</description>
         ///     </item>
         /// </list>
         /// </summary>
