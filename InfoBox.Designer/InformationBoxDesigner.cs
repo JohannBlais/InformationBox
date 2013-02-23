@@ -83,6 +83,7 @@ namespace InfoBox.Designer
             DesignParameters design = this.GetDesign();
             InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
             InformationBoxOpacity opacity = this.GetOpacity();
+            InformationBoxOrder order = this.GetOrder();
 
             InformationBoxTitleIcon titleIcon = null;
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
@@ -92,11 +93,11 @@ namespace InfoBox.Designer
 
             if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order);
             }
 
             if (checkState != 0)
@@ -397,6 +398,21 @@ namespace InfoBox.Designer
         }
 
         /// <summary>
+        /// Gets the z-order of the form.
+        /// </summary>
+        /// <returns>The z-order of the form</returns>
+        private InformationBoxOrder GetOrder()
+        {
+            InformationBoxOrder order = InformationBoxOrder.Default;
+            if (rdbOrderTopMost.Checked)
+            {
+                order = InformationBoxOrder.TopMost;
+            }
+
+            return order;
+        }
+
+        /// <summary>
         /// Gets the state of the check box.
         /// </summary>
         /// <returns>The state of the checkbox</returns>
@@ -532,6 +548,7 @@ namespace InfoBox.Designer
             DesignParameters design = this.GetDesign();
             InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
             InformationBoxOpacity opacity = this.GetOpacity();
+            InformationBoxOrder order = this.GetOrder();
 
             ICodeGeneratorFactory factory = new CodeGeneratorFactory();
             ICodeGenerator codeGen = factory.CreateGenerator(language);
@@ -540,7 +557,7 @@ namespace InfoBox.Designer
                     behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text,
                     icon, iconFileName, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked,
                     this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, style, this.chbActivateAutoClose.Checked,
-                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity);
+                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order);
 
             this.txbCode.Text = generatedCode;
         }

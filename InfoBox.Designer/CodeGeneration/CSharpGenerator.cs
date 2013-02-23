@@ -40,6 +40,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="titleStyle">The title style.</param>
         /// <param name="titleIconFileName">Filename of the title icon .</param>
         /// <param name="opacity">The opacity.</param>
+        /// <param name="order">The order.</param>
         /// <returns></returns>
         public string GenerateSingleCall(InformationBoxBehavior behavior,
                                          string text,
@@ -64,7 +65,8 @@ namespace InfoBox.Designer.CodeGeneration
                                          DesignParameters design,
                                          InformationBoxTitleIconStyle titleStyle,
                                          String titleIconFileName,
-                                         InformationBoxOpacity opacity)
+                                         InformationBoxOpacity opacity,
+                                         InformationBoxOrder order)
         {
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -164,6 +166,11 @@ namespace InfoBox.Designer.CodeGeneration
             if (style != InformationBoxStyle.Standard)
             {
                 codeBuilder.AppendFormat("InformationBoxStyle.{0}, ", style);
+            }
+
+            if (order != InformationBoxOrder.Default)
+            {
+                codeBuilder.AppendFormat("InformationBoxOrder.{0}, ", order);
             }
 
             if (useAutoClose)

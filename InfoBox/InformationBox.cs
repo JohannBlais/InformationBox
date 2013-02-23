@@ -144,6 +144,8 @@ namespace InfoBox
         /// <param name="behavior">The behavior.</param>
         /// <param name="callback">The callback.</param>
         /// <param name="opacity">The opacity.</param>
+        /// <param name="parent">The parent form.</param>
+        /// <param name="order">The z-order</param>
         /// <returns>One of the <see cref="InformationBoxResult"/> values.</returns>
         public static InformationBoxResult Show(string text,
                                                 string title = "",
@@ -171,11 +173,13 @@ namespace InfoBox
                                                 MessageBoxDefaultButton? legacyDefaultButton = null,
                                                 InformationBoxBehavior behavior = InformationBoxBehavior.Modal,
                                                 AsyncResultCallback callback = null,
-                                                InformationBoxOpacity opacity = InformationBoxOpacity.NoFade)
+                                                InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
+                                                Form parent = null,
+                                                InformationBoxOrder order = InformationBoxOrder.Default)
         {
             var parameters = new object[]{ title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity };
+                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order };
 
             return new InformationBoxForm(text, parameters).Show();
         }
@@ -227,6 +231,10 @@ namespace InfoBox
         ///         <description>where the <see cref="InformationBox"/> will appear on the screen.</description>
         ///     </item>
         ///     <item>
+        ///         <term><see cref="InformationBoxOrder"/></term>
+        ///         <description>how the <see cref="InformationBox"/> will appear on the screen compared to the other forms.</description>
+        ///     </item>
+        ///     <item>
         ///         <term><see cref="System.Boolean"/></term>
         ///         <description>whether the help button is displayed or not.</description>
         ///     </item>
@@ -265,6 +273,10 @@ namespace InfoBox
         ///     <item>
         ///         <term>A MessageBox enum value</term>
         ///         <description>the value for the corresponding <see cref="InformationBox"/> enum value.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>A Form instance</term>
+        ///         <description>the parent of the <see cref="InformationBox"/>.</description>
         ///     </item>
         /// </list>
         /// </summary>
@@ -310,6 +322,8 @@ namespace InfoBox
         /// <param name="behavior">The behavior.</param>
         /// <param name="callback">The callback.</param>
         /// <param name="opacity">The opacity.</param>
+        /// <param name="parent">The parent form.</param>
+        /// <param name="order">The z-order</param>
         /// <returns>
         /// One of the <see cref="InformationBoxResult"/> values.
         /// </returns>
@@ -340,11 +354,13 @@ namespace InfoBox
                                                 MessageBoxDefaultButton? legacyDefaultButton = null,
                                                 InformationBoxBehavior behavior = InformationBoxBehavior.Modal,
                                                 AsyncResultCallback callback = null,
-                                                InformationBoxOpacity opacity = InformationBoxOpacity.NoFade)
+                                                InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
+                                                Form parent = null,
+                                                InformationBoxOrder order = InformationBoxOrder.Default)
         {
             var parameters = new object[]{ title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity };
+                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order };
 
             return new InformationBoxForm(text, parameters).Show(out checkBoxState);
         }
