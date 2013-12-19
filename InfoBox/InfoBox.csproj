@@ -161,6 +161,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>InformationBoxForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.fa.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
