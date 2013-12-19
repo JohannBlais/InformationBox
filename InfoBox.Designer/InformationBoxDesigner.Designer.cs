@@ -628,6 +628,7 @@ namespace InfoBox.Designer
             this.ddlLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlLanguage.Items.AddRange(new object[] {
             "ar - Arabic",
+            "de - German",
             "en - English",
             "fa - Persian",
             "fr - Français",
