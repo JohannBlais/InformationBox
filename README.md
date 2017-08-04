@@ -31,7 +31,7 @@ Starting with release 0.6.5.2, the source, binary and help files are packaged us
 The project is available on NuGet, deployable using the installers, or compilable from source.
 
 **Features**
-* Multilanguage support (contributors needed). [Here](Supported-Languages) is a list of supported languages.
+* Multilanguage support (contributors needed). [Here](https://github.com/JohannBlais/InformationBox/blob/master/docs/Supported%20Languages.md) is a list of supported languages.
 * New visual style using glass components {"(.NET 2.0+ only)"}.
 * Scrollable when the text is too large.
 * Message is selectable for easy copy (Ctrl-C).
@@ -49,11 +49,11 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Support for MessageBox enums.
 * .NET {"1.1/2.0+"} versions.
 * Help file support.
-* Possibility to show modeless boxes, details [here](Modeless-boxes).
-* Possibility to define [scopes](InformationBox-scopes).
+* Possibility to show modeless boxes, details [here](https://github.com/JohannBlais/InformationBox/blob/master/docs/Modeless%20boxes.md).
+* Possibility to define [scopes](https://github.com/JohannBlais/InformationBox/blob/master/docs/InformationBox%20scopes.md).
 * Opacity (10 to 100%)
 * Developer friendly (provide-only-what-you-want-to-customize constructor).
 * Visual Designer. Customize your InformationBox and the designer generates the code !
 * Available for FREE even for commercial use. 
 
-[Screenshots](Screenshots) | [Samples](Samples) | [release:Download](18372) | [Contributors](Contributors) | [Contribute](Contribute) | [InformationBox in action](InformationBox-in-action)
+[Screenshots](https://github.com/JohannBlais/InformationBox/blob/master/docs/Screenshots.md) | [Samples](https://github.com/JohannBlais/InformationBox/blob/master/docs/Samples.md) | [Contributors](https://github.com/JohannBlais/InformationBox/blob/master/docs/Contributors.md) | [Contribute](https://github.com/JohannBlais/InformationBox/blob/master/docs/Contribute.md) | [InformationBox in action](https://github.com/JohannBlais/InformationBox/blob/master/docs/InformationBox%20in%20action.md)
