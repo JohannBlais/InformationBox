@@ -3,6 +3,11 @@
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 .NET 4.0/4.5: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
+**Build**
+
+Status for master: 
+![master](https://johannblais.visualstudio.com/_apis/public/build/definitions/ce081581-71ef-4bf2-bda5-0288ef071e07/1/badge)
+
 **Project Description**
 
 InformationBox is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace.
