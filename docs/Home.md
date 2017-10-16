@@ -18,11 +18,11 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
 **Highlights**
 
 The InformationBox initializes itself according the provided parameters. The constructor accepts an undefined number of parameters, in an undefined order. Unlike the default MessageBox, if you only need to specify the default button, you do not have to provide any other parameter. Provide what you need, and let the default values do their jobs.
-A version exists for both the framework 1.1 and 2.0{"+"} and 4.0{"+."}
+A version exists for both the framework 1.1 and 2.0+ and 4.0+.
 The .NET 4.0 version supports optional parameters allowing clearer use of the different parameters.
 
-{"Starting with release 0.6.0.0, a new visual style is available. It is only for the .NET 2.0+ version. As a result, the latest .NET 1.1 version is 0.5.1.0."}
-{"It is not planned to implement the new visual style in the .NET 1.1 branch, and as soon as this branch is stable, it will be discontinued, allowing faster development of the .NET 2.0+ branch."}
+Starting with release 0.6.0.0, a new visual style is available. It is only for the .NET 2.0+ version. As a result, the latest .NET 1.1 version is 0.5.1.0.
+It is not planned to implement the new visual style in the .NET 1.1 branch, and as soon as this branch is stable, it will be discontinued, allowing faster development of the .NET 2.0+ branch.
 
 Starting with release 0.6.5.2, the source, binary and help files are packaged using NSIS.
 
@@ -32,7 +32,7 @@ The project is available on NuGet, deployable using the installers, or compilabl
 
 **Features**
 * Multilanguage support (contributors needed). [Here](Supported-Languages) is a list of supported languages.
-* New visual style using glass components {"(.NET 2.0+ only)"}.
+* New visual style using glass components (.NET 2.0+ only).
 * Scrollable when the text is too large.
 * Message is selectable for easy copy (Ctrl-C).
 * Possibility to modify the colors (back colors).
@@ -47,13 +47,13 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Custom placement (center on parent/screen).
 * Possibility to reformat text to minimize width or height of the InformationBox.
 * Support for MessageBox enums.
-* .NET {"1.1/2.0+"} versions.
+* .NET 1.1/2.0+ versions.
 * Help file support.
 * Possibility to show modeless boxes, details [here](Modeless-boxes).
 * Possibility to define [scopes](InformationBox-scopes).
 * Opacity (10 to 100%)
 * Developer friendly (provide-only-what-you-want-to-customize constructor).
-* Visual Designer. Customize your InformationBox and the designer generates the code !
+* Visual Designer. Customize your InformationBox and the designer generates the code!
 * Available for FREE even for commercial use. 
 
 [Screenshots](Screenshots) | [Samples](Samples) | [release:Download](18372) | [Contributors](Contributors) | [Contribute](Contribute) | [InformationBox in action](InformationBox-in-action)
