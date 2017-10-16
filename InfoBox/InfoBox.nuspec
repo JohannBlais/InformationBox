@@ -26,7 +26,6 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <dependencies />
     </metadata>
     <files>
-        <file src="..\license.txt" target="content\informationbox.license.txt" />
         <file src="bin\Release\InfoBox.dll" target="lib\net40\InfoBox.dll" /> 
         <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40\" />
         <file src="bin\Release\InfoBox.dll" target="lib\net40-client\InfoBox.dll" />  
