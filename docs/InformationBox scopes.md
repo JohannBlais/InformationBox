@@ -7,7 +7,7 @@ For example, if in a method you have defined several boxes, all using the same b
 **Examples**
 
 _The concept_
-{{
+```
 private void Form1_Load(object sender, EventArgs e)
 {
     // declare a new scope
@@ -24,12 +24,12 @@ private void Form1_Load(object sender, EventArgs e)
     // The scope is now disposed, all InformationBox below this line will have the default parameters
     InformationBox.Show("Message");
 }
-}}
+```
 
 There are times when you do not need/want to use the parameters defined in the current scope. You can deactivate the scopes for a particular InformationBox by passing InformationBoxInitialization.FromParametersOnly into the Show method.
 
 _InformationBoxInitialization.FromParametersOnly_
-{{
+```
 private void Form1_Load(object sender, EventArgs e)
 {
     // declare a new scope
@@ -47,4 +47,4 @@ private void Form1_Load(object sender, EventArgs e)
     // The scope is now disposed, all InformationBox below this line will have the default parameters
     InformationBox.Show("Message");
 }
-}}
+```
