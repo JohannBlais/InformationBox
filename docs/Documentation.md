@@ -6,4 +6,3 @@ You can find some additional topic below:
 * [Contributors](Contributors)
 * [Contribute](Contribute)
 * [InformationBox in action](InformationBox-in-action)
-* [release:Download](102370)
