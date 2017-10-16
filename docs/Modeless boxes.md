@@ -9,7 +9,7 @@ In case of a box asking the user to choose between multiple actions (yes/no, Ok/
 This example is taken directly from the designer and demonstrates a simple callback.
 
 _The callback method_
-{{
+```
 /// <summary>
 /// Call when a asynchronous InformationBox is closed.
 /// </summary>
@@ -18,21 +18,21 @@ private static void boxClosed(InformationBoxResult result)
 {
     InformationBox.Show(String.Format("I am the result of a modeless box : " + result));
 }
-}}
+```
 
 _The parameter passed to the show method_
-{{
+```
 new AsyncResultCallBack(boxClosed)
-}}
+```
 
 **Example 2**
 For those (like me) who love anonymous methods, here is how you can do with modeless boxes :
 
 _An anonymous method_
-{{
+```
 InformationBox.Show("Message",
                     InformationBoxBehavior.Modeless,
                     (AsyncResultCallBack) delegate(InformationBoxResult result)
                         { MessageBox.Show(result.ToString()); });
-}}
+```
 You just have to cast the delegate into the AsyncResultCallBack type.
