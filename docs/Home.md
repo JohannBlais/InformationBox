@@ -56,4 +56,4 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Visual Designer. Customize your InformationBox and the designer generates the code!
 * Available for FREE even for commercial use. 
 
-[Screenshots](Screenshots) | [Samples](Samples) | [Contributors](Contributors) | [Contribute](Contribute) | [InformationBox in action](InformationBox%20in%20action.md)
+[Screenshots](Screenshots.md) | [Samples](Samples.md) | [Contributors](Contributors.md) | [Contribute](Contribute.md) | [InformationBox in action](InformationBox%20in%20action.md)
