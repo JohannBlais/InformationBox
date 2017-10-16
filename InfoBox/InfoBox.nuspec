@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>InformationBox</id>
+        <version>0.9.0</version>
+        <title>InformationBox</title>
+        <authors>Johann Blais</authors>
+        <owners>Johann Blais</owners>
+        <licenseUrl>https://github.com/JohannBlais/InformationBox/blob/master/license.md</licenseUrl>
+        <projectUrl>https://github.com/JohannBlais/InformationBox</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/JohannBlais/InformationBox/master/Logo.bmp</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>It provides the same base functionality and is extended with, for example, custom buttons, or personnalized icons. You can customize your InformationBoxes with custom screen position, or custom button placement. And there are many more features !
+
+InformationBox is the simplest and easiest way to create personalized MessageBox.
+
+Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
+        <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms nam</summary>
+        <releaseNotes>- Latest bug fixes
+- Improved rendering for long text under default parameters
+- Added possibility to set the parent form
+- Added possibility to set the box as topmost window</releaseNotes>
+        <copyright>Copyright 2017</copyright>
+        <language>en-US</language>
+        <tags>MessageBox Winforms</tags>
+        <dependencies />
+    </metadata>
+    <files>
+        <file src="..\license.txt" target="content\informationbox.license.txt" />
+        <file src="bin\Release\InfoBox.dll" target="lib\net40\InfoBox.dll" /> 
+        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40\" />
+        <file src="bin\Release\InfoBox.dll" target="lib\net40-client\InfoBox.dll" />  
+        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40-client\" />
+        <file src="bin\Release\InfoBox.dll" target="lib\net45\InfoBox.dll" /> 
+        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net45\" />
+    </files>
+</package>

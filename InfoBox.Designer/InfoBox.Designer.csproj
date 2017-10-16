@@ -27,7 +27,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <SignManifests>false</SignManifests>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>ftp://johannblais.developpez.com/publish/infobox/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -50,6 +50,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -106,6 +107,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
+    <None Include="InfoBox.Designer_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\key.snk" />
     <None Include="Properties\Settings.settings">
@@ -117,12 +120,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InfoBox\InfoBox.csproj">
-      <Project>{18B58CA4-E470-4EB4-AC2B-52BECAFE0B53}</Project>
-      <Name>InfoBox</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
@@ -153,6 +150,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfoBox\InfoBox.csproj">
+      <Project>{18b58ca4-e470-4eb4-ac2b-52becafe0b53}</Project>
+      <Name>InfoBox</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

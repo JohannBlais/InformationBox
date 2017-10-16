@@ -150,7 +150,6 @@ namespace InfoBox
             this.messageText.Size = new System.Drawing.Size(100, 20);
             this.messageText.TabIndex = 0;
             this.messageText.Text = "Text";
-            this.messageText.WordWrap = false;
             // 
             // pnlForm
             // 
@@ -183,8 +182,8 @@ namespace InfoBox
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Title";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LblTitle_MouseMove);
             this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LblTitle_MouseDown);
+            this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LblTitle_MouseMove);
             this.lblTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LblTitle_MouseUp);
             // 
             // InformationBoxForm

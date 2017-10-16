@@ -26,14 +26,13 @@
     <SandcastlePath />
     <WorkingPath />
     <BuildLogFile />
-    <FrameworkVersion>.NET Framework 2.0</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
     <HelpTitle>InformationBox Help</HelpTitle>
     <PresentationStyle>VS2010</PresentationStyle>
     <HelpFileVersion>0.7.1.0</HelpFileVersion>
     <DocumentationSources>
       <DocumentationSource sourceFile="InfoBox\bin\Debug\InfoBox.dll" />
-      <DocumentationSource sourceFile="InfoBox\bin\Debug\InfoBox.xml" />
-    </DocumentationSources>
+<DocumentationSource sourceFile="InfoBox\bin\Debug\InfoBox.xml" /></DocumentationSources>
     <SyntaxFilters>Standard</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <RootNamespaceContainer>False</RootNamespaceContainer>

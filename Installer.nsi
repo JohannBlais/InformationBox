@@ -9,7 +9,7 @@
 Name "InformationBox"
 
 ; The file to write
-OutFile "InformationBoxSetup-2.0.exe"
+OutFile "InformationBoxSetup-4.0.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\InformationBox
@@ -54,6 +54,8 @@ Section "Assemblies and Designer (required)" SecBin
   ; Put file there
   File "InfoBox.Designer\bin\Release\InfoBox.Designer.exe"
   File "InfoBox.Designer\bin\Release\InfoBox.dll"
+  SetOutPath $INSTDIR\bin\fr
+  File "InfoBox.Designer\bin\Release\fr\InfoBox.resources.dll"
   SetOutPath $INSTDIR\bin\fr
   File "InfoBox.Designer\bin\Release\fr\InfoBox.resources.dll"
   SetOutPath $INSTDIR\bin\pt
