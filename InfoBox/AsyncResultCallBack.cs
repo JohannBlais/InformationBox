@@ -10,5 +10,5 @@ namespace InfoBox
     /// Delegate used when a box is closed to inform the caller.
     /// </summary>
     /// <param name="result">The result.</param>
-    public delegate void AsyncResultCallBack(InformationBoxResult result);
+    public delegate void AsyncResultCallback(InformationBoxResult result);
 }
