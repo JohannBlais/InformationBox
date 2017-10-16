@@ -6,7 +6,7 @@
 
 **Build**
 
-Status for master: 
+Status for .NET 4.0+ branch: 
 ![master](https://johannblais.visualstudio.com/_apis/public/build/definitions/ce081581-71ef-4bf2-bda5-0288ef071e07/1/badge)
 
 **Project Description**
