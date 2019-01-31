@@ -27,10 +27,13 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
     </metadata>
     <files>
         <file src="InfoBox.dll" target="lib\net40\InfoBox.dll" /> 
+        <file src="InfoBox.pdb" target="lib\net40\InfoBox.pdb" /> 
         <file src="**\InfoBox.resources.dll" target="lib\net40\" />
-        <file src="InfoBox.dll" target="lib\net40-client\InfoBox.dll" />  
+        <file src="InfoBox.dll" target="lib\net40-client\InfoBox.dll" />
+        <file src="InfoBox.pdb" target="lib\net40-client\InfoBox.pdb" />
         <file src="**\InfoBox.resources.dll" target="lib\net40-client\" />
         <file src="InfoBox.dll" target="lib\net45\InfoBox.dll" /> 
+        <file src="InfoBox.pdb" target="lib\net45\InfoBox.pdb" />
         <file src="**\InfoBox.resources.dll" target="lib\net45\" />
     </files>
 </package>
