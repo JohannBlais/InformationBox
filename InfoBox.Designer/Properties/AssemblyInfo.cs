@@ -41,5 +41,5 @@ using System.Resources;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("0.9.0.0")]
-[assembly: AssemblyFileVersion("0.9.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
