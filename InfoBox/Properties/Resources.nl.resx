@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LabelAbort" xml:space="preserve">
-    <value>Afbreken</value>
+    <value>&amp;Afbreken</value>
   </data>
   <data name="LabelCancel" xml:space="preserve">
     <value>&amp;Annuleren</value>
@@ -127,21 +127,21 @@
     <value>Toon dit scherm niet opnieuw</value>
   </data>
   <data name="LabelHelp" xml:space="preserve">
-    <value>Help</value>
+    <value>&amp;Help</value>
   </data>
   <data name="LabelIgnore" xml:space="preserve">
     <value>&amp;Negeren</value>
   </data>
   <data name="LabelNo" xml:space="preserve">
-    <value>Nee</value>
+    <value>&amp;Nee</value>
   </data>
   <data name="LabelOK" xml:space="preserve">
-    <value>OK</value>
+    <value>&amp;OK</value>
   </data>
   <data name="LabelRetry" xml:space="preserve">
     <value>&amp;Opnieuw</value>
   </data>
   <data name="LabelYes" xml:space="preserve">
-    <value>Ja</value>
+    <value>&amp;Ja</value>
   </data>
 </root>
