@@ -16,10 +16,7 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
         <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms nam</summary>
-        <releaseNotes>- Latest bug fixes
-- Improved rendering for long text under default parameters
-- Added possibility to set the parent form
-- Added possibility to set the box as topmost window</releaseNotes>
+        <releaseNotes>- Support for .NET core 3.1</releaseNotes>
         <copyright>Copyright 2017</copyright>
         <language>en-US</language>
         <tags>MessageBox Winforms</tags>
