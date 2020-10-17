@@ -8,7 +8,7 @@
         <owners>Johann Blais</owners>
         <license type="expression">Apache-2.0</license>
         <projectUrl>https://github.com/JohannBlais/InformationBox</projectUrl>
-        <icon>images\Logo.bmp</icon>
+        <icon>images\Logo.png</icon>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>It provides the same base functionality and is extended with, for example, custom buttons, or personnalized icons. You can customize your InformationBoxes with custom screen position, or custom button placement. And there are many more features !
 
@@ -41,6 +41,6 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.pdb" target="lib\netcoreapp3.1\" />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\**\InfoBox.resources.dll" target="lib\netcoreapp3.1\" />
 
-        <file src="..\Logo.bmp" target="images\" />
+        <file src="..\Logo.png" target="images\" />
     </files>
 </package>
