@@ -37,7 +37,7 @@ Starting with release 0.6.5.2, the source, binary and help files are packaged us
 The project is available on NuGet, deployable using the installers, or compilable from source.
 
 **Features**
-* Multilanguage support (contributors needed). [Here](Supported%20Languages.md) is a list of supported languages.
+* Multilanguage support (contributors needed). [Here](docs/Supported%20Languages.md) is a list of supported languages.
 * New visual style using glass components (.NET 2.0+ only).
 * Scrollable when the text is too large.
 * Message is selectable for easy copy (Ctrl-C).
@@ -55,11 +55,11 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Support for MessageBox enums.
 * .NET 1.1/2.0+ versions.
 * Help file support.
-* Possibility to show modeless boxes, details [here](Modeless%20boxes.md).
-* Possibility to define [scopes](InformationBox%20scopes.md).
+* Possibility to show modeless boxes, details [here](docs/Modeless%20boxes.md).
+* Possibility to define [scopes](docs/InformationBox%20scopes.md).
 * Opacity (10 to 100%)
 * Developer friendly (provide-only-what-you-want-to-customize constructor).
 * Visual Designer. Customize your InformationBox and the designer generates the code!
 * Available for FREE even for commercial use. 
 
-[Screenshots](Screenshots.md) | [Samples](Samples.md) | [Contributors](Contributors.md) | [Contribute](Contribute.md) | [InformationBox in action](InformationBox%20in%20action.md)
+[Screenshots](docs/Screenshots.md) | [Samples](docs/Samples.md) | [Contributors](docs/Contributors.md) | [Contribute](docs/Contribute.md) | [InformationBox in action](docs/InformationBox%20in%20action.md)
