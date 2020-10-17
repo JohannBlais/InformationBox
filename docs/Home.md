@@ -2,7 +2,7 @@
 
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 
-.NET 4.0/4.5: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
+.NET 4.0/4.5 and .NET core 3.1: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
 **Build**
 
@@ -19,8 +19,6 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !
 
-**Find out more about the inner working of InformationBox [on my blog](http://johannblais.blogspot.com/)**.
-
 **Highlights**
 
 The InformationBox initializes itself according the provided parameters. The constructor accepts an undefined number of parameters, in an undefined order. Unlike the default MessageBox, if you only need to specify the default button, you do not have to provide any other parameter. Provide what you need, and let the default values do their jobs.
@@ -30,11 +28,9 @@ The .NET 4.0 version supports optional parameters allowing clearer use of the di
 Starting with release 0.6.0.0, a new visual style is available. It is only for the .NET 2.0+ version. As a result, the latest .NET 1.1 version is 0.5.1.0.
 It is not planned to implement the new visual style in the .NET 1.1 branch, and as soon as this branch is stable, it will be discontinued, allowing faster development of the .NET 2.0+ branch.
 
-Starting with release 0.6.5.2, the source, binary and help files are packaged using NSIS.
-
 **Availability**
 
-The project is available on NuGet, deployable using the installers, or compilable from source.
+The project is available on NuGet, or compilable from source.
 
 **Features**
 * Multilanguage support (contributors needed). [Here](Supported%20Languages.md) is a list of supported languages.
