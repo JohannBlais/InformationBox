@@ -4,7 +4,7 @@
 // <author>Johann Blais</author>
 // <summary>Contains the entry point</summary>
 
-namespace InfoBox.Test
+namespace InfoBox.Designer
 {
     using System;
     using System.Windows.Forms;

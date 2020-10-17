@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <RootNamespace>InfoBox</RootNamespace>
+        <AssemblyName>InfoBox</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="..\InfoBox\**\*.cs" Exclude="..\InfoBox\**\AssemblyInfo.cs" />
+        <EmbeddedResource Include="..\InfoBox\**\*.resx" />
+    </ItemGroup>
+</Project>

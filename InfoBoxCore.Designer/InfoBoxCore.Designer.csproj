@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <RootNamespace>InfoBox.Designer</RootNamespace>
+        <AssemblyName>InfoBox.Designer</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="..\InfoBox.Designer\**\*.cs" Exclude="..\InfoBox.Designer\**\AssemblyInfo.cs" />
+        <EmbeddedResource Include="..\InfoBox.Designer\**\*.resx" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="..\InfoBox.Designer\obj\**" />
+      <Compile Remove="obj\**" />
+      <EmbeddedResource Remove="obj\**" />
+      <None Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\InfoBoxCore\InfoBoxCore.csproj" />
+    </ItemGroup>
+</Project>
