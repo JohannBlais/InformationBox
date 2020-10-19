@@ -20,6 +20,7 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <copyright>Copyright 2017</copyright>
         <language>en-US</language>
         <tags>MessageBox Winforms</tags>
+        <repository type="git" url="https://github.com/JohannBlais/InformationBox">
         <dependencies>
             <group targetFramework=".NETCoreApp3.1" />
             <group targetFramework=".NETFramework4.0" />
