@@ -29,16 +29,12 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
     </metadata>
     <files>
         <file src="bin\Release\InfoBox.dll" target="lib\net40\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net40\" />
         <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40\" />
         <file src="bin\Release\InfoBox.dll" target="lib\net40-client\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net40-client\" />
         <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40-client\" />
         <file src="bin\Release\InfoBox.dll" target="lib\net45\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net45\" />
         <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net45\" />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.dll" target="lib\netcoreapp3.1\"  />
-        <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.pdb" target="lib\netcoreapp3.1\" />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\**\InfoBox.resources.dll" target="lib\netcoreapp3.1\" />
 
         <file src="..\Logo.png" target="images\" />
