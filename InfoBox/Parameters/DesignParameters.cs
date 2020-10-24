@@ -35,13 +35,13 @@ namespace InfoBox
         /// Gets the back color of the form.
         /// </summary>
         /// <value>The back color of the form.</value>
-        public Color FormBackColor { get; private set; } = SystemColors.Control;
+        public Color FormBackColor { get; private set; }
 
         /// <summary>
         /// Gets the back color of the bars.
         /// </summary>
         /// <value>The back color of the bars.</value>
-        public Color BarsBackColor { get; private set; } = SystemColors.Control;
+        public Color BarsBackColor { get; private set; }
 
         #endregion Properties
 
