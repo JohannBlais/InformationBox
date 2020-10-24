@@ -6,10 +6,10 @@
 
 namespace InfoBox.Designer
 {
+    using InfoBox.Designer;
     using System;
     using System.Windows.Forms;
-    using InfoBox.Designer;
-
+    
     /// <summary>
     /// Entry point for the designer
     /// </summary>

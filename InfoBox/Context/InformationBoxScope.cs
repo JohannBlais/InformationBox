@@ -50,7 +50,7 @@ namespace InfoBox
         {
             this.definedParameters = parameters;
             this.EffectiveParameters = parameters;
-            
+
             if (behavior == InformationBoxScopeBehavior.InheritParent)
             {
                 if (null != Current)

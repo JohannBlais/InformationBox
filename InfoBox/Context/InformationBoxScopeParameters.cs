@@ -6,10 +6,10 @@
 
 namespace InfoBox
 {
-    using System;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
-    using System.Diagnostics;
+
 
     /// <summary>
     /// Contains the parameters used by a specific scope.
@@ -53,7 +53,7 @@ namespace InfoBox
         /// Contains the default button
         /// </summary>
         private InformationBoxDefaultButton? defaultButton;
-        
+
         /// <summary>
         /// Contains the main icon
         /// </summary>
@@ -420,7 +420,7 @@ namespace InfoBox
                 return false;
             }
 
-            InformationBoxScopeParameters compared = (InformationBoxScopeParameters) obj;
+            InformationBoxScopeParameters compared = (InformationBoxScopeParameters)obj;
 
             return this.AutoClose == compared.AutoClose &&
                    this.AutoSizeMode == compared.AutoSizeMode &&
@@ -485,12 +485,12 @@ namespace InfoBox
         /// <returns>The result of the operator.</returns>
         public static bool operator ==(InformationBoxScopeParameters parameter1, InformationBoxScopeParameters parameter2)
         {
-            if (null == (object) parameter1)
+            if (null == (object)parameter1)
             {
                 return false;
             }
 
-            if (null == (object) parameter2)
+            if (null == (object)parameter2)
             {
                 return false;
             }

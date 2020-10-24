@@ -6,9 +6,6 @@
 
 namespace InfoBox
 {
-    using InfoBox.Internals;
-    using System;
-
     /// <summary>
     /// Contains the parameters used for the auto-close feature.
     /// </summary>
@@ -29,8 +26,8 @@ namespace InfoBox
         /// <summary>
         /// Contains the default button
         /// </summary>
-        private readonly InformationBoxDefaultButton button = InformationBoxDefaultButton.Button1;
-        
+      private readonly InformationBoxDefaultButton button = InformationBoxDefaultButton.Button1;
+
         /// <summary>
         /// Contains the result to use
         /// </summary>
@@ -167,8 +164,8 @@ namespace InfoBox
                 return false;
             }
 
-            AutoCloseParameters compared = (AutoCloseParameters) obj;
-            
+            AutoCloseParameters compared = (AutoCloseParameters)obj;
+
             return this.DefaultButton == compared.DefaultButton &&
                    this.Mode == compared.Mode &&
                    this.Result == compared.Result &&

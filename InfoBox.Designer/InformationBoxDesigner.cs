@@ -6,12 +6,12 @@
 
 namespace InfoBox.Designer
 {
+    using InfoBox.Designer.CodeGeneration;
     using System;
     using System.Drawing;
     using System.Globalization;
     using System.Threading;
     using System.Windows.Forms;
-    using InfoBox.Designer.CodeGeneration;
 
     /// <summary>
     /// Designer for the InformationBoxes.

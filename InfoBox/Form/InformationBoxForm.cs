@@ -6,6 +6,9 @@
 
 namespace InfoBox
 {
+    using InfoBox.Controls;
+    using InfoBox.Internals;
+    using InfoBox.Properties;
     using System;
     using System.Drawing;
     using System.Globalization;
@@ -14,9 +17,6 @@ namespace InfoBox
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
-    using InfoBox.Controls;
-    using InfoBox.Internals;
-    using InfoBox.Properties;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.

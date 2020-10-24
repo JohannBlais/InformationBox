@@ -6,10 +6,9 @@
 
 namespace InfoBox
 {
-    using System.Drawing;
     using System;
-    using System.IO;
-
+    using System.Drawing;
+    
     /// <summary>
     /// Represents the icon for the title bar
     /// </summary>

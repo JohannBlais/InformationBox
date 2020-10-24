@@ -28,12 +28,12 @@ namespace InfoBox.Controls
         /// Contains the side border bottom column
         /// </summary>
         private Color sideBorderBottomColor = Color.Transparent;
-        
+
         /// <summary>
         /// Contains the side border top column
         /// </summary>
         private Color sideBorderTopColor = Color.White;
-        
+
         /// <summary>
         /// Contains the side border width
         /// </summary>
