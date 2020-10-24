@@ -14,4 +14,8 @@
         <Compile Include="..\InfoBox\**\*.cs" Exclude="..\InfoBox\**\AssemblyInfo.cs" />
         <EmbeddedResource Include="..\InfoBox\**\*.resx" />
     </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    </ItemGroup>
 </Project>
