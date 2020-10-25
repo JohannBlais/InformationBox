@@ -365,17 +365,17 @@ namespace InfoBox
                     // Title icon
                     this.titleIcon = ((InformationBoxTitleIcon)parameter).Icon;
                 }
-                else if (parameter is MessageBoxButtons? && parameter != null)
+                else if (parameter is MessageBoxButtons?)
                 {
                     // MessageBox buttons
                     this.buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons)parameter);
                 }
-                else if (parameter is MessageBoxIcon? && parameter != null)
+                else if (parameter is MessageBoxIcon?)
                 {
                     // MessageBox icon
                     this.icon = MessageBoxEnumConverter.Parse((MessageBoxIcon)parameter);
                 }
-                else if (parameter is MessageBoxDefaultButton? && parameter != null)
+                else if (parameter is MessageBoxDefaultButton?)
                 {
                     // MessageBox default button
                     this.defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton)parameter);
@@ -884,7 +884,7 @@ namespace InfoBox
 
             #endregion Height
 
-            // Sets the size;
+            // Sets the size
             ClientSize = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight);
 
             #region Position
