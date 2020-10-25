@@ -57,12 +57,12 @@ namespace InfoBox
         /// <summary>
         /// Help file associated to the help button
         /// </summary>
-        private readonly string helpFile = String.Empty;
+        private readonly string helpFile;
 
         /// <summary>
         /// Help topic associated to the help button
         /// </summary>
-        private readonly string helpTopic = String.Empty;
+        private readonly string helpTopic;
 
         /// <summary>
         /// Contains the graphics used to measure the strings
@@ -82,7 +82,7 @@ namespace InfoBox
         /// <summary>
         /// Main icon of the form
         /// </summary>
-        private InformationBoxIcon icon = InformationBoxIcon.None;
+        private InformationBoxIcon icon;
 
         /// <summary>
         /// Custom icon
@@ -92,12 +92,12 @@ namespace InfoBox
         /// <summary>
         /// Buttons displayed on the form
         /// </summary>
-        private InformationBoxButtons buttons = InformationBoxButtons.OK;
+        private InformationBoxButtons buttons;
 
         /// <summary>
         /// Default button
         /// </summary>
-        private InformationBoxDefaultButton defaultButton = InformationBoxDefaultButton.Button1;
+        private InformationBoxDefaultButton defaultButton;
 
         /// <summary>
         /// Buttons layout
@@ -198,11 +198,68 @@ namespace InfoBox
 
         #region Constructors
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxForm"/> class using the specified text.
         /// </summary>
-        /// <param name="text">The text of the box.</param>
-        internal InformationBoxForm(string text)
+        /// <param name="text">The text.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="helpFile">The help file.</param>
+        /// <param name="helpTopic">The help topic.</param>
+        /// <param name="initialization">The initialization.</param>
+        /// <param name="buttons">The buttons.</param>
+        /// <param name="icon">The icon.</param>
+        /// <param name="customIcon">The custom icon.</param>
+        /// <param name="defaultButton">The default button.</param>
+        /// <param name="customButtons">The custom buttons.</param>
+        /// <param name="buttonsLayout">The buttons layout.</param>
+        /// <param name="autoSizeMode">The auto size mode.</param>
+        /// <param name="position">The position.</param>
+        /// <param name="showHelpButton">if set to <c>true</c> shows help button.</param>
+        /// <param name="helpNavigator">The help navigator.</param>
+        /// <param name="showDoNotShowAgainCheckBox">if set to <c>true</c> shows the do not show again check box.</param>
+        /// <param name="style">The style.</param>
+        /// <param name="autoClose">The auto close configuration.</param>
+        /// <param name="design">The design.</param>
+        /// <param name="titleStyle">The title style.</param>
+        /// <param name="titleIcon">The title icon.</param>
+        /// <param name="legacyButtons">The legacy buttons.</param>
+        /// <param name="legacyIcon">The legacy icon.</param>
+        /// <param name="legacyDefaultButton">The legacy default button.</param>
+        /// <param name="behavior">The behavior.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="opacity">The opacity.</param>
+        /// <param name="parent">The parent form.</param>
+        /// <param name="order">The z-order</param>
+        internal InformationBoxForm(string text,
+                                    string title = "",
+                                    string helpFile = "",
+                                    string helpTopic = "",
+                                    InformationBoxInitialization initialization = InformationBoxInitialization.FromScopeAndParameters,
+                                    InformationBoxButtons buttons = InformationBoxButtons.OK,
+                                    InformationBoxIcon icon = InformationBoxIcon.None,
+                                    Icon customIcon = null,
+                                    InformationBoxDefaultButton defaultButton = InformationBoxDefaultButton.Button1,
+                                    string[] customButtons = null,
+                                    InformationBoxButtonsLayout buttonsLayout = InformationBoxButtonsLayout.GroupMiddle,
+                                    InformationBoxAutoSizeMode autoSizeMode = InformationBoxAutoSizeMode.None,
+                                    InformationBoxPosition position = InformationBoxPosition.CenterOnParent,
+                                    bool showHelpButton = false,
+                                    HelpNavigator helpNavigator = HelpNavigator.TableOfContents,
+                                    InformationBoxCheckBox showDoNotShowAgainCheckBox = 0,
+                                    InformationBoxStyle style = InformationBoxStyle.Standard,
+                                    AutoCloseParameters autoClose = null,
+                                    DesignParameters design = null,
+                                    InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.None,
+                                    InformationBoxTitleIcon titleIcon = null,
+                                    MessageBoxButtons? legacyButtons = null,
+                                    MessageBoxIcon? legacyIcon = null,
+                                    MessageBoxDefaultButton? legacyDefaultButton = null,
+                                    InformationBoxBehavior behavior = InformationBoxBehavior.Modal,
+                                    AsyncResultCallback callback = null,
+                                    InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
+                                    Form parent = null,
+                                    InformationBoxOrder order = InformationBoxOrder.Default)
         {
             this.InitializeComponent();
             this.measureGraphics = CreateGraphics();
@@ -213,6 +270,67 @@ namespace InfoBox
             this.lblTitle.Font = SystemFonts.CaptionFont;
 
             this.messageText.Text = text;
+
+            if (InformationBoxInitialization.FromParametersOnly == initialization)
+            {
+                this.LoadCurrentScope();
+            }
+
+            this.Text = title;
+            this.lblTitle.Text = title;
+            this.helpFile = helpFile;
+            this.helpTopic = helpTopic;
+            this.buttons = buttons;
+            this.icon = icon;
+            if (customIcon != null)
+            {
+                this.iconType = IconType.UserDefined;
+                this.customIcon = new Icon(customIcon, 48, 48);
+            }
+            this.defaultButton = defaultButton;
+            if (customButtons != null)
+            {
+                if (customButtons.Length > 0)
+                {
+                    this.buttonUser1Text = customButtons[0];
+                }
+
+                if (customButtons.Length > 1)
+                {
+                    this.buttonUser2Text = customButtons[1];
+                }
+            }
+            this.buttonsLayout = buttonsLayout;
+            this.autoSizeMode = autoSizeMode;
+            this.position = position;
+            this.showHelpButton = showHelpButton;
+            this.helpNavigator = helpNavigator;
+            this.checkBox = showDoNotShowAgainCheckBox;
+            this.style = style;
+            this.autoClose = autoClose;
+            this.design = design;
+            this.titleStyle = titleStyle;
+            if (titleIcon != null)
+            {
+                this.titleIcon = titleIcon.Icon;
+            }
+            if (!(legacyButtons is null))
+            {
+                this.buttons = MessageBoxEnumConverter.Parse(legacyButtons.Value);
+            }
+            if (!(legacyIcon is null))
+            {
+                this.icon = MessageBoxEnumConverter.Parse(legacyIcon.Value);
+            }
+            if (!(legacyDefaultButton is null))
+            {
+                this.defaultButton = MessageBoxEnumConverter.Parse(legacyDefaultButton.Value);
+            }
+            this.behavior = behavior;
+            this.callback = callback;
+            this.opacity = opacity;
+            this.Parent = parent;
+            this.order = order;
         }
 
         /// <summary>

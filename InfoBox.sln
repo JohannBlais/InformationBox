@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBox.Designer", "InfoBox
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBoxCore", "InfoBoxCore\InfoBoxCore.csproj", "{A49425AF-F2B6-4E15-B74E-06CD895E0AA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBoxCore.Designer", "InfoBoxCore.Designer\InfoBoxCore.Designer.csproj", "{28D9FEBD-ACC0-4C27-AE65-5D9985AB3AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBoxCore.Designer", "InfoBoxCore.Designer\InfoBoxCore.Designer.csproj", "{28D9FEBD-ACC0-4C27-AE65-5D9985AB3AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
