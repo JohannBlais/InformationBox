@@ -6,7 +6,6 @@
 
 namespace InfoBox.Designer
 {
-    using InfoBox.Designer;
     using System;
     using System.Windows.Forms;
     

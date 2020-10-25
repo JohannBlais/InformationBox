@@ -6,7 +6,6 @@
 
 namespace InfoBox
 {
-    using System;
     using System.Drawing;
     
     /// <summary>

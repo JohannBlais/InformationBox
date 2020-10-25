@@ -146,11 +146,11 @@ namespace InfoBox.Controls
         /// <summary>
         /// Paints the background of the control.
         /// </summary>
-        /// <param name="pevent">A <see cref="T:System.Windows.Forms.PaintEventArgs"></see> that contains information about the control to paint.</param>
-        protected override void OnPaintBackground(PaintEventArgs pevent)
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs"></see> that contains information about the control to paint.</param>
+        protected override void OnPaintBackground(PaintEventArgs e)
         {
-            PaintingEngine.PaintGlassEffect(pevent.Graphics, BackColor, Width, Height);
-            PaintingEngine.PaintGradientBorders(pevent.Graphics, this.sideBorderTopColor, this.sideBorderBottomColor, Width, Height, this.sideBorderWidth, this.sideBorder);
+            PaintingEngine.PaintGlassEffect(e.Graphics, BackColor, Width, Height);
+            PaintingEngine.PaintGradientBorders(e.Graphics, this.sideBorderTopColor, this.sideBorderBottomColor, Width, Height, this.sideBorderWidth, this.sideBorder);
         }
 
         #endregion Event Handlers

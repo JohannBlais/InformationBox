@@ -405,16 +405,6 @@ namespace InfoBox
                     // z-order
                     this.order = (InformationBoxOrder)parameter;
                 }
-                else if (parameter is Form)
-                {
-                    // Form parent
-                    this.Parent = (Form)Parent;
-                }
-                else if (parameter is InformationBoxOrder)
-                {
-                    // z-order
-                    this.order = (InformationBoxOrder)parameter;
-                }
             }
         }
 

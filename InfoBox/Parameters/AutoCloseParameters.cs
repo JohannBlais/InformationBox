@@ -11,35 +11,6 @@ namespace InfoBox
     /// </summary>
     public class AutoCloseParameters
     {
-        #region Attributes
-
-        /// <summary>
-        /// Contains the default parameters
-        /// </summary>
-        private static readonly AutoCloseParameters defaultParameters = new AutoCloseParameters(30);
-
-        /// <summary>
-        /// Contains the time to wait before return
-        /// </summary>
-        private readonly int timeToWait = 30;
-
-        /// <summary>
-        /// Contains the default button
-        /// </summary>
-      private readonly InformationBoxDefaultButton button = InformationBoxDefaultButton.Button1;
-
-        /// <summary>
-        /// Contains the result to use
-        /// </summary>
-        private readonly InformationBoxResult result = InformationBoxResult.None;
-
-        /// <summary>
-        /// Contains the autoclose defined parameters
-        /// </summary>
-        private readonly AutoCloseDefinedParameters mode = AutoCloseDefinedParameters.TimeOnly;
-
-        #endregion Attributes
-
         #region Constructors
 
         /// <summary>
@@ -48,8 +19,8 @@ namespace InfoBox
         /// <param name="time">The time to wait.</param>
         public AutoCloseParameters(int time)
         {
-            this.mode = AutoCloseDefinedParameters.TimeOnly;
-            this.timeToWait = time;
+            this.Mode = AutoCloseDefinedParameters.TimeOnly;
+            this.Seconds = time;
         }
 
         /// <summary>
@@ -58,8 +29,8 @@ namespace InfoBox
         /// <param name="buttonToUse">The button to use.</param>
         public AutoCloseParameters(InformationBoxDefaultButton buttonToUse)
         {
-            this.mode = AutoCloseDefinedParameters.Button;
-            this.button = buttonToUse;
+            this.Mode = AutoCloseDefinedParameters.Button;
+            this.DefaultButton = buttonToUse;
         }
 
         /// <summary>
@@ -69,9 +40,9 @@ namespace InfoBox
         /// <param name="buttonToUse">The button to use.</param>
         public AutoCloseParameters(int time, InformationBoxDefaultButton buttonToUse)
         {
-            this.mode = AutoCloseDefinedParameters.Button;
-            this.timeToWait = time;
-            this.button = buttonToUse;
+            this.Mode = AutoCloseDefinedParameters.Button;
+            this.Seconds = time;
+            this.DefaultButton = buttonToUse;
         }
 
         /// <summary>
@@ -80,8 +51,8 @@ namespace InfoBox
         /// <param name="result">The result.</param>
         public AutoCloseParameters(InformationBoxResult result)
         {
-            this.mode = AutoCloseDefinedParameters.Result;
-            this.result = result;
+            this.Mode = AutoCloseDefinedParameters.Result;
+            this.Result = result;
         }
 
         /// <summary>
@@ -91,9 +62,9 @@ namespace InfoBox
         /// <param name="result">The result to use.</param>
         public AutoCloseParameters(int time, InformationBoxResult result)
         {
-            this.mode = AutoCloseDefinedParameters.Result;
-            this.timeToWait = time;
-            this.result = result;
+            this.Mode = AutoCloseDefinedParameters.Result;
+            this.Seconds = time;
+            this.Result = result;
         }
 
         #endregion Constructors
@@ -104,46 +75,31 @@ namespace InfoBox
         /// Gets the default AutoCloseParameters.
         /// </summary>
         /// <value>The default AutoCloseParameters.</value>
-        public static AutoCloseParameters Default
-        {
-            get { return defaultParameters; }
-        }
+        public static AutoCloseParameters Default { get; } = new AutoCloseParameters(30);
 
         /// <summary>
         /// Gets the seconds.
         /// </summary>
         /// <value>The seconds.</value>
-        public int Seconds
-        {
-            get { return this.timeToWait; }
-        }
+        public int Seconds { get; private set; } = 30;
 
         /// <summary>
         /// Gets the default button.
         /// </summary>
         /// <value>The default button.</value>
-        public InformationBoxDefaultButton DefaultButton
-        {
-            get { return this.button; }
-        }
+        public InformationBoxDefaultButton DefaultButton { get; private set; } = InformationBoxDefaultButton.Button1;
 
         /// <summary>
         /// Gets the result.
         /// </summary>
         /// <value>The result.</value>
-        public InformationBoxResult Result
-        {
-            get { return this.result; }
-        }
+        public InformationBoxResult Result { get; private set; } = InformationBoxResult.None;
 
         /// <summary>
         /// Gets the mode.
         /// </summary>
         /// <value>The autoclose mode.</value>
-        public AutoCloseDefinedParameters Mode
-        {
-            get { return this.mode; }
-        }
+        public AutoCloseDefinedParameters Mode { get; private set; }
 
         #endregion Properties
 
