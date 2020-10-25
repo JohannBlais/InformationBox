@@ -127,6 +127,12 @@ namespace InfoBox
         /// <value>The order.</value>
         public InformationBoxOrder? Order { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sound.
+        /// </summary>
+        /// <value>The sound.</value>
+        public InformationBoxSound? Sound { get; set; }
+
         #endregion Properties
 
         #region Methods
@@ -228,6 +234,11 @@ namespace InfoBox
                 this.Order = parameters.Order.Value;
             }
 
+            if (parameters.Sound.HasValue && !this.Sound.HasValue)
+            {
+                this.Sound = parameters.Sound.Value;
+            }
+
             return this;
         }
 
@@ -271,6 +282,7 @@ namespace InfoBox
                    this.Opacity == compared.Opacity &&
                    this.Order == compared.Order &&
                    this.Position == compared.Position &&
+                   this.Sound == compared.Sound &&
                    this.Style == compared.Style &&
                    this.TitleIcon == compared.TitleIcon &&
                    this.TitleIconStyle == compared.TitleIconStyle;
@@ -300,6 +312,7 @@ namespace InfoBox
             hashCode ^= this.Opacity == null ? 0 : this.Opacity.GetHashCode();
             hashCode ^= this.Order == null ? 0 : this.Order.GetHashCode();
             hashCode ^= this.Position == null ? 0 : this.Position.GetHashCode();
+            hashCode ^= this.Sound == null ? 0 : this.Sound.GetHashCode();
             hashCode ^= this.Style == null ? 0 : this.Style.GetHashCode();
             hashCode ^= this.TitleIcon == null ? 0 : this.TitleIcon.GetHashCode();
             hashCode ^= this.TitleIconStyle == null ? 0 : this.TitleIconStyle.GetHashCode();

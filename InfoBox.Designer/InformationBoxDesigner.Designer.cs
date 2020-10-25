@@ -132,6 +132,9 @@ namespace InfoBox.Designer
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.rdbOrderTopMost = new System.Windows.Forms.RadioButton();
             this.rdbOrderDefault = new System.Windows.Forms.RadioButton();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.rdbSoundMute = new System.Windows.Forms.RadioButton();
+            this.rdbSoundDefault = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -154,6 +157,7 @@ namespace InfoBox.Designer
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox20.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -498,19 +502,19 @@ namespace InfoBox.Designer
             this.tsmCSharp,
             this.tsmVbNet});
             this.cmsLanguage.Name = "cmsLanguage";
-            this.cmsLanguage.Size = new System.Drawing.Size(114, 48);
+            this.cmsLanguage.Size = new System.Drawing.Size(113, 48);
             // 
             // tsmCSharp
             // 
             this.tsmCSharp.Name = "tsmCSharp";
-            this.tsmCSharp.Size = new System.Drawing.Size(113, 22);
+            this.tsmCSharp.Size = new System.Drawing.Size(112, 22);
             this.tsmCSharp.Text = "C#";
             this.tsmCSharp.Click += new System.EventHandler(this.tsmCSharp_Click);
             // 
             // tsmVbNet
             // 
             this.tsmVbNet.Name = "tsmVbNet";
-            this.tsmVbNet.Size = new System.Drawing.Size(113, 22);
+            this.tsmVbNet.Size = new System.Drawing.Size(112, 22);
             this.tsmVbNet.Text = "VB.NET";
             this.tsmVbNet.Click += new System.EventHandler(this.tsmVbNet_Click);
             // 
@@ -1200,11 +1204,45 @@ namespace InfoBox.Designer
             this.rdbOrderDefault.Text = "Default";
             this.rdbOrderDefault.UseVisualStyleBackColor = true;
             // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.rdbSoundMute);
+            this.groupBox21.Controls.Add(this.rdbSoundDefault);
+            this.groupBox21.Location = new System.Drawing.Point(282, 474);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(264, 44);
+            this.groupBox21.TabIndex = 24;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Sound";
+            // 
+            // rdbSoundMute
+            // 
+            this.rdbSoundMute.AutoSize = true;
+            this.rdbSoundMute.Location = new System.Drawing.Point(147, 18);
+            this.rdbSoundMute.Name = "rdbSoundMute";
+            this.rdbSoundMute.Size = new System.Drawing.Size(51, 17);
+            this.rdbSoundMute.TabIndex = 1;
+            this.rdbSoundMute.Text = "None";
+            this.rdbSoundMute.UseVisualStyleBackColor = true;
+            // 
+            // rdbSoundDefault
+            // 
+            this.rdbSoundDefault.AutoSize = true;
+            this.rdbSoundDefault.Checked = true;
+            this.rdbSoundDefault.Location = new System.Drawing.Point(18, 18);
+            this.rdbSoundDefault.Name = "rdbSoundDefault";
+            this.rdbSoundDefault.Size = new System.Drawing.Size(59, 17);
+            this.rdbSoundDefault.TabIndex = 0;
+            this.rdbSoundDefault.TabStop = true;
+            this.rdbSoundDefault.Text = "Default";
+            this.rdbSoundDefault.UseVisualStyleBackColor = true;
+            // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 668);
+            this.Controls.Add(this.groupBox21);
             this.Controls.Add(this.groupBox20);
             this.Controls.Add(this.groupBox19);
             this.Controls.Add(this.btnShowModeless);
@@ -1274,6 +1312,8 @@ namespace InfoBox.Designer
             this.groupBox19.ResumeLayout(false);
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1383,6 +1423,8 @@ namespace InfoBox.Designer
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.RadioButton rdbOrderTopMost;
         private System.Windows.Forms.RadioButton rdbOrderDefault;
-
+        private System.Windows.Forms.GroupBox groupBox21;
+        private System.Windows.Forms.RadioButton rdbSoundMute;
+        private System.Windows.Forms.RadioButton rdbSoundDefault;
     }
 }

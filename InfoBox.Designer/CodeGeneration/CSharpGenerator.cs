@@ -40,6 +40,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="titleIconFileName">Filename of the title icon .</param>
         /// <param name="opacity">The opacity.</param>
         /// <param name="order">The order.</param>
+        /// <param name="sound">The sound.</param>
         /// <returns></returns>
         public string GenerateSingleCall(InformationBoxBehavior behavior,
                                          string text,
@@ -65,7 +66,8 @@ namespace InfoBox.Designer.CodeGeneration
                                          InformationBoxTitleIconStyle titleStyle,
                                          String titleIconFileName,
                                          InformationBoxOpacity opacity,
-                                         InformationBoxOrder order)
+                                         InformationBoxOrder order,
+                                         InformationBoxSound sound)
         {
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
@@ -119,6 +121,11 @@ namespace InfoBox.Designer.CodeGeneration
             if (autoSize != InformationBoxAutoSizeMode.None)
             {
                 codeBuilder.AppendFormat("autoSizeMode: InformationBoxAutoSizeMode.{0}, ", autoSize);
+            }
+
+            if (sound != InformationBoxSound.Default)
+            {
+                codeBuilder.AppendFormat("sound: InformationBoxSound.{0}, ", sound);
             }
 
             if (position != InformationBoxPosition.CenterOnParent)
