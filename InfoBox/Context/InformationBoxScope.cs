@@ -50,25 +50,22 @@ namespace InfoBox
         {
             this.definedParameters = parameters;
             this.EffectiveParameters = parameters;
-            
-            if (behavior == InformationBoxScopeBehavior.InheritParent)
+
+            if (null != Current)
             {
-                if (null != Current)
+                if (behavior == InformationBoxScopeBehavior.InheritParent)
                 {
                     // Merge with the parameters defined explicitly in the direct parent
                     this.EffectiveParameters.Merge(Current.definedParameters);
                 }
-            }
-            else if (behavior == InformationBoxScopeBehavior.InheritAll)
-            {
-                if (null != Current)
+                else if (behavior == InformationBoxScopeBehavior.InheritAll)
                 {
                     // Merge the effective parameters from the parent
                     this.EffectiveParameters.Merge(Current.Parameters);
                 }
-            }
 
-            scopesStack.Push(this);
+                scopesStack.Push(this);
+            }
         }
 
         /// <summary>

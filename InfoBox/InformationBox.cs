@@ -181,11 +181,9 @@ namespace InfoBox
                                                 Form parent = null,
                                                 InformationBoxOrder order = InformationBoxOrder.Default)
         {
-            var parameters = new object[]{ title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
+            return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order };
-
-            return new InformationBoxForm(text, parameters).Show();
+                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order).Show();
         }
 
         /// <summary>
@@ -370,11 +368,9 @@ namespace InfoBox
                                                 Form parent = null,
                                                 InformationBoxOrder order = InformationBoxOrder.Default)
         {
-            var parameters = new object[]{ title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
+            return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order };
-
-            return new InformationBoxForm(text, parameters).Show(out checkBoxState);
+                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order).Show(out checkBoxState);
         }
 
         #endregion Show

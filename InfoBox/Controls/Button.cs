@@ -9,8 +9,8 @@ namespace InfoBox.Controls
     using System;
     using System.ComponentModel;
     using System.Drawing;
-    using System.Windows.Forms;
     using System.Drawing.Drawing2D;
+    using System.Windows.Forms;
 
     /// <summary>
     /// Glass button
@@ -414,29 +414,27 @@ namespace InfoBox.Controls
 
         private void Control_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Alt == false &&
-                e.Control == false &&
-                e.Shift == false &&
+            if (!e.Alt &&
+                !e.Control &&
+                !e.Shift &&
                 (e.KeyCode == Keys.Space ||
                  e.KeyCode == Keys.Enter))
             {
                 ClickPressed();
                 e.Handled = true;
-                return;
             }
         }
 
         private void Control_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Alt == false &&
-                e.Control == false &&
-                e.Shift == false &&
+            if (!e.Alt &&
+                !e.Control &&
+                !e.Shift &&
                 (e.KeyCode == Keys.Space ||
                  e.KeyCode == Keys.Enter))
             {
                 ClickReleased();
                 e.Handled = true;
-                return;
             }
         }
 

@@ -6,28 +6,14 @@
 
 namespace InfoBox
 {
+
     using System.Drawing;
-    using System;
 
     /// <summary>
     /// Contains the values of the design parameters.
     /// </summary>
     public class DesignParameters
-    {
-        #region Internals
-
-        /// <summary>
-        /// Contains the form back color
-        /// </summary>
-        private readonly Color formBackColor = SystemColors.Control;
-
-        /// <summary>
-        /// Contains the bars back color
-        /// </summary>
-        private readonly Color barsBackColor = SystemColors.Control;
-
-        #endregion Internals
-
+    {        
         #region Constructors
 
         /// <summary>
@@ -37,8 +23,8 @@ namespace InfoBox
         /// <param name="barsBackColor">BackColor of the bars.</param>
         public DesignParameters(Color formBackColor, Color barsBackColor)
         {
-            this.formBackColor = formBackColor;
-            this.barsBackColor = barsBackColor;
+            this.FormBackColor = formBackColor;
+            this.BarsBackColor = barsBackColor;
         }
 
         #endregion Constructors
@@ -49,20 +35,14 @@ namespace InfoBox
         /// Gets the back color of the form.
         /// </summary>
         /// <value>The back color of the form.</value>
-        public Color FormBackColor
-        {
-            get { return this.formBackColor; }
-        }
+        public Color FormBackColor { get; private set; }
 
         /// <summary>
         /// Gets the back color of the bars.
         /// </summary>
         /// <value>The back color of the bars.</value>
-        public Color BarsBackColor
-        {
-            get { return this.barsBackColor; }
-        }
-        
+        public Color BarsBackColor { get; private set; }
+
         #endregion Properties
 
         #region Overrides
@@ -82,8 +62,8 @@ namespace InfoBox
                 return false;
             }
 
-            DesignParameters compared = (DesignParameters) obj;
-            
+            DesignParameters compared = (DesignParameters)obj;
+
             return this.BarsBackColor == compared.BarsBackColor &&
                    this.FormBackColor == compared.FormBackColor;
         }

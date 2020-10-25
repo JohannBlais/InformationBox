@@ -6,10 +6,6 @@
 
 namespace InfoBox
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     /// <summary>
     /// Specifies constants defining how the new scope treats the parameters of the parent scopes.
     /// </summary>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InfoBox.Designer.CodeGeneration
+﻿namespace InfoBox.Designer.CodeGeneration
 {
     /// <summary>
     /// Represents an abstract code generator factory

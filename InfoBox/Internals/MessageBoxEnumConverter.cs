@@ -21,7 +21,7 @@ namespace InfoBox.Internals
         /// <returns>The converted value</returns>
         internal static InformationBoxButtons Parse(MessageBoxButtons value)
         {
-            return (InformationBoxButtons) Enum.Parse(typeof(InformationBoxButtons), value.ToString());
+            return (InformationBoxButtons)Enum.Parse(typeof(InformationBoxButtons), value.ToString());
         }
 
         /// <summary>
