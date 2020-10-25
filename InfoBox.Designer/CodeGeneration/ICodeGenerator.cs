@@ -33,6 +33,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="titleIconFileName">Filename of the title icon .</param>
         /// <param name="opacity">The opacity.</param>
         /// <param name="order">The order.</param>
+        /// <param name="sound">The sound.</param>
         /// <returns></returns>
         string GenerateSingleCall(InformationBoxBehavior behavior,
                                   String text,
@@ -58,6 +59,7 @@ namespace InfoBox.Designer.CodeGeneration
                                   InformationBoxTitleIconStyle titleStyle,
                                   String titleIconFileName,
                                   InformationBoxOpacity opacity,
-                                  InformationBoxOrder order);
+                                  InformationBoxOrder order,
+                                  InformationBoxSound sound);
     }
 }

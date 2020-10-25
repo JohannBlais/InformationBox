@@ -84,6 +84,7 @@ namespace InfoBox.Designer
             InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
             InformationBoxOpacity opacity = this.GetOpacity();
             InformationBoxOrder order = this.GetOrder();
+            InformationBoxSound sound = this.GetSound();
 
             InformationBoxTitleIcon titleIcon = null;
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
@@ -93,11 +94,11 @@ namespace InfoBox.Designer
 
             if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
 
             if (checkState != 0)
@@ -413,6 +414,21 @@ namespace InfoBox.Designer
         }
 
         /// <summary>
+        /// Gets the sound of the form.
+        /// </summary>
+        /// <returns>The sound of the form</returns>
+        private InformationBoxSound GetSound()
+        {
+            InformationBoxSound sound = InformationBoxSound.Default;
+            if (rdbSoundMute.Checked)
+            {
+                sound = InformationBoxSound.None;
+            }
+
+            return sound;
+        }
+
+        /// <summary>
         /// Gets the state of the check box.
         /// </summary>
         /// <returns>The state of the checkbox</returns>
@@ -534,30 +550,31 @@ namespace InfoBox.Designer
         /// <param name="behavior">The behavior.</param>
         private void GenerateCode(InformationBoxBehavior behavior, Language language)
         {
-            InformationBoxButtons buttons = this.GetButtons();
-            InformationBoxIcon icon = this.GetIcon();
-            string iconFileName = this.txbIcon.Text;
-            InformationBoxDefaultButton defaultButton = this.GetDefaultButton();
-            InformationBoxButtonsLayout buttonsLayout = this.GetButtonsLayout();
-            InformationBoxAutoSizeMode autoSize = this.GetAutoSize();
-            InformationBoxPosition position = this.GetPosition();
-            HelpNavigator navigator = this.GetHelpNavigator();
-            InformationBoxCheckBox checkState = this.GetCheckBoxState();
-            InformationBoxStyle style = this.GetStyle();
-            AutoCloseParameters autoClose = this.GetAutoClose();
-            DesignParameters design = this.GetDesign();
-            InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
-            InformationBoxOpacity opacity = this.GetOpacity();
-            InformationBoxOrder order = this.GetOrder();
+            var buttons = this.GetButtons();
+            var icon = this.GetIcon();
+            var iconFileName = this.txbIcon.Text;
+            var defaultButton = this.GetDefaultButton();
+            var buttonsLayout = this.GetButtonsLayout();
+            var autoSize = this.GetAutoSize();
+            var position = this.GetPosition();
+            var navigator = this.GetHelpNavigator();
+            var checkState = this.GetCheckBoxState();
+            var style = this.GetStyle();
+            var autoClose = this.GetAutoClose();
+            var design = this.GetDesign();
+            var titleStyle = this.GetTitleStyle();
+            var opacity = this.GetOpacity();
+            var order = this.GetOrder();
+            var sound = this.GetSound();
 
-            ICodeGeneratorFactory factory = new CodeGeneratorFactory();
-            ICodeGenerator codeGen = factory.CreateGenerator(language);
+            var factory = new CodeGeneratorFactory();
+            var codeGen = factory.CreateGenerator(language);
 
-            String generatedCode = codeGen.GenerateSingleCall(
+            var generatedCode = codeGen.GenerateSingleCall(
                     behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text,
                     icon, iconFileName, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked,
                     this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, style, this.chbActivateAutoClose.Checked,
-                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order);
+                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order, sound);
 
             this.txbCode.Text = generatedCode;
         }

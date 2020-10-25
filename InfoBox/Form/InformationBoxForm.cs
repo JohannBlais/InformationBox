@@ -194,6 +194,11 @@ namespace InfoBox
         /// </summary>
         private InformationBoxOrder order = InformationBoxOrder.Default;
 
+        /// <summary>
+        /// Sound to play on opening
+        /// </summary>
+        private InformationBoxSound sound;
+
         #endregion Attributes
 
         #region Constructors
@@ -231,6 +236,7 @@ namespace InfoBox
         /// <param name="opacity">The opacity.</param>
         /// <param name="parent">The parent form.</param>
         /// <param name="order">The z-order</param>
+        /// <param name="sound">The sound</param>
         internal InformationBoxForm(string text,
                                     string title = "",
                                     string helpFile = "",
@@ -259,7 +265,8 @@ namespace InfoBox
                                     AsyncResultCallback callback = null,
                                     InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
                                     Form parent = null,
-                                    InformationBoxOrder order = InformationBoxOrder.Default)
+                                    InformationBoxOrder order = InformationBoxOrder.Default,
+                                    InformationBoxSound sound = InformationBoxSound.Default)
         {
             this.InitializeComponent();
             this.measureGraphics = CreateGraphics();
@@ -331,6 +338,7 @@ namespace InfoBox
             this.opacity = opacity;
             this.Parent = parent;
             this.order = order;
+            this.sound = sound;
         }
 
         /// <summary>
@@ -523,6 +531,11 @@ namespace InfoBox
                     // z-order
                     this.order = (InformationBoxOrder)parameter;
                 }
+                else if (parameter is InformationBoxSound)
+                {
+                    // Sound
+                    this.sound = (InformationBoxSound)parameter;
+                }
             }
         }
 
@@ -582,37 +595,42 @@ namespace InfoBox
         /// </summary>
         private void PlaySound()
         {
-            SystemSound sound;
+            if (sound == InformationBoxSound.None)
+            {
+                return;
+            }
+
+            SystemSound soundToPlay;
 
             if (this.iconType == IconType.UserDefined)
             {
-                sound = SystemSounds.Beep;
+                soundToPlay = SystemSounds.Beep;
             }
             else
             {
                 switch (IconHelper.GetCategory(this.icon))
                 {
                     case InformationBoxMessageCategory.Asterisk:
-                        sound = SystemSounds.Asterisk;
+                        soundToPlay = SystemSounds.Asterisk;
                         break;
                     case InformationBoxMessageCategory.Exclamation:
-                        sound = SystemSounds.Exclamation;
+                        soundToPlay = SystemSounds.Exclamation;
                         break;
                     case InformationBoxMessageCategory.Hand:
-                        sound = SystemSounds.Hand;
+                        soundToPlay = SystemSounds.Hand;
                         break;
                     case InformationBoxMessageCategory.Question:
-                        sound = SystemSounds.Question;
+                        soundToPlay = SystemSounds.Question;
                         break;
                     default:
-                        sound = SystemSounds.Beep;
+                        soundToPlay = SystemSounds.Beep;
                         break;
                 }
             }
 
-            if (null != sound)
+            if (null != soundToPlay)
             {
-                sound.Play();
+                soundToPlay.Play();
             }
         }
 
@@ -721,6 +739,11 @@ namespace InfoBox
             if (parameters.Order.HasValue)
             {
                 this.order = parameters.Order.Value;
+            }
+
+            if (parameters.Sound.HasValue)
+            {
+                this.sound = parameters.Sound.Value;
             }
         }
 
