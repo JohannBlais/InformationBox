@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents an abstract code generator factory
     /// </summary>
-    internal interface ICodeGeneratorFactory
+    public interface ICodeGeneratorFactory
     {
         /// <summary>
         /// Creates the code generator based on the specified language.

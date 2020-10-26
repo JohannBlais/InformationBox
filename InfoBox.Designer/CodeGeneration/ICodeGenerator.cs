@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace InfoBox.Designer.CodeGeneration
 {
-    internal interface ICodeGenerator
+    public interface ICodeGenerator
     {
         /// <summary>
         /// Generates a single method call to display an InfoBox.
@@ -36,28 +35,28 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="sound">The sound.</param>
         /// <returns></returns>
         string GenerateSingleCall(InformationBoxBehavior behavior,
-                                  String text,
-                                  String title,
+                                  string text,
+                                  string title,
                                   InformationBoxButtons buttons,
-                                  String button1Text,
-                                  String button2Text,
+                                  string button1Text,
+                                  string button2Text,
                                   InformationBoxIcon icon,
-                                  String iconFileName,
+                                  string iconFileName,
                                   InformationBoxDefaultButton defaultButton,
                                   InformationBoxButtonsLayout buttonsLayout,
                                   InformationBoxAutoSizeMode autoSize,
                                   InformationBoxPosition position,
-                                  Boolean showHelp,
-                                  String helpFile,
-                                  String helpTopic,
+                                  bool showHelp,
+                                  string helpFile,
+                                  string helpTopic,
                                   HelpNavigator navigator,
                                   InformationBoxCheckBox checkState,
                                   InformationBoxStyle style,
-                                  Boolean useAutoClose,
+                                  bool useAutoClose,
                                   AutoCloseParameters autoClose,
                                   DesignParameters design,
                                   InformationBoxTitleIconStyle titleStyle,
-                                  String titleIconFileName,
+                                  string titleIconFileName,
                                   InformationBoxOpacity opacity,
                                   InformationBoxOrder order,
                                   InformationBoxSound sound);

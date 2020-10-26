@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies constants defining which language is used for code generation.
     /// </summary>
-    internal enum Language
+    public enum Language
     {
         /// <summary>
         /// C#
