@@ -3,7 +3,7 @@
     /// <summary>
     /// Code generator factory
     /// </summary>
-    internal class CodeGeneratorFactory : ICodeGeneratorFactory
+    public class CodeGeneratorFactory : ICodeGeneratorFactory
     {
         #region ICodeGeneratorFactory Members
 

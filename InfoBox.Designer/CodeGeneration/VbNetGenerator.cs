@@ -4,7 +4,7 @@ using System.Text;
 
 namespace InfoBox.Designer.CodeGeneration
 {
-    internal class VbNetGenerator : ICodeGenerator
+    public class VbNetGenerator : ICodeGenerator
     {
         #region ICodeGenerator Members
 

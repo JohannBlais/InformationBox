@@ -8,7 +8,7 @@ namespace InfoBox.Designer.CodeGeneration
     /// <summary>
     /// C# code generator for InformationBox calls
     /// </summary>
-    internal class CSharpGenerator : ICodeGenerator
+    public class CSharpGenerator : ICodeGenerator
     {
         #region ICodeGenerator Members
 
@@ -54,17 +54,17 @@ namespace InfoBox.Designer.CodeGeneration
                                          InformationBoxButtonsLayout buttonsLayout,
                                          InformationBoxAutoSizeMode autoSize,
                                          InformationBoxPosition position,
-                                         Boolean showHelp,
-                                         String helpFile,
-                                         String helpTopic,
+                                         bool showHelp,
+                                         string helpFile,
+                                         string helpTopic,
                                          HelpNavigator navigator,
                                          InformationBoxCheckBox checkState,
                                          InformationBoxStyle style,
-                                         Boolean useAutoClose,
+                                         bool useAutoClose,
                                          AutoCloseParameters autoClose,
                                          DesignParameters design,
                                          InformationBoxTitleIconStyle titleStyle,
-                                         String titleIconFileName,
+                                         string titleIconFileName,
                                          InformationBoxOpacity opacity,
                                          InformationBoxOrder order,
                                          InformationBoxSound sound)
@@ -78,7 +78,7 @@ namespace InfoBox.Designer.CodeGeneration
             {
                 codeBuilder.Append("CheckState doNotShowState = CheckState.Indeterminate;");
                 codeBuilder.Append(Environment.NewLine);
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ref doNotShowState, ", text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", out doNotShowState, ", text.Replace(Environment.NewLine, "\\n"));
             }
 
             if (!String.IsNullOrEmpty(title))
@@ -140,7 +140,7 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (!String.IsNullOrEmpty(helpFile))
             {
-                codeBuilder.AppendFormat("helpFile: \"{0}\", ", helpFile);
+                codeBuilder.AppendFormat("helpFile: @\"{0}\", ", helpFile);
             }
 
             if (navigator != 0)
@@ -206,7 +206,7 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (null != design)
             {
-                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "design: new DesignParameters(Color.FromArgb({0},{1},{2}), Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "design: new DesignParameters(System.Drawing.Color.FromArgb({0},{1},{2}), System.Drawing.Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)
