@@ -150,6 +150,7 @@ namespace InfoBox
         /// <param name="opacity">The opacity.</param>
         /// <param name="parent">The parent form.</param>
         /// <param name="order">The z-order</param>
+        /// <param name="sound">The sound configuration</param>
         /// <returns>One of the <see cref="InformationBoxResult"/> values.</returns>
         public static InformationBoxResult Show(string text,
                                                 string title = "",
@@ -179,11 +180,12 @@ namespace InfoBox
                                                 AsyncResultCallback callback = null,
                                                 InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
                                                 Form parent = null,
-                                                InformationBoxOrder order = InformationBoxOrder.Default)
+                                                InformationBoxOrder order = InformationBoxOrder.Default,
+                                                InformationBoxSound sound = InformationBoxSound.Default)
         {
             return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order).Show();
+                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show();
         }
 
         /// <summary>
@@ -269,6 +271,10 @@ namespace InfoBox
         ///         <description>the opacity of the <see cref="InformationBox"/>.</description>
         ///     </item>
         ///     <item>
+        ///         <term><see cref="InformationBoxSound"/></term>
+        ///         <description>whether the sound of the <see cref="InformationBox"/> should be played.</description>
+        ///     </item>
+        ///     <item>
         ///         <term><see cref="AsyncResultCallback"/></term>
         ///         <description>a method that will be called when a modeless dialog is closed.</description>
         ///     </item>
@@ -334,6 +340,7 @@ namespace InfoBox
         /// <param name="opacity">The opacity.</param>
         /// <param name="parent">The parent form.</param>
         /// <param name="order">The z-order</param>
+        /// <param name="sound">The sound configuration</param>
         /// <returns>
         /// One of the <see cref="InformationBoxResult"/> values.
         /// </returns>
@@ -366,11 +373,12 @@ namespace InfoBox
                                                 AsyncResultCallback callback = null,
                                                 InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
                                                 Form parent = null,
-                                                InformationBoxOrder order = InformationBoxOrder.Default)
+                                                InformationBoxOrder order = InformationBoxOrder.Default,
+                                                InformationBoxSound sound = InformationBoxSound.Default)
         {
             return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order).Show(out checkBoxState);
+                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
         }
 
         #endregion Show
