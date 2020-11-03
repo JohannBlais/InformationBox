@@ -19,7 +19,7 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !
 
-**Find out more about the inner working of InformationBox [on my blog](http://johannblais.blogspot.com/)**.
+**Find out more about the inner working of InformationBox [in the documentation](docs/Documentation.md)**.
 
 **Highlights**
 
