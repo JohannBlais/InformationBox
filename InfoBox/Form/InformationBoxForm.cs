@@ -55,6 +55,11 @@ namespace InfoBox
         private readonly string buttonUser2Text = "User2";
 
         /// <summary>
+        /// Text for the third user button
+        /// </summary>
+        private readonly string buttonUser3Text = "User3";
+
+        /// <summary>
         /// Help file associated to the help button
         /// </summary>
         private readonly string helpFile;
@@ -306,6 +311,11 @@ namespace InfoBox
                 {
                     this.buttonUser2Text = customButtons[1];
                 }
+
+                if (customButtons.Length > 2)
+                {
+                    this.buttonUser3Text = customButtons[2];
+                }
             }
             this.buttonsLayout = buttonsLayout;
             this.autoSizeMode = autoSizeMode;
@@ -434,6 +444,11 @@ namespace InfoBox
                     if (labels.Length > 1)
                     {
                         this.buttonUser2Text = labels[1];
+                    }
+
+                    if (labels.Length > 2)
+                    {
+                        this.buttonUser3Text = labels[2];
                     }
                 }
                 else if (parameter is InformationBoxButtonsLayout)
@@ -1295,6 +1310,7 @@ namespace InfoBox
 
             // User1
             if (this.buttons == InformationBoxButtons.OKCancelUser1 ||
+                this.buttons == InformationBoxButtons.User1User2User3 ||
                 this.buttons == InformationBoxButtons.User1User2 ||
                 this.buttons == InformationBoxButtons.YesNoUser1 ||
                 this.buttons == InformationBoxButtons.User1)
@@ -1303,9 +1319,16 @@ namespace InfoBox
             }
 
             // User2
-            if (this.buttons == InformationBoxButtons.User1User2)
+            if (this.buttons == InformationBoxButtons.User1User2 ||
+                this.buttons == InformationBoxButtons.User1User2User3)
             {
                 this.AddButton("User2", this.buttonUser2Text);
+            }
+
+            // User3
+            if (this.buttons == InformationBoxButtons.User1User2User3)
+            {
+                this.AddButton("User3", this.buttonUser3Text);
             }
 
             // Help button is displayed when asked or when a help file name exists
@@ -1416,6 +1439,9 @@ namespace InfoBox
                     break;
                 case "User2":
                     this.result = InformationBoxResult.User2;
+                    break;
+                case "User3":
+                    this.result = InformationBoxResult.User3;
                     break;
                 default:
                     this.result = InformationBoxResult.None;
