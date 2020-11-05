@@ -21,6 +21,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="buttons">The buttons.</param>
         /// <param name="button1Text">The button1 text.</param>
         /// <param name="button2Text">The button2 text.</param>
+        /// <param name="button3Text">The button3 text.</param>
         /// <param name="icon">The icon.</param>
         /// <param name="iconFileName">Name of the icon file.</param>
         /// <param name="defaultButton">The default button.</param>
@@ -48,6 +49,7 @@ namespace InfoBox.Designer.CodeGeneration
                                          InformationBoxButtons buttons,
                                          string button1Text,
                                          string button2Text,
+                                         string button3Text,
                                          InformationBoxIcon icon,
                                          string iconFileName,
                                          InformationBoxDefaultButton defaultButton,
@@ -96,6 +98,10 @@ namespace InfoBox.Designer.CodeGeneration
                 buttons == InformationBoxButtons.YesNoUser1)
             {
                 codeBuilder.AppendFormat("customButtons: new string[] {{ \"{0}\", \"{1}\" }}, ", button1Text, button2Text);
+            }
+            else if (buttons == InformationBoxButtons.User1User2User3)
+            {
+                codeBuilder.AppendFormat("customButtons: new string[] {{ \"{0}\", \"{1}\", \"{2}\" }}, ", button1Text, button2Text, button3Text);
             }
 
             if (icon != InformationBoxIcon.None)

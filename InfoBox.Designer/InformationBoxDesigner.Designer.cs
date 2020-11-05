@@ -135,6 +135,10 @@ namespace InfoBox.Designer
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.rdbSoundMute = new System.Windows.Forms.RadioButton();
             this.rdbSoundDefault = new System.Windows.Forms.RadioButton();
+            this.rdbUser1User2User3 = new System.Windows.Forms.RadioButton();
+            this.txbUser3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -208,6 +212,7 @@ namespace InfoBox.Designer
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rdbUser1User2User3);
             this.groupBox2.Controls.Add(this.rdbUser1);
             this.groupBox2.Controls.Add(this.rdbUser1User2);
             this.groupBox2.Controls.Add(this.rdbOKCancelUser1);
@@ -220,7 +225,7 @@ namespace InfoBox.Designer
             this.groupBox2.Controls.Add(this.rdbAbortRetryIgnore);
             this.groupBox2.Location = new System.Drawing.Point(282, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(264, 122);
+            this.groupBox2.Size = new System.Drawing.Size(264, 146);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buttons";
@@ -228,7 +233,7 @@ namespace InfoBox.Designer
             // rdbUser1
             // 
             this.rdbUser1.AutoSize = true;
-            this.rdbUser1.Location = new System.Drawing.Point(147, 99);
+            this.rdbUser1.Location = new System.Drawing.Point(147, 119);
             this.rdbUser1.Name = "rdbUser1";
             this.rdbUser1.Size = new System.Drawing.Size(53, 17);
             this.rdbUser1.TabIndex = 9;
@@ -238,7 +243,7 @@ namespace InfoBox.Designer
             // rdbUser1User2
             // 
             this.rdbUser1User2.AutoSize = true;
-            this.rdbUser1User2.Location = new System.Drawing.Point(147, 79);
+            this.rdbUser1User2.Location = new System.Drawing.Point(147, 99);
             this.rdbUser1User2.Name = "rdbUser1User2";
             this.rdbUser1User2.Size = new System.Drawing.Size(81, 17);
             this.rdbUser1User2.TabIndex = 8;
@@ -348,12 +353,15 @@ namespace InfoBox.Designer
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.txbUser3);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.txbUser2);
             this.groupBox4.Controls.Add(this.txbUser1);
-            this.groupBox4.Location = new System.Drawing.Point(282, 140);
+            this.groupBox4.Location = new System.Drawing.Point(282, 164);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(264, 50);
+            this.groupBox4.Size = new System.Drawing.Size(264, 76);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Custom buttons";
@@ -363,9 +371,9 @@ namespace InfoBox.Designer
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(127, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(10, 13);
+            this.label6.Size = new System.Drawing.Size(13, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "-";
+            this.label6.Text = "2";
             // 
             // txbUser2
             // 
@@ -397,7 +405,7 @@ namespace InfoBox.Designer
             this.groupBox5.Controls.Add(this.rdbDefaultButton3);
             this.groupBox5.Controls.Add(this.rdbDefaultButton2);
             this.groupBox5.Controls.Add(this.rdbDefaultButton1);
-            this.groupBox5.Location = new System.Drawing.Point(282, 267);
+            this.groupBox5.Location = new System.Drawing.Point(282, 317);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(264, 45);
             this.groupBox5.TabIndex = 5;
@@ -567,7 +575,7 @@ namespace InfoBox.Designer
             this.groupBox7.Controls.Add(this.rdbLayoutGroupMiddle);
             this.groupBox7.Controls.Add(this.rdbLayoutGroupRight);
             this.groupBox7.Controls.Add(this.rdbLayoutGroupLeft);
-            this.groupBox7.Location = new System.Drawing.Point(282, 196);
+            this.groupBox7.Location = new System.Drawing.Point(282, 246);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(264, 65);
             this.groupBox7.TabIndex = 10;
@@ -620,7 +628,7 @@ namespace InfoBox.Designer
             // 
             this.groupBox8.Controls.Add(this.ddlLanguage);
             this.groupBox8.Controls.Add(this.label4);
-            this.groupBox8.Location = new System.Drawing.Point(282, 318);
+            this.groupBox8.Location = new System.Drawing.Point(282, 368);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(264, 50);
             this.groupBox8.TabIndex = 11;
@@ -1032,7 +1040,7 @@ namespace InfoBox.Designer
             this.groupBox17.Controls.Add(this.txbColorsForm);
             this.groupBox17.Controls.Add(this.txbColorsBars);
             this.groupBox17.Controls.Add(this.chbCustomColors);
-            this.groupBox17.Location = new System.Drawing.Point(282, 374);
+            this.groupBox17.Location = new System.Drawing.Point(282, 424);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(264, 94);
             this.groupBox17.TabIndex = 20;
@@ -1208,7 +1216,7 @@ namespace InfoBox.Designer
             // 
             this.groupBox21.Controls.Add(this.rdbSoundMute);
             this.groupBox21.Controls.Add(this.rdbSoundDefault);
-            this.groupBox21.Location = new System.Drawing.Point(282, 474);
+            this.groupBox21.Location = new System.Drawing.Point(552, 474);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(264, 44);
             this.groupBox21.TabIndex = 24;
@@ -1236,6 +1244,41 @@ namespace InfoBox.Designer
             this.rdbSoundDefault.TabStop = true;
             this.rdbSoundDefault.Text = "Default";
             this.rdbSoundDefault.UseVisualStyleBackColor = true;
+            // 
+            // rdbUser1User2User3
+            // 
+            this.rdbUser1User2User3.AutoSize = true;
+            this.rdbUser1User2User3.Location = new System.Drawing.Point(147, 79);
+            this.rdbUser1User2User3.Name = "rdbUser1User2User3";
+            this.rdbUser1User2User3.Size = new System.Drawing.Size(109, 17);
+            this.rdbUser1User2User3.TabIndex = 10;
+            this.rdbUser1User2User3.Text = "User1User2User3";
+            this.rdbUser1User2User3.UseVisualStyleBackColor = true;
+            // 
+            // txbUser3
+            // 
+            this.txbUser3.Location = new System.Drawing.Point(22, 50);
+            this.txbUser3.Name = "txbUser3";
+            this.txbUser3.Size = new System.Drawing.Size(100, 20);
+            this.txbUser3.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "3";
             // 
             // InformationBoxDesigner
             // 
@@ -1426,5 +1469,9 @@ namespace InfoBox.Designer
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.RadioButton rdbSoundMute;
         private System.Windows.Forms.RadioButton rdbSoundDefault;
+        private System.Windows.Forms.RadioButton rdbUser1User2User3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txbUser3;
     }
 }

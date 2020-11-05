@@ -52,13 +52,18 @@ namespace InfoBox
         Yes,
 
         /// <summary>
-        /// The dialog box return value is User1 (usually sent from the first user defined button).
+        /// The dialog box return value is User1 (usually sent from the first user-defined button).
         /// </summary>
         User1,
 
         /// <summary>
-        /// The dialog box return value is Yes (usually sent from the second user defined button).
+        /// The dialog box return value is User2 (usually sent from the second user-defined button).
         /// </summary>
         User2,
+
+        /// <summary>
+        /// The dialog box return value is User3 (usually sent from the third user-defined button).
+        /// </summary>
+        User3,
     }
 }

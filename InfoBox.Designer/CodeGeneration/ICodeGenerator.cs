@@ -13,6 +13,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="buttons">The buttons.</param>
         /// <param name="button1Text">The button1 text.</param>
         /// <param name="button2Text">The button2 text.</param>
+        /// <param name="button3Text">The button3 text.</param>
         /// <param name="icon">The icon.</param>
         /// <param name="iconFileName">Name of the icon file.</param>
         /// <param name="defaultButton">The default button.</param>
@@ -40,6 +41,7 @@ namespace InfoBox.Designer.CodeGeneration
                                   InformationBoxButtons buttons,
                                   string button1Text,
                                   string button2Text,
+                                  string button3Text,
                                   InformationBoxIcon icon,
                                   string iconFileName,
                                   InformationBoxDefaultButton defaultButton,

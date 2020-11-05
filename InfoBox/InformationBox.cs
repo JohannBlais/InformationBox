@@ -97,6 +97,10 @@ namespace InfoBox
         ///         <description>the opacity of the <see cref="InformationBox"/>.</description>
         ///     </item>
         ///     <item>
+        ///         <term><see cref="InformationBoxSound"/></term>
+        ///         <description>the sound played upon display of the <see cref="InformationBox"/>.</description>
+        ///     </item>
+        ///     <item>
         ///         <term><see cref="AsyncResultCallback"/></term>
         ///         <description>a method that will be called when a modeless dialog is closed.</description>
         ///     </item>

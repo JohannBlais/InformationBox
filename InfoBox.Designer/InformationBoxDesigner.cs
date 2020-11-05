@@ -94,11 +94,11 @@ namespace InfoBox.Designer
 
             if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
 
             if (checkState != 0)
@@ -235,6 +235,11 @@ namespace InfoBox.Designer
             if (this.rdbOKCancelUser1.Checked)
             {
                 return InformationBoxButtons.OKCancelUser1;
+            }
+
+            if (this.rdbUser1User2User3.Checked)
+            {
+                return InformationBoxButtons.User1User2User3;
             }
 
             if (this.rdbUser1User2.Checked)
@@ -571,7 +576,7 @@ namespace InfoBox.Designer
             var codeGen = factory.CreateGenerator(language);
 
             var generatedCode = codeGen.GenerateSingleCall(
-                    behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text,
+                    behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text,
                     icon, iconFileName, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked,
                     this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, style, this.chbActivateAutoClose.Checked,
                     autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order, sound);
