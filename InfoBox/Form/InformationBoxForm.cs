@@ -918,7 +918,14 @@ namespace InfoBox
             }
             else
             {
-                StartPosition = FormStartPosition.CenterParent;
+                if (this.Parent != null && ((Form)this.Parent).IsMdiChild)
+                {
+                    StartPosition = FormStartPosition.CenterScreen;
+                }
+                else
+                {
+                    StartPosition = FormStartPosition.CenterParent;
+                }
                 CenterToParent();
             }
         }
