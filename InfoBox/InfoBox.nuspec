@@ -27,6 +27,7 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
             <group targetFramework=".NETFramework4.0-Client" />
             <group targetFramework=".NETFramework4.5" />
         </dependencies>
+        <readme>docs\Home.md</readme>
     </metadata>
     <files>
         <file src="bin\Release\InfoBox.dll" target="lib\net40\" />
@@ -43,5 +44,6 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\**\InfoBox.resources.dll" target="lib\netcoreapp3.1\" />
 
         <file src="..\Logo.png" target="images\" />
+        <file src="..\docs\Home.md" target="docs\" />
     </files>
 </package>
