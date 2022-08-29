@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InfoBoxCore.Designer\InfoBoxCore.Designer.csproj" />
-    <ProjectReference Include="..\InfoBoxCore\InfoBoxCore.csproj" />
+    <ProjectReference Include="..\InfoBox6.Designer\InfoBox6.Designer.csproj" />
+    <ProjectReference Include="..\InfoBox6\InfoBox6.csproj" />
   </ItemGroup>
 
   <ItemGroup>

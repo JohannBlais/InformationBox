@@ -27,7 +27,7 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <repository type="git" url="https://github.com/JohannBlais/InformationBox"></repository>
         <dependencies>
             <group targetFramework="netcoreapp3.1" />
-            <group targetFramework="net6.0-windows" />
+            <group targetFramework="net6.0-windows7.0" />
             <group targetFramework="net48" />
         </dependencies>
         <readme>docs\Home.md</readme>
@@ -39,6 +39,9 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.dll" target="lib\netcoreapp3.1\"  />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.pdb" target="lib\netcoreapp3.1\" />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\**\InfoBox.resources.dll" target="lib\netcoreapp3.1\" />
+        <file src="..\InfoBox6\bin\Release\net6.0-windows\InfoBox.dll" target="lib\net6.0-windows7.0\"  />
+        <file src="..\InfoBox6\bin\Release\net6.0-windows\InfoBox.pdb" target="lib\net6.0-windows7.0\" />
+        <file src="..\InfoBox6\bin\Release\net6.0-windows\**\InfoBox.resources.dll" target="lib\net6.0-windows7.0\" />
 
         <file src="..\Logo.png" target="images\" />
         <file src="..\docs\Home.md" target="docs\" />

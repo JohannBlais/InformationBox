@@ -119,17 +119,8 @@
   </resheader>
   <data name="SampleConsoleApp" xml:space="preserve">
     <value>using InfoBox;
-using System;
 using System.Windows.Forms;
-namespace ConsoleApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            {{CODE}}
-        }
-    }
-}</value>
+
+{{CODE}}</value>
   </data>
 </root>

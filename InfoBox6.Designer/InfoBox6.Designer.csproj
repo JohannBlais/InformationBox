@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <RootNamespace>InfoBox.Designer</RootNamespace>
+        <AssemblyName>InfoBox.Designer</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="..\InfoBox.Designer\**\*.cs" Exclude="..\InfoBox.Designer\**\AssemblyInfo.cs" />
+        <EmbeddedResource Include="..\InfoBox.Designer\**\*.resx" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="..\InfoBox.Designer\obj\**" />
+      <Compile Remove="obj\**" />
+      <EmbeddedResource Remove="obj\**" />
+      <None Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\InfoBox6\InfoBox6.csproj" />
+    </ItemGroup>
+</Project>
