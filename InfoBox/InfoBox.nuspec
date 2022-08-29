@@ -15,30 +15,27 @@
 InformationBox is the simplest and easiest way to create personalized MessageBox.
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
-        <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms nam</summary>
-        <releaseNotes>- Added support for 3 custom buttons</releaseNotes>
-        <copyright>Copyright 2017</copyright>
+        <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace</summary>
+        <releaseNotes>
+            - Removed support for .NET 4 client profile
+            - Updated support from .NET 4.5 to .NET 4.8
+            - Added support for .NET 6.0 (Windows)
+        </releaseNotes>
+        <copyright>Copyright 2022</copyright>
         <language>en-US</language>
         <tags>MessageBox Winforms</tags>
         <repository type="git" url="https://github.com/JohannBlais/InformationBox"></repository>
         <dependencies>
-            <group targetFramework=".NETCoreApp3.1" />
-            <group targetFramework=".NETFramework4.0" />
-            <group targetFramework=".NETFramework4.0-Client" />
-            <group targetFramework=".NETFramework4.5" />
+            <group targetFramework="netcoreapp3.1" />
+            <group targetFramework="net6.0-windows" />
+            <group targetFramework="net48" />
         </dependencies>
         <readme>docs\Home.md</readme>
     </metadata>
     <files>
-        <file src="bin\Release\InfoBox.dll" target="lib\net40\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net40\" />
-        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40\" />
-        <file src="bin\Release\InfoBox.dll" target="lib\net40-client\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net40-client\" />
-        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net40-client\" />
-        <file src="bin\Release\InfoBox.dll" target="lib\net45\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net45\" />
-        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net45\" />
+        <file src="bin\Release\InfoBox.dll" target="lib\net48\" />
+        <file src="bin\Release\InfoBox.pdb" target="lib\net48\" />
+        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net48\" />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.dll" target="lib\netcoreapp3.1\"  />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\InfoBox.pdb" target="lib\netcoreapp3.1\" />
         <file src="..\InfoBoxCore\bin\Release\netcoreapp3.1\**\InfoBox.resources.dll" target="lib\netcoreapp3.1\" />
