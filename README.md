@@ -2,11 +2,11 @@
 
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 
-.NET 4.0/4.5+ and .NET core 3.1: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
+.NET 4.8/.NET core 3.1/.NET 6.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
 **Build**
 
-Status for .NET 4.0+ branch: 
+Status for .NET 4.8+ branch: 
 ![master](https://johannblais.visualstudio.com/_apis/public/build/definitions/ce081581-71ef-4bf2-bda5-0288ef071e07/1/badge)
 
 **Project Description**
@@ -51,7 +51,10 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Custom placement (center on parent/screen).
 * Possibility to reformat text to minimize width or height of the InformationBox.
 * Support for MessageBox enums.
-* .NET 1.1/2.0+ versions.
+* Support for .NET 1.1 (discontinued legacy package)
+* Support for .NET 4.8
+* Support for .NET 6.0 (windows)
+* Support for .NET Core 3.1
 * Help file support.
 * Possibility to show modeless boxes, details [here](docs/Modeless%20boxes.md).
 * Possibility to define [scopes](docs/InformationBox%20scopes.md).
