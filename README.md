@@ -7,7 +7,7 @@
 **Build**
 
 Status for .NET 4.8+ branch: 
-![master](https://johannblais.visualstudio.com/_apis/public/build/definitions/ce081581-71ef-4bf2-bda5-0288ef071e07/1/badge)
+[![Build status](https://dev.azure.com/johannblais/InformationBox/_apis/build/status/InformationBox-master)](https://dev.azure.com/johannblais/InformationBox/_build/latest?definitionId=1)
 
 **Project Description**
 
