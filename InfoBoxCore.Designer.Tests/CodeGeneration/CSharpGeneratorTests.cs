@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Runtime;
 using System.Windows.Forms;
 
@@ -18,13 +20,13 @@ namespace InfoBoxCore.Designer.Tests
 {
     public class CSharpGeneratorTests
     {
-        private CSharpGenerator generator = new CSharpGenerator();
+        private readonly CSharpGenerator generator = new();
         private IEnumerable<MetadataReference> references;
 
         [SetUp]
         public void Setup()
         {
-            references = new MetadataReference[]
+            var localReferences = new List<MetadataReference>
                {
                 MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Console).Assembly.Location),
@@ -33,8 +35,15 @@ namespace InfoBoxCore.Designer.Tests
                 MetadataReference.CreateFromFile(typeof(InformationBox).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(AutoScaleMode).Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Icon).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(Color).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(Color).Assembly.Location)
                };
+
+            Assembly.GetEntryAssembly()
+                    .GetReferencedAssemblies()
+                    .ToList()
+                    .ForEach(a => localReferences.Add(MetadataReference.CreateFromFile(Assembly.Load(a).Location)));
+
+            references = localReferences.ToArray();
         }
 
         [Test]
@@ -212,7 +221,7 @@ namespace InfoBoxCore.Designer.Tests
             var result = null as EmitResult;
             var sampleApp = Resources.SampleConsoleApp.Replace("{{CODE}}", sourceCode);
             var codeString = SourceText.From(sampleApp);
-            var options = CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp8);
+            var options = CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.Preview);
 
             var parsedSyntaxTree = SyntaxFactory.ParseSyntaxTree(codeString, options);
 
