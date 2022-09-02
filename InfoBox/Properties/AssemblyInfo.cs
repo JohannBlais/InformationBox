@@ -9,6 +9,10 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
+#if NET6_0_OR_GREATER
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
+#endif
+
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.

@@ -4,14 +4,14 @@
         <OutputType>Library</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
         <UseWindowsForms>true</UseWindowsForms>
-        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
         <RootNamespace>InfoBox</RootNamespace>
         <AssemblyName>InfoBox</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="..\InfoBox\**\*.cs" Exclude="..\InfoBox\**\AssemblyInfo.cs" />
+        <Compile Include="..\InfoBox\**\*.cs" />
         <EmbeddedResource Include="..\InfoBox\**\*.resx" />
     </ItemGroup>
 
