@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="..\InfoBox\**\*.cs"  />
+        <Compile Include="..\InfoBox\**\*.cs" Exclude="**\obj\**\*.cs" />
         <EmbeddedResource Include="..\InfoBox\**\*.resx" />
     </ItemGroup>
 

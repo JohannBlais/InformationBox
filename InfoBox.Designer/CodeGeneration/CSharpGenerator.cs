@@ -33,6 +33,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="helpTopic">The help topic.</param>
         /// <param name="navigator">The navigator.</param>
         /// <param name="checkState">The state of the checkbox.</param>
+        /// <param name="doNotShowAgainText">If not null, the value will replace the default text for the "Do not show again" checkbox.</param>
         /// <param name="style">The style.</param>
         /// <param name="useAutoClose">if set to <c>true</c> [use auto close].</param>
         /// <param name="autoClose">The auto-close parameters.</param>
@@ -61,6 +62,7 @@ namespace InfoBox.Designer.CodeGeneration
                                          string helpTopic,
                                          HelpNavigator navigator,
                                          InformationBoxCheckBox checkState,
+                                         string doNotShowAgainText,
                                          InformationBoxStyle style,
                                          bool useAutoClose,
                                          AutoCloseParameters autoClose,
@@ -173,6 +175,11 @@ namespace InfoBox.Designer.CodeGeneration
                 }
 
                 codeBuilder.Append(", ");
+            }
+
+            if (doNotShowAgainText != null)
+            {
+                codeBuilder.AppendFormat("doNotShowAgainText: \"{0}\", ", doNotShowAgainText);
             }
 
             if (style != InformationBoxStyle.Standard)

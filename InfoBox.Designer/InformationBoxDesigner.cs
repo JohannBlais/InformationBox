@@ -78,6 +78,7 @@ namespace InfoBox.Designer
             HelpNavigator navigator = this.GetHelpNavigator();
             InformationBoxCheckBox checkState = this.GetCheckBoxState();
             CheckState state = 0;
+            string doNotShowAgainText = String.IsNullOrEmpty(this.txtDoNotShowText.Text) ? null : this.txtDoNotShowText.Text;
             InformationBoxStyle style = this.GetStyle();
             AutoCloseParameters autoClose = this.GetAutoClose();
             DesignParameters design = this.GetDesign();
@@ -94,11 +95,11 @@ namespace InfoBox.Designer
 
             if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, doNotShowAgainText, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, doNotShowAgainText, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
 
             if (checkState != 0)
@@ -564,6 +565,7 @@ namespace InfoBox.Designer
             var position = this.GetPosition();
             var navigator = this.GetHelpNavigator();
             var checkState = this.GetCheckBoxState();
+            var doNotShowAgainText = String.IsNullOrEmpty(this.txtDoNotShowText.Text) ? null : this.txtDoNotShowText.Text;
             var style = this.GetStyle();
             var autoClose = this.GetAutoClose();
             var design = this.GetDesign();
@@ -578,7 +580,7 @@ namespace InfoBox.Designer
             var generatedCode = codeGen.GenerateSingleCall(
                     behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text,
                     icon, iconFileName, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked,
-                    this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, style, this.chbActivateAutoClose.Checked,
+                    this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, doNotShowAgainText, style, this.chbActivateAutoClose.Checked,
                     autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order, sound);
 
             this.txbCode.Text = generatedCode;

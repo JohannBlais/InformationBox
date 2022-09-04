@@ -70,6 +70,11 @@ namespace InfoBox
         private readonly string helpTopic;
 
         /// <summary>
+        /// Text for the "Do not show again" checkbox
+        /// </summary>
+        private readonly string doNotShowAgainText;
+
+        /// <summary>
         /// Contains the graphics used to measure the strings
         /// </summary>
         private readonly Graphics measureGraphics;
@@ -228,6 +233,7 @@ namespace InfoBox
         /// <param name="showHelpButton">if set to <c>true</c> shows help button.</param>
         /// <param name="helpNavigator">The help navigator.</param>
         /// <param name="showDoNotShowAgainCheckBox">if set to <c>true</c> shows the do not show again check box.</param>
+        /// <param name="doNotShowAgainText">If not null, the value will replace the default text for the "Do not show again" checkbox.</param>
         /// <param name="style">The style.</param>
         /// <param name="autoClose">The auto close configuration.</param>
         /// <param name="design">The design.</param>
@@ -258,6 +264,7 @@ namespace InfoBox
                                     bool showHelpButton = false,
                                     HelpNavigator helpNavigator = HelpNavigator.TableOfContents,
                                     InformationBoxCheckBox showDoNotShowAgainCheckBox = 0,
+                                    string doNotShowAgainText = null,
                                     InformationBoxStyle style = InformationBoxStyle.Standard,
                                     AutoCloseParameters autoClose = null,
                                     DesignParameters design = null,
@@ -323,6 +330,7 @@ namespace InfoBox
             this.showHelpButton = showHelpButton;
             this.helpNavigator = helpNavigator;
             this.checkBox = showDoNotShowAgainCheckBox;
+            this.doNotShowAgainText = doNotShowAgainText;
             this.style = style;
             this.autoClose = autoClose;
             this.design = design;
@@ -407,6 +415,10 @@ namespace InfoBox
                     else if (stringCount == 2)
                     {
                         this.helpTopic = (string)parameter;
+                    }
+                    else if (stringCount == 3)
+                    {
+                        this.doNotShowAgainText = (string)parameter;
                     }
 
                     stringCount++;
@@ -890,7 +902,7 @@ namespace InfoBox
         /// </summary>
         private void SetCheckBox()
         {
-            this.chbDoNotShow.Text = Resources.LabelDoNotShow;
+            this.chbDoNotShow.Text = this.doNotShowAgainText ?? Resources.LabelDoNotShow;
 
             this.chbDoNotShow.Visible = ((this.checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show);
             this.chbDoNotShow.Checked = ((this.checkBox & InformationBoxCheckBox.Checked) == InformationBoxCheckBox.Checked);

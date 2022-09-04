@@ -16,7 +16,7 @@ namespace InfoBox
     [UIPermission(SecurityAction.Demand)]
     public static class InformationBox
     {
-        #region Show
+#region Show
 
         /// <summary>
         /// Displays a message box with the specified text and parameters.
@@ -75,6 +75,10 @@ namespace InfoBox
         ///     <item>
         ///         <term><see cref="InformationBoxCheckBox"/></term>
         ///         <description>whether the "Do not show this dialog again" checkbox is displayed or not.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="System.String"/></term>
+        ///         <description>Text to use instead of the default "Do not show again"</description>
         ///     </item>
         ///     <item>
         ///         <term><see cref="AutoCloseParameters"/></term>
@@ -141,6 +145,7 @@ namespace InfoBox
         /// <param name="showHelpButton">if set to <c>true</c> shows help button.</param>
         /// <param name="helpNavigator">The help navigator.</param>
         /// <param name="showDoNotShowAgainCheckBox">if set to <c>true</c> shows the do not show again check box.</param>
+        /// <param name="doNotShowAgainText">If not null, the value will replace the default text for the "Do not show again" checkbox.</param>
         /// <param name="style">The style.</param>
         /// <param name="autoClose">The auto close configuration.</param>
         /// <param name="design">The design.</param>
@@ -172,6 +177,7 @@ namespace InfoBox
                                                 bool showHelpButton = false,
                                                 HelpNavigator helpNavigator = HelpNavigator.TableOfContents,
                                                 InformationBoxCheckBox showDoNotShowAgainCheckBox = 0,
+                                                string doNotShowAgainText = null,
                                                 InformationBoxStyle style = InformationBoxStyle.Standard,
                                                 AutoCloseParameters autoClose = null,
                                                 DesignParameters design = null,
@@ -188,7 +194,7 @@ namespace InfoBox
                                                 InformationBoxSound sound = InformationBoxSound.Default)
         {
             return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
-                 customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
+                 customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox, doNotShowAgainText,
                  style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show();
         }
 
@@ -253,6 +259,10 @@ namespace InfoBox
         ///     <item>
         ///         <term><see cref="InformationBoxCheckBox"/></term>
         ///         <description>whether the "Do not show this dialog again" checkbox is displayed or not.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="System.String"/></term>
+        ///         <description>Text to use instead of the default "Do not show again"</description>
         ///     </item>
         ///     <item>
         ///         <term><see cref="AutoCloseParameters"/></term>
@@ -331,6 +341,7 @@ namespace InfoBox
         /// <param name="showHelpButton">if set to <c>true</c> shows help button.</param>
         /// <param name="helpNavigator">The help navigator.</param>
         /// <param name="showDoNotShowAgainCheckBox">if set to <c>true</c> shows the do not show again check box.</param>
+        /// <param name="doNotShowAgainText">If not null, the value will replace the default text for the "Do not show again" checkbox.</param>
         /// <param name="style">The style.</param>
         /// <param name="autoClose">The auto close configuration.</param>
         /// <param name="design">The design.</param>
@@ -365,6 +376,7 @@ namespace InfoBox
                                                 bool showHelpButton = false,
                                                 HelpNavigator helpNavigator = HelpNavigator.TableOfContents,
                                                 InformationBoxCheckBox showDoNotShowAgainCheckBox = 0,
+                                                string doNotShowAgainText = null,
                                                 InformationBoxStyle style = InformationBoxStyle.Standard,
                                                 AutoCloseParameters autoClose = null,
                                                 DesignParameters design = null,
@@ -381,10 +393,10 @@ namespace InfoBox
                                                 InformationBoxSound sound = InformationBoxSound.Default)
         {
             return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
-                 customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox,
+                 customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox, doNotShowAgainText,
                  style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
         }
 
-        #endregion Show
+#endregion Show
     }
 }

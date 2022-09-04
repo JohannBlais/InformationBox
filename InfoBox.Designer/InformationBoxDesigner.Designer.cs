@@ -36,6 +36,7 @@ namespace InfoBox.Designer
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdbUser1User2User3 = new System.Windows.Forms.RadioButton();
             this.rdbUser1 = new System.Windows.Forms.RadioButton();
             this.rdbUser1User2 = new System.Windows.Forms.RadioButton();
             this.rdbOKCancelUser1 = new System.Windows.Forms.RadioButton();
@@ -49,6 +50,9 @@ namespace InfoBox.Designer
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.ddlIcons = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txbUser3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txbUser2 = new System.Windows.Forms.TextBox();
             this.txbUser1 = new System.Windows.Forms.TextBox();
@@ -135,10 +139,8 @@ namespace InfoBox.Designer
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.rdbSoundMute = new System.Windows.Forms.RadioButton();
             this.rdbSoundDefault = new System.Windows.Forms.RadioButton();
-            this.rdbUser1User2User3 = new System.Windows.Forms.RadioButton();
-            this.txbUser3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtDoNotShowText = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -229,6 +231,16 @@ namespace InfoBox.Designer
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buttons";
+            // 
+            // rdbUser1User2User3
+            // 
+            this.rdbUser1User2User3.AutoSize = true;
+            this.rdbUser1User2User3.Location = new System.Drawing.Point(147, 79);
+            this.rdbUser1User2User3.Name = "rdbUser1User2User3";
+            this.rdbUser1User2User3.Size = new System.Drawing.Size(109, 17);
+            this.rdbUser1User2User3.TabIndex = 10;
+            this.rdbUser1User2User3.Text = "User1User2User3";
+            this.rdbUser1User2User3.UseVisualStyleBackColor = true;
             // 
             // rdbUser1
             // 
@@ -366,6 +378,31 @@ namespace InfoBox.Designer
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Custom buttons";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "3";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "1";
+            // 
+            // txbUser3
+            // 
+            this.txbUser3.Location = new System.Drawing.Point(22, 50);
+            this.txbUser3.Name = "txbUser3";
+            this.txbUser3.Size = new System.Drawing.Size(100, 20);
+            this.txbUser3.TabIndex = 3;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -392,7 +429,7 @@ namespace InfoBox.Designer
             // btnShow
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShow.Location = new System.Drawing.Point(323, 534);
+            this.btnShow.Location = new System.Drawing.Point(323, 549);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(183, 27);
             this.btnShow.TabIndex = 7;
@@ -484,7 +521,7 @@ namespace InfoBox.Designer
             this.txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCode.Location = new System.Drawing.Point(12, 589);
+            this.txbCode.Location = new System.Drawing.Point(12, 604);
             this.txbCode.Multiline = true;
             this.txbCode.Name = "txbCode";
             this.txbCode.ReadOnly = true;
@@ -496,7 +533,7 @@ namespace InfoBox.Designer
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGenerate.ContextMenuStrip = this.cmsLanguage;
-            this.btnGenerate.Location = new System.Drawing.Point(118, 534);
+            this.btnGenerate.Location = new System.Drawing.Point(118, 549);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(183, 27);
             this.btnGenerate.TabIndex = 6;
@@ -709,7 +746,7 @@ namespace InfoBox.Designer
             // 
             this.groupBox10.Controls.Add(this.rdbPositionCenterOnScreen);
             this.groupBox10.Controls.Add(this.rdbPositionCenterOnParent);
-            this.groupBox10.Location = new System.Drawing.Point(552, 267);
+            this.groupBox10.Location = new System.Drawing.Point(552, 288);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(265, 45);
             this.groupBox10.TabIndex = 13;
@@ -868,10 +905,12 @@ namespace InfoBox.Designer
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.label9);
+            this.groupBox14.Controls.Add(this.txtDoNotShowText);
             this.groupBox14.Controls.Add(this.clbCheckBox);
             this.groupBox14.Location = new System.Drawing.Point(552, 196);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(265, 65);
+            this.groupBox14.Size = new System.Drawing.Size(265, 86);
             this.groupBox14.TabIndex = 17;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Do not show again ?";
@@ -897,9 +936,9 @@ namespace InfoBox.Designer
             // 
             this.groupBox15.Controls.Add(this.rdbStyleModern);
             this.groupBox15.Controls.Add(this.rdbStyleStandard);
-            this.groupBox15.Location = new System.Drawing.Point(553, 424);
+            this.groupBox15.Location = new System.Drawing.Point(552, 445);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(264, 44);
+            this.groupBox15.Size = new System.Drawing.Size(265, 44);
             this.groupBox15.TabIndex = 18;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Style";
@@ -937,9 +976,9 @@ namespace InfoBox.Designer
             this.groupBox16.Controls.Add(this.ddlAutoCloseResult);
             this.groupBox16.Controls.Add(this.lblAutoCloseSeconds);
             this.groupBox16.Controls.Add(this.chbActivateAutoClose);
-            this.groupBox16.Location = new System.Drawing.Point(553, 318);
+            this.groupBox16.Location = new System.Drawing.Point(552, 339);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(264, 100);
+            this.groupBox16.Size = new System.Drawing.Size(265, 100);
             this.groupBox16.TabIndex = 19;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Auto-close";
@@ -1153,7 +1192,7 @@ namespace InfoBox.Designer
             // btnShowModeless
             // 
             this.btnShowModeless.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShowModeless.Location = new System.Drawing.Point(528, 534);
+            this.btnShowModeless.Location = new System.Drawing.Point(528, 549);
             this.btnShowModeless.Name = "btnShowModeless";
             this.btnShowModeless.Size = new System.Drawing.Size(183, 27);
             this.btnShowModeless.TabIndex = 22;
@@ -1216,9 +1255,9 @@ namespace InfoBox.Designer
             // 
             this.groupBox21.Controls.Add(this.rdbSoundMute);
             this.groupBox21.Controls.Add(this.rdbSoundDefault);
-            this.groupBox21.Location = new System.Drawing.Point(552, 474);
+            this.groupBox21.Location = new System.Drawing.Point(552, 495);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(264, 44);
+            this.groupBox21.Size = new System.Drawing.Size(265, 44);
             this.groupBox21.TabIndex = 24;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Sound";
@@ -1245,46 +1284,27 @@ namespace InfoBox.Designer
             this.rdbSoundDefault.Text = "Default";
             this.rdbSoundDefault.UseVisualStyleBackColor = true;
             // 
-            // rdbUser1User2User3
+            // label9
             // 
-            this.rdbUser1User2User3.AutoSize = true;
-            this.rdbUser1User2User3.Location = new System.Drawing.Point(147, 79);
-            this.rdbUser1User2User3.Name = "rdbUser1User2User3";
-            this.rdbUser1User2User3.Size = new System.Drawing.Size(109, 17);
-            this.rdbUser1User2User3.TabIndex = 10;
-            this.rdbUser1User2User3.Text = "User1User2User3";
-            this.rdbUser1User2User3.UseVisualStyleBackColor = true;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 63);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(62, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Custom text";
             // 
-            // txbUser3
+            // txtDoNotShowText
             // 
-            this.txbUser3.Location = new System.Drawing.Point(22, 50);
-            this.txbUser3.Name = "txbUser3";
-            this.txbUser3.Size = new System.Drawing.Size(100, 20);
-            this.txbUser3.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(13, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "1";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(13, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "3";
+            this.txtDoNotShowText.Location = new System.Drawing.Point(84, 60);
+            this.txtDoNotShowText.Name = "txtDoNotShowText";
+            this.txtDoNotShowText.Size = new System.Drawing.Size(166, 20);
+            this.txtDoNotShowText.TabIndex = 5;
             // 
             // InformationBoxDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 668);
+            this.ClientSize = new System.Drawing.Size(828, 683);
             this.Controls.Add(this.groupBox21);
             this.Controls.Add(this.groupBox20);
             this.Controls.Add(this.groupBox19);
@@ -1343,6 +1363,7 @@ namespace InfoBox.Designer
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
             this.groupBox16.ResumeLayout(false);
@@ -1473,5 +1494,7 @@ namespace InfoBox.Designer
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txbUser3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtDoNotShowText;
     }
 }
