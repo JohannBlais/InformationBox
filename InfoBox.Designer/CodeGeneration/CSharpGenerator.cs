@@ -244,7 +244,7 @@ namespace InfoBox.Designer.CodeGeneration
             codeBuilder[codeBuilder.Length - 2] = ')';
             codeBuilder[codeBuilder.Length - 1] = ';';
 
-            return codeBuilder.ToString().Replace("\"\"", "String.Empty");
+            return codeBuilder.ToString().Replace("\"\"", "System.String.Empty");
         }
 
         #endregion
