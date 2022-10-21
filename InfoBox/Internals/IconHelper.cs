@@ -7,8 +7,9 @@
 namespace InfoBox.Internals
 {
     using InfoBox.Properties;
+
     using System.Drawing;
-    
+
     /// <summary>
     /// Contains utility methods related to icons
     /// </summary>

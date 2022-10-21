@@ -13,7 +13,7 @@ namespace InfoBox
     /// Contains the values of the design parameters.
     /// </summary>
     public class DesignParameters
-    {        
+    {
         #region Constructors
 
         /// <summary>
