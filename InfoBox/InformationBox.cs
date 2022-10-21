@@ -16,7 +16,7 @@ namespace InfoBox
     [UIPermission(SecurityAction.Demand)]
     public static class InformationBox
     {
-#region Show
+        #region Show
 
         /// <summary>
         /// Displays a message box with the specified text and parameters.
@@ -397,6 +397,6 @@ namespace InfoBox
                  style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
         }
 
-#endregion Show
+        #endregion Show
     }
 }

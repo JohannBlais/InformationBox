@@ -9,6 +9,7 @@ namespace InfoBox
     using InfoBox.Controls;
     using InfoBox.Internals;
     using InfoBox.Properties;
+
     using System;
     using System.Drawing;
     using System.Globalization;
