@@ -14,10 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBoxCore.Designer", "Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBoxCore.Designer.Tests", "InfoBoxCore.Designer.Tests\InfoBoxCore.Designer.Tests.csproj", "{A597A632-9151-4FB3-8696-8830D4B32170}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBox6", "InfoBox6\InfoBox6.csproj", "{8AED533C-3697-4885-A148-7859511167E3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBox6.Designer", "InfoBox6.Designer\InfoBox6.Designer.csproj", "{60729834-7A5D-4356-A4D5-AA2FF3F05A9A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,14 +40,6 @@ Global
 		{A597A632-9151-4FB3-8696-8830D4B32170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A597A632-9151-4FB3-8696-8830D4B32170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A597A632-9151-4FB3-8696-8830D4B32170}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AED533C-3697-4885-A148-7859511167E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AED533C-3697-4885-A148-7859511167E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AED533C-3697-4885-A148-7859511167E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AED533C-3697-4885-A148-7859511167E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60729834-7A5D-4356-A4D5-AA2FF3F05A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60729834-7A5D-4356-A4D5-AA2FF3F05A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60729834-7A5D-4356-A4D5-AA2FF3F05A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60729834-7A5D-4356-A4D5-AA2FF3F05A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
