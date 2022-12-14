@@ -2,12 +2,12 @@
 
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 
-.NET 4.0/4.5 and .NET core 3.1: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
+.NET 4.8/.NET core 3.1/.NET 6.0/.NET 7.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
 **Build**
 
-Status for .NET 4.0+ branch: 
-![master](https://johannblais.visualstudio.com/_apis/public/build/definitions/ce081581-71ef-4bf2-bda5-0288ef071e07/1/badge)
+Status for .NET 4.8+ branch: 
+[![Build status](https://dev.azure.com/johannblais/InformationBox/_apis/build/status/InformationBox-master)](https://dev.azure.com/johannblais/InformationBox/_build/latest?definitionId=1)
 
 **Project Description**
 
@@ -18,6 +18,8 @@ It provides the same base functionality and is extended with, for example, custo
 InformationBox is the simplest and easiest way to create personalized MessageBox.
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !
+
+**Find out more about the inner working of InformationBox [in the documentation](docs/Documentation.md)**.
 
 **Highlights**
 
@@ -30,7 +32,7 @@ It is not planned to implement the new visual style in the .NET 1.1 branch, and 
 
 **Availability**
 
-The project is available on NuGet, or compilable from source.
+The project is available on NuGet, deployable using the installers, or compilable from source.
 
 **Features**
 * Multilanguage support (contributors needed). [Here](Supported%20Languages.md) is a list of supported languages.
@@ -49,7 +51,11 @@ The project is available on NuGet, or compilable from source.
 * Custom placement (center on parent/screen).
 * Possibility to reformat text to minimize width or height of the InformationBox.
 * Support for MessageBox enums.
-* .NET 1.1/2.0+ versions.
+* Support for .NET 1.1 (discontinued legacy package)
+* Support for .NET 4.8
+* Support for .NET 6.0 (windows)
+* Support for .NET 7.0 (windows)
+* Support for .NET Core 3.1
 * Help file support.
 * Possibility to show modeless boxes, details [here](Modeless%20boxes.md).
 * Possibility to define [scopes](InformationBox%20scopes.md).
@@ -59,3 +65,4 @@ The project is available on NuGet, or compilable from source.
 * Available for FREE even for commercial use. 
 
 [Screenshots](Screenshots.md) | [Samples](Samples.md) | [Contributors](Contributors.md) | [Contribute](Contribute.md) | [InformationBox in action](InformationBox%20in%20action.md)
+
