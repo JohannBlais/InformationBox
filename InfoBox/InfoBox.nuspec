@@ -17,7 +17,7 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
         <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace</summary>
         <releaseNotes>
-            - Added support for .NET 7.0 (Windows)
+            - Added support for .NET 8.0 (Windows)
         </releaseNotes>
         <copyright>Copyright 2022</copyright>
         <language>en-US</language>
@@ -27,6 +27,7 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
             <group targetFramework="netcoreapp3.1" />
             <group targetFramework="net6.0-windows7.0" />
             <group targetFramework="net7.0-windows7.0" />
+            <group targetFramework="net8.0-windows7.0" />
             <group targetFramework="net48" />
         </dependencies>
         <readme>docs\Home.md</readme>
@@ -44,6 +45,9 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\net7.0-windows\InfoBox.dll" target="lib\net7.0-windows7.0\"  />
         <file src="..\InfoBoxCore\bin\Release\net7.0-windows\InfoBox.pdb" target="lib\net7.0-windows7.0\" />
         <file src="..\InfoBoxCore\bin\Release\net7.0-windows\**\InfoBox.resources.dll" target="lib\net7.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.dll" target="lib\net8.0-windows7.0\"  />
+        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.pdb" target="lib\net8.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows7.0\" />
 
         <file src="..\Logo.png" target="images\" />
         <file src="..\docs\Home.md" target="docs\" />
