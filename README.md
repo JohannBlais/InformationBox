@@ -2,7 +2,7 @@
 
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 
-.NET 4.8/.NET core 3.1/.NET 6.0/.NET 7.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
+.NET 4.8/.NET 6.0/.NET 7.0/.NET 8.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
 **Build**
 
@@ -55,7 +55,7 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Support for .NET 4.8
 * Support for .NET 6.0 (windows)
 * Support for .NET 7.0 (windows)
-* Support for .NET Core 3.1
+* Support for .NET 8.0 (windows)
 * Help file support.
 * Possibility to show modeless boxes, details [here](docs/Modeless%20boxes.md).
 * Possibility to define [scopes](docs/InformationBox%20scopes.md).
