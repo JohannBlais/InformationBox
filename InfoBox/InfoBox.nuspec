@@ -29,7 +29,7 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
             <group targetFramework="net8.0-windows7.0" />
             <group targetFramework="net48" />
         </dependencies>
-        <readme>docs\Home.md</readme>
+        <readme>README.md</readme>
     </metadata>
     <files>
         <file src="bin\Release\InfoBox.dll" target="lib\net48\" />
@@ -46,6 +46,5 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows7.0\" />
 
         <file src="..\Logo.png" target="images\" />
-        <file src="..\docs\Home.md" target="docs\" />
     </files>
 </package>

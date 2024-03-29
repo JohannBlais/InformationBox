@@ -19,7 +19,7 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !
 
-**Find out more about the inner working of InformationBox [in the documentation](docs/Documentation.md)**.
+**Find out more about the inner working of InformationBox [in the documentation](https://github.com/JohannBlais/InformationBox/wiki)**.
 
 **Highlights**
 
@@ -35,7 +35,7 @@ It is not planned to implement the new visual style in the .NET 1.1 branch, and 
 The project is available on NuGet, deployable using the installers, or compilable from source.
 
 **Features**
-* Multilanguage support (contributors needed). [Here](docs/Supported%20Languages.md) is a list of supported languages.
+* Multilanguage support (contributors needed).
 * New visual style using glass components (.NET 2.0+ only).
 * Scrollable when the text is too large.
 * Message is selectable for easy copy (Ctrl-C).
@@ -57,11 +57,9 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Support for .NET 7.0 (windows)
 * Support for .NET 8.0 (windows)
 * Help file support.
-* Possibility to show modeless boxes, details [here](docs/Modeless%20boxes.md).
-* Possibility to define [scopes](docs/InformationBox%20scopes.md).
+* Possibility to show modeless boxes.
+* Possibility to define scopes.
 * Opacity (10 to 100%)
 * Developer friendly (provide-only-what-you-want-to-customize constructor).
 * Visual Designer. Customize your InformationBox and the designer generates the code!
 * Available for FREE even for commercial use. 
-
-[Screenshots](docs/Screenshots.md) | [Samples](docs/Samples.md) | [Contributors](docs/Contributors.md) | [Contribute](docs/Contribute.md) | [InformationBox in action](docs/InformationBox%20in%20action.md)
