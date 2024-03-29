@@ -44,7 +44,7 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.dll" target="lib\net8.0-windows7.0\"  />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.pdb" target="lib\net8.0-windows7.0\" />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows7.0\" />
-
+        <file src="..\README.md" target="\"/>
         <file src="..\Logo.png" target="images\" />
     </files>
 </package>
