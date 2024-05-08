@@ -85,6 +85,11 @@ namespace InfoBox
         private readonly Form activeForm;
 
         /// <summary>
+        /// Contains a reference to the designed parent form
+        /// </summary>
+        private readonly Form parentForm;
+
+        /// <summary>
         /// Result corresponding the clicked button
         /// </summary>
         private InformationBoxResult result = InformationBoxResult.None;
@@ -551,7 +556,7 @@ namespace InfoBox
                 else if (parameter is Form)
                 {
                     // Form parent
-                    this.Parent = (Form)Parent;
+                    this.parentForm = (Form)parameter;
                 }
                 else if (parameter is InformationBoxOrder)
                 {
@@ -595,7 +600,14 @@ namespace InfoBox
             }
             else
             {
-                base.Show();
+                if (this.parentForm == null)
+                {
+                    base.Show();
+                }
+                else
+                {
+                    base.Show(this.parentForm);
+                }
             }
 
             return this.result;
@@ -930,15 +942,22 @@ namespace InfoBox
             }
             else
             {
-                if (this.Parent != null && ((Form)this.Parent).IsMdiChild)
+                if (this.parentForm != null && ((Form)this.parentForm).IsMdiChild)
                 {
-                    StartPosition = FormStartPosition.CenterScreen;
+                    StartPosition = FormStartPosition.Manual;
+
+                    this.Location = new Point(parentForm.Location.X +
+                                              parentForm.ParentForm.Location.X +
+                                              (parentForm.Width - this.Width) / 2,
+                                              parentForm.Location.Y +
+                                              parentForm.ParentForm.Location.Y +
+                                              (parentForm.Height - this.Height) / 2);
                 }
                 else
                 {
                     StartPosition = FormStartPosition.CenterParent;
+                    CenterToParent();
                 }
-                CenterToParent();
             }
         }
 
