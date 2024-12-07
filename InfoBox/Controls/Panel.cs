@@ -61,8 +61,7 @@ namespace InfoBox.Controls
         /// Gets or sets if a custom border is shown on the sides of the control
         /// </summary>
         /// <value>The side border.</value>
-        [Category("Side Border"), Description("Defines if a special side border should be displayed"),
-         DefaultValue("None")]
+        [Category("Side Border"), Description("Defines if a special side border should be displayed"), DefaultValue("None")]
         public SideBorder SideBorder
         {
             get
@@ -81,7 +80,7 @@ namespace InfoBox.Controls
         /// Gets or sets the border width
         /// </summary>
         /// <value>The width of the side border.</value>
-        [Category("Side Border"), Description("Defines the width of the side border")]
+        [Category("Side Border"), Description("Defines the width of the side border"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SideBorderWidth
         {
             get
@@ -105,7 +104,7 @@ namespace InfoBox.Controls
         /// Gets or sets the top border color
         /// </summary>
         /// <value>The top color of the side border.</value>
-        [Category("Side Border"), Description("Defines the top color of the side border")]
+        [Category("Side Border"), Description("Defines the top color of the side border"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color SideBorderTopColor
         {
             get
@@ -124,7 +123,7 @@ namespace InfoBox.Controls
         /// Gets or sets the bottom border color
         /// </summary>
         /// <value>The bottom color of the side border.</value>
-        [Category("Side Border"), Description("Defines the bottom color of the side border")]
+        [Category("Side Border"), Description("Defines the bottom color of the side border"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color SideBorderBottomColor
         {
             get

@@ -53,7 +53,7 @@ namespace InfoBox.Controls
         /// Gets or sets the text color when the label is disabled
         /// </summary>
         /// <value>The color of the disabled fore.</value>
-        [Category("Appearance"), Description("Defines the text color when the label is disabled")]
+        [Category("Appearance"), Description("Defines the text color when the label is disabled"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color DisabledForeColor
         {
             get
@@ -72,7 +72,7 @@ namespace InfoBox.Controls
         /// Gets or sets the alignment of the text
         /// </summary>
         /// <value>The text align.</value>
-        [Category("Appearance"), Description("Defines the alignment of the text")]
+        [Category("Appearance"), Description("Defines the alignment of the text"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContentAlignment TextAlign
         {
             get
@@ -93,7 +93,7 @@ namespace InfoBox.Controls
         /// </summary>
         /// <value></value>
         /// <returns>A <see cref="T:System.String"></see>.</returns>
-        [Category("Appearance"), Description("Defines the text of the label"), Browsable(true)]
+        [Category("Appearance"), Description("Defines the text of the label"), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get
