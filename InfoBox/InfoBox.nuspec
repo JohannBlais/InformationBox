@@ -17,16 +17,17 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
         <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace</summary>
         <releaseNotes>
-            - Added support for .NET 8.0 (Windows)
+            - Removed support for .NET 7.0 (Windows)
+            - Added support for .NET 9.0 (Windows)
         </releaseNotes>
-        <copyright>Copyright 2022</copyright>
+        <copyright>Copyright 2024</copyright>
         <language>en-US</language>
         <tags>MessageBox Winforms</tags>
         <repository type="git" url="https://github.com/JohannBlais/InformationBox"></repository>
         <dependencies>
             <group targetFramework="net6.0-windows7.0" />
-            <group targetFramework="net7.0-windows7.0" />
             <group targetFramework="net8.0-windows7.0" />
+            <group targetFramework="net9.0-windows7.0" />
             <group targetFramework="net48" />
         </dependencies>
         <readme>README.md</readme>
@@ -38,12 +39,12 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="..\InfoBoxCore\bin\Release\net6.0-windows\InfoBox.dll" target="lib\net6.0-windows7.0\"  />
         <file src="..\InfoBoxCore\bin\Release\net6.0-windows\InfoBox.pdb" target="lib\net6.0-windows7.0\" />
         <file src="..\InfoBoxCore\bin\Release\net6.0-windows\**\InfoBox.resources.dll" target="lib\net6.0-windows7.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net7.0-windows\InfoBox.dll" target="lib\net7.0-windows7.0\"  />
-        <file src="..\InfoBoxCore\bin\Release\net7.0-windows\InfoBox.pdb" target="lib\net7.0-windows7.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net7.0-windows\**\InfoBox.resources.dll" target="lib\net7.0-windows7.0\" />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.dll" target="lib\net8.0-windows7.0\"  />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.pdb" target="lib\net8.0-windows7.0\" />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\InfoBox.dll" target="lib\net9.0-windows7.0\"  />
+        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\InfoBox.pdb" target="lib\net9.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\**\InfoBox.resources.dll" target="lib\net9.0-windows7.0\" />
         <file src="..\README.md" target="\"/>
         <file src="..\Logo.png" target="images\" />
     </files>

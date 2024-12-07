@@ -195,7 +195,7 @@ namespace InfoBox.Controls
         /// Gets or sets the border width
         /// </summary>
         /// <value>The width of the side border.</value>
-        [Category("Side Border"), Description("Defines the width of the side border")]
+        [Category("Side Border"), Description("Defines the width of the side border"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SideBorderWidth
         {
             get
@@ -219,7 +219,7 @@ namespace InfoBox.Controls
         /// Gets or sets the top border color
         /// </summary>
         /// <value>The top color of the side border.</value>
-        [Category("Side Border"), Description("Defines the top color of the side border")]
+        [Category("Side Border"), Description("Defines the top color of the side border"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color SideBorderTopColor
         {
             get
@@ -238,7 +238,7 @@ namespace InfoBox.Controls
         /// Gets or sets the bottom border color
         /// </summary>
         /// <value>The bottom color of the side border.</value>
-        [Category("Side Border"), Description("Defines the bottom color of the side border")]
+        [Category("Side Border"), Description("Defines the bottom color of the side border"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color SideBorderBottomColor
         {
             get
@@ -256,7 +256,7 @@ namespace InfoBox.Controls
         /// <summary>
         /// Gets or sets the text color when the button is disabled
         /// </summary>
-        [Category("Appearance"), Description("Defines the text color when the button is disabled")]
+        [Category("Appearance"), Description("Defines the text color when the button is disabled"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color DisabledForeColor
         {
             get
@@ -274,7 +274,7 @@ namespace InfoBox.Controls
         /// <summary>
         /// Gets or sets the alignment of the text
         /// </summary>
-        [Category("Appearance"), Description("Defines the alignment of the text")]
+        [Category("Appearance"), Description("Defines the alignment of the text"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContentAlignment TextAlign
         {
             get
@@ -293,7 +293,7 @@ namespace InfoBox.Controls
         /// <summary>
         /// Gets or sets the button text
         /// </summary>
-        [Category("Appearance"), Description("Defines the text of the button"), Browsable(true)]
+        [Category("Appearance"), Description("Defines the text of the button"), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get
@@ -312,7 +312,7 @@ namespace InfoBox.Controls
         /// Gets or sets a value indicating whether the button remains clicked after mouse button is released.
         /// </summary>
         /// <value><c>true</c> if the button remains clicked after mouse button is released; otherwise, <c>false</c>.</value>
-        [Category("Behavior"), Description("Defines if the button remains clicked after mouse button is released"), DefaultValue("false")]
+        [Category("Behavior"), Description("Defines if the button remains clicked after mouse button is released"), DefaultValue("false"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool PersistantMode
         {
             get
@@ -331,7 +331,7 @@ namespace InfoBox.Controls
         /// Gets or sets a value indicating whether this <see cref="Button"/> is pushed.
         /// </summary>
         /// <value><c>true</c> if pushed; otherwise, <c>false</c>.</value>
-        [Category("Behavior"), Description("Defines if button appears as pushed"), Browsable(true)]
+        [Category("Behavior"), Description("Defines if button appears as pushed"), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Pushed
         {
             get
