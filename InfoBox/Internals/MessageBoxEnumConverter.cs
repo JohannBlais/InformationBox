@@ -19,9 +19,15 @@ namespace InfoBox.Internals
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The converted value</returns>
+        /// <exception cref="ArgumentException">Thrown when conversion fails.</exception>
         internal static InformationBoxButtons Parse(MessageBoxButtons value)
         {
-            return (InformationBoxButtons)Enum.Parse(typeof(InformationBoxButtons), value.ToString());
+            if (Enum.TryParse<InformationBoxButtons>(value.ToString(), out var result))
+            {
+                return result;
+            }
+
+            throw new ArgumentException($"Cannot convert '{value}' to InformationBoxButtons", nameof(value));
         }
 
         /// <summary>
@@ -29,9 +35,15 @@ namespace InfoBox.Internals
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The converted value</returns>
+        /// <exception cref="ArgumentException">Thrown when conversion fails.</exception>
         internal static InformationBoxIcon Parse(MessageBoxIcon value)
         {
-            return (InformationBoxIcon)Enum.Parse(typeof(InformationBoxIcon), value.ToString());
+            if (Enum.TryParse<InformationBoxIcon>(value.ToString(), out var result))
+            {
+                return result;
+            }
+
+            throw new ArgumentException($"Cannot convert '{value}' to InformationBoxIcon", nameof(value));
         }
 
         /// <summary>
@@ -39,9 +51,15 @@ namespace InfoBox.Internals
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The converted value</returns>
+        /// <exception cref="ArgumentException">Thrown when conversion fails.</exception>
         internal static InformationBoxDefaultButton Parse(MessageBoxDefaultButton value)
         {
-            return (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), value.ToString());
+            if (Enum.TryParse<InformationBoxDefaultButton>(value.ToString(), out var result))
+            {
+                return result;
+            }
+
+            throw new ArgumentException($"Cannot convert '{value}' to InformationBoxDefaultButton", nameof(value));
         }
     }
 }

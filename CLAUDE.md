@@ -8,12 +8,20 @@ InformationBox is a Windows Forms library providing a customizable alternative t
 
 ## Build Commands
 
+**IMPORTANT:** Always use the full MSBuild path when building this project. MSBuild is located at:
+`P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe`
+
+Since the solution targets both .NET Framework 4.8 and .NET Core, use MSBuild instead of dotnet:
+
 ```bash
 # Build all projects
-dotnet build InfoBox.sln
+"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln
 
-# Build specific framework
-dotnet build InfoBoxCore/InfoBoxCore.csproj -f net10.0-windows
+# Build with specific configuration
+"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln /p:Configuration=Release
+
+# Rebuild all (clean + build)
+"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln /t:Rebuild
 
 # Run tests
 dotnet test
