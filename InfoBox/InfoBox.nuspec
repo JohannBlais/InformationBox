@@ -20,14 +20,14 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
             - Removed support for .NET 6.0 (Windows)
             - Added support for .NET 10.0 (Windows)
         </releaseNotes>
-        <copyright>Copyright 2025</copyright>
+        <copyright>Copyright 2026</copyright>
         <language>en-US</language>
         <tags>MessageBox Winforms</tags>
         <repository type="git" url="https://github.com/JohannBlais/InformationBox"></repository>
         <dependencies>
-            <group targetFramework="net8.0-windows11.0" />
-            <group targetFramework="net9.0-windows11.0" />
-            <group targetFramework="net10.0-windows11.0" />
+            <group targetFramework="net8.0-windows7.0" />
+            <group targetFramework="net9.0-windows7.0" />
+            <group targetFramework="net10.0-windows7.0" />
             <group targetFramework="net48" />
         </dependencies>
         <readme>README.md</readme>
@@ -36,15 +36,15 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <file src="bin\Release\InfoBox.dll" target="lib\net48\" />
         <file src="bin\Release\InfoBox.pdb" target="lib\net48\" />
         <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net48\" />
-        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.dll" target="lib\net8.0-windows11.0\"  />
-        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.pdb" target="lib\net8.0-windows11.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows11.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\InfoBox.dll" target="lib\net9.0-windows11.0\"  />
-        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\InfoBox.pdb" target="lib\net9.0-windows11.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\**\InfoBox.resources.dll" target="lib\net9.0-windows11.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net10.0-windows\InfoBox.dll" target="lib\net10.0-windows11.0\"  />
-        <file src="..\InfoBoxCore\bin\Release\net10.0-windows\InfoBox.pdb" target="lib\net10.0-windows11.0\" />
-        <file src="..\InfoBoxCore\bin\Release\net10.0-windows\**\InfoBox.resources.dll" target="lib\net10.0-windows11.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.dll" target="lib\net8.0-windows7.0\"  />
+        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.pdb" target="lib\net8.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\InfoBox.dll" target="lib\net9.0-windows7.0\"  />
+        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\InfoBox.pdb" target="lib\net9.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net9.0-windows\**\InfoBox.resources.dll" target="lib\net9.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net10.0-windows\InfoBox.dll" target="lib\net10.0-windows7.0\"  />
+        <file src="..\InfoBoxCore\bin\Release\net10.0-windows\InfoBox.pdb" target="lib\net10.0-windows7.0\" />
+        <file src="..\InfoBoxCore\bin\Release\net10.0-windows\**\InfoBox.resources.dll" target="lib\net10.0-windows7.0\" />
         <file src="..\README.md" target="\"/>
         <file src="..\Logo.png" target="images\" />
     </files>
