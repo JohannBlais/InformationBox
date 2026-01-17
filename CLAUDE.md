@@ -1,0 +1,61 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+InformationBox is a Windows Forms library providing a customizable alternative to `MessageBox`. It's published as a NuGet package supporting .NET 4.8 and .NET 8/9/10.
+
+## Build Commands
+
+```bash
+# Build all projects
+dotnet build InfoBox.sln
+
+# Build specific framework
+dotnet build InfoBoxCore/InfoBoxCore.csproj -f net10.0-windows
+
+# Run tests
+dotnet test
+
+# Pack NuGet package
+nuget pack InfoBox/InfoBox.nuspec
+```
+
+## Project Structure
+
+The solution uses a dual-build strategy with shared source code:
+
+- **InfoBox/** - Legacy .NET Framework 4.8 library (old .csproj format)
+- **InfoBoxCore/** - Modern .NET 8/9/10 library that compiles the same source via `<Compile Include="..\InfoBox\**\*.cs" />`
+- **InfoBox.Designer/** - Visual designer tool (.NET Framework 4.8)
+- **InfoBoxCore.Designer/** - Visual designer tool (.NET 8/9/10)
+- **InfoBoxCore.Designer.Tests/** - NUnit tests for code generation
+
+Both InfoBox and InfoBoxCore compile to the same assembly name (`InfoBox.dll`) and namespace (`InfoBox`).
+
+## Key Architecture
+
+### Flexible Parameter Pattern
+The main API `InformationBox.Show()` accepts parameters in any order via `params object[]`. Parameter types are detected at runtime to configure the dialog:
+- `string` - title, help file, help topic (in order)
+- `InformationBoxButtons`, `InformationBoxIcon`, etc. - enum-based configuration
+- `AutoCloseParameters`, `DesignParameters` - complex configuration objects
+
+### Core Files
+- `InfoBox/InformationBox.cs` - Static entry point with `Show()` methods
+- `InfoBox/Form/InformationBoxForm.cs` - Internal form implementation
+- `InfoBox/Controls/` - Custom WinForms controls with glass styling
+- `InfoBox/Enums/` - Configuration enums (buttons, icons, position, etc.)
+- `InfoBox/Context/InformationBoxScope.cs` - Scope-based default configuration
+
+### Code Generation
+The Designer tool generates C# or VB.NET code:
+- `InfoBox.Designer/CodeGeneration/CSharpGenerator.cs`
+- `InfoBox.Designer/CodeGeneration/VbNetGenerator.cs`
+
+Tests use Roslyn to compile and validate generated code.
+
+## Localization
+
+Resources are in `InfoBox/Properties/Resources.*.resx` with support for: English, German, Spanish, French, Portuguese, Arabic, Farsi, Dutch.
