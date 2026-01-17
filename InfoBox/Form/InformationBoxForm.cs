@@ -33,7 +33,7 @@ namespace InfoBox
         /// <summary>
         /// Padding for the borders
         /// </summary>
-        private const int BorderPadding = 10;
+        private const int BorderPadding = 20;
 
         #endregion Consts
 
@@ -145,6 +145,11 @@ namespace InfoBox
         private DesignParameters design;
 
         /// <summary>
+        /// Contains the font parameters
+        /// </summary>
+        private FontParameters fontParameters;
+
+        /// <summary>
         /// Contains the style of the title
         /// </summary>
         private InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.None;
@@ -237,6 +242,7 @@ namespace InfoBox
         /// <param name="style">The style.</param>
         /// <param name="autoClose">The auto close configuration.</param>
         /// <param name="design">The design.</param>
+        /// <param name="fontParameters">The font parameters.</param>
         /// <param name="titleStyle">The title style.</param>
         /// <param name="titleIcon">The title icon.</param>
         /// <param name="legacyButtons">The legacy buttons.</param>
@@ -268,6 +274,7 @@ namespace InfoBox
                                     InformationBoxStyle style = InformationBoxStyle.Standard,
                                     AutoCloseParameters autoClose = null,
                                     DesignParameters design = null,
+                                    FontParameters fontParameters = null,
                                     InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.None,
                                     InformationBoxTitleIcon titleIcon = null,
                                     MessageBoxButtons? legacyButtons = null,
@@ -282,6 +289,7 @@ namespace InfoBox
         {
             this.InitializeComponent();
             this.measureGraphics = CreateGraphics();
+            this.measureGraphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
             // Apply default font for message boxes
             this.Font = SystemFonts.MessageBoxFont;
@@ -334,6 +342,7 @@ namespace InfoBox
             this.style = style;
             this.autoClose = autoClose;
             this.design = design;
+            this.fontParameters = fontParameters;
             this.titleStyle = titleStyle;
             if (titleIcon != null)
             {
@@ -508,6 +517,16 @@ namespace InfoBox
                     // Design parameters
                     this.design = (DesignParameters)parameter;
                 }
+                else if (parameter is FontParameters)
+                {
+                    // Font parameters
+                    this.fontParameters = (FontParameters)parameter;
+                }
+                else if (parameter is Font)
+                {
+                    // Direct font parameter - use for both message and title
+                    this.fontParameters = new FontParameters((Font)parameter);
+                }
                 else if (parameter is InformationBoxTitleIconStyle)
                 {
                     // Title style
@@ -578,6 +597,7 @@ namespace InfoBox
         {
             this.SetCheckBox();
             this.SetButtons();
+            this.SetFont();
             this.SetText();
             this.SetIcon();
             this.SetLayout();
@@ -731,6 +751,11 @@ namespace InfoBox
             if (parameters.Design != null)
             {
                 this.design = parameters.Design;
+            }
+
+            if (parameters.Font != null)
+            {
+                this.fontParameters = parameters.Font;
             }
 
             if (parameters.TitleIconStyle.HasValue)
@@ -1202,6 +1227,21 @@ namespace InfoBox
 
         #endregion Z-Order
 
+        #region Font
+
+        /// <summary>
+        /// Sets the font.
+        /// </summary>
+        private void SetFont()
+        {
+            if (this.fontParameters != null && this.fontParameters.MessageFont != null)
+            {
+                this.messageText.Font = this.fontParameters.MessageFont;
+            }
+        }
+
+        #endregion Font
+
         #region Text
 
         /// <summary>
@@ -1218,7 +1258,15 @@ namespace InfoBox
             if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
             {
                 this.messageText.WordWrap = true;
-                this.messageText.Size = this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth / 2).ToSize();
+                this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth / 2) + new SizeF(1, 0)).ToSize();
+            }
+            else if (this.autoSizeMode == InformationBoxAutoSizeMode.FitToText)
+            {
+                var stringFormat = StringFormat.GenericTypographic;
+                stringFormat.FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces;
+
+                this.messageText.WordWrap = false;
+                this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth, stringFormat) + new SizeF(1, 0)).ToSize();
             }
             else
             {
@@ -1235,7 +1283,7 @@ namespace InfoBox
 
                     foreach (Match sentence in sentences)
                     {
-                        int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, messageText.Font).Width;
+                        int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, this.messageText.Font).Width;
                         if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                         {
                             formattedText.Append(Environment.NewLine);
@@ -1260,7 +1308,7 @@ namespace InfoBox
 
                 this.messageText.Text = this.internalText.ToString();
 
-                this.messageText.Size = this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font).ToSize();
+                this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font) + new SizeF(1, 0)).ToSize();
             }
 
             this.messageText.Width += BorderPadding;

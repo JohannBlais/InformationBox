@@ -83,6 +83,7 @@ namespace InfoBox.Designer
             ddlLanguage = new System.Windows.Forms.ComboBox();
             label4 = new System.Windows.Forms.Label();
             groupBox9 = new System.Windows.Forms.GroupBox();
+            rdbAutoSizeFitToText = new System.Windows.Forms.RadioButton();
             rdbAutoSizeNone = new System.Windows.Forms.RadioButton();
             rdbAutoSizeMinimumHeight = new System.Windows.Forms.RadioButton();
             rdbAutoSizeMinimumWidth = new System.Windows.Forms.RadioButton();
@@ -141,6 +142,12 @@ namespace InfoBox.Designer
             groupBox21 = new System.Windows.Forms.GroupBox();
             rdbSoundMute = new System.Windows.Forms.RadioButton();
             rdbSoundDefault = new System.Windows.Forms.RadioButton();
+            groupBox22 = new System.Windows.Forms.GroupBox();
+            chbCustomFonts = new System.Windows.Forms.CheckBox();
+            lblMessageFont = new System.Windows.Forms.Label();
+            txbMessageFont = new System.Windows.Forms.TextBox();
+            btnMessageFont = new System.Windows.Forms.Button();
+            dlgFont = new System.Windows.Forms.FontDialog();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -164,6 +171,7 @@ namespace InfoBox.Designer
             groupBox19.SuspendLayout();
             groupBox20.SuspendLayout();
             groupBox21.SuspendLayout();
+            groupBox22.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -214,7 +222,7 @@ namespace InfoBox.Designer
             label1.Location = new System.Drawing.Point(21, 24);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(29, 15);
+            label1.Size = new System.Drawing.Size(30, 15);
             label1.TabIndex = 0;
             label1.Text = "Title";
             // 
@@ -459,7 +467,7 @@ namespace InfoBox.Designer
             // btnShow
             // 
             btnShow.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            btnShow.Location = new System.Drawing.Point(377, 633);
+            btnShow.Location = new System.Drawing.Point(377, 662);
             btnShow.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnShow.Name = "btnShow";
             btnShow.Size = new System.Drawing.Size(214, 31);
@@ -535,7 +543,7 @@ namespace InfoBox.Designer
             rdbTitleIconSameAsBox.Location = new System.Drawing.Point(86, 18);
             rdbTitleIconSameAsBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             rdbTitleIconSameAsBox.Name = "rdbTitleIconSameAsBox";
-            rdbTitleIconSameAsBox.Size = new System.Drawing.Size(87, 19);
+            rdbTitleIconSameAsBox.Size = new System.Drawing.Size(86, 19);
             rdbTitleIconSameAsBox.TabIndex = 1;
             rdbTitleIconSameAsBox.Text = "SameAsBox";
             rdbTitleIconSameAsBox.UseVisualStyleBackColor = true;
@@ -559,7 +567,7 @@ namespace InfoBox.Designer
             txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            txbCode.Location = new System.Drawing.Point(14, 697);
+            txbCode.Location = new System.Drawing.Point(14, 699);
             txbCode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txbCode.Multiline = true;
             txbCode.Name = "txbCode";
@@ -572,7 +580,7 @@ namespace InfoBox.Designer
             // 
             btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnGenerate.ContextMenuStrip = cmsLanguage;
-            btnGenerate.Location = new System.Drawing.Point(138, 633);
+            btnGenerate.Location = new System.Drawing.Point(138, 662);
             btnGenerate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new System.Drawing.Size(214, 31);
@@ -585,19 +593,19 @@ namespace InfoBox.Designer
             // 
             cmsLanguage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmCSharp, tsmVbNet });
             cmsLanguage.Name = "cmsLanguage";
-            cmsLanguage.Size = new System.Drawing.Size(113, 48);
+            cmsLanguage.Size = new System.Drawing.Size(114, 48);
             // 
             // tsmCSharp
             // 
             tsmCSharp.Name = "tsmCSharp";
-            tsmCSharp.Size = new System.Drawing.Size(112, 22);
+            tsmCSharp.Size = new System.Drawing.Size(113, 22);
             tsmCSharp.Text = "C#";
             tsmCSharp.Click += tsmCSharp_Click;
             // 
             // tsmVbNet
             // 
             tsmVbNet.Name = "tsmVbNet";
-            tsmVbNet.Size = new System.Drawing.Size(112, 22);
+            tsmVbNet.Size = new System.Drawing.Size(113, 22);
             tsmVbNet.Text = "VB.NET";
             tsmVbNet.Click += tsmVbNet_Click;
             // 
@@ -745,6 +753,7 @@ namespace InfoBox.Designer
             // 
             // groupBox9
             // 
+            groupBox9.Controls.Add(rdbAutoSizeFitToText);
             groupBox9.Controls.Add(rdbAutoSizeNone);
             groupBox9.Controls.Add(rdbAutoSizeMinimumHeight);
             groupBox9.Controls.Add(rdbAutoSizeMinimumWidth);
@@ -756,6 +765,17 @@ namespace InfoBox.Designer
             groupBox9.TabIndex = 12;
             groupBox9.TabStop = false;
             groupBox9.Text = "AutoSize";
+            // 
+            // rdbAutoSizeFitToText
+            // 
+            rdbAutoSizeFitToText.AutoSize = true;
+            rdbAutoSizeFitToText.Location = new System.Drawing.Point(172, 45);
+            rdbAutoSizeFitToText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            rdbAutoSizeFitToText.Name = "rdbAutoSizeFitToText";
+            rdbAutoSizeFitToText.Size = new System.Drawing.Size(72, 19);
+            rdbAutoSizeFitToText.TabIndex = 3;
+            rdbAutoSizeFitToText.Text = "FitToText";
+            rdbAutoSizeFitToText.UseVisualStyleBackColor = true;
             // 
             // rdbAutoSizeNone
             // 
@@ -789,7 +809,6 @@ namespace InfoBox.Designer
             rdbAutoSizeMinimumWidth.Name = "rdbAutoSizeMinimumWidth";
             rdbAutoSizeMinimumWidth.Size = new System.Drawing.Size(110, 19);
             rdbAutoSizeMinimumWidth.TabIndex = 0;
-            rdbAutoSizeMinimumWidth.TabStop = true;
             rdbAutoSizeMinimumWidth.Text = "MinimumWidth";
             rdbAutoSizeMinimumWidth.UseVisualStyleBackColor = true;
             // 
@@ -931,7 +950,7 @@ namespace InfoBox.Designer
             rdbHelpTopic.Location = new System.Drawing.Point(174, 45);
             rdbHelpTopic.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             rdbHelpTopic.Name = "rdbHelpTopic";
-            rdbHelpTopic.Size = new System.Drawing.Size(53, 19);
+            rdbHelpTopic.Size = new System.Drawing.Size(54, 19);
             rdbHelpTopic.TabIndex = 7;
             rdbHelpTopic.TabStop = true;
             rdbHelpTopic.Text = "Topic";
@@ -943,7 +962,7 @@ namespace InfoBox.Designer
             rdbHelpTableOfContents.Location = new System.Drawing.Point(174, 21);
             rdbHelpTableOfContents.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             rdbHelpTableOfContents.Name = "rdbHelpTableOfContents";
-            rdbHelpTableOfContents.Size = new System.Drawing.Size(113, 19);
+            rdbHelpTableOfContents.Size = new System.Drawing.Size(114, 19);
             rdbHelpTableOfContents.TabIndex = 3;
             rdbHelpTableOfContents.TabStop = true;
             rdbHelpTableOfContents.Text = "TableOfContents";
@@ -955,7 +974,7 @@ namespace InfoBox.Designer
             rdbHelpIndex.Location = new System.Drawing.Point(22, 44);
             rdbHelpIndex.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             rdbHelpIndex.Name = "rdbHelpIndex";
-            rdbHelpIndex.Size = new System.Drawing.Size(54, 19);
+            rdbHelpIndex.Size = new System.Drawing.Size(53, 19);
             rdbHelpIndex.TabIndex = 2;
             rdbHelpIndex.TabStop = true;
             rdbHelpIndex.Text = "Index";
@@ -993,7 +1012,7 @@ namespace InfoBox.Designer
             label9.Location = new System.Drawing.Point(14, 73);
             label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(72, 15);
+            label9.Size = new System.Drawing.Size(71, 15);
             label9.TabIndex = 6;
             label9.Text = "Custom text";
             // 
@@ -1010,14 +1029,13 @@ namespace InfoBox.Designer
             clbCheckBox.BackColor = System.Drawing.SystemColors.Control;
             clbCheckBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             clbCheckBox.CheckOnClick = true;
-            clbCheckBox.ColumnWidth = 78;
-            clbCheckBox.FormattingEnabled = true;
+            clbCheckBox.ColumnWidth = 100;
             clbCheckBox.Items.AddRange(new object[] { "Show", "Checked", "RightAligned" });
-            clbCheckBox.Location = new System.Drawing.Point(7, 35);
+            clbCheckBox.Location = new System.Drawing.Point(7, 17);
             clbCheckBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             clbCheckBox.MultiColumn = true;
             clbCheckBox.Name = "clbCheckBox";
-            clbCheckBox.Size = new System.Drawing.Size(296, 0);
+            clbCheckBox.Size = new System.Drawing.Size(296, 36);
             clbCheckBox.TabIndex = 0;
             // 
             // groupBox15
@@ -1305,7 +1323,7 @@ namespace InfoBox.Designer
             // btnShowModeless
             // 
             btnShowModeless.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            btnShowModeless.Location = new System.Drawing.Point(616, 633);
+            btnShowModeless.Location = new System.Drawing.Point(616, 662);
             btnShowModeless.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnShowModeless.Name = "btnShowModeless";
             btnShowModeless.Size = new System.Drawing.Size(214, 31);
@@ -1339,7 +1357,7 @@ namespace InfoBox.Designer
             // 
             groupBox20.Controls.Add(rdbOrderTopMost);
             groupBox20.Controls.Add(rdbOrderDefault);
-            groupBox20.Location = new System.Drawing.Point(14, 547);
+            groupBox20.Location = new System.Drawing.Point(329, 603);
             groupBox20.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox20.Name = "groupBox20";
             groupBox20.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1354,7 +1372,7 @@ namespace InfoBox.Designer
             rdbOrderTopMost.Location = new System.Drawing.Point(172, 21);
             rdbOrderTopMost.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             rdbOrderTopMost.Name = "rdbOrderTopMost";
-            rdbOrderTopMost.Size = new System.Drawing.Size(71, 19);
+            rdbOrderTopMost.Size = new System.Drawing.Size(72, 19);
             rdbOrderTopMost.TabIndex = 1;
             rdbOrderTopMost.Text = "TopMost";
             rdbOrderTopMost.UseVisualStyleBackColor = true;
@@ -1409,11 +1427,68 @@ namespace InfoBox.Designer
             rdbSoundDefault.Text = "Default";
             rdbSoundDefault.UseVisualStyleBackColor = true;
             // 
+            // groupBox22
+            // 
+            groupBox22.Controls.Add(chbCustomFonts);
+            groupBox22.Controls.Add(lblMessageFont);
+            groupBox22.Controls.Add(txbMessageFont);
+            groupBox22.Controls.Add(btnMessageFont);
+            groupBox22.Location = new System.Drawing.Point(14, 546);
+            groupBox22.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox22.Name = "groupBox22";
+            groupBox22.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupBox22.Size = new System.Drawing.Size(308, 78);
+            groupBox22.TabIndex = 25;
+            groupBox22.TabStop = false;
+            groupBox22.Text = "Font";
+            // 
+            // chbCustomFonts
+            // 
+            chbCustomFonts.AutoSize = true;
+            chbCustomFonts.Location = new System.Drawing.Point(21, 22);
+            chbCustomFonts.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            chbCustomFonts.Name = "chbCustomFonts";
+            chbCustomFonts.Size = new System.Drawing.Size(204, 19);
+            chbCustomFonts.TabIndex = 0;
+            chbCustomFonts.Text = "Use a custom font for the content";
+            chbCustomFonts.UseVisualStyleBackColor = true;
+            // 
+            // lblMessageFont
+            // 
+            lblMessageFont.AutoSize = true;
+            lblMessageFont.Location = new System.Drawing.Point(8, 50);
+            lblMessageFont.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblMessageFont.Name = "lblMessageFont";
+            lblMessageFont.Size = new System.Drawing.Size(31, 15);
+            lblMessageFont.TabIndex = 1;
+            lblMessageFont.Text = "Font";
+            // 
+            // txbMessageFont
+            // 
+            txbMessageFont.Location = new System.Drawing.Point(59, 47);
+            txbMessageFont.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txbMessageFont.Name = "txbMessageFont";
+            txbMessageFont.ReadOnly = true;
+            txbMessageFont.Size = new System.Drawing.Size(182, 23);
+            txbMessageFont.TabIndex = 2;
+            // 
+            // btnMessageFont
+            // 
+            btnMessageFont.Location = new System.Drawing.Point(250, 45);
+            btnMessageFont.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnMessageFont.Name = "btnMessageFont";
+            btnMessageFont.Size = new System.Drawing.Size(29, 25);
+            btnMessageFont.TabIndex = 3;
+            btnMessageFont.Text = "...";
+            btnMessageFont.UseVisualStyleBackColor = true;
+            btnMessageFont.Click += BtnMessageFont_Click;
+            // 
             // InformationBoxDesigner
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(966, 788);
+            ClientSize = new System.Drawing.Size(966, 790);
+            Controls.Add(groupBox22);
             Controls.Add(groupBox21);
             Controls.Add(groupBox20);
             Controls.Add(groupBox19);
@@ -1488,6 +1563,8 @@ namespace InfoBox.Designer
             groupBox20.PerformLayout();
             groupBox21.ResumeLayout(false);
             groupBox21.PerformLayout();
+            groupBox22.ResumeLayout(false);
+            groupBox22.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1605,5 +1682,12 @@ namespace InfoBox.Designer
         private System.Windows.Forms.TextBox txbUser3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtDoNotShowText;
+        private System.Windows.Forms.GroupBox groupBox22;
+        private System.Windows.Forms.CheckBox chbCustomFonts;
+        private System.Windows.Forms.Label lblMessageFont;
+        private System.Windows.Forms.TextBox txbMessageFont;
+        private System.Windows.Forms.Button btnMessageFont;
+        private System.Windows.Forms.FontDialog dlgFont;
+        private System.Windows.Forms.RadioButton rdbAutoSizeFitToText;
     }
 }

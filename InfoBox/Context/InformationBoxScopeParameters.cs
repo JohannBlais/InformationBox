@@ -122,6 +122,12 @@ namespace InfoBox
         public DesignParameters Design { get; set; }
 
         /// <summary>
+        /// Gets or sets the font.
+        /// </summary>
+        /// <value>The font.</value>
+        public FontParameters Font { get; set; }
+
+        /// <summary>
         /// Gets or sets the order.
         /// </summary>
         /// <value>The order.</value>
@@ -197,6 +203,11 @@ namespace InfoBox
             if (parameters.Design != null && null == this.Design)
             {
                 this.Design = parameters.Design;
+            }
+
+            if (parameters.Font != null && null == this.Font)
+            {
+                this.Font = parameters.Font;
             }
 
             if (parameters.TitleIconStyle.HasValue && !this.TitleIconStyle.HasValue)
@@ -275,6 +286,7 @@ namespace InfoBox
                    this.CustomIcon == compared.CustomIcon &&
                    this.DefaultButton == compared.DefaultButton &&
                    this.Design == compared.Design &&
+                   this.Font == compared.Font &&
                    this.Help == compared.Help &&
                    this.HelpNavigator == compared.HelpNavigator &&
                    this.Icon == compared.Icon &&
@@ -305,6 +317,7 @@ namespace InfoBox
             hashCode ^= this.CustomIcon == null ? 0 : this.CustomIcon.GetHashCode();
             hashCode ^= this.DefaultButton == null ? 0 : this.DefaultButton.GetHashCode();
             hashCode ^= this.Design == null ? 0 : this.Design.GetHashCode();
+            hashCode ^= this.Font == null ? 0 : this.Font.GetHashCode();
             hashCode ^= this.Help == null ? 0 : this.Help.GetHashCode();
             hashCode ^= this.HelpNavigator == null ? 0 : this.HelpNavigator.GetHashCode();
             hashCode ^= this.Icon == null ? 0 : this.Icon.GetHashCode();

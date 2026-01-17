@@ -162,6 +162,7 @@
     <Compile Include="Internals\MessageBoxEnumConverter.cs" />
     <Compile Include="Parameters\AutoCloseParameters.cs" />
     <Compile Include="Parameters\DesignParameters.cs" />
+    <Compile Include="Parameters\FontParameters.cs" />
     <Compile Include="Parameters\InformationBoxTitleIcon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

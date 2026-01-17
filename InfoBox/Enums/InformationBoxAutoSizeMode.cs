@@ -22,8 +22,13 @@ namespace InfoBox
         MinimumHeight,
 
         /// <summary>
-        /// The <see cref="InformationBox"/> will be set according to existing line breaks.
+        /// The <see cref="InformationBox"/> will be set with consideration for existing line breaks, but will wrapping lines that are too wide.
         /// </summary>
         None,
+
+        /// <summary>
+        /// The <see cref="InformationBox"/> will try to adjust the size so that the text is displayed as provided. It enbale pre-formatted text to remain untouched. In case the text is wider than the screen, horizontal scrollbars will appear.
+        /// </summary>
+        FitToText
     }
 }
