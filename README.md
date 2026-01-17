@@ -2,7 +2,7 @@
 
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 
-.NET 4.8/.NET 6.0/.NET 7.0/.NET 8.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
+.NET 4.8/.NET 7.0-10.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
 **Build**
 
