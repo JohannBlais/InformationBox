@@ -479,16 +479,22 @@ namespace InfoBox.Designer
 
             if (this.rdbAutoCloseButton.Checked && this.ddlAutoCloseButton.SelectedIndex != -1)
             {
-                return new AutoCloseParameters(
-                    Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                    (InformationBoxDefaultButton)Enum.Parse(typeof(InformationBoxDefaultButton), this.ddlAutoCloseButton.SelectedItem.ToString()));
+                if (Enum.TryParse<InformationBoxDefaultButton>(this.ddlAutoCloseButton.SelectedItem.ToString(), out var buttonResult))
+                {
+                    return new AutoCloseParameters(
+                        Convert.ToInt32(this.nudAutoCloseSeconds.Value),
+                        buttonResult);
+                }
             }
 
             if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1)
             {
-                return new AutoCloseParameters(
-                    Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                    (InformationBoxResult)Enum.Parse(typeof(InformationBoxResult), this.ddlAutoCloseResult.SelectedItem.ToString()));
+                if (Enum.TryParse<InformationBoxResult>(this.ddlAutoCloseResult.SelectedItem.ToString(), out var resultValue))
+                {
+                    return new AutoCloseParameters(
+                        Convert.ToInt32(this.nudAutoCloseSeconds.Value),
+                        resultValue);
+                }
             }
 
             return new AutoCloseParameters(Convert.ToInt32(this.nudAutoCloseSeconds.Value));

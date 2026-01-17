@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Johann Blais")]
 [assembly: AssemblyProduct("InformationBox")]
-[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2022")]
+[assembly: AssemblyCopyright("Copyright © Johann Blais 2007-2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

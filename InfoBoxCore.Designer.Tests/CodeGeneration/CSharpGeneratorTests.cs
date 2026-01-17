@@ -78,7 +78,7 @@ namespace InfoBoxCore.Designer.Tests
                                                     order: InformationBoxOrder.Default,
                                                     sound: InformationBoxSound.Default);
 
-            Assert.IsTrue(CompileCode(code).Success);
+            Assert.That(CompileCode(code).Success);
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace InfoBoxCore.Designer.Tests
                                                     order: InformationBoxOrder.Default,
                                                     sound: InformationBoxSound.Default);
 
-            Assert.IsTrue(CompileCode(code).Success);
+            Assert.That(CompileCode(code).Success);
         }
 
         [Test]
@@ -148,7 +148,7 @@ namespace InfoBoxCore.Designer.Tests
                                                     order: InformationBoxOrder.Default,
                                                     sound: InformationBoxSound.Default);
 
-            Assert.IsTrue(CompileCode(code).Success);
+            Assert.That(CompileCode(code).Success);
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace InfoBoxCore.Designer.Tests
                                                     order: InformationBoxOrder.Default,
                                                     sound: InformationBoxSound.Default);
 
-            Assert.IsTrue(CompileCode(code).Success);
+            Assert.That(CompileCode(code).Success);
         }
 
         [Test]
@@ -218,7 +218,7 @@ namespace InfoBoxCore.Designer.Tests
                                                     order: InformationBoxOrder.Default,
                                                     sound: InformationBoxSound.Default);
 
-            Assert.IsTrue(CompileCode(code).Success);
+            Assert.That(CompileCode(code).Success);
         }
 
         private EmitResult CompileCode(string sourceCode)
