@@ -281,8 +281,12 @@ namespace InfoBox
                                     InformationBoxSound sound = InformationBoxSound.Default)
         {
             this.InitializeComponent();
+            // TODO: [P0.2] Replace CreateGraphics with ITextMeasurement interface injection
+            // See TESTABILITY_ROADMAP.md - this prevents headless testing
             this.measureGraphics = CreateGraphics();
 
+            // TODO: [P1.3] Replace SystemFonts with ISystemResources interface injection
+            // See TESTABILITY_ROADMAP.md - this prevents testing without system fonts
             // Apply default font for message boxes
             this.Font = SystemFonts.MessageBoxFont;
             this.messageText.Font = SystemFonts.MessageBoxFont;
@@ -622,6 +626,8 @@ namespace InfoBox
         /// </summary>
         private void PlaySound()
         {
+            // TODO: [P1.3] Replace SystemSounds with ISystemResources.PlaySound(InformationBoxSound)
+            // See TESTABILITY_ROADMAP.md - this entire method logic should move to WindowsSystemResources
             if (sound == InformationBoxSound.None)
             {
                 return;
@@ -976,6 +982,8 @@ namespace InfoBox
         /// </summary>
         private void SetLayout()
         {
+            // TODO: [P0.1] Extract this 110-line method to InformationBoxPresenter.CalculateLayout()
+            // See TESTABILITY_ROADMAP.md - this complex layout logic should be testable without WinForms
             int totalHeight;
             int totalWidth;
 
@@ -1035,6 +1043,8 @@ namespace InfoBox
 
             totalHeight = Math.Max(iconHeight, textHeight) + BorderPadding * 2 + this.pnlBas.Height;
 
+            // TODO: [P1.3] Replace Screen.PrimaryScreen with ISystemResources.GetWorkingArea()
+            // See TESTABILITY_ROADMAP.md - hardcoded screen metrics prevent testing with different screen sizes
             // Add a small space to avoid vertical scrollbar.
             if (iconAndTextWidth > Screen.PrimaryScreen.WorkingArea.Width - 100)
             {
@@ -1275,6 +1285,8 @@ namespace InfoBox
         /// </summary>
         private void SetButtons()
         {
+            // TODO: [P0.1] Extract button generation logic to InformationBoxPresenter.GetButtons()
+            // See TESTABILITY_ROADMAP.md - this logic should return List<ButtonDefinition> without WinForms dependencies
             // Abort button
             if (this.buttons == InformationBoxButtons.AbortRetryIgnore)
             {
@@ -1630,6 +1642,8 @@ namespace InfoBox
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void TmrAutoClose_Tick(object sender, EventArgs e)
         {
+            // TODO: [P0.1] Extract this 115-line timer logic to InformationBoxPresenter.UpdateAutoClose(TimeSpan elapsed)
+            // See TESTABILITY_ROADMAP.md - this should be a pure function returning AutoCloseState without Timer dependencies
             if (this.elapsedTime == this.autoClose.Seconds)
             {
                 this.tmrAutoClose.Stop();

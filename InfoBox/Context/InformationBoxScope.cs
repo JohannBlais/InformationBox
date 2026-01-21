@@ -16,6 +16,10 @@ namespace InfoBox
     {
         #region Attributes
 
+        // TODO: [P1.1] Replace static Stack with AsyncLocal<Stack<InformationBoxScope>> for thread-safety
+        // See TESTABILITY_ROADMAP.md - current implementation is not thread-safe for concurrent tests
+        // private static readonly AsyncLocal<Stack<InformationBoxScope>> _scopeStack = new AsyncLocal<Stack<InformationBoxScope>>();
+        // Also add IInformationBoxScope interface and TestScopeProvider for dependency injection in tests
         /// <summary>
         /// Stack of all scopes
         /// </summary>

@@ -18,6 +18,11 @@ namespace InfoBox
     #endif
     public static class InformationBox
     {
+        // TODO: [P1.2] Add factory pattern for testability
+        // See TESTABILITY_ROADMAP.md - Add IInformationBoxFactory and IInformationBoxDisplay interfaces
+        // internal static IInformationBoxFactory Factory { get; set; } = new InformationBoxFactory();
+        // This will allow tests to inject mock factories and test code that calls InformationBox.Show()
+
 #region Show
 
         /// <summary>
@@ -125,6 +130,7 @@ namespace InfoBox
         /// <returns>One of the <see cref="InformationBoxResult"/> values.</returns>
         public static InformationBoxResult Show(string text, params object[] parameters)
         {
+            // TODO: [P1.2] Replace direct instantiation with Factory.Create(text, parameters).ShowModal()
             return new InformationBoxForm(text, parameters).Show();
         }
 
