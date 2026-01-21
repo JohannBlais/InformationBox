@@ -30,6 +30,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="useAutoClose">if set to <c>true</c> [use auto close].</param>
         /// <param name="autoClose">The auto-close parameters.</param>
         /// <param name="design">The design.</param>
+        /// <param name="fontParameters">The font parameters.</param>
         /// <param name="titleStyle">The title style.</param>
         /// <param name="titleIconFileName">Filename of the title icon .</param>
         /// <param name="opacity">The opacity.</param>
@@ -59,6 +60,7 @@ namespace InfoBox.Designer.CodeGeneration
                                   bool useAutoClose,
                                   AutoCloseParameters autoClose,
                                   DesignParameters design,
+                                  FontParameters fontParameters,
                                   InformationBoxTitleIconStyle titleStyle,
                                   string titleIconFileName,
                                   InformationBoxOpacity opacity,

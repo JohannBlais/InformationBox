@@ -38,6 +38,7 @@ namespace InfoBox.Designer.CodeGeneration
         /// <param name="useAutoClose">if set to <c>true</c> [use auto close].</param>
         /// <param name="autoClose">The auto-close parameters.</param>
         /// <param name="design">The design.</param>
+        /// <param name="fontParameters">The font parameters.</param>
         /// <param name="titleStyle">The title style.</param>
         /// <param name="titleIconFileName">Filename of the title icon .</param>
         /// <param name="opacity">The opacity.</param>
@@ -67,6 +68,7 @@ namespace InfoBox.Designer.CodeGeneration
                                          bool useAutoClose,
                                          AutoCloseParameters autoClose,
                                          DesignParameters design,
+                                         FontParameters fontParameters,
                                          InformationBoxTitleIconStyle titleStyle,
                                          string titleIconFileName,
                                          InformationBoxOpacity opacity,
@@ -220,6 +222,12 @@ namespace InfoBox.Designer.CodeGeneration
             if (null != design)
             {
                 codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "design: new DesignParameters(System.Drawing.Color.FromArgb({0},{1},{2}), System.Drawing.Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
+            }
+
+            if (null != fontParameters && fontParameters.MessageFont != null)
+            {
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "fontParameters: new FontParameters(new System.Drawing.Font(\"{0}\", {1}F)), ",
+                    fontParameters.MessageFont.Name, fontParameters.MessageFont.Size);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)

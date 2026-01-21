@@ -96,6 +96,14 @@ namespace InfoBox
         ///         <description>the parameters for the design (colors).</description>
         ///     </item>
         ///     <item>
+        ///         <term><see cref="FontParameters"/></term>
+        ///         <description>the parameters for customizing the message text font.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="System.Drawing.Font"/></term>
+        ///         <description>the font to use for message text.</description>
+        ///     </item>
+        ///     <item>
         ///         <term><see cref="InformationBoxTitleIconStyle"/></term>
         ///         <description>which icon will be displayed in the title bar.</description>
         ///     </item>
@@ -157,6 +165,8 @@ namespace InfoBox
         /// <param name="style">The style.</param>
         /// <param name="autoClose">The auto close configuration.</param>
         /// <param name="design">The design.</param>
+        /// <param name="fontParameters">The font parameters.</param>
+        /// <param name="font">The specific font to use for the content.</param>
         /// <param name="titleStyle">The title style.</param>
         /// <param name="titleIcon">The title icon.</param>
         /// <param name="legacyButtons">The legacy buttons.</param>
@@ -189,6 +199,8 @@ namespace InfoBox
                                                 InformationBoxStyle style = InformationBoxStyle.Standard,
                                                 AutoCloseParameters autoClose = null,
                                                 DesignParameters design = null,
+                                                FontParameters fontParameters = null,
+                                                Font font = null,
                                                 InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.None,
                                                 InformationBoxTitleIcon titleIcon = null,
                                                 MessageBoxButtons? legacyButtons = null,
@@ -203,7 +215,7 @@ namespace InfoBox
         {
             return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox, doNotShowAgainText,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show();
+                 style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show();
         }
 
         /// <summary>
@@ -281,6 +293,14 @@ namespace InfoBox
         ///         <description>the parameters for the design (colors).</description>
         ///     </item>
         ///     <item>
+        ///         <term><see cref="FontParameters"/></term>
+        ///         <description>the parameters for customizing the message text font.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="System.Drawing.Font"/></term>
+        ///         <description>the font to use for message text.</description>
+        ///     </item>
+        ///     <item>
         ///         <term><see cref="InformationBoxTitleIconStyle"/></term>
         ///         <description>which icon will be displayed in the title bar.</description>
         ///     </item>
@@ -353,6 +373,8 @@ namespace InfoBox
         /// <param name="style">The style.</param>
         /// <param name="autoClose">The auto close configuration.</param>
         /// <param name="design">The design.</param>
+        /// <param name="fontParameters">The font parameters.</param>
+        /// <param name="font">The specific font to use for the content.</param>
         /// <param name="titleStyle">The title style.</param>
         /// <param name="titleIcon">The title icon.</param>
         /// <param name="legacyButtons">The legacy buttons.</param>
@@ -388,6 +410,8 @@ namespace InfoBox
                                                 InformationBoxStyle style = InformationBoxStyle.Standard,
                                                 AutoCloseParameters autoClose = null,
                                                 DesignParameters design = null,
+                                                FontParameters fontParameters = null,
+                                                Font font = null,
                                                 InformationBoxTitleIconStyle titleStyle = InformationBoxTitleIconStyle.None,
                                                 InformationBoxTitleIcon titleIcon = null,
                                                 MessageBoxButtons? legacyButtons = null,
@@ -402,7 +426,7 @@ namespace InfoBox
         {
             return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox, doNotShowAgainText,
-                 style, autoClose, design, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
+                 style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
         }
 
 #endregion Show

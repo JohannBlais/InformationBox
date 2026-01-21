@@ -30,6 +30,11 @@ namespace InfoBox.Designer
         /// </summary>
         private Color formColor = Color.Empty;
 
+        /// <summary>
+        /// Font for the message text
+        /// </summary>
+        private Font messageFont = null;
+
         #endregion Attributes
 
         #region Constructors
@@ -82,6 +87,7 @@ namespace InfoBox.Designer
             InformationBoxStyle style = this.GetStyle();
             AutoCloseParameters autoClose = this.GetAutoClose();
             DesignParameters design = this.GetDesign();
+            FontParameters fontParameters = this.GetFontParameters();
             InformationBoxTitleIconStyle titleStyle = this.GetTitleStyle();
             InformationBoxOpacity opacity = this.GetOpacity();
             InformationBoxOrder order = this.GetOrder();
@@ -95,11 +101,11 @@ namespace InfoBox.Designer
 
             if (String.IsNullOrEmpty(iconFileName))
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, doNotShowAgainText, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, icon, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, doNotShowAgainText, style, autoClose, design, fontParameters, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
             else
             {
-                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, doNotShowAgainText, style, autoClose, design, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
+                InformationBox.Show(this.txbText.Text, out state, this.txbTitle.Text, buttons, new string[] { this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text }, new Icon(iconFileName), defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked, this.txbHelpFile.Text, navigator, this.txbHelpTopic.Text, checkState, doNotShowAgainText, style, autoClose, design, fontParameters, titleStyle, titleIcon, behavior, new AsyncResultCallback(BoxClosed), opacity, order, sound);
             }
 
             if (checkState != 0)
@@ -186,6 +192,10 @@ namespace InfoBox.Designer
             this.lblTitleIcon.DataBindings.Add("Enabled", this.rdbTitleIconCustom, "Checked");
             this.txbTitleIconFile.DataBindings.Add("Enabled", this.rdbTitleIconCustom, "Checked");
             this.btnTitleIconFile.DataBindings.Add("Enabled", this.rdbTitleIconCustom, "Checked");
+
+            this.lblMessageFont.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
+            this.txbMessageFont.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
+            this.btnMessageFont.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
         }
 
         #endregion Loading
@@ -351,6 +361,11 @@ namespace InfoBox.Designer
             if (this.rdbAutoSizeMinimumWidth.Checked)
             {
                 return InformationBoxAutoSizeMode.MinimumWidth;
+            }
+
+            if (this.rdbAutoSizeFitToText.Checked)
+            {
+                return InformationBoxAutoSizeMode.FitToText;
             }
 
             return InformationBoxAutoSizeMode.None;
@@ -529,6 +544,20 @@ namespace InfoBox.Designer
         }
 
         /// <summary>
+        /// Gets the font parameters.
+        /// </summary>
+        /// <returns>The font parameters.</returns>
+        private FontParameters GetFontParameters()
+        {
+            if (!this.chbCustomFonts.Checked || this.messageFont == null)
+            {
+                return null;
+            }
+
+            return new FontParameters(this.messageFont);
+        }
+
+        /// <summary>
         /// Gets the title style.
         /// </summary>
         /// <returns>The style of the title</returns>
@@ -575,6 +604,7 @@ namespace InfoBox.Designer
             var style = this.GetStyle();
             var autoClose = this.GetAutoClose();
             var design = this.GetDesign();
+            var fontParameters = this.GetFontParameters();
             var titleStyle = this.GetTitleStyle();
             var opacity = this.GetOpacity();
             var order = this.GetOrder();
@@ -587,7 +617,7 @@ namespace InfoBox.Designer
                     behavior, this.txbText.Text, this.txbTitle.Text, buttons, this.txbUser1.Text, this.txbUser2.Text, this.txbUser3.Text,
                     icon, iconFileName, defaultButton, buttonsLayout, autoSize, position, this.chbHelpButton.Checked,
                     this.txbHelpFile.Text, this.txbHelpTopic.Text, navigator, checkState, doNotShowAgainText, style, this.chbActivateAutoClose.Checked,
-                    autoClose, design, titleStyle, this.txbTitleIconFile.Text, opacity, order, sound);
+                    autoClose, design, fontParameters, titleStyle, this.txbTitleIconFile.Text, opacity, order, sound);
 
             this.txbCode.Text = generatedCode;
         }
@@ -766,6 +796,33 @@ namespace InfoBox.Designer
         }
 
         #endregion Colors
+
+        #region Fonts
+
+        /// <summary>
+        /// Handles the Click event of the btnMessageFont control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void BtnMessageFont_Click(object sender, EventArgs e)
+        {
+            if (this.messageFont != null)
+            {
+                this.dlgFont.Font = this.messageFont;
+            }
+
+            if (this.dlgFont.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            Font selected = this.dlgFont.Font;
+
+            this.txbMessageFont.Text = string.Format("{0}, {1}pt", selected.Name, selected.Size);
+            this.messageFont = selected;
+        }
+
+        #endregion Fonts
 
         #endregion Event handlers
     }
