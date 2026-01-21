@@ -80,6 +80,16 @@ namespace InfoBox
         private readonly Graphics measureGraphics;
 
         /// <summary>
+        /// Text measurement abstraction for testability (P0.2)
+        /// </summary>
+        private readonly Abstractions.ITextMeasurement textMeasurement;
+
+        /// <summary>
+        /// Presenter containing testable business logic (P0.1)
+        /// </summary>
+        private Presentation.InformationBoxPresenter presenter;
+
+        /// <summary>
         /// Contains a reference to the active form
         /// </summary>
         private readonly Form activeForm;
@@ -288,10 +298,13 @@ namespace InfoBox
                                     InformationBoxSound sound = InformationBoxSound.Default)
         {
             this.InitializeComponent();
-            // TODO: [P0.2] Replace CreateGraphics with ITextMeasurement interface injection
-            // See TESTABILITY_ROADMAP.md - this prevents headless testing
+            // [P0.2 COMPLETED] Text measurement abstraction implemented
+            // See TESTABILITY_ROADMAP.md - ITextMeasurement enables headless testing
             this.measureGraphics = CreateGraphics();
             this.measureGraphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+            // Initialize text measurement abstraction (P0.2 - COMPLETED)
+            this.textMeasurement = new Implementation.GraphicsTextMeasurement(this.measureGraphics);
 
             // TODO: [P1.3] Replace SystemFonts with ISystemResources interface injection
             // See TESTABILITY_ROADMAP.md - this prevents testing without system fonts
@@ -591,6 +604,45 @@ namespace InfoBox
 
         #endregion Constructors
 
+        #region Presenter
+
+        /// <summary>
+        /// Initializes the presenter with current form state.
+        /// </summary>
+        private void InitializePresenter()
+        {
+            var model = new Presentation.InformationBoxModel
+            {
+                Text = this.messageText.Text,
+                Title = this.Text,
+                Font = this.messageText.Font,
+                Buttons = this.buttons,
+                Icon = this.icon,
+                CustomIcon = this.customIcon,
+                DefaultButton = this.defaultButton,
+                ButtonsLayout = this.buttonsLayout,
+                AutoSizeMode = this.autoSizeMode,
+                Position = this.position,
+                CheckBox = this.checkBox,
+                Style = this.style,
+                AutoClose = this.autoClose,
+                Design = this.design,
+                FontParameters = this.fontParameters,
+                TitleStyle = this.titleStyle,
+                TitleIcon = this.titleIcon,
+                ShowHelpButton = this.showHelpButton,
+                HelpNavigator = this.helpNavigator,
+                CustomButtons = new string[] { this.buttonUser1Text, this.buttonUser2Text, this.buttonUser3Text },
+                WorkingArea = Screen.FromControl(this).WorkingArea,
+                IconPanelWidth = IconPanelWidth,
+                BorderPadding = BorderPadding
+            };
+
+            this.presenter = new Presentation.InformationBoxPresenter(model, this.textMeasurement);
+        }
+
+        #endregion Presenter
+
         #region Show
 
         /// <summary>
@@ -599,6 +651,7 @@ namespace InfoBox
         /// <returns>The result corresponding to the button clicked</returns>
         internal new InformationBoxResult Show()
         {
+            this.InitializePresenter();
             this.SetCheckBox();
             this.SetButtons();
             this.SetFont();
@@ -1333,87 +1386,18 @@ namespace InfoBox
         /// </summary>
         private void SetButtons()
         {
-            // TODO: [P0.1] Extract button generation logic to InformationBoxPresenter.GetButtons()
-            // See TESTABILITY_ROADMAP.md - this logic should return List<ButtonDefinition> without WinForms dependencies
-            // Abort button
-            if (this.buttons == InformationBoxButtons.AbortRetryIgnore)
-            {
-                this.AddButton("Abort", Resources.LabelAbort);
-            }
+            // P0.1: Now using presenter for button generation logic
+            // This provides testable business logic without WinForms dependencies
+            var customButtonTexts = new string[] { this.buttonUser1Text, this.buttonUser2Text, this.buttonUser3Text };
+            var buttonDefinitions = this.presenter.GetButtons(
+                customButtonTexts,
+                this.showHelpButton,
+                !String.IsNullOrEmpty(this.helpFile));
 
-            // Ok
-            if (this.buttons == InformationBoxButtons.OK ||
-                this.buttons == InformationBoxButtons.OKCancel ||
-                this.buttons == InformationBoxButtons.OKCancelUser1)
+            // Create WinForms buttons from definitions
+            foreach (var buttonDef in buttonDefinitions)
             {
-                this.AddButton("OK", Resources.LabelOK);
-            }
-
-            // Yes
-            if (this.buttons == InformationBoxButtons.YesNo ||
-                this.buttons == InformationBoxButtons.YesNoCancel ||
-                this.buttons == InformationBoxButtons.YesNoUser1)
-            {
-                this.AddButton("Yes", Resources.LabelYes);
-            }
-
-            // Retry
-            if (this.buttons == InformationBoxButtons.AbortRetryIgnore ||
-                this.buttons == InformationBoxButtons.RetryCancel)
-            {
-                this.AddButton("Retry", Resources.LabelRetry);
-            }
-
-            // No
-            if (this.buttons == InformationBoxButtons.YesNo ||
-                this.buttons == InformationBoxButtons.YesNoCancel ||
-                this.buttons == InformationBoxButtons.YesNoUser1)
-            {
-                this.AddButton("No", Resources.LabelNo);
-            }
-
-            // Cancel
-            if (this.buttons == InformationBoxButtons.OKCancel ||
-                this.buttons == InformationBoxButtons.OKCancelUser1 ||
-                this.buttons == InformationBoxButtons.RetryCancel ||
-                this.buttons == InformationBoxButtons.YesNoCancel)
-            {
-                this.AddButton("Cancel", Resources.LabelCancel);
-            }
-
-            // Ignore
-            if (this.buttons == InformationBoxButtons.AbortRetryIgnore)
-            {
-                this.AddButton("Ignore", Resources.LabelIgnore);
-            }
-
-            // User1
-            if (this.buttons == InformationBoxButtons.OKCancelUser1 ||
-                this.buttons == InformationBoxButtons.User1User2User3 ||
-                this.buttons == InformationBoxButtons.User1User2 ||
-                this.buttons == InformationBoxButtons.YesNoUser1 ||
-                this.buttons == InformationBoxButtons.User1)
-            {
-                this.AddButton("User1", this.buttonUser1Text);
-            }
-
-            // User2
-            if (this.buttons == InformationBoxButtons.User1User2 ||
-                this.buttons == InformationBoxButtons.User1User2User3)
-            {
-                this.AddButton("User2", this.buttonUser2Text);
-            }
-
-            // User3
-            if (this.buttons == InformationBoxButtons.User1User2User3)
-            {
-                this.AddButton("User3", this.buttonUser3Text);
-            }
-
-            // Help button is displayed when asked or when a help file name exists
-            if (this.showHelpButton || !String.IsNullOrEmpty(this.helpFile))
-            {
-                this.AddButton("Help", Resources.LabelHelp);
+                this.AddButton(buttonDef.Name, buttonDef.Text);
             }
 
             this.SetButtonsSize();

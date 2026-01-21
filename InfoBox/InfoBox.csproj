@@ -112,6 +112,7 @@
     <PackageReference Include="System.Resources.Extensions" Version="10.0.2" PrivateAssets="none" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\ITextMeasurement.cs" />
     <Compile Include="AsyncResultCallback.cs" />
     <Compile Include="Context\InformationBoxScope.cs" />
     <Compile Include="Context\InformationBoxScopeBehavior.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Form\InformationBoxForm.Designer.cs">
       <DependentUpon>InformationBoxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Implementation\GraphicsTextMeasurement.cs" />
     <Compile Include="InformationBox.cs" />
     <Compile Include="Enums\AutoCloseDefinedParameters.cs" />
     <Compile Include="Internals\IconHelper.cs" />
@@ -164,6 +166,11 @@
     <Compile Include="Parameters\DesignParameters.cs" />
     <Compile Include="Parameters\FontParameters.cs" />
     <Compile Include="Parameters\InformationBoxTitleIcon.cs" />
+    <Compile Include="Presentation\AutoCloseState.cs" />
+    <Compile Include="Presentation\ButtonDefinition.cs" />
+    <Compile Include="Presentation\InformationBoxModel.cs" />
+    <Compile Include="Presentation\InformationBoxPresenter.cs" />
+    <Compile Include="Presentation\LayoutCalculation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
