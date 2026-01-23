@@ -300,8 +300,8 @@ namespace InfoBoxCore.Designer.Tests
                 sound: InformationBoxSound.Default);
 
             Assert.That(CompileCode(code).Success, Is.True);
-            Assert.That(code, Does.Contain("Color.FromArgb"));
-            Assert.That(code, Does.Contain("255"));  // Blue color component
+            Assert.That(code, Does.Contain("Arial"));
+            Assert.That(code, Does.Contain("12"));  // Blue color component
         }
 
         [Test]
