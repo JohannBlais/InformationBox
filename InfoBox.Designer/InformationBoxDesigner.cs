@@ -35,6 +35,11 @@ namespace InfoBox.Designer
         /// </summary>
         private Font messageFont = null;
 
+        /// <summary>
+        /// Color for the message text
+        /// </summary>
+        private Color messageFontColor = Color.Empty;
+
         #endregion Attributes
 
         #region Constructors
@@ -196,6 +201,9 @@ namespace InfoBox.Designer
             this.lblMessageFont.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
             this.txbMessageFont.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
             this.btnMessageFont.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
+            this.lblMessageColor.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
+            this.txbMessageColor.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
+            this.btnMessageColor.DataBindings.Add("Enabled", this.chbCustomFonts, "Checked");
         }
 
         #endregion Loading
@@ -549,12 +557,12 @@ namespace InfoBox.Designer
         /// <returns>The font parameters.</returns>
         private FontParameters GetFontParameters()
         {
-            if (!this.chbCustomFonts.Checked || this.messageFont == null)
+            if (!this.chbCustomFonts.Checked)
             {
                 return null;
             }
 
-            return new FontParameters(this.messageFont);
+            return new FontParameters(this.messageFont, this.messageFontColor);
         }
 
         /// <summary>
@@ -813,6 +821,8 @@ namespace InfoBox.Designer
 
             if (this.dlgFont.ShowDialog() != DialogResult.OK)
             {
+                this.messageFont = null;
+                this.txbMessageFont.Text = string.Empty;
                 return;
             }
 
@@ -820,6 +830,33 @@ namespace InfoBox.Designer
 
             this.txbMessageFont.Text = string.Format("{0}, {1}pt", selected.Name, selected.Size);
             this.messageFont = selected;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the BtnMessageColor control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnMessageColor_Click(object sender, EventArgs e)
+        {
+            if (this.messageFontColor != Color.Empty)
+            {
+                this.dlgColor.Color = this.messageFontColor;
+            }
+
+            if (this.dlgColor.ShowDialog() != DialogResult.OK)
+            {
+                this.txbMessageColor.Text = string.Empty;
+                this.lblFontColor.BackColor = SystemColors.Control;
+                this.messageFontColor = Color.Empty;
+                return;
+            }
+
+            Color selected = this.dlgColor.Color;
+
+            this.txbMessageColor.Text = string.Format("R={0}, G={1}, B={2}", selected.R, selected.G, selected.B);
+            this.lblFontColor.BackColor = selected;
+            this.messageFontColor = selected;
         }
 
         #endregion Fonts

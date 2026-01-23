@@ -147,7 +147,11 @@ namespace InfoBox.Designer
             lblMessageFont = new System.Windows.Forms.Label();
             txbMessageFont = new System.Windows.Forms.TextBox();
             btnMessageFont = new System.Windows.Forms.Button();
+            lblMessageColor = new System.Windows.Forms.Label();
+            txbMessageColor = new System.Windows.Forms.TextBox();
+            btnMessageColor = new System.Windows.Forms.Button();
             dlgFont = new System.Windows.Forms.FontDialog();
+            lblFontColor = new System.Windows.Forms.Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -1429,15 +1433,19 @@ namespace InfoBox.Designer
             // 
             // groupBox22
             // 
+            groupBox22.Controls.Add(lblFontColor);
             groupBox22.Controls.Add(chbCustomFonts);
             groupBox22.Controls.Add(lblMessageFont);
             groupBox22.Controls.Add(txbMessageFont);
             groupBox22.Controls.Add(btnMessageFont);
+            groupBox22.Controls.Add(lblMessageColor);
+            groupBox22.Controls.Add(txbMessageColor);
+            groupBox22.Controls.Add(btnMessageColor);
             groupBox22.Location = new System.Drawing.Point(14, 546);
             groupBox22.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupBox22.Name = "groupBox22";
             groupBox22.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupBox22.Size = new System.Drawing.Size(308, 78);
+            groupBox22.Size = new System.Drawing.Size(308, 110);
             groupBox22.TabIndex = 25;
             groupBox22.TabStop = false;
             groupBox22.Text = "Font";
@@ -1482,6 +1490,43 @@ namespace InfoBox.Designer
             btnMessageFont.Text = "...";
             btnMessageFont.UseVisualStyleBackColor = true;
             btnMessageFont.Click += BtnMessageFont_Click;
+            // 
+            // lblMessageColor
+            // 
+            lblMessageColor.AutoSize = true;
+            lblMessageColor.Location = new System.Drawing.Point(8, 78);
+            lblMessageColor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblMessageColor.Name = "lblMessageColor";
+            lblMessageColor.Size = new System.Drawing.Size(36, 15);
+            lblMessageColor.TabIndex = 4;
+            lblMessageColor.Text = "Color";
+            // 
+            // txbMessageColor
+            // 
+            txbMessageColor.Location = new System.Drawing.Point(59, 75);
+            txbMessageColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txbMessageColor.Name = "txbMessageColor";
+            txbMessageColor.ReadOnly = true;
+            txbMessageColor.Size = new System.Drawing.Size(151, 23);
+            txbMessageColor.TabIndex = 5;
+            // 
+            // btnMessageColor
+            // 
+            btnMessageColor.Location = new System.Drawing.Point(250, 73);
+            btnMessageColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnMessageColor.Name = "btnMessageColor";
+            btnMessageColor.Size = new System.Drawing.Size(29, 25);
+            btnMessageColor.TabIndex = 6;
+            btnMessageColor.Text = "...";
+            btnMessageColor.UseVisualStyleBackColor = true;
+            btnMessageColor.Click += BtnMessageColor_Click;
+            // 
+            // lblFontColor
+            // 
+            lblFontColor.Location = new System.Drawing.Point(217, 75);
+            lblFontColor.Name = "lblFontColor";
+            lblFontColor.Size = new System.Drawing.Size(24, 23);
+            lblFontColor.TabIndex = 7;
             // 
             // InformationBoxDesigner
             // 
@@ -1687,7 +1732,11 @@ namespace InfoBox.Designer
         private System.Windows.Forms.Label lblMessageFont;
         private System.Windows.Forms.TextBox txbMessageFont;
         private System.Windows.Forms.Button btnMessageFont;
+        private System.Windows.Forms.Label lblMessageColor;
+        private System.Windows.Forms.TextBox txbMessageColor;
+        private System.Windows.Forms.Button btnMessageColor;
         private System.Windows.Forms.FontDialog dlgFont;
         private System.Windows.Forms.RadioButton rdbAutoSizeFitToText;
+        private System.Windows.Forms.Label lblFontColor;
     }
 }
