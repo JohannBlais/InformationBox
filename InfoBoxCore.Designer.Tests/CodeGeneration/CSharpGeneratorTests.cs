@@ -226,6 +226,123 @@ namespace InfoBoxCore.Designer.Tests
             Assert.That(CompileCode(code).Success);
         }
 
+        [Test]
+        public void Test0006_FontParametersWithFontAndColor()
+        {
+            var code = generator.GenerateSingleCall(
+                behavior: InformationBoxBehavior.Modal,
+                text: "Test message with colored font",
+                title: "Test Title",
+                buttons: InformationBoxButtons.OK,
+                button1Text: null,
+                button2Text: null,
+                button3Text: null,
+                icon: InformationBoxIcon.Information,
+                iconFileName: null,
+                defaultButton: InformationBoxDefaultButton.Button1,
+                buttonsLayout: InformationBoxButtonsLayout.GroupMiddle,
+                autoSize: InformationBoxAutoSizeMode.None,
+                position: InformationBoxPosition.CenterOnParent,
+                showHelp: false,
+                helpFile: null,
+                helpTopic: null,
+                navigator: HelpNavigator.TableOfContents,
+                checkState: 0,
+                doNotShowAgainText: null,
+                style: InformationBoxStyle.Standard,
+                useAutoClose: false,
+                autoClose: null,
+                design: null,
+                fontParameters: new FontParameters(new Font("Arial", 12F), Color.Blue),
+                titleStyle: InformationBoxTitleIconStyle.None,
+                titleIconFileName: null,
+                opacity: InformationBoxOpacity.NoFade,
+                order: InformationBoxOrder.Default,
+                sound: InformationBoxSound.Default);
+
+            Assert.That(CompileCode(code).Success, Is.True);
+            Assert.That(code, Does.Contain("Color.FromArgb"));
+            Assert.That(code, Does.Contain("255"));  // Blue color component
+        }
+
+        [Test]
+        public void Test0007_FontParametersWithFont()
+        {
+            var code = generator.GenerateSingleCall(
+                behavior: InformationBoxBehavior.Modal,
+                text: "Test message with colored font",
+                title: "Test Title",
+                buttons: InformationBoxButtons.OK,
+                button1Text: null,
+                button2Text: null,
+                button3Text: null,
+                icon: InformationBoxIcon.Information,
+                iconFileName: null,
+                defaultButton: InformationBoxDefaultButton.Button1,
+                buttonsLayout: InformationBoxButtonsLayout.GroupMiddle,
+                autoSize: InformationBoxAutoSizeMode.None,
+                position: InformationBoxPosition.CenterOnParent,
+                showHelp: false,
+                helpFile: null,
+                helpTopic: null,
+                navigator: HelpNavigator.TableOfContents,
+                checkState: 0,
+                doNotShowAgainText: null,
+                style: InformationBoxStyle.Standard,
+                useAutoClose: false,
+                autoClose: null,
+                design: null,
+                fontParameters: new FontParameters(new Font("Arial", 12F)),
+                titleStyle: InformationBoxTitleIconStyle.None,
+                titleIconFileName: null,
+                opacity: InformationBoxOpacity.NoFade,
+                order: InformationBoxOrder.Default,
+                sound: InformationBoxSound.Default);
+
+            Assert.That(CompileCode(code).Success, Is.True);
+            Assert.That(code, Does.Contain("Arial"));
+            Assert.That(code, Does.Contain("12"));  // Blue color component
+        }
+
+        [Test]
+        public void Test0008_FontParametersWithColor()
+        {
+            var code = generator.GenerateSingleCall(
+                behavior: InformationBoxBehavior.Modal,
+                text: "Test message with colored font",
+                title: "Test Title",
+                buttons: InformationBoxButtons.OK,
+                button1Text: null,
+                button2Text: null,
+                button3Text: null,
+                icon: InformationBoxIcon.Information,
+                iconFileName: null,
+                defaultButton: InformationBoxDefaultButton.Button1,
+                buttonsLayout: InformationBoxButtonsLayout.GroupMiddle,
+                autoSize: InformationBoxAutoSizeMode.None,
+                position: InformationBoxPosition.CenterOnParent,
+                showHelp: false,
+                helpFile: null,
+                helpTopic: null,
+                navigator: HelpNavigator.TableOfContents,
+                checkState: 0,
+                doNotShowAgainText: null,
+                style: InformationBoxStyle.Standard,
+                useAutoClose: false,
+                autoClose: null,
+                design: null,
+                fontParameters: new FontParameters(null, Color.Blue),
+                titleStyle: InformationBoxTitleIconStyle.None,
+                titleIconFileName: null,
+                opacity: InformationBoxOpacity.NoFade,
+                order: InformationBoxOrder.Default,
+                sound: InformationBoxSound.Default);
+
+            Assert.That(CompileCode(code).Success, Is.True);
+            Assert.That(code, Does.Contain("Color.FromArgb"));
+            Assert.That(code, Does.Contain("255"));  // Blue color component
+        }
+
         private EmitResult CompileCode(string sourceCode)
         {
             var result = null as EmitResult;

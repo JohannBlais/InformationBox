@@ -224,10 +224,30 @@ namespace InfoBox.Designer.CodeGeneration
                 codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "design: new DesignParameters(System.Drawing.Color.FromArgb({0},{1},{2}), System.Drawing.Color.FromArgb({3},{4},{5})), ", design.FormBackColor.R, design.FormBackColor.G, design.FormBackColor.B, design.BarsBackColor.R, design.BarsBackColor.G, design.BarsBackColor.B);
             }
 
-            if (null != fontParameters && fontParameters.MessageFont != null)
+            if (null != fontParameters && fontParameters.IsSet())
             {
-                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "fontParameters: new FontParameters(new System.Drawing.Font(\"{0}\", {1}F)), ",
-                    fontParameters.MessageFont.Name, fontParameters.MessageFont.Size);
+                var color = string.Empty;
+                var font = "null";
+
+                if (fontParameters.HasFont())
+                {
+                    font = string.Format(CultureInfo.InvariantCulture,
+                        "new System.Drawing.Font(\"{0}\", {1}F)",
+                        fontParameters.MessageFont.Name,
+                        fontParameters.MessageFont.Size);
+                }
+
+                if (fontParameters.HasColor())
+                {
+                    color = string.Format(CultureInfo.InvariantCulture,
+                        ", System.Drawing.Color.FromArgb({0},{1},{2})",
+                        fontParameters.MessageColor.Value.R,
+                        fontParameters.MessageColor.Value.G,
+                        fontParameters.MessageColor.Value.B);
+                }
+
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture,
+                        "fontParameters: new FontParameters({0}{1}), ", font, color);
             }
 
             if (titleStyle == InformationBoxTitleIconStyle.Custom)

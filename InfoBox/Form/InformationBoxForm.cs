@@ -1244,9 +1244,17 @@ namespace InfoBox
         /// </summary>
         private void SetFont()
         {
-            if (this.fontParameters != null && this.fontParameters.MessageFont != null)
+            if (this.fontParameters != null)
             {
-                this.messageText.Font = this.fontParameters.MessageFont;
+                if (this.fontParameters.HasFont())
+                {
+                    this.messageText.Font = this.fontParameters.MessageFont;
+                }
+
+                if (this.fontParameters.HasColor())
+                {
+                    this.messageText.ForeColor = this.fontParameters.MessageColor.Value;
+                }
             }
         }
 

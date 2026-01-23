@@ -22,6 +22,18 @@ namespace InfoBox
         public FontParameters(Font messageFont)
         {
             this.MessageFont = messageFont;
+            this.MessageColor = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FontParameters"/> class.
+        /// </summary>
+        /// <param name="messageFont">The font to use for message text.</param>
+        /// <param name="messageColor">The color to use for message text.</param>
+        public FontParameters(Font messageFont, Color messageColor)
+        {
+            this.MessageFont = messageFont;
+            this.MessageColor = messageColor;
         }
 
         #endregion Constructors
@@ -34,7 +46,44 @@ namespace InfoBox
         /// <value>The font for the message text.</value>
         public Font MessageFont { get; private set; }
 
+        /// <summary>
+        /// Gets the color for the message text.
+        /// </summary>
+        /// <value>The color for the message text, or null to use the system default.</value>
+        public Color? MessageColor { get; private set; }
+
         #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Determines whether the current instance has either a font or a color defined.
+        /// </summary>
+        /// <returns>true if the instance has either a font or a color defined; otherwise, false.</returns>
+        public bool IsSet()
+        {
+            return this.HasFont() || this.HasColor();
+        }
+
+        /// <summary>
+        /// Determines whether the current instance has a font defined.
+        /// </summary>
+        /// <returns>true if the instance has a font defined; otherwise, false.</returns>
+        public bool HasFont()
+        {
+            return this.MessageFont != null;
+        }
+
+        /// <summary>
+        /// Determines whether the current instance has a color defined.
+        /// </summary>
+        /// <returns>true if the instance has a color defined; otherwise, false.</returns>
+        public bool HasColor()
+        {
+            return this.MessageColor.HasValue && this.MessageColor != Color.Empty;
+        }
+
+        #endregion
 
         #region Overrides
 
@@ -55,7 +104,8 @@ namespace InfoBox
 
             FontParameters compared = (FontParameters)obj;
 
-            return object.Equals(this.MessageFont, compared.MessageFont);
+            return object.Equals(this.MessageFont, compared.MessageFont) &&
+                   this.MessageColor == compared.MessageColor;
         }
 
         /// <summary>
@@ -66,7 +116,8 @@ namespace InfoBox
         /// </returns>
         public override int GetHashCode()
         {
-            return this.MessageFont?.GetHashCode() ?? 0;
+            return (this.MessageFont?.GetHashCode() ?? 0) ^
+                   (this.MessageColor?.GetHashCode() ?? 0);
         }
 
         #endregion Overrides
