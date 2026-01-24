@@ -40,7 +40,24 @@ namespace InfoBox.Designer
         /// </summary>
         private Color messageFontColor = Color.Empty;
 
+        /// <summary>
+        /// Text editor form instance
+        /// </summary>
+        private TextEditorForm textEditorForm = null;
+
         #endregion Attributes
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the text content control for data binding.
+        /// </summary>
+        public TextBox TextContent
+        {
+            get { return this.txbText; }
+        }
+
+        #endregion Properties
 
         #region Constructors
 
@@ -119,6 +136,14 @@ namespace InfoBox.Designer
                     String.Format(CultureInfo.InvariantCulture, "The state of the checkbox was {0}", state),
                     InformationBoxIcon.Information);
             }
+        }
+
+        /// <summary>
+        /// Shows the InformationBox with current settings. Public method for external access.
+        /// </summary>
+        public void ShowInformationBox()
+        {
+            this.ShowBox(InformationBoxBehavior.Modal);
         }
 
         #endregion Display
@@ -860,6 +885,24 @@ namespace InfoBox.Designer
         }
 
         #endregion Fonts
+
+        /// <summary>
+        /// Handles the Click event of the btnEditText control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnEditText_Click(object sender, EventArgs e)
+        {
+            if (this.textEditorForm == null || this.textEditorForm.IsDisposed)
+            {
+                this.textEditorForm = new TextEditorForm(this);
+            }
+
+            // Update font and color before showing
+            this.textEditorForm.UpdateFontAndColor(this.messageFont, this.messageFontColor);
+            this.textEditorForm.Show();
+            this.textEditorForm.BringToFront();
+        }
 
         #endregion Event handlers
     }

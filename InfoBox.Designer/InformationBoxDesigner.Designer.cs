@@ -31,6 +31,7 @@ namespace InfoBox.Designer
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxDesigner));
             groupBox1 = new System.Windows.Forms.GroupBox();
+            btnEditText = new System.Windows.Forms.Button();
             txbText = new System.Windows.Forms.TextBox();
             txbTitle = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
@@ -177,9 +178,10 @@ namespace InfoBox.Designer
             groupBox21.SuspendLayout();
             groupBox22.SuspendLayout();
             SuspendLayout();
-            // 
+            //
             // groupBox1
-            // 
+            //
+            groupBox1.Controls.Add(btnEditText);
             groupBox1.Controls.Add(txbText);
             groupBox1.Controls.Add(txbTitle);
             groupBox1.Controls.Add(label2);
@@ -192,14 +194,25 @@ namespace InfoBox.Designer
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Labels";
-            // 
+            //
+            // btnEditText
+            //
+            btnEditText.Location = new System.Drawing.Point(258, 61);
+            btnEditText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnEditText.Name = "btnEditText";
+            btnEditText.Size = new System.Drawing.Size(29, 25);
+            btnEditText.TabIndex = 3;
+            btnEditText.Text = "...";
+            btnEditText.UseVisualStyleBackColor = true;
+            btnEditText.Click += BtnEditText_Click;
+            //
             // txbText
-            // 
+            //
             txbText.Location = new System.Drawing.Point(59, 61);
             txbText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txbText.Multiline = true;
             txbText.Name = "txbText";
-            txbText.Size = new System.Drawing.Size(228, 108);
+            txbText.Size = new System.Drawing.Size(190, 108);
             txbText.TabIndex = 2;
             // 
             // txbTitle
@@ -1738,5 +1751,6 @@ namespace InfoBox.Designer
         private System.Windows.Forms.FontDialog dlgFont;
         private System.Windows.Forms.RadioButton rdbAutoSizeFitToText;
         private System.Windows.Forms.Label lblFontColor;
+        private System.Windows.Forms.Button btnEditText;
     }
 }

@@ -98,6 +98,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextEditorForm.Designer.cs">
+      <DependentUpon>TextEditorForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="InformationBoxDesigner.resx">
       <SubType>Designer</SubType>
       <DependentUpon>InformationBoxDesigner.cs</DependentUpon>
