@@ -138,14 +138,6 @@ namespace InfoBox.Designer
             }
         }
 
-        /// <summary>
-        /// Shows the InformationBox with current settings. Public method for external access.
-        /// </summary>
-        public void ShowInformationBox()
-        {
-            this.ShowBox(InformationBoxBehavior.Modal);
-        }
-
         #endregion Display
 
         #region Loading

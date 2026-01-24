@@ -28,52 +28,40 @@ namespace InfoBox.Designer
         /// </summary>
         private void InitializeComponent()
         {
-            txtContent = new System.Windows.Forms.TextBox();
-            btnShow = new System.Windows.Forms.Button();
-            SuspendLayout();
-            //
+            this.txtContent = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
             // txtContent
-            //
-            txtContent.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            txtContent.Location = new System.Drawing.Point(12, 12);
-            txtContent.Multiline = true;
-            txtContent.Name = "txtContent";
-            txtContent.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            txtContent.Size = new System.Drawing.Size(560, 337);
-            txtContent.TabIndex = 0;
-            txtContent.WordWrap = true;
-            //
-            // btnShow
-            //
-            btnShow.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            btnShow.Location = new System.Drawing.Point(472, 355);
-            btnShow.Name = "btnShow";
-            btnShow.Size = new System.Drawing.Size(100, 30);
-            btnShow.TabIndex = 1;
-            btnShow.Text = "Show";
-            btnShow.UseVisualStyleBackColor = true;
-            btnShow.Click += BtnShow_Click;
-            //
+            // 
+            this.txtContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContent.Location = new System.Drawing.Point(10, 10);
+            this.txtContent.Multiline = true;
+            this.txtContent.Name = "txtContent";
+            this.txtContent.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtContent.Size = new System.Drawing.Size(481, 322);
+            this.txtContent.TabIndex = 0;
+            // 
             // TextEditorForm
-            //
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(584, 397);
-            Controls.Add(btnShow);
-            Controls.Add(txtContent);
-            MinimizeBox = false;
-            Name = "TextEditorForm";
-            ShowIcon = false;
-            ShowInTaskbar = false;
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            Text = "Edit InformationBox Text";
-            ResumeLayout(false);
-            PerformLayout();
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(501, 344);
+            this.Controls.Add(this.txtContent);
+            this.MinimizeBox = false;
+            this.Name = "TextEditorForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Edit InformationBox Text";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
         private System.Windows.Forms.TextBox txtContent;
-        private System.Windows.Forms.Button btnShow;
     }
 }

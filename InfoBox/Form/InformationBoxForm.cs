@@ -1267,66 +1267,67 @@ namespace InfoBox
         /// </summary>
         private void SetText()
         {
-            this.messageText.Text = this.messageText.Text.Replace("\n\r", "\n");
-            this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
-
             Screen currentScreen = Screen.FromControl(this);
             int screenWidth = currentScreen.WorkingArea.Width;
 
-            if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
+            if (this.autoSizeMode == InformationBoxAutoSizeMode.FitToText)
             {
-                this.messageText.WordWrap = true;
-                this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth / 2) + new SizeF(1, 0)).ToSize();
-            }
-            else if (this.autoSizeMode == InformationBoxAutoSizeMode.FitToText)
-            {
-                var stringFormat = StringFormat.GenericTypographic;
-                stringFormat.FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces;
-
                 this.messageText.WordWrap = false;
-                this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth, stringFormat) + new SizeF(1, 0)).ToSize();
+                this.messageText.Size = TextRenderer.MeasureText(this.messageText.Text, this.messageText.Font,  currentScreen.WorkingArea.Size, TextFormatFlags.TextBoxControl) + new Size(1, 1);
             }
             else
             {
-                this.internalText = new StringBuilder(this.messageText.Text);
+                this.messageText.Text = this.messageText.Text.Replace("\r\n", "\n");
+                this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
 
-                if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
+
+                if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
                 {
-                    // Remove line breaks.
-                    this.internalText = this.internalText.Replace(Environment.NewLine, " ");
-                    Regex splitter = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled);
-                    MatchCollection sentences = splitter.Matches(this.internalText.ToString());
-                    StringBuilder formattedText = new StringBuilder();
-                    int currentWidth = 0;
+                    this.messageText.WordWrap = true;
+                    this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth / 2) + new SizeF(1, 0)).ToSize();
+                }
+                else
+                {
+                    this.internalText = new StringBuilder(this.messageText.Text);
 
-                    foreach (Match sentence in sentences)
+                    if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
                     {
-                        int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, this.messageText.Font).Width;
-                        if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
+                        // Remove line breaks.
+                        this.internalText = this.internalText.Replace(Environment.NewLine, " ");
+                        Regex splitter = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled);
+                        MatchCollection sentences = splitter.Matches(this.internalText.ToString());
+                        StringBuilder formattedText = new StringBuilder();
+                        int currentWidth = 0;
+
+                        foreach (Match sentence in sentences)
                         {
-                            formattedText.Append(Environment.NewLine);
-                            currentWidth = 0;
+                            int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, this.messageText.Font).Width;
+                            if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
+                            {
+                                formattedText.Append(Environment.NewLine);
+                                currentWidth = 0;
+                            }
+
+                            currentWidth += sentenceLength;
+                            formattedText.Append(sentence.Value);
                         }
 
-                        currentWidth += sentenceLength;
-                        formattedText.Append(sentence.Value);
+                        this.internalText = formattedText;
+                    }
+                    else if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
+                    {
+                        this.internalText.Replace(". ", "." + Environment.NewLine);
+                        this.internalText.Replace("? ", "?" + Environment.NewLine);
+                        this.internalText.Replace("! ", "!" + Environment.NewLine);
+                        this.internalText.Replace(": ", ":" + Environment.NewLine);
+                        this.internalText.Replace(") ", ")" + Environment.NewLine);
+                        this.internalText.Replace(", ", "," + Environment.NewLine);
                     }
 
-                    this.internalText = formattedText;
-                }
-                else if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
-                {
-                    this.internalText.Replace(". ", "." + Environment.NewLine);
-                    this.internalText.Replace("? ", "?" + Environment.NewLine);
-                    this.internalText.Replace("! ", "!" + Environment.NewLine);
-                    this.internalText.Replace(": ", ":" + Environment.NewLine);
-                    this.internalText.Replace(") ", ")" + Environment.NewLine);
-                    this.internalText.Replace(", ", "," + Environment.NewLine);
-                }
+                    this.messageText.Text = this.internalText.ToString();
 
-                this.messageText.Text = this.internalText.ToString();
-
-                this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font) + new SizeF(1, 0)).ToSize();
+                    this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font) + new SizeF(1, 0)).ToSize();
+                }
             }
 
             this.messageText.Width += BorderPadding;
