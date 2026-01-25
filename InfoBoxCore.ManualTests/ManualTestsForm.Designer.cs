@@ -31,6 +31,7 @@
             btnTestFixedWidthEightPoints = new Button();
             btnTestFixedWidthFourPoints = new Button();
             btnTestFixedWidthTwelvePoints = new Button();
+            btnTestLongLinesFixedFont = new Button();
             SuspendLayout();
             // 
             // btnTestFixedWidthEightPoints
@@ -63,11 +64,22 @@
             btnTestFixedWidthTwelvePoints.UseVisualStyleBackColor = true;
             btnTestFixedWidthTwelvePoints.Click += btnTestFixedWidthTwelvePoints_Click;
             // 
+            // btnTestLongLinesFixedFont
+            // 
+            btnTestLongLinesFixedFont.Location = new Point(12, 99);
+            btnTestLongLinesFixedFont.Name = "btnTestLongLinesFixedFont";
+            btnTestLongLinesFixedFont.Size = new Size(182, 23);
+            btnTestLongLinesFixedFont.TabIndex = 3;
+            btnTestLongLinesFixedFont.Text = "Fixed width font long lines";
+            btnTestLongLinesFixedFont.UseVisualStyleBackColor = true;
+            btnTestLongLinesFixedFont.Click += btnTestLongLinesFixedFont_Click;
+            // 
             // ManualTestsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnTestLongLinesFixedFont);
             Controls.Add(btnTestFixedWidthTwelvePoints);
             Controls.Add(btnTestFixedWidthFourPoints);
             Controls.Add(btnTestFixedWidthEightPoints);
@@ -81,5 +93,6 @@
         private Button btnTestFixedWidthEightPoints;
         private Button btnTestFixedWidthFourPoints;
         private Button btnTestFixedWidthTwelvePoints;
+        private Button btnTestLongLinesFixedFont;
     }
 }
