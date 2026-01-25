@@ -13,17 +13,12 @@ namespace InfoBox
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
-    #if !NET5_0_OR_GREATER
+#if !NET5_0_OR_GREATER
     [UIPermission(SecurityAction.Demand)]
-    #endif
+#endif
     public static class InformationBox
     {
-        // TODO: [P1.2] Add factory pattern for testability
-        // See TESTABILITY_ROADMAP.md - Add IInformationBoxFactory and IInformationBoxDisplay interfaces
-        // internal static IInformationBoxFactory Factory { get; set; } = new InformationBoxFactory();
-        // This will allow tests to inject mock factories and test code that calls InformationBox.Show()
-
-#region Show
+        #region Show
 
         /// <summary>
         /// Displays a message box with the specified text and parameters.
@@ -138,7 +133,6 @@ namespace InfoBox
         /// <returns>One of the <see cref="InformationBoxResult"/> values.</returns>
         public static InformationBoxResult Show(string text, params object[] parameters)
         {
-            // TODO: [P1.2] Replace direct instantiation with Factory.Create(text, parameters).ShowModal()
             return new InformationBoxForm(text, parameters).Show();
         }
 
@@ -429,6 +423,6 @@ namespace InfoBox
                  style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
         }
 
-#endregion Show
+        #endregion Show
     }
 }
