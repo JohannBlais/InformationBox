@@ -8,7 +8,7 @@
     <Product>InformationBox Core Tests</Product>
     <Copyright>Copyright © Johann Blais 2007-2026</Copyright>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>C:\Users\blais\source\repos\JohannBlais\InformationBox\InfoBox\Properties\key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\InfoBox\Properties\key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
