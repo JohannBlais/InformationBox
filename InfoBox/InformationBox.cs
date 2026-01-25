@@ -7,14 +7,13 @@
 namespace InfoBox
 {
     using System.Drawing;
-    using System.Security.Permissions;
     using System.Windows.Forms;
 
     /// <summary>
     /// Displays a message box that can contain text, buttons, and symbols that inform and instruct the user.
     /// </summary>
 #if !NET5_0_OR_GREATER
-    [UIPermission(SecurityAction.Demand)]
+    [System.Security.Permissions.UIPermission(System.Security.Permissions.SecurityAction.Demand)]
 #endif
     public static class InformationBox
     {

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.2.11408.102 d18.0
+VisualStudioVersion = 18.2.11408.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11BF73EF-1C37-4B34-BB1B-E378D733E8DC}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBoxCore.Designer.Tests", "InfoBoxCore.Designer.Tests\InfoBoxCore.Designer.Tests.csproj", "{A597A632-9151-4FB3-8696-8830D4B32170}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoBoxCore.Tests", "InfoBoxCore.Tests\InfoBoxCore.Tests.csproj", "{B8F3C21D-7A42-4E91-9C5A-1F2D4E5B6C7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoBoxCore.ManualTests", "InfoBoxCore.ManualTests\InfoBoxCore.ManualTests.csproj", "{C3CC7542-1BA9-4BC4-9D3E-18B0A2DCE537}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{B8F3C21D-7A42-4E91-9C5A-1F2D4E5B6C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8F3C21D-7A42-4E91-9C5A-1F2D4E5B6C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8F3C21D-7A42-4E91-9C5A-1F2D4E5B6C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3CC7542-1BA9-4BC4-9D3E-18B0A2DCE537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CC7542-1BA9-4BC4-9D3E-18B0A2DCE537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CC7542-1BA9-4BC4-9D3E-18B0A2DCE537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CC7542-1BA9-4BC4-9D3E-18B0A2DCE537}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -33,7 +33,7 @@ namespace InfoBox
         /// <summary>
         /// Padding for the borders
         /// </summary>
-        private const int BorderPadding = 20;
+        private const int BorderPadding = 10;
 
         #endregion Consts
 
@@ -1254,13 +1254,15 @@ namespace InfoBox
             if (this.autoSizeMode == InformationBoxAutoSizeMode.FitToText)
             {
                 this.messageText.WordWrap = false;
-                this.messageText.Size = TextRenderer.MeasureText(internalText, this.messageText.Font,  currentScreen.WorkingArea.Size, TextFormatFlags.TextBoxControl) + new Size(1, 1);
+                this.messageText.Text = internalText.ToString();
+                this.messageText.Size = TextRenderer.MeasureText(internalText, this.messageText.Font, Size.Empty, TextFormatFlags.NoPadding);
             }
             else
             {
                 if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
                 {
                     this.messageText.WordWrap = true;
+                    this.messageText.Text = internalText.ToString();
                     this.messageText.Size = TextRenderer.MeasureText(internalText, this.messageText.Font, new Size(screenWidth / 2, 0), TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak);
                 }
                 else
