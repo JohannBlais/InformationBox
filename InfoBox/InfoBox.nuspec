@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>InformationBox</id>
-        <version>1.0.0</version>
+        <version>1.4.0</version>
         <title>InformationBox</title>
         <authors>Johann Blais</authors>
         <owners>Johann Blais</owners>
@@ -15,10 +15,11 @@
 InformationBox is the simplest and easiest way to create personalized MessageBox.
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
-        <summary>InformationBox (.NET 4.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace</summary>
+        <summary>InformationBox (.NET 4.8+, dotnet core  8.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace</summary>
         <releaseNotes>
-            - Removed support for .NET 6.0 (Windows)
-            - Added support for .NET 10.0 (Windows)
+            - Improved text measurement accuracy by migrating from Graphics.MeasureString (GDI+) to TextRenderer.MeasureText (GDI)
+            - Removed Graphics dependency for better testability
+            - Text sizing now matches actual TextBox rendering more accurately
         </releaseNotes>
         <copyright>Copyright 2026</copyright>
         <language>en-US</language>
