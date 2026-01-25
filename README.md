@@ -2,7 +2,7 @@
 
 .NET 2.0/3.5: [https://nuget.org/packages/InformationBoxLegacy/](https://nuget.org/packages/InformationBoxLegacy/)
 
-.NET 4.8/.NET 7.0-10.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
+.NET 4.8 / dotnet core 8.0-10.0: [https://nuget.org/packages/InformationBox/](https://nuget.org/packages/InformationBox/)
 
 **Build**
 
@@ -19,7 +19,7 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !
 
-**Find out more about the inner working of InformationBox [in the documentation](https://github.com/JohannBlais/InformationBox/wiki)**.
+**Find out more about the inner working of InformationBox [in the documentation](Documentation)**.
 
 **Highlights**
 
@@ -35,11 +35,12 @@ It is not planned to implement the new visual style in the .NET 1.1 branch, and 
 The project is available on NuGet, deployable using the installers, or compilable from source.
 
 **Features**
-* Multilanguage support (contributors needed).
+* Multilanguage support (contributors needed). [Here](<Supported Languages>) is a list of supported languages.
 * New visual style using glass components (.NET 2.0+ only).
 * Scrollable when the text is too large.
 * Message is selectable for easy copy (Ctrl-C).
 * Possibility to modify the colors (back colors).
+* Possibility to change the font and color of the content.
 * Auto closing after _n_ seconds.
 * Pretty icons included as replacements for the old MessageBox icons.
 * Many new icons added to the default ones.
@@ -53,13 +54,14 @@ The project is available on NuGet, deployable using the installers, or compilabl
 * Support for MessageBox enums.
 * Support for .NET 1.1 (discontinued legacy package)
 * Support for .NET 4.8
-* Support for .NET 6.0 (windows)
-* Support for .NET 7.0 (windows)
 * Support for .NET 8.0 (windows)
+* Support for .NET 9.0 (windows)
+* Support for .NET 10.0 (windows)
 * Help file support.
-* Possibility to show modeless boxes.
-* Possibility to define scopes.
+* Possibility to show modeless boxes, details [here](<Modeless boxes>).
+* Possibility to define [scopes](<InformationBox scopes>).
 * Opacity (10 to 100%)
 * Developer friendly (provide-only-what-you-want-to-customize constructor).
 * Visual Designer. Customize your InformationBox and the designer generates the code!
 * Available for FREE even for commercial use. 
+
