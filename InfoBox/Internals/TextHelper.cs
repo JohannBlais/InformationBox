@@ -16,7 +16,7 @@ namespace InfoBox.Internals
         /// </summary>
         static TextHelper()
         {
-            _regex = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled);
+            _regex = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled, TimeSpan.FromSeconds(10));
         }
 
         /// <summary>
