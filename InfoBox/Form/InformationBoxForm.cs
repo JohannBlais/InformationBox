@@ -75,11 +75,6 @@ namespace InfoBox
         private readonly string doNotShowAgainText;
 
         /// <summary>
-        /// Contains the graphics used to measure the strings
-        /// </summary>
-        private readonly Graphics measureGraphics;
-
-        /// <summary>
         /// Contains a reference to the active form
         /// </summary>
         private readonly Form activeForm;
@@ -288,8 +283,6 @@ namespace InfoBox
                                     InformationBoxSound sound = InformationBoxSound.Default)
         {
             this.InitializeComponent();
-            this.measureGraphics = CreateGraphics();
-            this.measureGraphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
             // Apply default font for message boxes
             this.Font = SystemFonts.MessageBoxFont;
@@ -1007,7 +1000,7 @@ namespace InfoBox
             #region Width
 
             // Caption width including button
-            int captionWidth = Convert.ToInt32(this.measureGraphics.MeasureString(Text, SystemFonts.CaptionFont).Width) + 30;
+            int captionWidth = TextRenderer.MeasureText(Text, SystemFonts.CaptionFont, Size.Empty, TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix).Width + 30;
             if (this.titleStyle != InformationBoxTitleIconStyle.None)
             {
                 captionWidth += BorderPadding * 2;
@@ -1015,7 +1008,7 @@ namespace InfoBox
 
             // "Do not show this dialog again" width
             int checkBoxWidth = ((this.checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
-                                    ? (int)this.measureGraphics.MeasureString(this.chbDoNotShow.Text, this.chbDoNotShow.Font).Width + BorderPadding * 4
+                                    ? TextRenderer.MeasureText(this.chbDoNotShow.Text, this.chbDoNotShow.Font, Size.Empty, TextFormatFlags.NoPadding).Width + BorderPadding * 4
                                     : 0;
 
             // Width of the text and icon.
@@ -1273,7 +1266,7 @@ namespace InfoBox
                 if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
                 {
                     this.messageText.WordWrap = true;
-                    this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font, screenWidth / 2) + new SizeF(1, 0)).ToSize();
+                    this.messageText.Size = TextRenderer.MeasureText(this.messageText.Text, this.messageText.Font, new Size(screenWidth / 2, 0), TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak);
                 }
                 else
                 {
@@ -1290,7 +1283,7 @@ namespace InfoBox
 
                         foreach (Match sentence in sentences)
                         {
-                            int sentenceLength = (int)this.measureGraphics.MeasureString(sentence.Value, this.messageText.Font).Width;
+                            int sentenceLength = TextRenderer.MeasureText(sentence.Value, this.messageText.Font, Size.Empty, TextFormatFlags.TextBoxControl | TextFormatFlags.NoPadding).Width;
                             if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                             {
                                 formattedText.Append(Environment.NewLine);
@@ -1315,7 +1308,7 @@ namespace InfoBox
 
                     this.messageText.Text = this.internalText.ToString();
 
-                    this.messageText.Size = (this.measureGraphics.MeasureString(this.messageText.Text, this.messageText.Font) + new SizeF(1, 0)).ToSize();
+                    this.messageText.Size = TextRenderer.MeasureText(this.messageText.Text, this.messageText.Font, Size.Empty, TextFormatFlags.TextBoxControl);
                 }
             }
 
@@ -1426,7 +1419,7 @@ namespace InfoBox
             // Measures the width of each button
             foreach (Control ctrl in this.pnlButtons.Controls)
             {
-                maxSize = Math.Max(Convert.ToInt32(this.measureGraphics.MeasureString(ctrl.Text, ctrl.Font).Width + 40), maxSize);
+                maxSize = Math.Max(TextRenderer.MeasureText(ctrl.Text, ctrl.Font, Size.Empty, TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix).Width + 40, maxSize);
             }
 
             foreach (Control ctrl in this.pnlButtons.Controls)
