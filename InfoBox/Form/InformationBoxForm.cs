@@ -1270,6 +1270,9 @@ namespace InfoBox
             Screen currentScreen = Screen.FromControl(this);
             int screenWidth = currentScreen.WorkingArea.Width;
 
+            this.messageText.Text = this.messageText.Text.Replace("\r\n", "\n");
+            this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
+
             if (this.autoSizeMode == InformationBoxAutoSizeMode.FitToText)
             {
                 this.messageText.WordWrap = false;
@@ -1277,10 +1280,6 @@ namespace InfoBox
             }
             else
             {
-                this.messageText.Text = this.messageText.Text.Replace("\r\n", "\n");
-                this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
-
-
                 if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
                 {
                     this.messageText.WordWrap = true;
