@@ -160,6 +160,7 @@
     <Compile Include="Enums\AutoCloseDefinedParameters.cs" />
     <Compile Include="Internals\IconHelper.cs" />
     <Compile Include="Internals\MessageBoxEnumConverter.cs" />
+    <Compile Include="Internals\TextHelper.cs" />
     <Compile Include="Parameters\AutoCloseParameters.cs" />
     <Compile Include="Parameters\DesignParameters.cs" />
     <Compile Include="Parameters\FontParameters.cs" />

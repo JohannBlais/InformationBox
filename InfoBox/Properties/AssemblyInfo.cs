@@ -7,6 +7,7 @@
 using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #if NET6_0_OR_GREATER
@@ -35,6 +36,9 @@ using System.Runtime.InteropServices;
 
 // Assembly is CLS compliant
 [assembly: CLSCompliant(true)]
+
+// Make internal types visible to test assemblies
+[assembly: InternalsVisibleTo("InfoBoxCore.Tests, PublicKey=00240000048000009400000006020000002400005253413100040000010001000d083a79d3b652c8e75ecc5b0eaf93f8160a1de04d6f967a87d4a7f6e2b5916017afef3cb81a9a6789079138170385c6e30dfdbb8b9999e08e29436e87bb10044b637e6c9cf0f6e52b64ba19001b5181839a5471dff368d415d29cbaae2189f89d7b5f736ef3e7692e257a35c0836ec97e5a2a950864617b8642590517bf8c9a")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("e14a6ac1-494d-481d-8510-d652082e43ba")]

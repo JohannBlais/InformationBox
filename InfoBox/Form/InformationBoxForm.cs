@@ -170,11 +170,6 @@ namespace InfoBox
         private IconType iconType = IconType.Internal;
 
         /// <summary>
-        /// Contains the text
-        /// </summary>
-        private StringBuilder internalText;
-
-        /// <summary>
         /// Contains if the help button should be displayed
         /// </summary>
         private bool showHelpButton;
@@ -1253,36 +1248,35 @@ namespace InfoBox
             Screen currentScreen = Screen.FromControl(this);
             int screenWidth = currentScreen.WorkingArea.Width;
 
-            this.messageText.Text = this.messageText.Text.Replace("\r\n", "\n");
-            this.messageText.Text = this.messageText.Text.Replace("\n", Environment.NewLine);
+            var internalText = String.Empty;
+            internalText = TextHelper.NormalizeLineBreaks(this.messageText.Text);                       
 
             if (this.autoSizeMode == InformationBoxAutoSizeMode.FitToText)
             {
                 this.messageText.WordWrap = false;
-                this.messageText.Size = TextRenderer.MeasureText(this.messageText.Text, this.messageText.Font,  currentScreen.WorkingArea.Size, TextFormatFlags.TextBoxControl) + new Size(1, 1);
+                this.messageText.Size = TextRenderer.MeasureText(internalText, this.messageText.Font,  currentScreen.WorkingArea.Size, TextFormatFlags.TextBoxControl) + new Size(1, 1);
             }
             else
             {
                 if (this.autoSizeMode == InformationBoxAutoSizeMode.None)
                 {
                     this.messageText.WordWrap = true;
-                    this.messageText.Size = TextRenderer.MeasureText(this.messageText.Text, this.messageText.Font, new Size(screenWidth / 2, 0), TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak);
+                    this.messageText.Size = TextRenderer.MeasureText(internalText, this.messageText.Font, new Size(screenWidth / 2, 0), TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak);
                 }
                 else
                 {
-                    this.internalText = new StringBuilder(this.messageText.Text);
-
                     if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumHeight)
                     {
                         // Remove line breaks.
-                        this.internalText = this.internalText.Replace(Environment.NewLine, " ");
-                        Regex splitter = new Regex(@"(?<sentence>.+?(\. |$))", RegexOptions.Compiled);
-                        MatchCollection sentences = splitter.Matches(this.internalText.ToString());
+                        internalText = TextHelper.ReplaceLineBreaksWithSpaces(internalText);
+                        var sentences = TextHelper.SplitTextIntoSentences(internalText);
+
                         StringBuilder formattedText = new StringBuilder();
                         int currentWidth = 0;
 
                         foreach (Match sentence in sentences)
                         {
+                            // FIX: In case an icon is configured, the maximum width of the text should be reduced to accomodate the icon width and avoid the horizontal scrollbar.
                             int sentenceLength = TextRenderer.MeasureText(sentence.Value, this.messageText.Font, Size.Empty, TextFormatFlags.TextBoxControl | TextFormatFlags.NoPadding).Width;
                             if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
                             {
@@ -1294,20 +1288,14 @@ namespace InfoBox
                             formattedText.Append(sentence.Value);
                         }
 
-                        this.internalText = formattedText;
+                        internalText = formattedText.ToString();
                     }
                     else if (this.autoSizeMode == InformationBoxAutoSizeMode.MinimumWidth)
                     {
-                        this.internalText.Replace(". ", "." + Environment.NewLine);
-                        this.internalText.Replace("? ", "?" + Environment.NewLine);
-                        this.internalText.Replace("! ", "!" + Environment.NewLine);
-                        this.internalText.Replace(": ", ":" + Environment.NewLine);
-                        this.internalText.Replace(") ", ")" + Environment.NewLine);
-                        this.internalText.Replace(", ", "," + Environment.NewLine);
+                        internalText = TextHelper.AddLineBreaksAfterPunctuation(internalText);
                     }
 
-                    this.messageText.Text = this.internalText.ToString();
-
+                    this.messageText.Text = internalText.ToString();
                     this.messageText.Size = TextRenderer.MeasureText(this.messageText.Text, this.messageText.Font, Size.Empty, TextFormatFlags.TextBoxControl);
                 }
             }
