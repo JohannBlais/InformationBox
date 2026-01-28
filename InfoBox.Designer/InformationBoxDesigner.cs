@@ -66,6 +66,7 @@ namespace InfoBox.Designer
         /// </summary>
         public InformationBoxDesigner()
         {
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             this.InitializeComponent();
 
             this.LoadIcons();

@@ -45,8 +45,6 @@ namespace InfoBox.Designer
             // 
             // TextEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 344);
             this.Controls.Add(this.txtContent);
             this.MinimizeBox = false;

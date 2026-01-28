@@ -208,6 +208,13 @@ namespace InfoBox
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxForm"/>.
+        /// </summary>
+        private InformationBoxForm()
+        {
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxForm"/> class using the specified text.
@@ -275,7 +282,7 @@ namespace InfoBox
                                     InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
                                     Form parent = null,
                                     InformationBoxOrder order = InformationBoxOrder.Default,
-                                    InformationBoxSound sound = InformationBoxSound.Default)
+                                    InformationBoxSound sound = InformationBoxSound.Default) : this()
         {
             this.InitializeComponent();
 

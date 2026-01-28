@@ -21,8 +21,16 @@ namespace InfoBox.Designer
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditorForm"/> class.
         /// </summary>
+        private TextEditorForm()
+        {
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TextEditorForm"/> class.
+        /// </summary>
         /// <param name="parentDesigner">The parent designer form.</param>
-        public TextEditorForm(InformationBoxDesigner parentDesigner)
+        public TextEditorForm(InformationBoxDesigner parentDesigner): this()
         {
             this.parentDesigner = parentDesigner ?? throw new ArgumentNullException(nameof(parentDesigner));
             this.InitializeComponent();
