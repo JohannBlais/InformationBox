@@ -73,11 +73,9 @@
             btnTestLongLinesFixedFont.Text = "Fixed width font long lines";
             btnTestLongLinesFixedFont.UseVisualStyleBackColor = true;
             btnTestLongLinesFixedFont.Click += btnTestLongLinesFixedFont_Click;
-            // 
+            //
             // ManualTestsForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            //
             ClientSize = new Size(800, 450);
             Controls.Add(btnTestLongLinesFixedFont);
             Controls.Add(btnTestFixedWidthTwelvePoints);

@@ -6,6 +6,7 @@ namespace InfoBoxCore.ManualTests
     {
         public ManualTestsForm()
         {
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             InitializeComponent();
         }
 
