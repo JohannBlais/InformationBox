@@ -213,7 +213,6 @@ namespace InfoBox
         /// </summary>
         private InformationBoxForm()
         {
-            this.AutoScaleMode = AutoScaleMode.Dpi;
         }
 
         /// <summary>

@@ -23,7 +23,6 @@ namespace InfoBox.Designer
         /// </summary>
         private TextEditorForm()
         {
-            this.AutoScaleMode = AutoScaleMode.Dpi;
         }
 
         /// <summary>

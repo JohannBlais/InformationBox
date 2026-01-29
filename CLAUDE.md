@@ -18,10 +18,10 @@ Since the solution targets both .NET Framework 4.8 and .NET Core, use MSBuild in
 "P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln
 
 # Build with specific configuration
-"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln /p:Configuration=Release
+"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln -p:Configuration=Release
 
 # Rebuild all (clean + build)
-"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln /t:Rebuild
+"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln -t:Rebuild
 
 # Run tests
 dotnet test
