@@ -1110,8 +1110,8 @@ namespace InfoBox
             switch (this.buttonsLayout)
             {
                 case InformationBoxButtonsLayout.GroupLeft:
-                    initialPosition = BorderPadding;
                     spaceBetween = BorderPadding;
+                    initialPosition = BorderPadding;
                     break;
                 case InformationBoxButtonsLayout.GroupMiddle:
                     spaceBetween = BorderPadding;
@@ -1119,20 +1119,20 @@ namespace InfoBox
                     // If there is only one button then we must center it
                     if (buttonsCount == 1)
                     {
-                        initialPosition += Convert.ToInt32((Width - buttonsCount * this.pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                        initialPosition += Convert.ToInt32((this.pnlButtons.ClientSize.Width - this.pnlButtons.Controls[0].Width) / 2);
                     }
                     else
                     {
-                        initialPosition = Convert.ToInt32((Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding))) / 2);
+                        initialPosition = Convert.ToInt32((this.pnlButtons.ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding))) / 2);
                     }
 
                     break;
                 case InformationBoxButtonsLayout.GroupRight:
                     spaceBetween = BorderPadding;
-                    initialPosition = ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding));
+                    initialPosition = this.pnlButtons.ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding));
                     break;
                 case InformationBoxButtonsLayout.Separate:
-                    spaceBetween = Convert.ToInt32((ClientSize.Width - buttonsCount * this.pnlButtons.Controls[0].Width) / (buttonsCount + 1));
+                    spaceBetween = Convert.ToInt32((this.pnlButtons.ClientSize.Width - buttonsCount * this.pnlButtons.Controls[0].Width) / (buttonsCount + 1));
                     initialPosition = spaceBetween;
                     break;
                 default:
