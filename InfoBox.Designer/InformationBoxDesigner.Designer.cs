@@ -1543,6 +1543,8 @@ namespace InfoBox.Designer
             // 
             // InformationBoxDesigner
             // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(966, 790);
             Controls.Add(groupBox22);
             Controls.Add(groupBox21);
