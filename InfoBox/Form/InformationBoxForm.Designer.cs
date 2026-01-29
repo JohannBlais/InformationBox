@@ -131,7 +131,6 @@ namespace InfoBox
             // 
             // pnlScrollText
             // 
-            this.pnlScrollText.AutoScroll = true;
             this.pnlScrollText.Controls.Add(this.messageText);
             this.pnlScrollText.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlScrollText.Location = new System.Drawing.Point(79, 0);
