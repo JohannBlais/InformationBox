@@ -39,8 +39,12 @@ The solution uses a dual-build strategy with shared source code:
 - **InfoBox.Designer/** - Visual designer tool (.NET Framework 4.8)
 - **InfoBoxCore.Designer/** - Visual designer tool (.NET 8/9/10)
 - **InfoBoxCore.Designer.Tests/** - NUnit tests for code generation
+- **InfoBoxCore.Tests/** - NUnit tests for ViewModel and parameter parsing logic
 
 Both InfoBox and InfoBoxCore compile to the same assembly name (`InfoBox.dll`) and namespace (`InfoBox`).
+
+### Adding New Source Files
+**InfoBox/** uses legacy .csproj format — new `.cs` files must be manually added as `<Compile Include="..." />` entries. InfoBoxCore auto-includes them via wildcard `<Compile Include="..\InfoBox\**\*.cs" />`.
 
 ## Key Architecture
 
@@ -57,6 +61,12 @@ The main API `InformationBox.Show()` accepts parameters in any order via `params
 - `InfoBox/Enums/` - Configuration enums (buttons, icons, position, etc.)
 - `InfoBox/Context/InformationBoxScope.cs` - Scope-based default configuration
 
+### ViewModel Architecture
+- `InfoBox/Internals/InformationBoxViewModel.cs` - Configuration state and business logic (testable without WinForms)
+- `InfoBox/Internals/ParameterParser.cs` - Parses `params object[]` and named parameters into a ViewModel
+- `InfoBox/Internals/ViewModelTypes.cs` - DTOs returned by ViewModel methods (`ButtonDefinition`, `CheckBoxConfiguration`, etc.)
+- `InfoBox/Internals/ITextMeasurer.cs` / `IScreenProvider.cs` - Abstractions for testability
+
 ### Code Generation
 The Designer tool generates C# or VB.NET code:
 - `InfoBox.Designer/CodeGeneration/CSharpGenerator.cs`
@@ -67,3 +77,8 @@ Tests use Roslyn to compile and validate generated code.
 ## Localization
 
 Resources are in `InfoBox/Properties/Resources.*.resx` with support for: English, German, Spanish, French, Portuguese, Arabic, Farsi, Dutch.
+
+## Gotchas
+
+- `params object[]` and `string[]`: Passing `string[]` to a `params object[]` method expands each string as a separate parameter. Cast to `(object)` to pass the array as a single element.
+- `DesignParameters` constructor order is `(formBackColor, barsBackColor)` — form color first, bars color second.

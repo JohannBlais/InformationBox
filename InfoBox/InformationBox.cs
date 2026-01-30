@@ -6,6 +6,7 @@
 
 namespace InfoBox
 {
+    using InfoBox.Internals;
     using System.Drawing;
     using System.Windows.Forms;
 
@@ -206,9 +207,10 @@ namespace InfoBox
                                                 InformationBoxOrder order = InformationBoxOrder.Default,
                                                 InformationBoxSound sound = InformationBoxSound.Default)
         {
-            return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
+            var vm = ParameterParser.ParseNamed(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox, doNotShowAgainText,
-                 style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show();
+                 style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound);
+            return new InformationBoxForm(vm).Show();
         }
 
         /// <summary>
@@ -417,9 +419,10 @@ namespace InfoBox
                                                 InformationBoxOrder order = InformationBoxOrder.Default,
                                                 InformationBoxSound sound = InformationBoxSound.Default)
         {
-            return new InformationBoxForm(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
+            var vm = ParameterParser.ParseNamed(text, title, helpFile, helpTopic, initialization, buttons, icon, customIcon, defaultButton,
                  customButtons, buttonsLayout, autoSizeMode, position, showHelpButton, helpNavigator, showDoNotShowAgainCheckBox, doNotShowAgainText,
-                 style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound).Show(out checkBoxState);
+                 style, autoClose, design, fontParameters, font, titleStyle, titleIcon, legacyButtons, legacyIcon, legacyDefaultButton, behavior, callback, opacity, parent, order, sound);
+            return new InformationBoxForm(vm).Show(out checkBoxState);
         }
 
         #endregion Show

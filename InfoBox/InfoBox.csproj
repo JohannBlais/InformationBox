@@ -159,8 +159,15 @@
     <Compile Include="InformationBox.cs" />
     <Compile Include="Enums\AutoCloseDefinedParameters.cs" />
     <Compile Include="Internals\IconHelper.cs" />
+    <Compile Include="Internals\InformationBoxViewModel.cs" />
+    <Compile Include="Internals\IScreenProvider.cs" />
+    <Compile Include="Internals\ITextMeasurer.cs" />
     <Compile Include="Internals\MessageBoxEnumConverter.cs" />
+    <Compile Include="Internals\ParameterParser.cs" />
     <Compile Include="Internals\TextHelper.cs" />
+    <Compile Include="Internals\ViewModelTypes.cs" />
+    <Compile Include="Internals\WinFormsScreenProvider.cs" />
+    <Compile Include="Internals\WinFormsTextMeasurer.cs" />
     <Compile Include="Parameters\AutoCloseParameters.cs" />
     <Compile Include="Parameters\DesignParameters.cs" />
     <Compile Include="Parameters\FontParameters.cs" />
