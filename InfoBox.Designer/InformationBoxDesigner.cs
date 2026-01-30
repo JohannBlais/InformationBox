@@ -10,6 +10,7 @@ namespace InfoBox.Designer
     using System;
     using System.Drawing;
     using System.Globalization;
+    using System.Net.Http;
     using System.Threading;
     using System.Windows.Forms;
 
@@ -894,6 +895,33 @@ namespace InfoBox.Designer
             this.textEditorForm.UpdateFontAndColor(this.messageFont, this.messageFontColor);
             this.textEditorForm.Show();
             this.textEditorForm.BringToFront();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnLoremIpsum control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private async void BtnLoremIpsum_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.btnLoremIpsum.Enabled = false;
+                using (var client = new HttpClient())
+                {
+                    string text = await client.GetStringAsync("https://lorem-api.com/api/lorem?paragraphs=10&seed=InfoBox");
+                    this.txbText.Text = text;
+                    this.txbTitle.Text = "Lorem Ipsum";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to fetch Lorem Ipsum text: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.btnLoremIpsum.Enabled = true;
+            }
         }
 
         #endregion Event handlers

@@ -29,7 +29,7 @@ namespace InfoBox.Designer
         /// Initializes a new instance of the <see cref="TextEditorForm"/> class.
         /// </summary>
         /// <param name="parentDesigner">The parent designer form.</param>
-        public TextEditorForm(InformationBoxDesigner parentDesigner): this()
+        public TextEditorForm(InformationBoxDesigner parentDesigner)
         {
             this.parentDesigner = parentDesigner ?? throw new ArgumentNullException(nameof(parentDesigner));
             this.InitializeComponent();

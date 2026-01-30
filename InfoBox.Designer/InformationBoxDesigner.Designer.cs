@@ -32,6 +32,7 @@ namespace InfoBox.Designer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxDesigner));
             groupBox1 = new System.Windows.Forms.GroupBox();
             btnEditText = new System.Windows.Forms.Button();
+            btnLoremIpsum = new System.Windows.Forms.Button();
             txbText = new System.Windows.Forms.TextBox();
             txbTitle = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
@@ -181,6 +182,7 @@ namespace InfoBox.Designer
             //
             // groupBox1
             //
+            groupBox1.Controls.Add(btnLoremIpsum);
             groupBox1.Controls.Add(btnEditText);
             groupBox1.Controls.Add(txbText);
             groupBox1.Controls.Add(txbTitle);
@@ -205,6 +207,17 @@ namespace InfoBox.Designer
             btnEditText.Text = "...";
             btnEditText.UseVisualStyleBackColor = true;
             btnEditText.Click += BtnEditText_Click;
+            //
+            // btnLoremIpsum
+            //
+            btnLoremIpsum.Location = new System.Drawing.Point(258, 90);
+            btnLoremIpsum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnLoremIpsum.Name = "btnLoremIpsum";
+            btnLoremIpsum.Size = new System.Drawing.Size(29, 25);
+            btnLoremIpsum.TabIndex = 4;
+            btnLoremIpsum.Image = new System.Drawing.Bitmap(System.Drawing.SystemIcons.Question.ToBitmap(), new System.Drawing.Size(16, 16));
+            btnLoremIpsum.UseVisualStyleBackColor = true;
+            btnLoremIpsum.Click += BtnLoremIpsum_Click;
             //
             // txbText
             //
@@ -1752,5 +1765,6 @@ namespace InfoBox.Designer
         private System.Windows.Forms.RadioButton rdbAutoSizeFitToText;
         private System.Windows.Forms.Label lblFontColor;
         private System.Windows.Forms.Button btnEditText;
+        private System.Windows.Forms.Button btnLoremIpsum;
     }
 }

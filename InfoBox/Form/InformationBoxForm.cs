@@ -286,7 +286,7 @@ namespace InfoBox
                                     InformationBoxOpacity opacity = InformationBoxOpacity.NoFade,
                                     Form parent = null,
                                     InformationBoxOrder order = InformationBoxOrder.Default,
-                                    InformationBoxSound sound = InformationBoxSound.Default) : this()
+                                    InformationBoxSound sound = InformationBoxSound.Default)
         {
             this.InitializeComponent();
             this.dpiScale = this.DeviceDpi / 96f;
