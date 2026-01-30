@@ -21,6 +21,13 @@ namespace InfoBox.Designer
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditorForm"/> class.
         /// </summary>
+        private TextEditorForm()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TextEditorForm"/> class.
+        /// </summary>
         /// <param name="parentDesigner">The parent designer form.</param>
         public TextEditorForm(InformationBoxDesigner parentDesigner)
         {

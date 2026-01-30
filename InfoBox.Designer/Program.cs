@@ -8,7 +8,7 @@ namespace InfoBox.Designer
 {
     using System;
     using System.Windows.Forms;
-    
+
     /// <summary>
     /// Entry point for the designer
     /// </summary>
@@ -20,6 +20,9 @@ namespace InfoBox.Designer
         [STAThread]
         public static void Main()
         {
+#if NET5_0_OR_GREATER
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+#endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new InformationBoxDesigner());

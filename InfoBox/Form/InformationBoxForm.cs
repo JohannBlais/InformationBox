@@ -40,6 +40,11 @@ namespace InfoBox
         #region Attributes
 
         /// <summary>
+        /// DPI scale factor relative to 96 DPI
+        /// </summary>
+        private float dpiScale;
+
+        /// <summary>
         /// Contains the callback used to inform the caller of a modeless box
         /// </summary>
         private readonly AsyncResultCallback callback;
@@ -208,6 +213,12 @@ namespace InfoBox
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InformationBoxForm"/>.
+        /// </summary>
+        private InformationBoxForm()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationBoxForm"/> class using the specified text.
@@ -278,6 +289,7 @@ namespace InfoBox
                                     InformationBoxSound sound = InformationBoxSound.Default)
         {
             this.InitializeComponent();
+            this.dpiScale = this.DeviceDpi / 96f;
 
             // Apply default font for message boxes
             this.Font = SystemFonts.MessageBoxFont;
@@ -300,7 +312,7 @@ namespace InfoBox
             if (customIcon != null)
             {
                 this.iconType = IconType.UserDefined;
-                this.customIcon = new Icon(customIcon, 48, 48);
+                this.customIcon = customIcon;
             }
             this.defaultButton = defaultButton;
             if (customButtons != null)
@@ -434,7 +446,7 @@ namespace InfoBox
                 {
                     // User defined icon
                     this.iconType = IconType.UserDefined;
-                    this.customIcon = new Icon((Icon)parameter, 48, 48);
+                    this.customIcon = (Icon)parameter;
                 }
                 else if (parameter is InformationBoxDefaultButton)
                 {
@@ -670,6 +682,11 @@ namespace InfoBox
         }
 
         #endregion Sound
+
+        /// <summary>
+        /// Scales a 96-DPI pixel value to the current monitor DPI.
+        /// </summary>
+        private int ScaleDpi(int value) => (int)Math.Round(value * this.dpiScale);
 
         #region Box initialization
 
@@ -991,26 +1008,27 @@ namespace InfoBox
         {
             int totalHeight;
             int totalWidth;
+            this.pnlScrollText.AutoScroll = false;
 
             #region Width
 
             // Caption width including button
-            int captionWidth = TextRenderer.MeasureText(Text, SystemFonts.CaptionFont, Size.Empty, TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix).Width + 30;
+            int captionWidth = TextRenderer.MeasureText(Text, SystemFonts.CaptionFont, Size.Empty, TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix).Width + ScaleDpi(30);
             if (this.titleStyle != InformationBoxTitleIconStyle.None)
             {
-                captionWidth += BorderPadding * 2;
+                captionWidth += ScaleDpi(BorderPadding) * 2;
             }
 
             // "Do not show this dialog again" width
             int checkBoxWidth = ((this.checkBox & InformationBoxCheckBox.Show) == InformationBoxCheckBox.Show)
-                                    ? TextRenderer.MeasureText(this.chbDoNotShow.Text, this.chbDoNotShow.Font, Size.Empty, TextFormatFlags.NoPadding).Width + BorderPadding * 4
+                                    ? TextRenderer.MeasureText(this.chbDoNotShow.Text, this.chbDoNotShow.Font, Size.Empty, TextFormatFlags.NoPadding).Width + ScaleDpi(BorderPadding) * 4
                                     : 0;
 
             // Width of the text and icon.
             int iconAndTextWidth = 0;
 
             // Minimum width to display all needed buttons.
-            int buttonsMinWidth = (this.pnlButtons.Controls.Count + 4) * BorderPadding;
+            int buttonsMinWidth = (this.pnlButtons.Controls.Count + 4) * ScaleDpi(BorderPadding);
             foreach (Control ctrl in this.pnlButtons.Controls)
             {
                 buttonsMinWidth += ctrl.Width;
@@ -1019,11 +1037,11 @@ namespace InfoBox
             // Icon width
             if (this.icon != InformationBoxIcon.None || this.iconType == IconType.UserDefined)
             {
-                iconAndTextWidth += IconPanelWidth;
+                iconAndTextWidth += ScaleDpi(IconPanelWidth);
             }
 
             // Text width
-            iconAndTextWidth += this.messageText.Width + BorderPadding * 2;
+            iconAndTextWidth += this.messageText.Width + ScaleDpi(BorderPadding) * 2;
 
             // Gets the maximum size
             totalWidth = Math.Max(Math.Max(Math.Max(buttonsMinWidth, iconAndTextWidth), captionWidth), checkBoxWidth);
@@ -1035,7 +1053,6 @@ namespace InfoBox
             if ((this.checkBox & InformationBoxCheckBox.Show) != InformationBoxCheckBox.Show)
             {
                 this.chbDoNotShow.Visible = false;
-                this.pnlBas.Height -= this.chbDoNotShow.Height;
             }
 
             int iconHeight = 0;
@@ -1046,24 +1063,25 @@ namespace InfoBox
 
             int textHeight = this.messageText.Height;
 
-            totalHeight = Math.Max(iconHeight, textHeight) + BorderPadding * 2 + this.pnlBas.Height;
+            totalHeight = Math.Max(iconHeight, textHeight) + ScaleDpi(BorderPadding) * 2 + this.pnlBas.Height;
 
             // Add a small space to avoid vertical scrollbar.
-            if (iconAndTextWidth > Screen.PrimaryScreen.WorkingArea.Width - 100)
+            if (iconAndTextWidth > Screen.PrimaryScreen.WorkingArea.Width - ScaleDpi(100))
             {
-                totalHeight += 20;
+                totalHeight += ScaleDpi(20);
             }
 
             bool verticalScroll = false;
-            if (totalHeight > Screen.PrimaryScreen.WorkingArea.Height - 50)
+            if (totalHeight > Screen.PrimaryScreen.WorkingArea.Height - ScaleDpi(50))
             {
-                totalHeight = Screen.PrimaryScreen.WorkingArea.Height - 50;
-                totalWidth += 20;
-                this.messageText.Top = BorderPadding;
+                totalHeight = Screen.PrimaryScreen.WorkingArea.Height - ScaleDpi(50);
+                totalWidth += ScaleDpi(20);
+                this.messageText.Top = ScaleDpi(BorderPadding);
                 verticalScroll = true;
+                this.pnlScrollText.AutoScroll = true;
             }
 
-            this.pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight - this.pnlBas.Height);
+            this.pnlMain.Size = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - ScaleDpi(20), totalWidth), totalHeight - this.pnlBas.Height);
 
             if (this.style == InformationBoxStyle.Modern)
             {
@@ -1073,19 +1091,27 @@ namespace InfoBox
             #endregion Height
 
             // Sets the size
-            ClientSize = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - 20, totalWidth), totalHeight);
+            ClientSize = new Size(Math.Min(Screen.PrimaryScreen.WorkingArea.Width - ScaleDpi(20), totalWidth), totalHeight);
 
             #region Position
 
             // Set new position for all components
             // Icon
-            this.pcbIcon.Left = BorderPadding;
-            this.pcbIcon.Top = BorderPadding;
+            this.pcbIcon.Left = ScaleDpi(BorderPadding);
+            this.pcbIcon.Top = ScaleDpi(BorderPadding);
 
             // Text
             this.pnlScrollText.Width = ClientSize.Width - ((this.icon != InformationBoxIcon.None || this.iconType == IconType.UserDefined)
-                                       ? IconPanelWidth + BorderPadding + 5
-                                       : BorderPadding);
+                                       ? ScaleDpi(IconPanelWidth) + ScaleDpi(BorderPadding) + ScaleDpi(5)
+                                       : ScaleDpi(BorderPadding));
+            this.messageText.Left = 0;
+
+            if (this.messageText.Width > this.pnlScrollText.ClientSize.Width)
+            {
+                verticalScroll = true;
+                this.pnlScrollText.AutoScroll = true;
+            }
+
             if (!verticalScroll)
             {
                 this.messageText.Top = Convert.ToInt32((this.pnlText.Height - this.messageText.Height) / 2);
@@ -1110,11 +1136,11 @@ namespace InfoBox
             switch (this.buttonsLayout)
             {
                 case InformationBoxButtonsLayout.GroupLeft:
-                    spaceBetween = BorderPadding;
-                    initialPosition = BorderPadding;
+                    spaceBetween = ScaleDpi(BorderPadding);
+                    initialPosition = ScaleDpi(BorderPadding);
                     break;
                 case InformationBoxButtonsLayout.GroupMiddle:
-                    spaceBetween = BorderPadding;
+                    spaceBetween = ScaleDpi(BorderPadding);
 
                     // If there is only one button then we must center it
                     if (buttonsCount == 1)
@@ -1123,13 +1149,13 @@ namespace InfoBox
                     }
                     else
                     {
-                        initialPosition = Convert.ToInt32((this.pnlButtons.ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding))) / 2);
+                        initialPosition = Convert.ToInt32((this.pnlButtons.ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + ScaleDpi(BorderPadding)))) / 2);
                     }
 
                     break;
                 case InformationBoxButtonsLayout.GroupRight:
-                    spaceBetween = BorderPadding;
-                    initialPosition = this.pnlButtons.ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + BorderPadding));
+                    spaceBetween = ScaleDpi(BorderPadding);
+                    initialPosition = this.pnlButtons.ClientSize.Width - (buttonsCount * (this.pnlButtons.Controls[0].Width + ScaleDpi(BorderPadding)));
                     break;
                 case InformationBoxButtonsLayout.Separate:
                     spaceBetween = Convert.ToInt32((this.pnlButtons.ClientSize.Width - buttonsCount * this.pnlButtons.Controls[0].Width) / (buttonsCount + 1));
@@ -1170,11 +1196,11 @@ namespace InfoBox
             }
             else
             {
-                this.pcbIcon.Image = this.customIcon.ToBitmap();
+                this.pcbIcon.Image = new Icon(this.customIcon, ScaleDpi(48), ScaleDpi(48)).ToBitmap();
                 this.pnlIcon.Visible = true;
             }
 
-            this.pnlIcon.Width = IconPanelWidth;
+            this.pnlIcon.Width = ScaleDpi(IconPanelWidth);
 
             if (this.titleStyle == InformationBoxTitleIconStyle.None)
             {
@@ -1278,9 +1304,8 @@ namespace InfoBox
 
                         foreach (Match sentence in sentences)
                         {
-                            // FIX: In case an icon is configured, the maximum width of the text should be reduced to accomodate the icon width and avoid the horizontal scrollbar.
                             int sentenceLength = TextRenderer.MeasureText(sentence.Value, this.messageText.Font, Size.Empty, TextFormatFlags.TextBoxControl | TextFormatFlags.NoPadding).Width;
-                            if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - 50))
+                            if (currentWidth != 0 && (sentenceLength + currentWidth + this.pnlIcon.Width) > (screenWidth - ScaleDpi(50)))
                             {
                                 formattedText.Append(Environment.NewLine);
                                 currentWidth = 0;
@@ -1302,7 +1327,7 @@ namespace InfoBox
                 }
             }
 
-            this.messageText.Width += BorderPadding;
+            this.messageText.Width += ScaleDpi(BorderPadding);
         }
 
         #endregion Text
@@ -1409,15 +1434,15 @@ namespace InfoBox
             // Measures the width of each button
             foreach (Control ctrl in this.pnlButtons.Controls)
             {
-                maxSize = Math.Max(TextRenderer.MeasureText(ctrl.Text, ctrl.Font, Size.Empty, TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix).Width + 40, maxSize);
+                maxSize = Math.Max(TextRenderer.MeasureText(ctrl.Text, ctrl.Font, Size.Empty, TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix).Width + ScaleDpi(40), maxSize);
             }
 
             foreach (Control ctrl in this.pnlButtons.Controls)
             {
                 if (this.style == InformationBoxStyle.Standard)
                 {
-                    ctrl.Size = new Size(maxSize, 23);
-                    ctrl.Top = 5;
+                    ctrl.Size = new Size(maxSize, ScaleDpi(23));
+                    ctrl.Top = ScaleDpi(5);
                 }
                 else if (this.style == InformationBoxStyle.Modern)
                 {
@@ -1558,6 +1583,20 @@ namespace InfoBox
         #endregion Help
 
         #region Event handling
+
+        /// <summary>
+        /// Handles DPI changes (e.g. moving the form to a monitor with different scaling).
+        /// </summary>
+        protected override void OnDpiChanged(DpiChangedEventArgs e)
+        {
+            base.OnDpiChanged(e);
+            this.dpiScale = e.DeviceDpiNew / 96f;
+            this.pnlScrollText.AutoScrollPosition = Point.Empty;
+            this.SetButtonsSize();
+            this.SetText();
+            this.SetIcon();
+            this.SetLayout();
+        }
 
         /// <summary>
         /// Handles the Click event of the buttons.
