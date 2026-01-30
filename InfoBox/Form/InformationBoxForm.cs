@@ -1304,9 +1304,8 @@ namespace InfoBox
 
                         foreach (Match sentence in sentences)
                         {
-                            // FIX: In case an icon is configured, the maximum width of the text should be reduced to accomodate the icon width and avoid the horizontal scrollbar.
                             int sentenceLength = TextRenderer.MeasureText(sentence.Value, this.messageText.Font, Size.Empty, TextFormatFlags.TextBoxControl | TextFormatFlags.NoPadding).Width;
-                            if (currentWidth != 0 && (sentenceLength + currentWidth) > (screenWidth - ScaleDpi(50)))
+                            if (currentWidth != 0 && (sentenceLength + currentWidth + this.pnlIcon.Width) > (screenWidth - ScaleDpi(50)))
                             {
                                 formattedText.Append(Environment.NewLine);
                                 currentWidth = 0;
