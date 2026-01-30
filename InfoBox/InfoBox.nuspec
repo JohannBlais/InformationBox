@@ -17,9 +17,10 @@ InformationBox is the simplest and easiest way to create personalized MessageBox
 Stop wasting time developing your own custom MessageBox, everything you need is already available. Just customize your MessageBox using the visual designer and the code is automatically generated !</description>
         <summary>InformationBox (.NET 4.8+, dotnet core  8.0+) is a flexible alternative to the default MessageBox included in the System.Windows.Forms namespace</summary>
         <releaseNotes>
-            - Improved text measurement accuracy by migrating from Graphics.MeasureString (GDI+) to TextRenderer.MeasureText (GDI)
-            - Removed Graphics dependency for better testability
-            - Text sizing now matches actual TextBox rendering more accurately
+            - Fixed button layout issue in High DPI mode
+            - Fixed text layout when an icon is selected, the autosize mode is set to minimum height, and the text is too large
+            - DPI handling improvements
+            - Added Lorem Ipsum button in the Designer to quickly populate text content and title
         </releaseNotes>
         <copyright>Copyright 2026</copyright>
         <language>en-US</language>
