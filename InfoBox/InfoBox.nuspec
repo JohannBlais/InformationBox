@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>InformationBox</id>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
         <title>InformationBox</title>
         <authors>Johann Blais</authors>
         <owners>Johann Blais</owners>
