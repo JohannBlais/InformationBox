@@ -511,10 +511,11 @@ namespace InfoBoxCore.Tests
         [Test]
         public void GetWindowStyleConfiguration_ModernWithDesign_UsesDesignColors()
         {
+            // DesignParameters constructor: (formBackColor, barsBackColor)
             var vm = new InformationBoxViewModel
             {
                 Style = InformationBoxStyle.Modern,
-                Design = new DesignParameters(Color.DarkBlue, Color.LightGray),
+                Design = new DesignParameters(Color.LightGray, Color.DarkBlue),
             };
             var config = vm.GetWindowStyleConfiguration();
 
@@ -535,10 +536,11 @@ namespace InfoBoxCore.Tests
         [Test]
         public void GetWindowStyleConfiguration_StandardWithDesign_UsesDesignColors()
         {
+            // DesignParameters constructor: (formBackColor, barsBackColor)
             var vm = new InformationBoxViewModel
             {
                 Style = InformationBoxStyle.Standard,
-                Design = new DesignParameters(Color.Navy, Color.Ivory),
+                Design = new DesignParameters(Color.Ivory, Color.Navy),
             };
             var config = vm.GetWindowStyleConfiguration();
 

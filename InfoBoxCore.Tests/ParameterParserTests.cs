@@ -217,7 +217,8 @@ namespace InfoBoxCore.Tests
         [Test]
         public void Parse_CustomButtons_SetsButtonTexts()
         {
-            var vm = ParameterParser.Parse("Hello", new string[] { "Save", "Discard", "Cancel" });
+            // string[] must be boxed as object to avoid params expansion
+            var vm = ParameterParser.Parse("Hello", (object)new string[] { "Save", "Discard", "Cancel" });
 
             Assert.That(vm.ButtonUser1Text, Is.EqualTo("Save"));
             Assert.That(vm.ButtonUser2Text, Is.EqualTo("Discard"));
@@ -227,7 +228,8 @@ namespace InfoBoxCore.Tests
         [Test]
         public void Parse_CustomButtons_OneButton_SetsOnlyFirst()
         {
-            var vm = ParameterParser.Parse("Hello", new string[] { "Only" });
+            // string[] must be boxed as object to avoid params expansion
+            var vm = ParameterParser.Parse("Hello", (object)new string[] { "Only" });
 
             Assert.That(vm.ButtonUser1Text, Is.EqualTo("Only"));
             Assert.That(vm.ButtonUser2Text, Is.EqualTo("User2"));
