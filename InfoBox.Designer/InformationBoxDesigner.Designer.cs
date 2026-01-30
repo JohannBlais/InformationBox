@@ -31,8 +31,8 @@ namespace InfoBox.Designer
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationBoxDesigner));
             groupBox1 = new System.Windows.Forms.GroupBox();
-            btnEditText = new System.Windows.Forms.Button();
             btnLoremIpsum = new System.Windows.Forms.Button();
+            btnEditText = new System.Windows.Forms.Button();
             txbText = new System.Windows.Forms.TextBox();
             txbTitle = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
@@ -145,6 +145,7 @@ namespace InfoBox.Designer
             rdbSoundMute = new System.Windows.Forms.RadioButton();
             rdbSoundDefault = new System.Windows.Forms.RadioButton();
             groupBox22 = new System.Windows.Forms.GroupBox();
+            lblFontColor = new System.Windows.Forms.Label();
             chbCustomFonts = new System.Windows.Forms.CheckBox();
             lblMessageFont = new System.Windows.Forms.Label();
             txbMessageFont = new System.Windows.Forms.TextBox();
@@ -153,7 +154,6 @@ namespace InfoBox.Designer
             txbMessageColor = new System.Windows.Forms.TextBox();
             btnMessageColor = new System.Windows.Forms.Button();
             dlgFont = new System.Windows.Forms.FontDialog();
-            lblFontColor = new System.Windows.Forms.Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -179,9 +179,9 @@ namespace InfoBox.Designer
             groupBox21.SuspendLayout();
             groupBox22.SuspendLayout();
             SuspendLayout();
-            //
+            // 
             // groupBox1
-            //
+            // 
             groupBox1.Controls.Add(btnLoremIpsum);
             groupBox1.Controls.Add(btnEditText);
             groupBox1.Controls.Add(txbText);
@@ -196,9 +196,20 @@ namespace InfoBox.Designer
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Labels";
-            //
+            // 
+            // btnLoremIpsum
+            // 
+            btnLoremIpsum.Image = (System.Drawing.Image)resources.GetObject("btnLoremIpsum.Image");
+            btnLoremIpsum.Location = new System.Drawing.Point(258, 90);
+            btnLoremIpsum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnLoremIpsum.Name = "btnLoremIpsum";
+            btnLoremIpsum.Size = new System.Drawing.Size(29, 25);
+            btnLoremIpsum.TabIndex = 4;
+            btnLoremIpsum.UseVisualStyleBackColor = true;
+            btnLoremIpsum.Click += BtnLoremIpsum_Click;
+            // 
             // btnEditText
-            //
+            // 
             btnEditText.Location = new System.Drawing.Point(258, 61);
             btnEditText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnEditText.Name = "btnEditText";
@@ -207,20 +218,9 @@ namespace InfoBox.Designer
             btnEditText.Text = "...";
             btnEditText.UseVisualStyleBackColor = true;
             btnEditText.Click += BtnEditText_Click;
-            //
-            // btnLoremIpsum
-            //
-            btnLoremIpsum.Location = new System.Drawing.Point(258, 90);
-            btnLoremIpsum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            btnLoremIpsum.Name = "btnLoremIpsum";
-            btnLoremIpsum.Size = new System.Drawing.Size(29, 25);
-            btnLoremIpsum.TabIndex = 4;
-            btnLoremIpsum.Image = new System.Drawing.Bitmap(System.Drawing.SystemIcons.Question.ToBitmap(), new System.Drawing.Size(16, 16));
-            btnLoremIpsum.UseVisualStyleBackColor = true;
-            btnLoremIpsum.Click += BtnLoremIpsum_Click;
-            //
+            // 
             // txbText
-            //
+            // 
             txbText.Location = new System.Drawing.Point(59, 61);
             txbText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             txbText.Multiline = true;
@@ -496,7 +496,6 @@ namespace InfoBox.Designer
             // 
             // btnShow
             // 
-            btnShow.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnShow.Location = new System.Drawing.Point(377, 662);
             btnShow.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnShow.Name = "btnShow";
@@ -593,7 +592,7 @@ namespace InfoBox.Designer
             // 
             // txbCode
             // 
-            txbCode.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txbCode.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txbCode.BackColor = System.Drawing.Color.WhiteSmoke;
             txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             txbCode.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
@@ -608,7 +607,6 @@ namespace InfoBox.Designer
             // 
             // btnGenerate
             // 
-            btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnGenerate.ContextMenuStrip = cmsLanguage;
             btnGenerate.Location = new System.Drawing.Point(138, 662);
             btnGenerate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1352,7 +1350,6 @@ namespace InfoBox.Designer
             // 
             // btnShowModeless
             // 
-            btnShowModeless.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnShowModeless.Location = new System.Drawing.Point(616, 662);
             btnShowModeless.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnShowModeless.Name = "btnShowModeless";
@@ -1476,6 +1473,13 @@ namespace InfoBox.Designer
             groupBox22.TabStop = false;
             groupBox22.Text = "Font";
             // 
+            // lblFontColor
+            // 
+            lblFontColor.Location = new System.Drawing.Point(217, 75);
+            lblFontColor.Name = "lblFontColor";
+            lblFontColor.Size = new System.Drawing.Size(24, 23);
+            lblFontColor.TabIndex = 7;
+            // 
             // chbCustomFonts
             // 
             chbCustomFonts.AutoSize = true;
@@ -1547,13 +1551,6 @@ namespace InfoBox.Designer
             btnMessageColor.UseVisualStyleBackColor = true;
             btnMessageColor.Click += BtnMessageColor_Click;
             // 
-            // lblFontColor
-            // 
-            lblFontColor.Location = new System.Drawing.Point(217, 75);
-            lblFontColor.Name = "lblFontColor";
-            lblFontColor.Size = new System.Drawing.Size(24, 23);
-            lblFontColor.TabIndex = 7;
-            // 
             // InformationBoxDesigner
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1588,6 +1585,7 @@ namespace InfoBox.Designer
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             MaximizeBox = false;
+            MinimumSize = new System.Drawing.Size(982, 829);
             Name = "InformationBoxDesigner";
             SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             Text = "InformationBox Designer";
