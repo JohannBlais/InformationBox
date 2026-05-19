@@ -1,0 +1,42 @@
+root = true
+
+[*]
+indent_style = space
+charset = utf-8
+end_of_line = crlf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.cs]
+indent_size = 4
+
+[*.{csproj,props,targets,xml,resx}]
+indent_size = 2
+
+[*.{md,yml,yaml,json}]
+indent_size = 2
+
+# C# code style - aligned with the existing conventions of the project.
+[*.cs]
+
+# Project convention: using directives go INSIDE the namespace block.
+csharp_using_directive_placement = inside_namespace:warning
+
+# Allman braces (already the case everywhere in the codebase).
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+# Block-scoped namespaces (file-scoped is C# 10 but the project uses block-scoped).
+csharp_style_namespace_declarations = block_scoped:silent
+
+# Encourage modern syntax now that LangVersion is bumped to C# 10.
+# Suggestion-level only - existing code is not flagged as errors.
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_prefer_switch_expression = true:suggestion
+csharp_style_prefer_pattern_matching = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion

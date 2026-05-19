@@ -1,0 +1,18 @@
+<Project>
+
+  <!--
+    Shared MSBuild properties for all projects in the solution.
+
+    LangVersion is pinned so that source files compiled by both the legacy
+    .NET Framework 4.8 project (InfoBox) and the modern .NET 8/9/10 projects
+    (InfoBoxCore.*) use the same C# language version. The shared source files
+    in InfoBox/ are compiled by both, so the lowest-common-denominator wins.
+    C# 10 unlocks: file-scoped namespaces, switch expressions, pattern
+    matching, target-typed new(), `is not null`, etc. - all syntactic features
+    that work on .NET Framework 4.8 without runtime polyfills.
+  -->
+  <PropertyGroup>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+
+</Project>
