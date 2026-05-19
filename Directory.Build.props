@@ -15,4 +15,24 @@
     <LangVersion>10</LangVersion>
   </PropertyGroup>
 
+  <!--
+    .NET code analyzers (CAxxxx rules).
+
+    These properties apply to SDK-style projects (InfoBoxCore.*, the .NET 8/9/10
+    targets). The legacy non-SDK InfoBox.csproj (.NET Framework 4.8) does not
+    pick analyzers up from MSBuild properties alone - it would need a
+    Microsoft.CodeAnalysis.NetAnalyzers PackageReference. We don't bother:
+    the same source is compiled by InfoBoxCore.csproj, so issues are still
+    surfaced when the modern projects build.
+
+    AnalysisLevel=latest pulls the rule set that ships with the SDK in use.
+    AnalysisMode=Recommended enables a curated set of rules at their default
+    severity (warnings, not errors - the build still passes).
+  -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>Recommended</AnalysisMode>
+  </PropertyGroup>
+
 </Project>
