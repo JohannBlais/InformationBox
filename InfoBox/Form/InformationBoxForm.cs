@@ -378,19 +378,15 @@ namespace InfoBox
         {
             this.activeForm = ActiveForm;
 
-            // Looks for a parameter of the type InformationBoxInitialization.
-            // If found and equal to InformationBoxInitialization.FromParametersOnly,
-            // skips the scope parameters.
+            // Looks for an InformationBoxInitialization parameter set to FromParametersOnly,
+            // which suppresses scope loading. Any other value (or absence) loads the scope.
             bool loadScope = true;
             foreach (object param in parameters)
             {
-                if (param is InformationBoxInitialization)
+                if (param is InformationBoxInitialization init &&
+                    init == InformationBoxInitialization.FromParametersOnly)
                 {
-                    InformationBoxInitialization value = (InformationBoxInitialization)param;
-                    if (InformationBoxInitialization.FromParametersOnly == value)
-                    {
-                        loadScope = false;
-                    }
+                    loadScope = false;
                 }
             }
 
@@ -403,184 +399,163 @@ namespace InfoBox
 
             foreach (object parameter in parameters)
             {
-                if (null == parameter)
+                if (parameter is null)
                 {
                     continue;
                 }
 
-                // Simple string -> caption
-                // Or Help file if the string contains a file name
-                if (parameter is string)
+                switch (parameter)
                 {
-                    if (stringCount == 0)
-                    {
-                        this.Text = (string)parameter;
-                        this.lblTitle.Text = (string)parameter;
-                    }
-                    else if (stringCount == 1)
-                    {
-                        this.helpFile = (string)parameter;
-                    }
-                    else if (stringCount == 2)
-                    {
-                        this.helpTopic = (string)parameter;
-                    }
-                    else if (stringCount == 3)
-                    {
-                        this.doNotShowAgainText = (string)parameter;
-                    }
+                    // Strings are assigned positionally:
+                    //   0 -> caption, 1 -> help file, 2 -> help topic, 3 -> "do not show again" text.
+                    case string s:
+                        if (stringCount == 0)
+                        {
+                            this.Text = s;
+                            this.lblTitle.Text = s;
+                        }
+                        else if (stringCount == 1)
+                        {
+                            this.helpFile = s;
+                        }
+                        else if (stringCount == 2)
+                        {
+                            this.helpTopic = s;
+                        }
+                        else if (stringCount == 3)
+                        {
+                            this.doNotShowAgainText = s;
+                        }
 
-                    stringCount++;
-                }
-                else if (parameter is InformationBoxButtons)
-                {
-                    // Buttons
-                    this.buttons = (InformationBoxButtons)parameter;
-                }
-                else if (parameter is InformationBoxIcon)
-                {
-                    // Internal icon
-                    this.icon = (InformationBoxIcon)parameter;
-                }
-                else if (parameter is Icon)
-                {
-                    // User defined icon
-                    this.iconType = IconType.UserDefined;
-                    this.customIcon = (Icon)parameter;
-                }
-                else if (parameter is InformationBoxDefaultButton)
-                {
-                    // Default button
-                    this.defaultButton = (InformationBoxDefaultButton)parameter;
-                }
-                else if (parameter is string[])
-                {
-                    // Custom buttons
-                    string[] labels = (string[])parameter;
-                    if (labels.Length > 0)
-                    {
-                        this.buttonUser1Text = labels[0];
-                    }
+                        stringCount++;
+                        break;
 
-                    if (labels.Length > 1)
-                    {
-                        this.buttonUser2Text = labels[1];
-                    }
+                    case InformationBoxButtons b:
+                        this.buttons = b;
+                        break;
 
-                    if (labels.Length > 2)
-                    {
-                        this.buttonUser3Text = labels[2];
-                    }
-                }
-                else if (parameter is InformationBoxButtonsLayout)
-                {
-                    // Buttons layout
-                    this.buttonsLayout = (InformationBoxButtonsLayout)parameter;
-                }
-                else if (parameter is InformationBoxAutoSizeMode)
-                {
-                    // Autosize mode
-                    this.autoSizeMode = (InformationBoxAutoSizeMode)parameter;
-                }
-                else if (parameter is InformationBoxPosition)
-                {
-                    // Position
-                    this.position = (InformationBoxPosition)parameter;
-                }
-                else if (parameter is bool)
-                {
-                    // Help button
-                    this.showHelpButton = (bool)parameter;
-                }
-                else if (parameter is HelpNavigator)
-                {
-                    // Help navigator
-                    this.helpNavigator = (HelpNavigator)parameter;
-                }
-                else if (parameter is InformationBoxCheckBox)
-                {
-                    // Do not show this dialog again ?
-                    this.checkBox = (InformationBoxCheckBox)parameter;
-                }
-                else if (parameter is InformationBoxStyle)
-                {
-                    // Visual style
-                    this.style = (InformationBoxStyle)parameter;
-                }
-                else if (parameter is AutoCloseParameters)
-                {
-                    // Auto-close parameters
-                    this.autoClose = (AutoCloseParameters)parameter;
-                }
-                else if (parameter is DesignParameters)
-                {
-                    // Design parameters
-                    this.design = (DesignParameters)parameter;
-                }
-                else if (parameter is FontParameters)
-                {
-                    // Font parameters
-                    this.fontParameters = (FontParameters)parameter;
-                }
-                else if (parameter is Font)
-                {
-                    // Direct font parameter - use for both message and title
-                    this.fontParameters = new FontParameters((Font)parameter);
-                }
-                else if (parameter is InformationBoxTitleIconStyle)
-                {
-                    // Title style
-                    this.titleStyle = (InformationBoxTitleIconStyle)parameter;
-                }
-                else if (parameter is InformationBoxTitleIcon)
-                {
-                    // Title icon
-                    this.titleIcon = ((InformationBoxTitleIcon)parameter).Icon;
-                }
-                else if (parameter is MessageBoxButtons?)
-                {
-                    // MessageBox buttons
-                    this.buttons = MessageBoxEnumConverter.Parse((MessageBoxButtons)parameter);
-                }
-                else if (parameter is MessageBoxIcon?)
-                {
-                    // MessageBox icon
-                    this.icon = MessageBoxEnumConverter.Parse((MessageBoxIcon)parameter);
-                }
-                else if (parameter is MessageBoxDefaultButton?)
-                {
-                    // MessageBox default button
-                    this.defaultButton = MessageBoxEnumConverter.Parse((MessageBoxDefaultButton)parameter);
-                }
-                else if (parameter is InformationBoxBehavior)
-                {
-                    // InformationBox behaviour
-                    this.behavior = (InformationBoxBehavior)parameter;
-                }
-                else if (parameter is AsyncResultCallback)
-                {
-                    // Callback for the result
-                    this.callback = (AsyncResultCallback)parameter;
-                }
-                else if (parameter is InformationBoxOpacity)
-                {
-                    // Opacity
-                    this.opacity = (InformationBoxOpacity)parameter;
-                }
-                else if (parameter is Form)
-                {
-                    // Form parent
-                    this.Parent = (Form)Parent;
-                }
-                else if (parameter is InformationBoxOrder)
-                {
-                    // z-order
-                    this.order = (InformationBoxOrder)parameter;
-                }
-                else if (parameter is InformationBoxSound)
-                {
-                    // Sound
-                    this.sound = (InformationBoxSound)parameter;
+                    case InformationBoxIcon i:
+                        this.icon = i;
+                        break;
+
+                    case Icon ico:
+                        this.iconType = IconType.UserDefined;
+                        this.customIcon = ico;
+                        break;
+
+                    case InformationBoxDefaultButton db:
+                        this.defaultButton = db;
+                        break;
+
+                    case string[] labels:
+                        if (labels.Length > 0)
+                        {
+                            this.buttonUser1Text = labels[0];
+                        }
+
+                        if (labels.Length > 1)
+                        {
+                            this.buttonUser2Text = labels[1];
+                        }
+
+                        if (labels.Length > 2)
+                        {
+                            this.buttonUser3Text = labels[2];
+                        }
+
+                        break;
+
+                    case InformationBoxButtonsLayout bl:
+                        this.buttonsLayout = bl;
+                        break;
+
+                    case InformationBoxAutoSizeMode asm:
+                        this.autoSizeMode = asm;
+                        break;
+
+                    case InformationBoxPosition pos:
+                        this.position = pos;
+                        break;
+
+                    case bool showHelp:
+                        this.showHelpButton = showHelp;
+                        break;
+
+                    case HelpNavigator hn:
+                        this.helpNavigator = hn;
+                        break;
+
+                    case InformationBoxCheckBox cb:
+                        this.checkBox = cb;
+                        break;
+
+                    case InformationBoxStyle st:
+                        this.style = st;
+                        break;
+
+                    case AutoCloseParameters ac:
+                        this.autoClose = ac;
+                        break;
+
+                    case DesignParameters dp:
+                        this.design = dp;
+                        break;
+
+                    case FontParameters fp:
+                        this.fontParameters = fp;
+                        break;
+
+                    case Font f:
+                        // Direct font parameter - use for both message and title
+                        this.fontParameters = new FontParameters(f);
+                        break;
+
+                    case InformationBoxTitleIconStyle tis:
+                        this.titleStyle = tis;
+                        break;
+
+                    case InformationBoxTitleIcon ti:
+                        this.titleIcon = ti.Icon;
+                        break;
+
+                    case MessageBoxButtons mb:
+                        this.buttons = MessageBoxEnumConverter.Parse(mb);
+                        break;
+
+                    case MessageBoxIcon mi:
+                        this.icon = MessageBoxEnumConverter.Parse(mi);
+                        break;
+
+                    case MessageBoxDefaultButton mdb:
+                        this.defaultButton = MessageBoxEnumConverter.Parse(mdb);
+                        break;
+
+                    case InformationBoxBehavior beh:
+                        this.behavior = beh;
+                        break;
+
+                    case AsyncResultCallback arc:
+                        this.callback = arc;
+                        break;
+
+                    case InformationBoxOpacity op:
+                        this.opacity = op;
+                        break;
+
+                    case Form parentForm:
+                        // Previously: `this.Parent = (Form)Parent;` - the local was shadowed by the
+                        // form's own Parent property, making this branch a no-op. Pattern matching
+                        // exposes a named local, eliminating the typo.
+                        this.Parent = parentForm;
+                        break;
+
+                    case InformationBoxOrder ord:
+                        this.order = ord;
+                        break;
+
+                    case InformationBoxSound sd:
+                        this.sound = sd;
+                        break;
                 }
             }
         }
