@@ -110,6 +110,8 @@
     <Compile Include="InformationBox.cs" />
     <Compile Include="Enums\AutoCloseDefinedParameters.cs" />
     <Compile Include="Internals\IconHelper.cs" />
+    <Compile Include="Internals\InformationBoxArgs.cs" />
+    <Compile Include="Internals\InformationBoxArgsParser.cs" />
     <Compile Include="Internals\MessageBoxEnumConverter.cs" />
     <Compile Include="Internals\TextHelper.cs" />
     <Compile Include="Parameters\AutoCloseParameters.cs" />

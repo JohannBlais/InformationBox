@@ -47,37 +47,37 @@ namespace InfoBox
         /// <summary>
         /// Contains the callback used to inform the caller of a modeless box
         /// </summary>
-        private readonly AsyncResultCallback callback;
+        private AsyncResultCallback callback;
 
         /// <summary>
         /// Text for the first user button
         /// </summary>
-        private readonly string buttonUser1Text = "User1";
+        private string buttonUser1Text = "User1";
 
         /// <summary>
         /// Text for the second user button
         /// </summary>
-        private readonly string buttonUser2Text = "User2";
+        private string buttonUser2Text = "User2";
 
         /// <summary>
         /// Text for the third user button
         /// </summary>
-        private readonly string buttonUser3Text = "User3";
+        private string buttonUser3Text = "User3";
 
         /// <summary>
         /// Help file associated to the help button
         /// </summary>
-        private readonly string helpFile;
+        private string helpFile;
 
         /// <summary>
         /// Help topic associated to the help button
         /// </summary>
-        private readonly string helpTopic;
+        private string helpTopic;
 
         /// <summary>
         /// Text for the "Do not show again" checkbox
         /// </summary>
-        private readonly string doNotShowAgainText;
+        private string doNotShowAgainText;
 
         /// <summary>
         /// Contains a reference to the active form
@@ -378,185 +378,171 @@ namespace InfoBox
         {
             this.activeForm = ActiveForm;
 
-            // Looks for an InformationBoxInitialization parameter set to FromParametersOnly,
-            // which suppresses scope loading. Any other value (or absence) loads the scope.
-            bool loadScope = true;
-            foreach (object param in parameters)
-            {
-                if (param is InformationBoxInitialization init &&
-                    init == InformationBoxInitialization.FromParametersOnly)
-                {
-                    loadScope = false;
-                }
-            }
+            var args = InformationBoxArgsParser.Parse(parameters);
 
-            if (loadScope)
+            if (args.LoadScope)
             {
                 this.LoadCurrentScope();
             }
 
-            int stringCount = 0;
+            this.ApplyArgs(args);
+        }
 
-            foreach (object parameter in parameters)
+        /// <summary>
+        /// Projects the parsed parameter aggregate onto this form's fields. Properties
+        /// left at their sentinel value (null reference / null nullable) in
+        /// <paramref name="args"/> leave the matching field untouched so its existing
+        /// default (or the value previously set by <see cref="LoadCurrentScope"/>)
+        /// is preserved.
+        /// </summary>
+        /// <param name="args">The parsed parameter aggregate.</param>
+        private void ApplyArgs(InformationBoxArgs args)
+        {
+            if (args.Title is not null)
             {
-                if (parameter is null)
-                {
-                    continue;
-                }
+                this.Text = args.Title;
+                this.lblTitle.Text = args.Title;
+            }
 
-                switch (parameter)
-                {
-                    // Strings are assigned positionally:
-                    //   0 -> caption, 1 -> help file, 2 -> help topic, 3 -> "do not show again" text.
-                    case string s:
-                        if (stringCount == 0)
-                        {
-                            this.Text = s;
-                            this.lblTitle.Text = s;
-                        }
-                        else if (stringCount == 1)
-                        {
-                            this.helpFile = s;
-                        }
-                        else if (stringCount == 2)
-                        {
-                            this.helpTopic = s;
-                        }
-                        else if (stringCount == 3)
-                        {
-                            this.doNotShowAgainText = s;
-                        }
+            if (args.HelpFile is not null)
+            {
+                this.helpFile = args.HelpFile;
+            }
 
-                        stringCount++;
-                        break;
+            if (args.HelpTopic is not null)
+            {
+                this.helpTopic = args.HelpTopic;
+            }
 
-                    case InformationBoxButtons b:
-                        this.buttons = b;
-                        break;
+            if (args.DoNotShowAgainText is not null)
+            {
+                this.doNotShowAgainText = args.DoNotShowAgainText;
+            }
 
-                    case InformationBoxIcon i:
-                        this.icon = i;
-                        break;
+            if (args.Buttons.HasValue)
+            {
+                this.buttons = args.Buttons.Value;
+            }
 
-                    case Icon ico:
-                        this.iconType = IconType.UserDefined;
-                        this.customIcon = ico;
-                        break;
+            if (args.Icon.HasValue)
+            {
+                this.icon = args.Icon.Value;
+            }
 
-                    case InformationBoxDefaultButton db:
-                        this.defaultButton = db;
-                        break;
+            if (args.CustomIcon is not null)
+            {
+                this.iconType = IconType.UserDefined;
+                this.customIcon = args.CustomIcon;
+            }
 
-                    case string[] labels:
-                        if (labels.Length > 0)
-                        {
-                            this.buttonUser1Text = labels[0];
-                        }
+            if (args.DefaultButton.HasValue)
+            {
+                this.defaultButton = args.DefaultButton.Value;
+            }
 
-                        if (labels.Length > 1)
-                        {
-                            this.buttonUser2Text = labels[1];
-                        }
+            if (args.ButtonUser1Text is not null)
+            {
+                this.buttonUser1Text = args.ButtonUser1Text;
+            }
 
-                        if (labels.Length > 2)
-                        {
-                            this.buttonUser3Text = labels[2];
-                        }
+            if (args.ButtonUser2Text is not null)
+            {
+                this.buttonUser2Text = args.ButtonUser2Text;
+            }
 
-                        break;
+            if (args.ButtonUser3Text is not null)
+            {
+                this.buttonUser3Text = args.ButtonUser3Text;
+            }
 
-                    case InformationBoxButtonsLayout bl:
-                        this.buttonsLayout = bl;
-                        break;
+            if (args.ButtonsLayout.HasValue)
+            {
+                this.buttonsLayout = args.ButtonsLayout.Value;
+            }
 
-                    case InformationBoxAutoSizeMode asm:
-                        this.autoSizeMode = asm;
-                        break;
+            if (args.AutoSizeMode.HasValue)
+            {
+                this.autoSizeMode = args.AutoSizeMode.Value;
+            }
 
-                    case InformationBoxPosition pos:
-                        this.position = pos;
-                        break;
+            if (args.Position.HasValue)
+            {
+                this.position = args.Position.Value;
+            }
 
-                    case bool showHelp:
-                        this.showHelpButton = showHelp;
-                        break;
+            if (args.ShowHelpButton.HasValue)
+            {
+                this.showHelpButton = args.ShowHelpButton.Value;
+            }
 
-                    case HelpNavigator hn:
-                        this.helpNavigator = hn;
-                        break;
+            if (args.HelpNavigator.HasValue)
+            {
+                this.helpNavigator = args.HelpNavigator.Value;
+            }
 
-                    case InformationBoxCheckBox cb:
-                        this.checkBox = cb;
-                        break;
+            if (args.CheckBox.HasValue)
+            {
+                this.checkBox = args.CheckBox.Value;
+            }
 
-                    case InformationBoxStyle st:
-                        this.style = st;
-                        break;
+            if (args.Style.HasValue)
+            {
+                this.style = args.Style.Value;
+            }
 
-                    case AutoCloseParameters ac:
-                        this.autoClose = ac;
-                        break;
+            if (args.AutoClose is not null)
+            {
+                this.autoClose = args.AutoClose;
+            }
 
-                    case DesignParameters dp:
-                        this.design = dp;
-                        break;
+            if (args.Design is not null)
+            {
+                this.design = args.Design;
+            }
 
-                    case FontParameters fp:
-                        this.fontParameters = fp;
-                        break;
+            if (args.FontParameters is not null)
+            {
+                this.fontParameters = args.FontParameters;
+            }
 
-                    case Font f:
-                        // Direct font parameter - use for both message and title
-                        this.fontParameters = new FontParameters(f);
-                        break;
+            if (args.TitleStyle.HasValue)
+            {
+                this.titleStyle = args.TitleStyle.Value;
+            }
 
-                    case InformationBoxTitleIconStyle tis:
-                        this.titleStyle = tis;
-                        break;
+            if (args.TitleIcon is not null)
+            {
+                this.titleIcon = args.TitleIcon;
+            }
 
-                    case InformationBoxTitleIcon ti:
-                        this.titleIcon = ti.Icon;
-                        break;
+            if (args.Behavior.HasValue)
+            {
+                this.behavior = args.Behavior.Value;
+            }
 
-                    case MessageBoxButtons mb:
-                        this.buttons = MessageBoxEnumConverter.Parse(mb);
-                        break;
+            if (args.Callback is not null)
+            {
+                this.callback = args.Callback;
+            }
 
-                    case MessageBoxIcon mi:
-                        this.icon = MessageBoxEnumConverter.Parse(mi);
-                        break;
+            if (args.Opacity.HasValue)
+            {
+                this.opacity = args.Opacity.Value;
+            }
 
-                    case MessageBoxDefaultButton mdb:
-                        this.defaultButton = MessageBoxEnumConverter.Parse(mdb);
-                        break;
+            if (args.Parent is not null)
+            {
+                this.Parent = args.Parent;
+            }
 
-                    case InformationBoxBehavior beh:
-                        this.behavior = beh;
-                        break;
+            if (args.Order.HasValue)
+            {
+                this.order = args.Order.Value;
+            }
 
-                    case AsyncResultCallback arc:
-                        this.callback = arc;
-                        break;
-
-                    case InformationBoxOpacity op:
-                        this.opacity = op;
-                        break;
-
-                    case Form parentForm:
-                        // Previously: `this.Parent = (Form)Parent;` - the local was shadowed by the
-                        // form's own Parent property, making this branch a no-op. Pattern matching
-                        // exposes a named local, eliminating the typo.
-                        this.Parent = parentForm;
-                        break;
-
-                    case InformationBoxOrder ord:
-                        this.order = ord;
-                        break;
-
-                    case InformationBoxSound sd:
-                        this.sound = sd;
-                        break;
-                }
+            if (args.Sound.HasValue)
+            {
+                this.sound = args.Sound.Value;
             }
         }
 
