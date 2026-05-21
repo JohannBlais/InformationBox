@@ -40,3 +40,14 @@ csharp_style_prefer_pattern_matching = true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
 dotnet_style_object_initializer = true:suggestion
 dotnet_style_collection_initializer = true:suggestion
+
+# Test files: relax rules that conflict with established test-writing idioms.
+[**/*Tests.cs]
+
+# CA1707: Underscores in test method names (e.g. Method_WithCondition_ReturnsExpected)
+# are the convention across the project's existing tests; the readability is the point.
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1861: Inline constant arrays in test arrange-act blocks are clearer than extracted
+# static readonly fields and the perf gain is irrelevant in a test context.
+dotnet_diagnostic.CA1861.severity = none
