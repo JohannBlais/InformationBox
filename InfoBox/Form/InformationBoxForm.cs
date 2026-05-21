@@ -396,7 +396,7 @@ namespace InfoBox
         /// is preserved.
         /// </summary>
         /// <param name="args">The parsed parameter aggregate.</param>
-        private void ApplyArgs(InformationBoxArgs args)
+        internal void ApplyArgs(InformationBoxArgs args)
         {
             if (args.Title is not null)
             {
