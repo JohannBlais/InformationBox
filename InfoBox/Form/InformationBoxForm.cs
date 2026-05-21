@@ -885,6 +885,13 @@ namespace InfoBox
                 {
                     barsBackColor = this.design.BarsBackColor;
                     formBackColor = this.design.FormBackColor;
+
+                    // The Controls.Panel paints a glass gradient on top of BackColor by
+                    // default. With a saturated custom BarsBackColor that gradient becomes
+                    // visually obvious (e.g. a "green glass" bar), which clashes with the
+                    // Standard style intent of a flat bar. Disable the glass effect so the
+                    // custom color is rendered as a flat fill.
+                    this.pnlButtons.UseGlassEffect = false;
                 }
 
                 this.pnlButtons.BackColor = barsBackColor;

@@ -39,6 +39,13 @@ namespace InfoBox.Controls
         /// </summary>
         private int sideBorderWidth = 1;
 
+        /// <summary>
+        /// Whether the glass effect is painted in <see cref="OnPaintBackground"/>.
+        /// Defaults to <c>true</c> to preserve the historical look. Set to <c>false</c>
+        /// for a flat <see cref="System.Windows.Forms.Control.BackColor"/> fill.
+        /// </summary>
+        private bool useGlassEffect = true;
+
         #endregion Attributes
 
         #region Constructor
@@ -138,6 +145,27 @@ namespace InfoBox.Controls
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the glass effect is painted on the
+        /// background. When <c>false</c>, the panel's <see cref="System.Windows.Forms.Control.BackColor"/>
+        /// is rendered as a flat fill (default WinForms paint).
+        /// </summary>
+        /// <value><c>true</c> (default) to paint the glass effect; <c>false</c> for a flat fill.</value>
+        [Category("Appearance"), Description("Defines whether the glass effect is painted on the background"), DefaultValue(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool UseGlassEffect
+        {
+            get
+            {
+                return this.useGlassEffect;
+            }
+
+            set
+            {
+                this.useGlassEffect = value;
+                this.Invalidate();
+            }
+        }
+
         #endregion Properties
 
         #region Event Handlers
@@ -148,7 +176,15 @@ namespace InfoBox.Controls
         /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs"></see> that contains information about the control to paint.</param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            PaintingEngine.PaintGlassEffect(e.Graphics, BackColor, Width, Height);
+            if (this.useGlassEffect)
+            {
+                PaintingEngine.PaintGlassEffect(e.Graphics, BackColor, Width, Height);
+            }
+            else
+            {
+                base.OnPaintBackground(e);
+            }
+
             PaintingEngine.PaintGradientBorders(e.Graphics, this.sideBorderTopColor, this.sideBorderBottomColor, Width, Height, this.sideBorderWidth, this.sideBorder);
         }
 
