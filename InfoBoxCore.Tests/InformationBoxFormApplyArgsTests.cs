@@ -48,10 +48,9 @@ namespace InfoBoxCore.Tests
         [Test]
         public void ApplyArgs_WithFullyPopulatedArgs_AppliesEveryField()
         {
-            // Arrange - Parent is intentionally omitted: see
-            // ApplyArgs_WithParent_ThrowsArgumentException_DocumentsLatentBug for the
-            // pre-existing Form.Parent vs Form.Owner mix-up.
+            // Arrange
             using InformationBoxForm form = new InformationBoxForm("base text");
+            using Form parentForm = new Form();
 
             AsyncResultCallback callback = _ => { };
             Icon customIcon = SystemIcons.Information;
@@ -88,6 +87,7 @@ namespace InfoBoxCore.Tests
                 Behavior = InformationBoxBehavior.Modeless,
                 Callback = callback,
                 Opacity = InformationBoxOpacity.Faded30,
+                Parent = parentForm,
                 Order = InformationBoxOrder.TopMost,
                 Sound = InformationBoxSound.None,
             };
@@ -126,6 +126,8 @@ namespace InfoBoxCore.Tests
                 Assert.That(GetField<InformationBoxBehavior>(form, "behavior"), Is.EqualTo(InformationBoxBehavior.Modeless));
                 Assert.That(GetField<AsyncResultCallback>(form, "callback"), Is.SameAs(callback));
                 Assert.That(GetField<InformationBoxOpacity>(form, "opacity"), Is.EqualTo(InformationBoxOpacity.Faded30));
+                Assert.That(form.Owner, Is.SameAs(parentForm), "Parent argument is wired to Form.Owner (not Form.Parent, which rejects top-level Forms)");
+                Assert.That(form.Parent, Is.Null, "Form.Parent must remain null - it would throw if assigned");
                 Assert.That(GetField<InformationBoxOrder>(form, "order"), Is.EqualTo(InformationBoxOrder.TopMost));
                 Assert.That(GetField<InformationBoxSound>(form, "sound"), Is.EqualTo(InformationBoxSound.None));
             });
@@ -187,23 +189,20 @@ namespace InfoBoxCore.Tests
         }
 
         [Test]
-        public void ApplyArgs_WithParent_ThrowsArgumentException_DocumentsLatentBug()
+        public void ApplyArgs_WithParent_SetsOwnerNotParent()
         {
-            // Documents a pre-existing bug in the form's ctor and ApplyArgs paths:
-            // `this.Parent = args.Parent` calls into WinForms' control-tree machinery,
-            // which forbids a top-level Form from being a child of another control.
-            // Setting `Form.Owner` (an ownership relationship rather than a parent-child
-            // control relationship) is the API actually intended for the "open the dialog
-            // anchored to this form" use case. PR #79 surfaced the bug by replacing a
-            // silent no-op (`(Form)Parent`, always null at construction time) with a real
-            // assignment - the explicit-parameter ctor had the same wrong assignment all
-            // along but only throws when a non-null parent is actually supplied.
-            // Tracked for a follow-up fix (switch Parent -> Owner).
+            // Regression guard: an earlier shape of this code set this.Parent = args.Parent,
+            // which throws ArgumentException at runtime because a top-level Form cannot be
+            // a child control of another control. Form.Owner is the correct WinForms API
+            // for "this dialog is owned by that form".
             using InformationBoxForm form = new InformationBoxForm("base");
             using Form parentForm = new Form();
             InformationBoxArgs args = new InformationBoxArgs { Parent = parentForm };
 
-            Assert.That(() => form.ApplyArgs(args), Throws.TypeOf<ArgumentException>());
+            form.ApplyArgs(args);
+
+            Assert.That(form.Owner, Is.SameAs(parentForm));
+            Assert.That(form.Parent, Is.Null);
         }
 
         [Test]

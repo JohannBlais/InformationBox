@@ -363,7 +363,7 @@ namespace InfoBox
             this.behavior = behavior;
             this.callback = callback;
             this.opacity = opacity;
-            this.Parent = parent;
+            this.Owner = parent;
             this.order = order;
             this.sound = sound;
         }
@@ -532,7 +532,7 @@ namespace InfoBox
 
             if (args.Parent is not null)
             {
-                this.Parent = args.Parent;
+                this.Owner = args.Parent;
             }
 
             if (args.Order.HasValue)
