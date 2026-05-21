@@ -558,10 +558,24 @@ namespace InfoBox.Designer
         /// <summary>
         /// Gets the design.
         /// </summary>
-        /// <returns>The design.</returns>
+        /// <returns>The design parameters built from the user's color choices, or null when
+        /// no design override should be applied.</returns>
+        /// <remarks>
+        /// Returns null when "Custom colors" is unchecked, but also when it is checked
+        /// without any actual color having been picked. The two color fields start as
+        /// <see cref="Color.Empty"/>, and forwarding empty colors to
+        /// <see cref="DesignParameters"/> breaks the Modern style rendering (the form's
+        /// background becomes effectively transparent) and produces misleading
+        /// <c>Color.FromArgb(0,0,0)</c> output in the "Generate code" preview.
+        /// </remarks>
         private DesignParameters GetDesign()
         {
             if (!this.chbCustomColors.Checked)
+            {
+                return null;
+            }
+
+            if (this.formColor.IsEmpty && this.barsColor.IsEmpty)
             {
                 return null;
             }
