@@ -47,6 +47,12 @@ dotnet_style_collection_initializer = true:suggestion
 # so the suggested fix cannot be applied without breaking the dual-build. Suppressed.
 dotnet_diagnostic.CA2263.severity = none
 
+# CA1863: suggests caching a System.Text.CompositeFormat for reused format strings.
+# CompositeFormat only exists on .NET 8+, but the shared source also compiles on
+# .NET Framework 4.8 - the suggested fix is unavailable there, same dual-build
+# constraint as CA2263. Suppressed.
+dotnet_diagnostic.CA1863.severity = none
+
 # Test files: relax rules that conflict with established test-writing idioms.
 [**/*Tests.cs]
 
