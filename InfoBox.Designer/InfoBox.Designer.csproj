@@ -23,7 +23,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -34,7 +33,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -101,9 +99,10 @@
     <Content Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InfoBox\InfoBox.csproj">
-      <Project>{18b58ca4-e470-4eb4-ac2b-52becafe0b53}</Project>
-      <Name>InfoBox</Name>
+    <ProjectReference Include="..\InfoBoxCore\InfoBoxCore.csproj">
+      <Project>{a49425af-f2b6-4e15-b74e-06cd895e0aa5}</Project>
+      <Name>InfoBoxCore</Name>
+      <SetTargetFramework>TargetFramework=net48</SetTargetFramework>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

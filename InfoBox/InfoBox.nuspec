@@ -35,9 +35,9 @@ Stop wasting time developing your own custom MessageBox, everything you need is 
         <readme>README.md</readme>
     </metadata>
     <files>
-        <file src="bin\Release\InfoBox.dll" target="lib\net48\" />
-        <file src="bin\Release\InfoBox.pdb" target="lib\net48\" />
-        <file src="bin\Release\**\InfoBox.resources.dll" target="lib\net48\" />
+        <file src="..\InfoBoxCore\bin\Release\net48\InfoBox.dll" target="lib\net48\" />
+        <file src="..\InfoBoxCore\bin\Release\net48\InfoBox.pdb" target="lib\net48\" />
+        <file src="..\InfoBoxCore\bin\Release\net48\**\InfoBox.resources.dll" target="lib\net48\" />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.dll" target="lib\net8.0-windows7.0\"  />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\InfoBox.pdb" target="lib\net8.0-windows7.0\" />
         <file src="..\InfoBoxCore\bin\Release\net8.0-windows\**\InfoBox.resources.dll" target="lib\net8.0-windows7.0\" />
