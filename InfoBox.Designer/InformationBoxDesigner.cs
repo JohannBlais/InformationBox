@@ -563,6 +563,8 @@ namespace InfoBox.Designer
         /// <see cref="DesignParameters"/> breaks the Modern style rendering (the form's
         /// background becomes effectively transparent) and produces misleading
         /// <c>Color.FromArgb(0,0,0)</c> output in the "Generate code" preview.
+        /// When only one of the two colors is picked, the other falls back to the active
+        /// style's default so the unset color renders normally instead of as Color.Empty.
         /// </remarks>
         private DesignParameters GetDesign()
         {
@@ -576,7 +578,25 @@ namespace InfoBox.Designer
                 return null;
             }
 
-            return new DesignParameters(this.formColor, this.barsColor);
+            // Defaults mirror InformationBoxForm.SetWindowStyle so a half-filled design
+            // looks identical to the style's default for the color the user left unset.
+            Color defaultForm;
+            Color defaultBars;
+            if (this.GetStyle() == InformationBoxStyle.Modern)
+            {
+                defaultForm = Color.Silver;
+                defaultBars = Color.Black;
+            }
+            else
+            {
+                defaultForm = SystemColors.Control;
+                defaultBars = SystemColors.Control;
+            }
+
+            Color resolvedForm = this.formColor.IsEmpty ? defaultForm : this.formColor;
+            Color resolvedBars = this.barsColor.IsEmpty ? defaultBars : this.barsColor;
+
+            return new DesignParameters(resolvedForm, resolvedBars);
         }
 
         /// <summary>
