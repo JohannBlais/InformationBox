@@ -11,7 +11,7 @@ InformationBox is a Windows Forms library providing a customizable alternative t
 **IMPORTANT:** Always use the full MSBuild path when building this project. MSBuild is located at:
 `P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe`
 
-Since the solution targets both .NET Framework 4.8 and .NET Core, use MSBuild instead of dotnet:
+The solution multi-targets .NET Framework 4.8 and .NET 8/9/10. As of the InfoBoxCore consolidation, **`dotnet build InfoBox.sln` works** for the whole solution; VS MSBuild remains the canonical path (and is what Azure DevOps CI uses via `VSBuild@1`):
 
 ```bash
 # Build all projects
@@ -32,15 +32,16 @@ nuget pack InfoBox/InfoBox.nuspec
 
 ## Project Structure
 
-The solution uses a dual-build strategy with shared source code:
+The library is built from a single multi-targeted project over shared source:
 
-- **InfoBox/** - Legacy .NET Framework 4.8 library (old .csproj format)
-- **InfoBoxCore/** - Modern .NET 8/9/10 library that compiles the same source via `<Compile Include="..\InfoBox\**\*.cs" />`
-- **InfoBox.Designer/** - Visual designer tool (.NET Framework 4.8)
-- **InfoBoxCore.Designer/** - Visual designer tool (.NET 8/9/10)
-- **InfoBoxCore.Designer.Tests/** - NUnit tests for code generation
+- **InfoBox/** - Shared library *source* (`.cs`, `.resx`, icon resources, signing key `key.snk`, and `InfoBox.nuspec`). This folder is **no longer a project** - it has no `.csproj`. Its files are compiled by InfoBoxCore.
+- **InfoBoxCore/** - The single library project (SDK-style). Multi-targets `net48;net8.0-windows;net9.0-windows;net10.0-windows`, compiling the shared source via `<Compile Include="..\InfoBox\**\*.cs" />`. Produces the strong-name-signed `InfoBox.dll` (namespace `InfoBox`) for every target framework, including the localization satellite assemblies. The net48 target sets `GenerateResourceUsePreserializedResources=true` + references `System.Resources.Extensions` for the embedded icon resources.
+- **InfoBox.Designer/** - Visual designer tool (.NET Framework 4.8, old `.csproj` format). References InfoBoxCore's net48 target via `<SetTargetFramework>TargetFramework=net48</SetTargetFramework>`.
+- **InfoBoxCore.Designer/** - Visual designer tool (.NET 8/9/10), compiles the same designer source as InfoBox.Designer.
+- **InfoBoxCore.Designer.Tests/** - NUnit tests for code generation (Roslyn-compiles the generated code).
+- **InfoBoxCore.Tests/** - NUnit tests for the library (params parser, scope lifecycle, text helpers).
 
-Both InfoBox and InfoBoxCore compile to the same assembly name (`InfoBox.dll`) and namespace (`InfoBox`).
+The NuGet package (`InfoBox.nuspec`) pulls all four target frameworks from `InfoBoxCore/bin/Release/<tfm>/`.
 
 ## Key Architecture
 
