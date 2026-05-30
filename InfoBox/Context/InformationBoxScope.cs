@@ -26,6 +26,12 @@ namespace InfoBox
         /// </summary>
         private readonly InformationBoxScopeParameters definedParameters;
 
+        /// <summary>
+        /// Tracks whether the scope has already been disposed, to avoid popping the
+        /// stack more than once.
+        /// </summary>
+        private bool disposed;
+
         #endregion Attributes
 
         #region Constructors
@@ -117,28 +123,34 @@ namespace InfoBox
         #region Dispose
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting resources.
         /// </summary>
         public void Dispose()
         {
-            scopesStack.Pop();
-
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
+        /// Releases the resources held by the scope. When <paramref name="disposing"/> is
+        /// <c>true</c>, removes this scope from the active scope stack.
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        /// <param name="disposing"><c>true</c> to release managed resources; <c>false</c> when called from a finalizer.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (this.disposed)
             {
-                // Releases unmanaged resources
+                return;
             }
 
-            // Releases managed resources
+            if (disposing)
+            {
+                // The scope stack only holds managed references, so it is only touched
+                // when disposing deterministically (never from a finalizer).
+                scopesStack.Pop();
+            }
+
+            this.disposed = true;
         }
 
         #endregion Dispose
