@@ -78,69 +78,69 @@ namespace InfoBox.Designer.CodeGeneration
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
             {
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ", text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBox.Show(\"{0}\", ", text.Replace(Environment.NewLine, "\\n"));
             }
             else
             {
                 codeBuilder.Append("CheckState doNotShowState = CheckState.Indeterminate;");
                 codeBuilder.Append(Environment.NewLine);
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", out doNotShowState, ", text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBox.Show(\"{0}\", out doNotShowState, ", text.Replace(Environment.NewLine, "\\n"));
             }
 
             if (!String.IsNullOrEmpty(title))
             {
-                codeBuilder.AppendFormat("title: \"{0}\", ", title);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "title: \"{0}\", ", title);
             }
 
             if (buttons != InformationBoxButtons.OK)
             {
-                codeBuilder.AppendFormat("buttons: InformationBoxButtons.{0}, ", buttons);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "buttons: InformationBoxButtons.{0}, ", buttons);
             }
 
             if (buttons == InformationBoxButtons.OKCancelUser1 ||
                 buttons == InformationBoxButtons.User1User2 ||
                 buttons == InformationBoxButtons.YesNoUser1)
             {
-                codeBuilder.AppendFormat("customButtons: new string[] {{ \"{0}\", \"{1}\" }}, ", button1Text, button2Text);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "customButtons: new string[] {{ \"{0}\", \"{1}\" }}, ", button1Text, button2Text);
             }
             else if (buttons == InformationBoxButtons.User1User2User3)
             {
-                codeBuilder.AppendFormat("customButtons: new string[] {{ \"{0}\", \"{1}\", \"{2}\" }}, ", button1Text, button2Text, button3Text);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "customButtons: new string[] {{ \"{0}\", \"{1}\", \"{2}\" }}, ", button1Text, button2Text, button3Text);
             }
 
             if (icon != InformationBoxIcon.None)
             {
-                codeBuilder.AppendFormat("icon: InformationBoxIcon.{0}, ", icon);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "icon: InformationBoxIcon.{0}, ", icon);
             }
 
             if (!String.IsNullOrEmpty(iconFileName))
             {
-                codeBuilder.AppendFormat("customIcon: new System.Drawing.Icon(@\"{0}\"), ", iconFileName);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "customIcon: new System.Drawing.Icon(@\"{0}\"), ", iconFileName);
             }
 
             if (defaultButton != InformationBoxDefaultButton.Button1)
             {
-                codeBuilder.AppendFormat("defaultButton: InformationBoxDefaultButton.{0}, ", defaultButton);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "defaultButton: InformationBoxDefaultButton.{0}, ", defaultButton);
             }
 
             if (buttonsLayout != InformationBoxButtonsLayout.GroupMiddle)
             {
-                codeBuilder.AppendFormat("buttonsLayout: InformationBoxButtonsLayout.{0}, ", buttonsLayout);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "buttonsLayout: InformationBoxButtonsLayout.{0}, ", buttonsLayout);
             }
 
             if (autoSize != InformationBoxAutoSizeMode.None)
             {
-                codeBuilder.AppendFormat("autoSizeMode: InformationBoxAutoSizeMode.{0}, ", autoSize);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "autoSizeMode: InformationBoxAutoSizeMode.{0}, ", autoSize);
             }
 
             if (sound != InformationBoxSound.Default)
             {
-                codeBuilder.AppendFormat("sound: InformationBoxSound.{0}, ", sound);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "sound: InformationBoxSound.{0}, ", sound);
             }
 
             if (position != InformationBoxPosition.CenterOnParent)
             {
-                codeBuilder.AppendFormat("position: InformationBoxPosition.{0}, ", position);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "position: InformationBoxPosition.{0}, ", position);
             }
 
             if (showHelp)
@@ -150,17 +150,17 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (!String.IsNullOrEmpty(helpFile))
             {
-                codeBuilder.AppendFormat("helpFile: @\"{0}\", ", helpFile);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "helpFile: @\"{0}\", ", helpFile);
             }
 
             if (navigator != 0)
             {
-                codeBuilder.AppendFormat("helpNavigator: HelpNavigator.{0}, ", navigator);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "helpNavigator: HelpNavigator.{0}, ", navigator);
             }
 
             if (!String.IsNullOrEmpty(helpTopic))
             {
-                codeBuilder.AppendFormat("helpTopic: \"{0}\", ", helpTopic);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "helpTopic: \"{0}\", ", helpTopic);
             }
 
             if (checkState != 0)
@@ -181,17 +181,17 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (doNotShowAgainText != null)
             {
-                codeBuilder.AppendFormat("doNotShowAgainText: \"{0}\", ", doNotShowAgainText);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "doNotShowAgainText: \"{0}\", ", doNotShowAgainText);
             }
 
             if (style != InformationBoxStyle.Standard)
             {
-                codeBuilder.AppendFormat("style: InformationBoxStyle.{0}, ", style);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "style: InformationBoxStyle.{0}, ", style);
             }
 
             if (order != InformationBoxOrder.Default)
             {
-                codeBuilder.AppendFormat("order: InformationBoxOrder.{0}, ", order);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "order: InformationBoxOrder.{0}, ", order);
             }
 
             if (useAutoClose)
@@ -206,15 +206,15 @@ namespace InfoBox.Designer.CodeGeneration
                 {
                     if (autoClose.Mode == AutoCloseDefinedParameters.Button)
                     {
-                        codeBuilder.AppendFormat("autoClose: new AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", autoClose.Seconds, autoClose.DefaultButton);
+                        codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "autoClose: new AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", autoClose.Seconds, autoClose.DefaultButton);
                     }
                     else if (autoClose.Mode == AutoCloseDefinedParameters.Result)
                     {
-                        codeBuilder.AppendFormat("autoClose: new AutoCloseParameters({0}, InformationBoxResult.{1}), ", autoClose.Seconds, autoClose.Result);
+                        codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "autoClose: new AutoCloseParameters({0}, InformationBoxResult.{1}), ", autoClose.Seconds, autoClose.Result);
                     }
                     else
                     {
-                        codeBuilder.AppendFormat("autoClose: new AutoCloseParameters({0}), ", autoClose.Seconds);
+                        codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "autoClose: new AutoCloseParameters({0}), ", autoClose.Seconds);
                     }
                 }
             }
@@ -266,7 +266,7 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (opacity != InformationBoxOpacity.NoFade)
             {
-                codeBuilder.AppendFormat("opacity: InformationBoxOpacity.{0}, ", opacity);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "opacity: InformationBoxOpacity.{0}, ", opacity);
             }
 
             codeBuilder[codeBuilder.Length - 2] = ')';

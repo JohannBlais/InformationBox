@@ -46,69 +46,69 @@ namespace InfoBox.Designer.CodeGeneration
             StringBuilder codeBuilder = new StringBuilder();
             if (checkState == 0)
             {
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", ", text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBox.Show(\"{0}\", ", text.Replace(Environment.NewLine, "\\n"));
             }
             else
             {
                 codeBuilder.Append("Dim doNotShowState as CheckState = CheckState.Indeterminate");
                 codeBuilder.Append(Environment.NewLine);
-                codeBuilder.AppendFormat("InformationBox.Show(\"{0}\", doNotShowState, ", text.Replace(Environment.NewLine, "\\n"));
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBox.Show(\"{0}\", doNotShowState, ", text.Replace(Environment.NewLine, "\\n"));
             }
 
             if (!String.IsNullOrEmpty(helpFile) || !String.IsNullOrEmpty(title))
             {
-                codeBuilder.AppendFormat("\"{0}\", ", title);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "\"{0}\", ", title);
             }
 
             if (buttons != InformationBoxButtons.OK)
             {
-                codeBuilder.AppendFormat("InformationBoxButtons.{0}, ", buttons);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxButtons.{0}, ", buttons);
             }
 
             if (buttons == InformationBoxButtons.OKCancelUser1 ||
                 buttons == InformationBoxButtons.User1User2 ||
                 buttons == InformationBoxButtons.YesNoUser1)
             {
-                codeBuilder.AppendFormat("New String() {{ \"{0}\", \"{1}\" }}, ", button1Text, button2Text);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "New String() {{ \"{0}\", \"{1}\" }}, ", button1Text, button2Text);
             }
             else if (buttons == InformationBoxButtons.User1User2User3)
             {
-                codeBuilder.AppendFormat("New String() {{ \"{0}\", \"{1}\", \"{2}\" }}, ", button1Text, button2Text, button3Text);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "New String() {{ \"{0}\", \"{1}\", \"{2}\" }}, ", button1Text, button2Text, button3Text);
             }
 
             if (icon != InformationBoxIcon.None)
             {
-                codeBuilder.AppendFormat("InformationBoxIcon.{0}, ", icon);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxIcon.{0}, ", icon);
             }
 
             if (!String.IsNullOrEmpty(iconFileName))
             {
-                codeBuilder.AppendFormat("New System.Drawing.Icon(@\"{0}\"), ", iconFileName);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "New System.Drawing.Icon(@\"{0}\"), ", iconFileName);
             }
 
             if (defaultButton != InformationBoxDefaultButton.Button1)
             {
-                codeBuilder.AppendFormat("InformationBoxDefaultButton.{0}, ", defaultButton);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxDefaultButton.{0}, ", defaultButton);
             }
 
             if (buttonsLayout != InformationBoxButtonsLayout.GroupMiddle)
             {
-                codeBuilder.AppendFormat("InformationBoxButtonsLayout.{0}, ", buttonsLayout);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxButtonsLayout.{0}, ", buttonsLayout);
             }
 
             if (autoSize != InformationBoxAutoSizeMode.None)
             {
-                codeBuilder.AppendFormat("InformationBoxAutoSizeMode.{0}, ", autoSize);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxAutoSizeMode.{0}, ", autoSize);
             }
 
             if (sound != InformationBoxSound.Default)
             {
-                codeBuilder.AppendFormat("InformationBoxSound.{0}, ", sound);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxSound.{0}, ", sound);
             }
 
             if (position != InformationBoxPosition.CenterOnParent)
             {
-                codeBuilder.AppendFormat("InformationBoxPosition.{0}, ", position);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxPosition.{0}, ", position);
             }
 
             if (showHelp)
@@ -118,17 +118,17 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (!String.IsNullOrEmpty(helpFile))
             {
-                codeBuilder.AppendFormat("\"{0}\", ", helpFile);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "\"{0}\", ", helpFile);
             }
 
             if (navigator != 0)
             {
-                codeBuilder.AppendFormat("HelpNavigator.{0}, ", navigator);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "HelpNavigator.{0}, ", navigator);
             }
 
             if (!String.IsNullOrEmpty(helpTopic))
             {
-                codeBuilder.AppendFormat("\"{0}\", ", helpTopic);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "\"{0}\", ", helpTopic);
             }
 
             if (checkState != 0)
@@ -149,17 +149,17 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (doNotShowAgainText != null)
             {
-                codeBuilder.AppendFormat("\"{0}\", ", doNotShowAgainText);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "\"{0}\", ", doNotShowAgainText);
             }
 
             if (style != InformationBoxStyle.Standard)
             {
-                codeBuilder.AppendFormat("InformationBoxStyle.{0}, ", style);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxStyle.{0}, ", style);
             }
 
             if (order != InformationBoxOrder.Default)
             {
-                codeBuilder.AppendFormat("InformationBoxOrder.{0}, ", order);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxOrder.{0}, ", order);
             }
 
             if (useAutoClose)
@@ -174,15 +174,15 @@ namespace InfoBox.Designer.CodeGeneration
                 {
                     if (autoClose.Mode == AutoCloseDefinedParameters.Button)
                     {
-                        codeBuilder.AppendFormat("New AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", autoClose.Seconds, autoClose.DefaultButton);
+                        codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "New AutoCloseParameters({0}, InformationBoxDefaultButton.{1}), ", autoClose.Seconds, autoClose.DefaultButton);
                     }
                     else if (autoClose.Mode == AutoCloseDefinedParameters.Result)
                     {
-                        codeBuilder.AppendFormat("New AutoCloseParameters({0}, InformationBoxResult.{1}), ", autoClose.Seconds, autoClose.Result);
+                        codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "New AutoCloseParameters({0}, InformationBoxResult.{1}), ", autoClose.Seconds, autoClose.Result);
                     }
                     else
                     {
-                        codeBuilder.AppendFormat("New AutoCloseParameters({0}), ", autoClose.Seconds);
+                        codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "New AutoCloseParameters({0}), ", autoClose.Seconds);
                     }
                 }
             }
@@ -234,7 +234,7 @@ namespace InfoBox.Designer.CodeGeneration
 
             if (opacity != InformationBoxOpacity.NoFade)
             {
-                codeBuilder.AppendFormat("InformationBoxOpacity.{0}, ", opacity);
+                codeBuilder.AppendFormat(CultureInfo.InvariantCulture, "InformationBoxOpacity.{0}, ", opacity);
             }
 
             codeBuilder[codeBuilder.Length - 2] = ')';

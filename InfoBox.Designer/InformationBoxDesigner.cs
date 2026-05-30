@@ -860,7 +860,7 @@ namespace InfoBox.Designer
 
             Font selected = this.dlgFont.Font;
 
-            this.txbMessageFont.Text = string.Format("{0}, {1}pt", selected.Name, selected.Size);
+            this.txbMessageFont.Text = string.Format(CultureInfo.CurrentCulture, "{0}, {1}pt", selected.Name, selected.Size);
             this.messageFont = selected;
         }
 
@@ -886,7 +886,7 @@ namespace InfoBox.Designer
 
             Color selected = this.dlgColor.Color;
 
-            this.txbMessageColor.Text = string.Format("R={0}, G={1}, B={2}", selected.R, selected.G, selected.B);
+            this.txbMessageColor.Text = string.Format(CultureInfo.CurrentCulture, "R={0}, G={1}, B={2}", selected.R, selected.G, selected.B);
             this.lblFontColor.BackColor = selected;
             this.messageFontColor = selected;
         }
