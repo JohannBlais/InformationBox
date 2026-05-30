@@ -34,7 +34,7 @@ namespace InfoBox.Designer
         /// <summary>
         /// Font for the message text
         /// </summary>
-        private Font messageFont = null;
+        private Font messageFont;
 
         /// <summary>
         /// Color for the message text
@@ -44,7 +44,7 @@ namespace InfoBox.Designer
         /// <summary>
         /// Text editor form instance
         /// </summary>
-        private TextEditorForm textEditorForm = null;
+        private TextEditorForm textEditorForm;
 
         #endregion Attributes
 

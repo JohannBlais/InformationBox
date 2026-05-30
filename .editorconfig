@@ -41,6 +41,12 @@ dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggesti
 dotnet_style_object_initializer = true:suggestion
 dotnet_style_collection_initializer = true:suggestion
 
+# CA2263: prefers the generic Enum.GetValues<TEnum>() overload, which only exists on
+# .NET 5+. The shared source is also compiled into the .NET Framework 4.8 projects
+# (InfoBox, InfoBox.Designer), where only the non-generic Enum.GetValues(Type) exists -
+# so the suggested fix cannot be applied without breaking the dual-build. Suppressed.
+dotnet_diagnostic.CA2263.severity = none
+
 # Test files: relax rules that conflict with established test-writing idioms.
 [**/*Tests.cs]
 

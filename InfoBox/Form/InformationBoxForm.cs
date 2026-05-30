@@ -127,7 +127,7 @@ namespace InfoBox
         /// <summary>
         /// Contains a value defining whether displaying the checkbox or not
         /// </summary>
-        private InformationBoxCheckBox checkBox = 0;
+        private InformationBoxCheckBox checkBox;
 
         /// <summary>
         /// Contains the style of the box
@@ -1573,9 +1573,9 @@ namespace InfoBox
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void Button_Click(object sender, EventArgs e)
         {
-            if (sender is Control)
+            if (sender is Control control)
             {
-                this.HandleButton((Control)sender);
+                this.HandleButton(control);
             }
         }
 
@@ -1758,28 +1758,26 @@ namespace InfoBox
                 {
                     Regex extractLabel = new Regex(@".*?\(\d+\)");
 
-                    if (buttonToUpdate is System.Windows.Forms.Button)
+                    if (buttonToUpdate is System.Windows.Forms.Button winFormsButton)
                     {
-                        System.Windows.Forms.Button button = (System.Windows.Forms.Button)buttonToUpdate;
-                        if (extractLabel.IsMatch(button.Text))
+                        if (extractLabel.IsMatch(winFormsButton.Text))
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
+                            winFormsButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", winFormsButton.Text.Substring(0, winFormsButton.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, this.autoClose.Seconds - this.elapsedTime);
+                            winFormsButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", winFormsButton.Text, this.autoClose.Seconds - this.elapsedTime);
                         }
                     }
-                    else if (buttonToUpdate is Controls.Button)
+                    else if (buttonToUpdate is Controls.Button glassButton)
                     {
-                        Controls.Button button = (Controls.Button)buttonToUpdate;
-                        if (extractLabel.IsMatch(button.Text))
+                        if (extractLabel.IsMatch(glassButton.Text))
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text.Substring(0, button.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
+                            glassButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", glassButton.Text.Substring(0, glassButton.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
                         {
-                            button.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", button.Text, this.autoClose.Seconds - this.elapsedTime);
+                            glassButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", glassButton.Text, this.autoClose.Seconds - this.elapsedTime);
                         }
                     }
                 }

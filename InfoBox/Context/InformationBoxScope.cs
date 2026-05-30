@@ -24,7 +24,7 @@ namespace InfoBox
         /// <summary>
         /// Contains the parameters defined within the scope
         /// </summary>
-        private readonly InformationBoxScopeParameters definedParameters = new InformationBoxScopeParameters();
+        private readonly InformationBoxScopeParameters definedParameters;
 
         #endregion Attributes
 

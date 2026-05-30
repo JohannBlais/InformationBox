@@ -16,7 +16,7 @@ namespace InfoBox.Designer
     public partial class TextEditorForm : Form
     {
         private readonly InformationBoxDesigner parentDesigner;
-        private bool isUpdating = false;
+        private bool isUpdating;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TextEditorForm"/> class.
