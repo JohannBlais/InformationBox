@@ -36,8 +36,8 @@ The library is built from a single multi-targeted project over shared source:
 
 - **InfoBox/** - Shared library *source* (`.cs`, `.resx`, icon resources, signing key `key.snk`, and `InfoBox.nuspec`). This folder is **no longer a project** - it has no `.csproj`. Its files are compiled by InfoBoxCore.
 - **InfoBoxCore/** - The single library project (SDK-style). Multi-targets `net48;net8.0-windows;net9.0-windows;net10.0-windows`, compiling the shared source via `<Compile Include="..\InfoBox\**\*.cs" />`. Produces the strong-name-signed `InfoBox.dll` (namespace `InfoBox`) for every target framework, including the localization satellite assemblies. The net48 target sets `GenerateResourceUsePreserializedResources=true` + references `System.Resources.Extensions` for the embedded icon resources.
-- **InfoBox.Designer/** - Visual designer tool (.NET Framework 4.8, old `.csproj` format). References InfoBoxCore's net48 target via `<SetTargetFramework>TargetFramework=net48</SetTargetFramework>`.
-- **InfoBoxCore.Designer/** - Visual designer tool (.NET 8/9/10), compiles the same designer source as InfoBox.Designer.
+- **InfoBox.Designer/** - Shared designer *source* (`.cs`, `.resx`, `app.ico`). Like InfoBox/, this folder is **no longer a project** - it has no `.csproj`. Its files are compiled by InfoBoxCore.Designer.
+- **InfoBoxCore.Designer/** - The single designer project (.NET 8/9/10), compiling the designer source via `<Compile Include="..\InfoBox.Designer\**\*.cs" />`. The designer is a dev tool and is not shipped in the NuGet package, so it does not target net48.
 - **InfoBoxCore.Designer.Tests/** - NUnit tests for code generation (Roslyn-compiles the generated code).
 - **InfoBoxCore.Tests/** - NUnit tests for the library (params parser, scope lifecycle, text helpers).
 
