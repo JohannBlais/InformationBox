@@ -35,6 +35,11 @@ namespace InfoBox
         /// </summary>
         private const int BorderPadding = 10;
 
+        /// <summary>
+        /// Format string for the auto-close countdown appended to a button label ("label (seconds)").
+        /// </summary>
+        private const string ButtonCountdownFormat = "{0} ({1})";
+
         #endregion Consts
 
         #region Attributes
@@ -1499,7 +1504,7 @@ namespace InfoBox
                     break;
             }
 
-            if (senderControl.Name.Equals("Help"))
+            if (senderControl.Name.Equals("Help", StringComparison.Ordinal))
             {
                 this.OpenHelp();
             }
@@ -1756,28 +1761,28 @@ namespace InfoBox
 
                 if (null != buttonToUpdate)
                 {
-                    Regex extractLabel = new Regex(@".*?\(\d+\)");
+                    Regex extractLabel = new Regex(@".*?\(\d+\)", RegexOptions.None, TimeSpan.FromSeconds(1));
 
                     if (buttonToUpdate is System.Windows.Forms.Button winFormsButton)
                     {
                         if (extractLabel.IsMatch(winFormsButton.Text))
                         {
-                            winFormsButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", winFormsButton.Text.Substring(0, winFormsButton.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
+                            winFormsButton.Text = String.Format(CultureInfo.InvariantCulture, ButtonCountdownFormat, winFormsButton.Text.Substring(0, winFormsButton.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
                         {
-                            winFormsButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", winFormsButton.Text, this.autoClose.Seconds - this.elapsedTime);
+                            winFormsButton.Text = String.Format(CultureInfo.InvariantCulture, ButtonCountdownFormat, winFormsButton.Text, this.autoClose.Seconds - this.elapsedTime);
                         }
                     }
                     else if (buttonToUpdate is Controls.Button glassButton)
                     {
                         if (extractLabel.IsMatch(glassButton.Text))
                         {
-                            glassButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", glassButton.Text.Substring(0, glassButton.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
+                            glassButton.Text = String.Format(CultureInfo.InvariantCulture, ButtonCountdownFormat, glassButton.Text.Substring(0, glassButton.Text.LastIndexOf(" (", StringComparison.OrdinalIgnoreCase)), this.autoClose.Seconds - this.elapsedTime);
                         }
                         else
                         {
-                            glassButton.Text = String.Format(CultureInfo.InvariantCulture, "{0} ({1})", glassButton.Text, this.autoClose.Seconds - this.elapsedTime);
+                            glassButton.Text = String.Format(CultureInfo.InvariantCulture, ButtonCountdownFormat, glassButton.Text, this.autoClose.Seconds - this.elapsedTime);
                         }
                     }
                 }

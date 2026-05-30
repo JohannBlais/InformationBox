@@ -32,7 +32,7 @@ namespace InfoBoxCore.Tests
         public void Parse_EmptyArray_ReturnsDefaultArgs()
         {
             // Act
-            InformationBoxArgs args = InformationBoxArgsParser.Parse(new object[0]);
+            InformationBoxArgs args = InformationBoxArgsParser.Parse(System.Array.Empty<object>());
 
             // Assert
             Assert.That(args.LoadScope, Is.True);
@@ -303,7 +303,7 @@ namespace InfoBoxCore.Tests
         [Test]
         public void Parse_EmptyStringArray_LeavesAllButtonLabelsNull()
         {
-            InformationBoxArgs args = InformationBoxArgsParser.Parse(new object[] { new string[0] });
+            InformationBoxArgs args = InformationBoxArgsParser.Parse(new object[] { System.Array.Empty<string>() });
 
             Assert.That(args.ButtonUser1Text, Is.Null);
             Assert.That(args.ButtonUser2Text, Is.Null);

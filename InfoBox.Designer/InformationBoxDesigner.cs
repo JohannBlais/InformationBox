@@ -518,24 +518,20 @@ namespace InfoBox.Designer
                 return AutoCloseParameters.Default;
             }
 
-            if (this.rdbAutoCloseButton.Checked && this.ddlAutoCloseButton.SelectedIndex != -1)
+            if (this.rdbAutoCloseButton.Checked && this.ddlAutoCloseButton.SelectedIndex != -1 &&
+                Enum.TryParse<InformationBoxDefaultButton>(this.ddlAutoCloseButton.SelectedItem.ToString(), out var buttonResult))
             {
-                if (Enum.TryParse<InformationBoxDefaultButton>(this.ddlAutoCloseButton.SelectedItem.ToString(), out var buttonResult))
-                {
-                    return new AutoCloseParameters(
-                        Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                        buttonResult);
-                }
+                return new AutoCloseParameters(
+                    Convert.ToInt32(this.nudAutoCloseSeconds.Value),
+                    buttonResult);
             }
 
-            if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1)
+            if (this.rdbAutoCloseResult.Checked && this.ddlAutoCloseResult.SelectedIndex != -1 &&
+                Enum.TryParse<InformationBoxResult>(this.ddlAutoCloseResult.SelectedItem.ToString(), out var resultValue))
             {
-                if (Enum.TryParse<InformationBoxResult>(this.ddlAutoCloseResult.SelectedItem.ToString(), out var resultValue))
-                {
-                    return new AutoCloseParameters(
-                        Convert.ToInt32(this.nudAutoCloseSeconds.Value),
-                        resultValue);
-                }
+                return new AutoCloseParameters(
+                    Convert.ToInt32(this.nudAutoCloseSeconds.Value),
+                    resultValue);
             }
 
             return new AutoCloseParameters(Convert.ToInt32(this.nudAutoCloseSeconds.Value));
