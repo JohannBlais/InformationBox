@@ -1,0 +1,89 @@
+# Modern, dotnet-based CI pipeline for InformationBox.
+#
+# Replaces the legacy classic (portal-defined) pipeline that used VSBuild@1 +
+# VSTest@3 + the Visual Studio Test Platform Installer. Those required Visual
+# Studio / MSBuild to be present on the build agent. Since the InfoBoxCore
+# consolidation (InfoBox.csproj removed, net48 folded into the SDK-style
+# InfoBoxCore.csproj), `dotnet build` / `dotnet test` work for the whole
+# solution, so the VS dependency is no longer needed.
+#
+# To adopt this: in Azure DevOps, create a new YAML pipeline pointing at this
+# file, confirm a green run, then disable/delete the old classic pipeline
+# (definition id 2, "InformationBox").
+
+trigger:
+  branches:
+    include:
+      - master
+      - '*'
+
+pr:
+  branches:
+    include:
+      - master
+
+pool:
+  # Windows is required: the library targets net48 and uses Windows Forms.
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  solution: 'InfoBox.sln'
+
+steps:
+  # Installs the SDK pinned by global.json. Once the global.json pin is removed
+  # (it only existed to keep VSBuild@1 / MSBuild 17.x happy - irrelevant now that
+  # dotnet uses its own bundled MSBuild), replace `useGlobalJson: true` with
+  # `version: '10.x'`.
+  - task: UseDotNet@2
+    displayName: 'Use .NET SDK (from global.json)'
+    inputs:
+      packageType: sdk
+      useGlobalJson: true
+
+  # SonarCloud begin. Mirrors the classic pipeline's settings.
+  # NOTE: confirm the service-connection reference. The classic pipeline used the
+  # connection with id 4f97f462-c9ce-49e3-a068-45d12d5fc407; reference it here by
+  # its display name (recommended) or by that id.
+  - task: SonarCloudPrepare@4
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'SonarCloud'        # <-- set to your SonarCloud service connection name
+      organization: 'johannblais'
+      scannerMode: 'dotnet'
+      projectKey: 'JohannBlais_InformationBox'
+      projectName: 'InformationBox'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore'
+    inputs:
+      command: 'restore'
+      projects: '$(solution)'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: 'build'
+      projects: '$(solution)'
+      arguments: '--configuration $(buildConfiguration) --no-restore'
+
+  # `dotnet test` on the solution runs both InfoBoxCore.Tests and
+  # InfoBoxCore.Designer.Tests. XPlat Code Coverage produces a Cobertura report;
+  # SonarCloud picks it up automatically via the dotnet scanner.
+  - task: DotNetCoreCLI@2
+    displayName: 'Test'
+    inputs:
+      command: 'test'
+      projects: '$(solution)'
+      arguments: '--configuration $(buildConfiguration) --no-build --collect "XPlat Code Coverage"'
+      publishTestResults: true
+
+  - task: SonarCloudAnalyze@4
+    displayName: 'Run Code Analysis'
+
+  # Optional but recommended: surfaces the SonarCloud Quality Gate result on the
+  # build/PR. The classic pipeline did not include this step - remove if undesired.
+  - task: SonarCloudPublish@4
+    displayName: 'Publish Quality Gate Result'
+    inputs:
+      pollingTimeoutSec: '300'

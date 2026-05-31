@@ -8,27 +8,26 @@ InformationBox is a Windows Forms library providing a customizable alternative t
 
 ## Build Commands
 
-**IMPORTANT:** Always use the full MSBuild path when building this project. MSBuild is located at:
-`P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe`
-
-The solution multi-targets .NET Framework 4.8 and .NET 8/9/10. As of the InfoBoxCore consolidation, **`dotnet build InfoBox.sln` works** for the whole solution; VS MSBuild remains the canonical path (and is what Azure DevOps CI uses via `VSBuild@1`):
+The solution multi-targets .NET Framework 4.8 and .NET 8/9/10. Since the InfoBoxCore consolidation (net48 folded into the SDK-style `InfoBoxCore.csproj`), **`dotnet` is the primary build tool** and works for the whole solution:
 
 ```bash
 # Build all projects
-"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln
+dotnet build InfoBox.sln -c Release
 
-# Build with specific configuration
-"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln -p:Configuration=Release
+# Rebuild all (force a full, non-incremental build)
+dotnet build InfoBox.sln -c Release --no-incremental
 
-# Rebuild all (clean + build)
-"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln -t:Rebuild
+# Run all tests (both InfoBoxCore.Tests and InfoBoxCore.Designer.Tests)
+dotnet test InfoBox.sln -c Release
 
-# Run tests
-dotnet test
-
-# Pack NuGet package
+# Pack the NuGet package (multi-target; pulls all 4 TFMs from InfoBoxCore/bin/Release/)
 nuget pack InfoBox/InfoBox.nuspec
 ```
+
+CI is the dotnet-based pipeline in `azure-pipelines.yml` (no Visual Studio dependency).
+
+VS MSBuild still works if you specifically need it (it is **not** required):
+`"P:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\msbuild.exe" InfoBox.sln -p:Configuration=Release`
 
 ## Project Structure
 
